@@ -1,15 +1,6 @@
-<p align="center"><h1>Hotelio</h1></p>
-
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
-
 ## Hotelio : Hotel Management System
 
-Hotelio is  a hotel management system that manages your hotel operations with smoothness and no efforts.
+Hotelio is a open source hotel management system that manages your hotel operations, smoothly, effortless.
 
 ## Contributing
 
