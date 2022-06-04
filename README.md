@@ -1,4 +1,4 @@
-<img src="Hotelio.png">
+<img src="Hotelio.png" height="350px">
 
 
 ## Hotelio : Hotel Management System
