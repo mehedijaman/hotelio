@@ -1,6 +1,6 @@
 ## Hotelio : Hotel Management System
 
-Hotelio is a open source hotel management system that manages your hotel operations, smoothly, effortless.
+Hotelio is a open source hotel management system that manages your hotel operations, smoothly, effortless. 
 
 ## Contributing
 
