@@ -15,11 +15,12 @@ return new class extends Migration
     {
         Schema::create('account_ledgers', function (Blueprint $table) {
             $table->id();
-            $table->decimal('Debit');
-            $table->decimal('Credit');
-            $table->dateTime('Date');
-            $table->string('Method');
-            $table->string('Description')->nullable();
+            $table->decimal('Debit')->nullable();
+            $table->decimal('Credit')->nullable();
+            $table->dateTime('Date')->nullable();
+            $table->string('Method')->nullable();
+            $table->text('Description')->nullable();
+            $table->timestamps();
         });
     }
 

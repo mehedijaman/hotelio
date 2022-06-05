@@ -15,12 +15,13 @@ return new class extends Migration
     {
         Schema::create('banks', function (Blueprint $table) {
             $table->id();
-            $table->string('Name');
-            $table->string('Branch');
-            $table->bigInteger('AccountNo');
-            $table->string('Address');
-            $table->string('Phone');
-            $table->string('Email');
+            $table->string('Name')->nullable();
+            $table->string('Branch')->nullable();
+            $table->string('AccountNo');
+            $table->text('Address')->nullable();
+            $table->string('Phone')->nullable();
+            $table->string('Email')->nullable();
+            $table->timestamps();
         });
     }
 

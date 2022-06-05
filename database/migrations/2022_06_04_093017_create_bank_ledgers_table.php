@@ -15,12 +15,13 @@ return new class extends Migration
     {
         Schema::create('bank_ledgers', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('BankId');
-            $table->foreign('BankId')->references('id')->on('banks');
-            $table->decimal('Deposit');
-            $table->decimal('Withdraw');
-            $table->dateTime('Date');
-            $table->string('Description')->nullable();
+            $table->foreignId('BankID');
+            // $table->foreign('BankID')->references('id')->on('banks');
+            $table->decimal('Deposit')->nullable();
+            $table->decimal('Withdraw')->nullable();
+            $table->dateTime('Date')->nullable();
+            $table->text('Description')->nullable();
+            $table->timestamps();
         });
     }
 

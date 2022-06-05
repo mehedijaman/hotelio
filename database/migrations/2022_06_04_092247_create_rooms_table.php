@@ -15,24 +15,26 @@ return new class extends Migration
     {
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('HotelId');
-            $table->foreign('HotelId')->references('id')->on('hotels');
+            $table->foreignId('HoteID');
+            // $table->foreign('HotelID')->references('id')->on('hotels');
             $table->string('RoomNo')->nullable();
             $table->string('Floor')->nullable();
             $table->string('Type')->nullable();
             $table->boolean('Geyser')->nullable();
-            $table->boolean('Ac')->nullable();
+            $table->boolean('AC')->nullable();
             $table->boolean('Balcony')->nullable();
             $table->boolean('Bathtub')->nullable();
             $table->boolean('HiComode')->nullable();
             $table->boolean('Locker')->nullable();
             $table->boolean('Freeze')->nullable();
             $table->boolean('Internet')->nullable();
-            $table->boolean('InterCom')->nullable();
-            $table->boolean('Tv')->nullable();
+            $table->boolean('Intercom')->nullable();
+            $table->boolean('TV')->nullable();
             $table->boolean('Wardrobe')->nullable();
             $table->decimal('Price')->nullable();
-            $table->boolean('Status');
+            $table->json('AdditionalFeatures')->nullable();
+            $table->boolean('Status')->nullable();
+            $table->timestamps();
         });
     }
 
