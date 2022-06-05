@@ -15,14 +15,14 @@ return new class extends Migration
     {
         Schema::create('hotels', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
-            $table->string('title')->nullable();
-            $table->string('email')->unique();
-            $table->string('address')->nullable();
-            $table->string('phone')->nullable();
-            $table->string('regNo')->nullable();
-            $table->string('logo')->nullable();
-            $table->string('photo')->nullable();
+            $table->string('Name')->nullable();
+            $table->string('Title')->nullable();
+            $table->string('Email')->unique();
+            $table->string('Address')->nullable();
+            $table->string('Phone')->nullable();
+            $table->string('RegNo')->nullable();
+            $table->string('Logo')->nullable();
+            $table->string('Photo')->nullable();
             $table->timestamps();
         });
     }
