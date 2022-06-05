@@ -12,16 +12,16 @@ class guest extends Model
     protected $table ='guest';
     protected $fillable = [
         'id',
-        'name',
-        'email',
-        'address',
-        'phone',
-        'nidNO',
-        'nid',
-        'passportNO',
-        'passport',
-        'father',
-        'photo',
-        'spouse'
+        'Name',
+        'Email',
+        'Address',
+        'Phone',
+        'NidNO',
+        'Nid',
+        'PassportNO',
+        'Passport',
+        'Father',
+        'Photo',
+        'Spouse'
     ];
 }

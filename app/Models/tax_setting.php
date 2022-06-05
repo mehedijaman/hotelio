@@ -11,8 +11,8 @@ class tax_setting extends Model
     protected $table ='tax_setting';
     protected $fillable = [
         'id',
-        'name',
-        'parcent',
-        'status',
+        'Name',
+        'Parcent',
+        'Status',
     ];
 }

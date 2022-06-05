@@ -12,10 +12,10 @@ class bank_ledger extends Model
     protected $table ='bank_ledger';
     protected $fillable = [
         'id',
-        'account_no',
-        'deposit',
-        'withdraw',
-        'date',
-        'description',
+        'AccountNo',
+        'Deposit',
+        'Withdraw',
+        'Date',
+        'Description',
     ];
 }

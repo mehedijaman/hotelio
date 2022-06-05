@@ -11,11 +11,11 @@ class management_user extends Model
     protected $table ='management_user';
     protected $fillable = [
         'id',
-        'employee_id',
-        'email',
-        'password',
-        'lastLogin',
-        'status',
-        'roll',
+        'EmployeeId',
+        'Email',
+        'Password',
+        'LastLogin',
+        'Status',
+        'Roll',
     ];
 }

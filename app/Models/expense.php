@@ -12,9 +12,9 @@ class expense extends Model
     protected $table ='expense';
     protected $fillable = [
         'id',
-        'category_id',
-        'amount',
-        'description',
-        'date',
+        'CategoryId',
+        'Amount',
+        'Description',
+        'Date',
     ];
 }

@@ -12,11 +12,11 @@ class account_ledger extends Model
     protected $table ='account_ledger';
     protected $fillable = [
         'id',
-        'debit',
-        'credit',
-        'date',
-        'method',
-        'description',
+        'Debit',
+        'Credit',
+        'Date',
+        'Method',
+        'Description',
 
     ];
     

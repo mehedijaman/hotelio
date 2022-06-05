@@ -12,12 +12,12 @@ class bank extends Model
     protected $table ='bank';
     protected $fillable = [
         'id',
-        'name',
-        'branch',
-        'account_no',
-        'address',
-        'phone',
-        'email',
+        'Name',
+        'Branch',
+        'AccountNo',
+        'Address',
+        'Phone',
+        'Email',
 
     ];
 }
