@@ -15,11 +15,12 @@ return new class extends Migration
     {
         Schema::create('expenses', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('expenses_categories');
-            $table->decimal('amount');
-            $table->string('description')->nullable;
-            $table->dateTime('date');
+            $table->unsignedBigInteger('CategoryId');
+            $table->foreign('CategoryId')->references('id')->on('
+            ExpensesCategories');
+            $table->decimal('Amount');
+            $table->string('Description')->nullable;
+            $table->dateTime('Date');
         });
     }
 

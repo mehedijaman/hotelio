@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('balances', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('account_id');
-            $table->foreign('account_id')->references('id')->on('account_ledgers');
+            $table->unsignedBigInteger('BankId');
+            $table->foreign('BankId')->references('id')->on('account_ledgers');
             $table->dateTime('date');
             $table->decimal('openingBalance');
             $table->decimal('closingBalance');

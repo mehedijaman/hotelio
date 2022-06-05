@@ -16,12 +16,12 @@ return new class extends Migration
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('hotel_id');
-            $table->string('name');
-            $table->date('dob');
-            $table->string('nidNO');
-            $table->string('nidDoc');
-            $table->string('phone');
-            $table->string('email');
+            $table->string('Name');
+            $table->date('Dob');
+            $table->string('NidNO');
+            $table->string('NidDoc');
+            $table->string('Phone');
+            $table->string('Email');
         });
     }
 
