@@ -12,9 +12,9 @@ class income extends Model
     protected $table ='income';
     protected $fillable = [
         'id',
-        'category_id',
-        'amount',
-        'description',
-        'date',
+        'CategoryId',
+        'Amount',
+        'Description',
+        'Date',
     ];
 }

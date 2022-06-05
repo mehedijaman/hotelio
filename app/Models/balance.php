@@ -12,10 +12,10 @@ class balance extends Model
     protected $table ='balance';
     protected $fillable = [
         'id',
-        'account_id',
-        'date',
-        'openingBalance',
-        'closingBalance',
+        'AccountId',
+        'Date',
+        'OpeningBalance',
+        'ClosingBalance',
 
     ];
 }
