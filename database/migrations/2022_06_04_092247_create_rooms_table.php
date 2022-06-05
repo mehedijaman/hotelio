@@ -15,24 +15,24 @@ return new class extends Migration
     {
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('hotel_id');
-            $table->foreign('hotel_id')->references('id')->on('hotels');
-            $table->string('roomNo')->nullable();
-            $table->string('floor')->nullable();
-            $table->string('type')->nullable();
-            $table->boolean('geyser')->nullable();
-            $table->boolean('ac')->nullable();
-            $table->boolean('balcony')->nullable();
-            $table->boolean('bathtub')->nullable();
-            $table->boolean('hiComode')->nullable();
-            $table->boolean('locker')->nullable();
-            $table->boolean('freeze')->nullable();
-            $table->boolean('internet')->nullable();
-            $table->boolean('interCom')->nullable();
-            $table->boolean('tv')->nullable();
-            $table->boolean('wardrobe')->nullable();
-            $table->decimal('price')->nullable();
-            $table->boolean('status');
+            $table->unsignedBigInteger('HotelId');
+            $table->foreign('HotelId')->references('id')->on('hotels');
+            $table->string('RoomNo')->nullable();
+            $table->string('Floor')->nullable();
+            $table->string('Type')->nullable();
+            $table->boolean('Geyser')->nullable();
+            $table->boolean('Ac')->nullable();
+            $table->boolean('Balcony')->nullable();
+            $table->boolean('Bathtub')->nullable();
+            $table->boolean('HiComode')->nullable();
+            $table->boolean('Locker')->nullable();
+            $table->boolean('Freeze')->nullable();
+            $table->boolean('Internet')->nullable();
+            $table->boolean('InterCom')->nullable();
+            $table->boolean('Tv')->nullable();
+            $table->boolean('Wardrobe')->nullable();
+            $table->decimal('Price')->nullable();
+            $table->boolean('Status');
         });
     }
 

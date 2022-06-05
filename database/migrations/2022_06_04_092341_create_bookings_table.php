@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->foreign('room_id')->references('id')->on('rooms');
-            $table->foreign('guest_id')->references('id')->on('guests');
-            $table->dateTime('checkInDate');
-            $table->dateTime('checkOutDate');
+            $table->foreign('RoomId')->references('id')->on('rooms');
+            $table->foreign('GuestId')->references('id')->on('guests');
+            $table->dateTime('CheckInDate');
+            $table->dateTime('CheckOutDate');
         });
     }
 

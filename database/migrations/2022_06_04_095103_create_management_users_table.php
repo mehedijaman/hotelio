@@ -15,13 +15,13 @@ return new class extends Migration
     {
         Schema::create('management_users', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('employee_id');
-            $table->foreign('employee_id')->references('id')->on('employees');
-            $table->string('email');
-            $table->string('password');
-            $table->string('lastLogin');
-            $table->boolean('status');
-            $table->string('roll');
+            $table->unsignedBigInteger('EmployeeId');
+            $table->foreign('EmployeeId')->references('id')->on('Employees');
+            $table->string('Email');
+            $table->string('Password');
+            $table->string('LastLogin');
+            $table->boolean('Status');
+            $table->string('Roll');
         });
     }
 

@@ -15,15 +15,15 @@ return new class extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('date');
-            $table->decimal('subTotal');
-            $table->decimal('taxTotal');
-            $table->decimal('total');
-            $table->string('paymentMethod');
-            $table->unsignedBigInteger('guest_id');
-            $table->foreign('guest_id')->references('id')->on('guests');
-            $table->unsignedBigInteger('tax_id');
-            $table->foreign('text_id')->references('id')->on('tax_settings');
+            $table->dateTime('Date');
+            $table->decimal('SubTotal');
+            $table->decimal('TaxTotal');
+            $table->decimal('Total');
+            $table->string('PaymentMethod');
+            $table->unsignedBigInteger('GuestId');
+            $table->foreign('GuestId')->references('id')->on('guests');
+            $table->unsignedBigInteger('TaxId');
+            $table->foreign('TextId')->references('id')->on('tax_settings');
         });
     }
 

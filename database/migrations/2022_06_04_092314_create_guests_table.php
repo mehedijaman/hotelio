@@ -15,17 +15,17 @@ return new class extends Migration
     {
         Schema::create('guests', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
-            $table->string('email')->unique();
-            $table->string('address')->nullable();
-            $table->string('phone')->nullable();
-            $table->string('nidNo')->nullable();
-            $table->string('nid')->nullable();
-            $table->string('passportNo')->nullable();
-            $table->string('passport')->nullable();
-            $table->string('father')->nullable();
-            $table->string('photo')->nullable();
-            $table->string('spouse');
+            $table->string('Name')->nullable();
+            $table->string('Email')->unique();
+            $table->string('Address')->nullable();
+            $table->string('Phone')->nullable();
+            $table->string('NidNo')->nullable();
+            $table->string('Nid')->nullable();
+            $table->string('PassportNo')->nullable();
+            $table->string('Passport')->nullable();
+            $table->string('Father')->nullable();
+            $table->string('Photo')->nullable();
+            $table->string('Spouse');
         });
     }
 

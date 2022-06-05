@@ -12,9 +12,9 @@ class booking extends Model
     protected $table ='booking';
     protected $fillable = [
         'id',
-        'room_id',
-        'guset_id',
-        'checkInDate',
-        'checkOutDate',
+        'RoomId',
+        'GusetId',
+        'CheckInDate',
+        'CheckOutDate',
     ];
 }
