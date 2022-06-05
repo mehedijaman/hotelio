@@ -1,3 +1,6 @@
+<img src="Hotelio.png">
+
+
 ## Hotelio : Hotel Management System
 
 
