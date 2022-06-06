@@ -20,10 +20,11 @@ return new class extends Migration
             $table->decimal('TaxTotal');
             $table->decimal('Total');
             $table->string('PaymentMethod');
-            $table->unsignedBigInteger('GuestId');
-            $table->foreign('GuestId')->references('id')->on('guests');
-            $table->unsignedBigInteger('TaxId');
-            $table->foreign('TextId')->references('id')->on('tax_settings');
+            $table->foreignId('GuestID');
+            // $table->foreign('GuestID')->references('id')->on('guests');
+            $table->foreignId('TaxID');
+            // $table->foreign('TaxID')->references('id')->on('tax_settings');
+            $table->timestamps();
         });
     }
 

@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('tax_settings', function (Blueprint $table) {
             $table->id();
-            $table->string('Name');
+            $table->string('Name')->nullable();
             $table->decimal('Parcent');
-            $table->boolean('Status');
+            $table->boolean('Status')->nullable();
+            $table->timestamps();
         });
     }
 

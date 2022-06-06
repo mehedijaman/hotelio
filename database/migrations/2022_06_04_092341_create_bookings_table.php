@@ -15,10 +15,13 @@ return new class extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->foreign('RoomId')->references('id')->on('rooms');
-            $table->foreign('GuestId')->references('id')->on('guests');
-            $table->dateTime('CheckInDate');
-            $table->dateTime('CheckOutDate');
+            $table->foreignId('RoomID');
+            // $table->foreign('RoomID')->references('id')->on('rooms');
+            $table->foreignId('GuestID');
+            // $table->foreign('GuestID')->references('id')->on('guests');
+            $table->dateTime('CheckInDate')->nullable();
+            $table->dateTime('CheckOutDate')->nullable();
+            $table->timestamps();
         });
     }
 
