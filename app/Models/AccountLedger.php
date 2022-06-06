@@ -16,7 +16,6 @@ class AccountLedger extends Model
         'Date',
         'Method',
         'Description',
-
     ];
     
 }

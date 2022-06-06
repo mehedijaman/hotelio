@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use app\Models\AccoutLedger;
+use App\Models\AccoutLedger;
 
 class AccountLedgerController extends Controller
 {

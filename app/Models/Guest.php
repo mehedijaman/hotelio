@@ -17,12 +17,11 @@ class Guest extends Model
         'Phone',
         'NIDNo',
         'NID',
-        'PassportNO',
+        'PassportNo',
         'Passport',
         'Father',
         'Mother',
         'Spouse',
-        'Photo',
-        
+        'Photo',        
     ];
 }

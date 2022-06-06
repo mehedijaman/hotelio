@@ -17,6 +17,5 @@ class Bank extends Model
         'Address',
         'Phone',
         'Email',
-
     ];
 }
