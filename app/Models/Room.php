@@ -8,14 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Room extends Model
 {
     use HasFactory;
+    
     protected $table ='rooms';
     protected $fillable = [
-        'HotelId',
+        'HotelID',
         'RoomNo',
         'Floor',
         'Type',
         'Geyser',
-        'Ac',
+        'AC',
         'Balcony',
         'Bathtub',
         'HiComode',
@@ -23,11 +24,10 @@ class Room extends Model
         'Freeze',
         'Internet',
         'InterCom',
-        'Tv',
+        'TV',
         'Wardrobe',
         'Price',
         'AdditionalFeatures',
-        'Status',
-        
+        'Status',        
     ];
 }
