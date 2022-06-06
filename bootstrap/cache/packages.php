@@ -1,4 +1,12 @@
 <?php return array (
+  'infyomlabs/laravel-ui-adminlte' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'InfyOm\\AdminLTEPreset\\AdminLTEPresetServiceProvider',
+      1 => 'InfyOm\\AdminLTEPreset\\FortifyAdminLTEPresetServiceProvider',
+    ),
+  ),
   'laravel/breeze' => 
   array (
     'providers' => 
@@ -25,6 +33,13 @@
     'providers' => 
     array (
       0 => 'Laravel\\Tinker\\TinkerServiceProvider',
+    ),
+  ),
+  'laravel/ui' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Laravel\\Ui\\UiServiceProvider',
     ),
   ),
   'nesbot/carbon' => 
