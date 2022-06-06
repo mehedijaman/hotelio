@@ -10,7 +10,6 @@ class TaxSetting extends Model
     use HasFactory;
     protected $table ='tax_settings';
     protected $fillable = [
-        'id',
         'Name',
         'Parcent',
         'Status',
