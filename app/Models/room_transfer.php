@@ -12,8 +12,8 @@ class room_transfer extends Model
     protected $table ='room_transfer';
     protected $fillable = [
         'id',
-        'GuestId',
-        'FormRoomId',
+        'GuestID',
+        'FromRoomID',
         'ToRoomId',
         'Date',
     ];

@@ -27,6 +27,7 @@ class room extends Model
         'Tv',
         'Wardrobe',
         'Price',
+        'AdditionalFeatures',
         'Status',
         
     ];
