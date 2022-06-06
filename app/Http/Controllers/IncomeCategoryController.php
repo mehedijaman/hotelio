@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\IncomeCategory;
 use Illuminate\Http\Request;
 
 class IncomeCategoryController extends Controller
