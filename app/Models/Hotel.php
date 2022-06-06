@@ -5,17 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class management_user extends Model
+class Hotel extends Model
 {
     use HasFactory;
-    protected $table ='management_user';
+
+    protected $table ='hotels';
     protected $fillable = [
-        'id',
-        'EmployeeId',
+        'Name',
+        'Title',
         'Email',
-        'Password',
-        'LastLogin',
-        'Status',
-        'Roll',
+        'Address',
+        'Phone',
+        'RegNo',
+        'Logo',
+        'Photo',
     ];
 }

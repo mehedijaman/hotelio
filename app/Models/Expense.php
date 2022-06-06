@@ -5,17 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class bank_ledger extends Model
+class Expense extends Model
 {
     use HasFactory;
 
-    protected $table ='bank_ledger';
+    protected $table ='expenses';
     protected $fillable = [
-        'id',
-        'AccountNo',
-        'Deposit',
-        'Withdraw',
-        'Date',
+        'CategoryID',
+        'Amount',
         'Description',
+        'Date',
     ];
 }

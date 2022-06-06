@@ -5,16 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class room_transfer extends Model
+class BankLedger extends Model
 {
     use HasFactory;
 
-    protected $table ='room_transfer';
+    protected $table ='bank_ledgers';
     protected $fillable = [
-        'id',
-        'GuestId',
-        'FormRoomId',
-        'ToRoomId',
+        'BankID',
+        'Deposit',
+        'Withdraw',
         'Date',
+        'Description',
     ];
 }

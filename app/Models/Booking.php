@@ -5,17 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class balance extends Model
+class Booking extends Model
 {
     use HasFactory;
 
-    protected $table ='balance';
+    protected $table ='bookings';
     protected $fillable = [
-        'id',
-        'AccountId',
-        'Date',
-        'OpeningBalance',
-        'ClosingBalance',
-
+        'RoomID',
+        'GuestID',
+        'CheckInDate',
+        'CheckOutDate',
     ];
 }

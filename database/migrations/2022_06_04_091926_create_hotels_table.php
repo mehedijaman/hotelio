@@ -17,12 +17,12 @@ return new class extends Migration
             $table->id();
             $table->string('Name')->nullable();
             $table->string('Title')->nullable();
-            $table->string('Email')->unique();
-            $table->string('Address')->nullable();
+            $table->string('Email')->nullable();
+            $table->text('Address')->nullable();
             $table->string('Phone')->nullable();
             $table->string('RegNo')->nullable();
-            $table->string('Logo')->nullable();
-            $table->string('Photo')->nullable();
+            $table->string('Logo',500)->nullable();
+            $table->string('Photo',500)->nullable();
             $table->timestamps();
         });
     }

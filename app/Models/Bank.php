@@ -5,19 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class employee extends Model
+class Bank extends Model
 {
     use HasFactory;
 
-    protected $table ='employee';
+    protected $table ='banks';
     protected $fillable = [
-        'id',
-        'HotelId',
         'Name',
-        'Dob',
-        'NidNO',
-        'NidDoc',
+        'Branch',
+        'AccountNo',
+        'Address',
         'Phone',
         'Email',
+
     ];
 }

@@ -5,16 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class income extends Model
+class Balance extends Model
 {
     use HasFactory;
 
-    protected $table ='income';
+    protected $table ='balances';
     protected $fillable = [
-        'id',
-        'CategoryId',
-        'Amount',
-        'Description',
         'Date',
+        'OpeningBalance',
+        'ClosingBalance',
+        'status',
+
     ];
 }

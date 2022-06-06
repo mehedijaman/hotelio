@@ -15,13 +15,14 @@ return new class extends Migration
     {
         Schema::create('invoice_items', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('InvoiceId');
-            $table->foreign('InvoiceId')->references('id')->on('invoices');
-            $table->string('Name');
-            $table->string('Description')->nullable();
-            $table->bigInteger('Qty');
-            $table->decimal('NitPrice');
-            $table->decimal('Price');
+            $table->foreignId('InvoiceID');
+            // $table->foreign('InvoiceID')->references('id')->on('invoices');
+            $table->string('Name')->nullable();
+            $table->text('Description')->nullable();
+            $table->bigInteger('Qty')->nullable();
+            $table->decimal('UnitPrice')->nullable();
+            $table->decimal('Price')->nullable();
+            $table->timestamps();
         });
     }
 
