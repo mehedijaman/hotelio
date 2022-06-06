@@ -16,7 +16,7 @@ class invoice extends Model
         'TaxTotal',
         'Total',
         'PaymentMethod',
-        'GuestId',
-        'TexId',
+        'GuestID',
+        'TaxID',
     ];
 }

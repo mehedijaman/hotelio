@@ -12,7 +12,7 @@ class expense extends Model
     protected $table ='expense';
     protected $fillable = [
         'id',
-        'CategoryId',
+        'CategoryID',
         'Amount',
         'Description',
         'Date',

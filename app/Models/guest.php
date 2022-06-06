@@ -16,12 +16,14 @@ class guest extends Model
         'Email',
         'Address',
         'Phone',
-        'NidNO',
-        'Nid',
+        'NIDNo',
+        'NID',
         'PassportNO',
         'Passport',
         'Father',
+        'Mother',
+        'Spouse',
         'Photo',
-        'Spouse'
+        
     ];
 }
