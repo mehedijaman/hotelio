@@ -5,18 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class invoice_item extends Model
+class Hotel extends Model
 {
     use HasFactory;
 
-    protected $table ='invoice_item';
+    protected $table ='hotels';
     protected $fillable = [
-        'id',
-        'InvoiceID',
         'Name',
-        'Description',
-        'Qty',
-        'UnitPrice',
-        'Price',
+        'Title',
+        'Email',
+        'Address',
+        'Phone',
+        'RegNo',
+        'Logo',
+        'Photo',
     ];
 }

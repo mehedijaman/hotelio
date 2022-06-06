@@ -5,16 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class booking extends Model
+class IncomeCategory extends Model
 {
     use HasFactory;
 
-    protected $table ='booking';
+    protected $table ='income_categories';
     protected $fillable = [
-        'id',
-        'RoomID',
-        'GuestID',
-        'CheckInDate',
-        'CheckOutDate',
+        'Name',
     ];
 }
