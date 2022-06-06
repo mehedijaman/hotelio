@@ -5,13 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class expense_category extends Model
+class RoomTransfer extends Model
 {
     use HasFactory;
 
-    protected $table ='expense_category';
+    protected $table ='room_transfers';
     protected $fillable = [
-        'id',
-        'Name',
+        'GuestID',
+        'FromRoomID',
+        'ToRoomId',
+        'Date',
     ];
 }
