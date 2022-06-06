@@ -15,13 +15,19 @@ return new class extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('hotel_id');
-            $table->string('Name');
-            $table->date('Dob');
-            $table->string('NidNO');
-            $table->string('NidDoc');
-            $table->string('Phone');
-            $table->string('Email');
+            $table->foreignId('HotelID');
+            // $table->foreign('HotelID')->references('id')->on('hotels');
+            $table->string('Name')->nullable();
+            $table->string('Designation')->nullable();
+            $table->date('DateOfBirth')->nullable();
+            $table->string('NIDNo')->nullable();
+            $table->string('NID',500)->nullable();
+            $table->string('Phone')->nullable();
+            $table->string('Email')->nullable();
+            $table->text('Address')->nullable();
+            $table->date('DateOfJoin')->nullable();
+            $table->boolean('Status')->nullable();
+            $table->timestamps();
         });
     }
 
