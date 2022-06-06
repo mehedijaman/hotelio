@@ -15,11 +15,12 @@ return new class extends Migration
     {
         Schema::create('incomes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('CategoryId');
-            $table->foreign('CategoryId')->references('id')->on('incomes_categories');
+            $table->foreignId('CategoryID');
+            // $table->foreign('CategoryID')->references('id')->on('incomes_categories');
             $table->decimal('Amount');
-            $table->string('Description')->nullable;
-            $table->dateTime('Date');
+            $table->text('Description')->nullable();
+            $table->dateTime('Date')->nullable();
+            $table->timestamps();
         });
     }
 

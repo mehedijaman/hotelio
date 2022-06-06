@@ -15,11 +15,12 @@ return new class extends Migration
     {
         Schema::create('room_transfers', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('GuestId');
-            $table->foreign('GuestId')->references('id')->on('guests');
-            $table->number('FormRoomId')->nullable();
-            $table->number('ToRoomId')->nullable();
+            $table->foreignId('GuestID');
+            // $table->foreign('GuestID')->references('id')->on('guests');
+            $table->foreignId('FromRoomID');
+            $table->foreignId('ToRoomID');
             $table->dateTime('Date')->nullable();
+            $table->timestamps();
         });
     }
 
