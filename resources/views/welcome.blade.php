@@ -404,7 +404,7 @@
         </style>
     </head>
     <body class="antialiased">
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0 loginOption">
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block  ">
                     @auth
@@ -418,52 +418,42 @@
                     @endauth
                 </div>
             @endif
-            <div class="container">             
-                <div class="swiper">
-                    <!-- Additional required wrapper -->
-                    <div class="swiper-wrapper">
-                        <!-- Slides -->
-                        <div class="swiper-slide"><img src="/hotel/hotel1.jpg" alt=""></div>
-                        <div class="swiper-slide"><img src="/hotel/hotel2.jpg" alt=""></div>
-                        <div class="swiper-slide"><img src="/hotel/room.jpg" alt=""></div>
-                        <div class="swiper-slide"><img src="/hotel/washroom.jpg" alt=""></div>
-                        <div class="swiper-slide"><img src="/hotel/swmingpool.jpg" alt=""></div>
-                        <div class="swiper-slide"><img src="/hotel/spa.jpg" alt=""></div>
-                        <div class="swiper-slide"><img src="/hotel/food.jpg" alt=""></div>
-            
-            
+
+            <body>
+                <div class="banner1">
+                    <img src="hotel/hotel1.jpg" alt="">
+                    <div class="text_box text_box1">
+                        <h1>Welcome To Hotelio</h1>
+                        <span></span>
+                        <p>Where customer satisfaction is a philosophy</p>
                     </div>
-                    <!-- If we need pagination -->
-                    <div class="swiper-pagination"></div>
-                    <!-- If we need navigation buttons -->
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-button-next"></div>
                 </div>
-            </div>
-            
-            
-                <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
-            
-                <script>
-                    const swiper = new Swiper('.swiper', {
-                    autoplay: {
-                        delay: 3000,
-                        disableOnInteraction: false,
-                    },
-                    // direction: 'vertical',
-                    loop: true,
-                
-                    pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true ,
-                    },
-                    
-                    navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                    },
-                    });
-                </script>
+                <div class="banner2">
+                    <img src="hotel/spa.jpg" alt="">
+                    <div class="text_box text_box2">
+                        <h1>Welcome To Hotelio</h1>
+                        <span></span>
+                        <p>Where customer satisfaction is a philosophy</p>
+
+                    </div>
+                </div>
+                <div class="banner3">
+                    <img src="hotel/room.jpg" alt="">
+                    <div class="text_box text_box3">
+                        <h1>Welcome To Hoteliol</h1>
+                        <span></span>
+                        <p>Where customer satisfaction is a philosophy</p>
+                       
+                    </div>
+                </div>
+                <div class="banner4">
+                    <img src="hotel/washroom.jpg" alt="">
+                    <div class="text_box text_box4">
+                        <h1>Welcome To Hotelio</h1>
+                        <span></span>
+                        <p>Where customer satisfaction is a philosophy</p>
+                    </div>
+                </div>
         </div>
     </body>
 </html>
