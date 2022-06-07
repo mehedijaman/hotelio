@@ -11,3 +11,15 @@
         <p>Bank</p>
     </a>
 </li>
+<li class="nav-item">
+    <a href="/hotel" class="nav-link {{ Request::is('hotel') ? 'active' : '' }}">
+        <i class="nav-icon fas  fa-hotel"></i>
+        <p>Hotel</p>
+    </a>
+</li>
+<li class="nav-item">
+    <a href="/room" class="nav-link {{ Request::is('room') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-briefcase"></i>
+        <p>Room</p>
+    </a>
+</li>
