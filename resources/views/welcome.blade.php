@@ -440,7 +440,7 @@
                 <div class="banner3">
                     <img src="hotel/room.jpg" alt="">
                     <div class="text_box text_box3">
-                        <h1>Welcome To Hoteliol</h1>
+                        <h1>Welcome To Hotelio</h1>
                         <span></span>
                         <p>Where customer satisfaction is a philosophy</p>
                        

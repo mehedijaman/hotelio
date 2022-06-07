@@ -14,7 +14,8 @@ class BankController extends Controller
      */
     public function index()
     {
-        //
+        $Banks = Bank::all();
+        return view('bank.index', compact('Banks'));
     }
 
     /**
@@ -24,7 +25,7 @@ class BankController extends Controller
      */
     public function create()
     {
-        //
+        return view('bank.create');
     }
 
     /**

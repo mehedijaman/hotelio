@@ -6,8 +6,8 @@
     </a>
 </li>
 <li class="nav-item">
-    <a href="{{ route('home') }}" class="nav-link {{ Request::is('hotel') ? 'active' : '' }}">
+    <a href="/bank" class="nav-link {{ Request::is('bank') ? 'active' : '' }}">
         <i class="nav-icon fas fa-briefcase"></i>
-        <p>Hotel Management</p>
+        <p>Bank</p>
     </a>
 </li>
