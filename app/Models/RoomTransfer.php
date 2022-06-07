@@ -13,7 +13,7 @@ class RoomTransfer extends Model
     protected $fillable = [
         'GuestID',
         'FromRoomID',
-        'ToRoomId',
+        'ToRoomID',
         'Date',
     ];
 }

@@ -11,12 +11,19 @@
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.4.0",
+        "admin-lte": "3.1.0",
         "alpinejs": "^3.4.2",
         "autoprefixer": "^10.4.2",
         "axios": "^0.25",
+        "bootstrap": "^4.6.0",
+        "jquery": "^3.6",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
+        "popper.js": "^1.16.1",
         "postcss": "^8.4.6",
+        "resolve-url-loader": "^5.0.0",
+        "sass": "^1.15.2",
+        "sass-loader": "^8.0.0",
         "tailwindcss": "^3.0.18"
     }
 }

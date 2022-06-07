@@ -14,7 +14,6 @@ class Balance extends Model
         'Date',
         'OpeningBalance',
         'ClosingBalance',
-        'status',
-
+        'Status',
     ];
 }
