@@ -3,13 +3,13 @@
 
 @section('content')
     <div class="container-fluid">
-        <a href="/bank" class="btn btn-primary">Back to List</a>
+        <a href="/hotel" class="btn btn-primary">Back to List</a>
         {!! Form::open() !!}
             <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
                 <div class="wrapper wrapper--w790">
                     <div class="card card-5">
                         <div class="card-heading">
-                            <h2 class="title">Bank Form</h2>
+                            <h2 class="title">Hotel Registration Form</h2>
                         </div>
                         <div class="card-body">
                             <form method="POST">
@@ -22,18 +22,18 @@
                                     </div>
                                 </div>
                                 <div class="form-row">
-                                    <div class="name">Branch</div>
+                                    <div class="name">Title</div>
                                     <div class="value">
                                         <div class="input-group">
-                                            <input class="input--style-5" type="text" name="Branch">
+                                            <input class="input--style-5" type="text" name="Title">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-row">
-                                    <div class="name">Account No</div>
+                                    <div class="name">Email</div>
                                     <div class="value">
                                         <div class="input-group">
-                                            <input class="input--style-5" type="text" name="AccountNo">
+                                            <input class="input--style-5" type="email" name="Email">
                                         </div>
                                     </div>
                                 </div>
@@ -54,10 +54,26 @@
                                     </div>
                                 </div>
                                 <div class="form-row">
-                                    <div class="name">Email</div>
+                                    <div class="name">Registration Number</div>
                                     <div class="value">
                                         <div class="input-group">
-                                            <input class="input--style-5" type="mail" name="Email">
+                                            <input class="input--style-5" type="text" name="RegNO">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="name">Logo</div>
+                                    <div class="value">
+                                        <div class="input-group">
+                                            <input class="input--style-5" type="file" name="Logo">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="name">Photo</div>
+                                    <div class="value">
+                                        <div class="input-group">
+                                            <input class="input--style-5" type="file" name="Photo">
                                         </div>
                                     </div>
                                 </div>

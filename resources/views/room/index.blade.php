@@ -1,8 +1,9 @@
 @extends('layouts.app')
+@extends('layouts.Header')
 
 @section('content')
 <div class="container-fluid">
-    <a href="/bank/create" class="btn btn-primary">Add to Bank</a>
+    <a href="/room/create" class="btn btn-primary">Add to Room</a>
     <!--Table-->
     <div class="table col-md-12">
         <table class="table table-striped w-auto ">
