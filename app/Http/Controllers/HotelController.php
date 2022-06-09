@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Hotel;
+use Exception;
 
 class HotelController extends Controller
 {
@@ -36,7 +37,14 @@ class HotelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            Hotel::create($request->all());
+            return back();
+        }
+        catch(Exception $error){
+            $error->getMessage();
+        }
+
     }
 
     /**

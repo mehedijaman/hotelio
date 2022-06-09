@@ -23,3 +23,16 @@
         <p>Room</p>
     </a>
 </li>
+<li class="nav-item">
+    <a href="/guest" class="nav-link {{ Request::is('guest') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-briefcase"></i>
+        <p>Guest</p>
+    </a>
+</li>
+
+<li class="nav-item">
+    <a href="/employee" class="nav-link {{ Request::is('employee') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-briefcase"></i>
+        <p>Employee</p>
+    </a>
+</li>
