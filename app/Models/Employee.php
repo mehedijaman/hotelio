@@ -11,6 +11,7 @@ class Employee extends Model
 
     protected $table ='employees';
     protected $fillable = [
+        'HotelID',
         'Name',
         'DateOfBirth',
         'NIDNo',

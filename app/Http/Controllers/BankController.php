@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Bank;
+use Exception;
 
 class BankController extends Controller
 {
@@ -26,6 +27,7 @@ class BankController extends Controller
     public function create()
     {
         return view('bank.create');
+        
     }
 
     /**
@@ -36,7 +38,13 @@ class BankController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            Bank::create($request->all());
+            return back();
+        }
+        catch(Exception $error){
+            $error->getMessage();
+        }
     }
 
     /**

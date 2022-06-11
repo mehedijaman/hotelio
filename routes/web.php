@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BankController;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\GuestController;
+use App\Http\Controllers\EmployeeController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -37,3 +40,7 @@ Route::resource('bank',BankController::class);
 Route::resource('hotel',HotelController::class);
 
 Route::resource('room',RoomController::class);
+
+Route::resource('guest',GuestController::class);
+
+Route::resource('employee',EmployeeController::class);
