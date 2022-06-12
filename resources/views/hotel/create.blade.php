@@ -4,7 +4,11 @@
 @section('content')
     <div class="container-fluid">
         <a href="/hotel1" class="btn btn-primary">Back to List</a>
-        {!! Form::open() !!}
+
+        
+
+        {!! Form::open(array('url' => '/hotel1' , 'method'=>'POST')) !!}
+
             <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
                 <div class="wrapper wrapper--w790">
                     <div class="card card-5">
