@@ -13,6 +13,7 @@ class Employee extends Model
     protected $fillable = [
         'HotelID',
         'Name',
+        'Designation',
         'DateOfBirth',
         'NIDNo',
         'NID',

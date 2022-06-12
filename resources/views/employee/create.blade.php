@@ -25,7 +25,7 @@
                                     <div class="name">Designation</div>
                                     <div class="value">
                                         <div class="input-group">
-                                            <input class="input--style-5" type="mail" name="Designation">
+                                            <input class="input--style-5" type="text" name="Designation">
                                         </div>
                                     </div>
                                 </div>
@@ -65,7 +65,7 @@
                                     <div class="name">Email</div>
                                     <div class="value">
                                         <div class="input-group">
-                                            <input class="input--style-5" type="text" name="Email">
+                                            <input class="input--style-5" type="mail" name="Email">
                                         </div>
                                     </div>
                                 </div>
