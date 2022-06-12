@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Guest;
+use Exception;
 
 class GuestController extends Controller
 {
@@ -14,7 +15,8 @@ class GuestController extends Controller
      */
     public function index()
     {
-        //
+        $Guests = Guest::all();
+        return view('guest.index' , compact('Guests'));
     }
 
     /**
@@ -24,7 +26,7 @@ class GuestController extends Controller
      */
     public function create()
     {
-        //
+        return view('guest.create');
     }
 
     /**
@@ -35,7 +37,13 @@ class GuestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            Guest::create($request->all());
+            return back();
+        }
+        catch(Exception $error){
+            $error->getMessage();
+        }
     }
 
     /**

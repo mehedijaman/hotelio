@@ -7,7 +7,7 @@
 </li>
 
 <li class="nav-item">
-    <a href="/hotel" class="nav-link {{ Request::is('hotel') ? 'active' : '' }}">
+    <a href="/hotel1" class="nav-link {{ Request::is('hotel') ? 'active' : '' }}">
         <i class="nav-icon fas  fa-hotel"></i>
         <p>Hotel</p>
     </a>
@@ -93,4 +93,7 @@
         </ul>
     </div>
 {{-- </div>  --}}
+
+
+
 

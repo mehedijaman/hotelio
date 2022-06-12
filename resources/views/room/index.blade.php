@@ -12,101 +12,52 @@
             <thead>
               <tr>
                 <th>id</th>
-                <th>Name</th>
-                <th>Title</th>
-                <th>Email</th>
-                <th>Address</th>
-                <th>Phone</th>
-                <th>RegNO</th>
-                <th>Logo</th>
-                <th>Photo</th>
+                <th>HoteID</th>
+                <th>RoomNo</th>
+                <th>Floor</th>
+                <th>Type</th>
+                <th>Geyser</th>
+                <th>AC</th>
+                <th>Balcony</th>
+                <th>Bathtub</th>
+                <th>HiComode</th>
+                <th>Locker</th>
+                <th>Freeze</th>
+                <th>Internet</th>
+                <th>Intercom</th>
+                <th>TV</th>
+                <th>Wardrobe</th>
+                <th>AdditionalFeatures</th>
+                <th>Status</th>
+                <th>Action</th>
+                
               </tr>
             </thead>
             <!--Table head-->
           
             <!--Table body-->
             <tbody>
-              <tr class="table-info">
-                <th scope="row">1</th>
-                <td>Kate</td>
-                <td>Moss</td>
-                <td>USA</td>
-                <td>New York City</td>
-                <td>Web Designer</td>
-                <td>23</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Anna</td>
-                <td>Wintour</td>
-                <td>United Kingdom</td>
-                <td>London</td>
-                <td>Frontend Developer</td>
-                <td>36</td>
-              </tr>
-              <tr class="table-info">
-                <th scope="row">3</th>
-                <td>Tom</td>
-                <td>Bond</td>
-                <td>Spain</td>
-                <td>Madrid</td>
-                <td>Photographer</td>
-                <td>25</td>
-              </tr>
-              <tr>
-                <th scope="row">4</th>
-                <td>Jerry</td>
-                <td>Horwitz</td>
-                <td>Italy</td>
-                <td>Bari</td>
-                <td>Editor-in-chief</td>
-                <td>41</td>
-              </tr>
-              <tr class="table-info">
-                <th scope="row">5</th>
-                <td>Janis</td>
-                <td>Joplin</td>
-                <td>Poland</td>
-                <td>Warsaw</td>
-                <td>Video Maker</td>
-                <td>39</td>
-              </tr>
-              <tr>
-                <th scope="row">6</th>
-                <td>Gary</td>
-                <td>Winogrand</td>
-                <td>Germany</td>
-                <td>Berlin</td>
-                <td>Photographer</td>
-                <td>37</td>
-              </tr>
-              <tr class="table-info">
-                <th scope="row">7</th>
-                <td>Angie</td>
-                <td>Smith</td>
-                <td>USA</td>
-                <td>San Francisco</td>
-                <td>Teacher</td>
-                <td>52</td>
-              </tr>
-              <tr>
-                <th scope="row">8</th>
-                <td>John</td>
-                <td>Mattis</td>
-                <td>France</td>
-                <td>Paris</td>
-                <td>Actor</td>
-                <td>28</td>
-              </tr>
-              <tr class="table-info">
-                <th scope="row">9</th>
-                <td>Otto</td>
-                <td>Morris</td>
-                <td>Germany</td>
-                <td>Munich</td>
-                <td>Singer</td>
-                <td>35</td>
-              </tr>
+              @foreach ( $Rooms as $Room)
+                <tr class="table-info">
+                  <td>{{$Room->id}}</td>
+                  <td>{{$Room->Name}}</td>
+                  <td>{{$Room->Email}}</td>
+                  <td>{{$Room->Address}}</td>
+                  <td>{{$Room->Phone}}</td>
+                  <td>{{$Room->NIDNo}}</td>
+                  <td>{{$Room->NID}}</td>
+                  <td>{{$Room->PassportNo}}</td>
+                  <td>{{$Room->Passport}}</td>
+                  <td>{{$Room->Father}}</td>
+                  <td>{{$Room->Mother}}</td>
+                  <td>{{$Room->Spouse}}</td>
+                  <td>{{$Room->Photo}}</td>
+                  <td>
+                    <a href="/room/{{$Room->id}}/edit" class="btn btn-warning">Edit</a>
+                    <a href="/room/{{$Room->id}}/delete" class="btn btn-danger mx-md-2">Delete</a>
+                  </td>
+                </tr>
+            @endforeach
             </tbody>
             <!--Table body-->
           
