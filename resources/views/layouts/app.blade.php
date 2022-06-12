@@ -166,17 +166,19 @@
 
 
 <script src="{{ mix('js/app.js') }}" defer></script>
-<script src="/js/jquery.js"></script>
 
- <script type="text/javascript">
+<script src="/js/jquery.js"></script>
+<script src="{{URL::asset('/js/custom.js')}}"></script>
+
+ {{-- <script type="text/javascript">
         $(document).ready(function(){
             $('#menu-btn').click(function(){
                 $(this).next('#sub-btn').slideToggle('slow');
-                $(this).find('.drop-down').toggleClass('rotate');
+                $('.drop-down').toggleClass('rotate');
             });
         });
         
-</script>
+</script> --}}
 @yield('third_party_scripts')
 
 @stack('page_scripts')

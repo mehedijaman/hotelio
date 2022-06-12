@@ -61,19 +61,22 @@ ul li .drop-down::before
 	font-size: x-large;
 	font-size: 20px !important;
 }
-.invioce__dropdown__custom
+.custom__toggle
 {
 	background-color: #283046 !important; 
-	border: none !important;
+	/* border: none !important;
 	border-radius: none !important;
 	background-clip: none !important;
-	box-shadow: none !important;
+	box-shadow: none !important; */
+	display: none;
+	
 }
+
 ul#sub-btn {
     /* background-color: seagreen; */
     padding: 10px 65px;
 }
-.invioce__dropdown__custom li{
+.custom__toggle li{
 	margin-top: 1rem !important;
 }
 .navbar {
