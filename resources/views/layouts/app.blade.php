@@ -12,7 +12,19 @@
     {{-- fontawsome link --}}
     {{-- Bootsrap icon list --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="{{ asset('css/custom.css')}}">     
+    <link rel="stylesheet" href="{{ asset('css/custom.css')}}">
+    <link href="/css/main.css" rel="stylesheet" media="all">
+    <script src="/js/jquery.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/jquery.dataTables.min.css" integrity="sha512-1k7mWiTNoyx2XtmI96o+hdjP8nn0f3Z2N4oF/9ZZRgijyV4omsKOXEnqL1gKQNPy2MTSP9rIEWGcH/CInulptA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
     {{-- Bootsrap icon list --}}
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     @yield('third_party_stylesheets')
@@ -58,7 +70,7 @@
                             </li>
                         </div>
                     </ul>
-                
+
                 <ul class="navbar-nav ml-auto custom__navber__list ">
                     <div class="d-flex align-items-center p-0 m-0">
                         <li>
@@ -167,8 +179,14 @@
 
 <script src="{{ mix('js/app.js') }}" defer></script>
 
-<script src="/js/jquery.js"></script>
 <script src="{{URL::asset('/js/custom.js')}}"></script>
+<!-- Vendor JS-->
+<script src="/vendor/select2/select2.min.js"></script>
+<script src="/vendor/datepicker/moment.min.js"></script>
+<script src="/vendor/datepicker/daterangepicker.js"></script>
+<!-- Main JS-->
+<script src="/js/global.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js" integrity="sha512-BkpSL20WETFylMrcirBahHfSnY++H2O1W+UnEEO4yNIl+jI2+zowyoGJpbtk6bx97fBXf++WJHSSK2MV4ghPcg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
  {{-- <script type="text/javascript">
         $(document).ready(function(){
@@ -177,7 +195,7 @@
                 $('.drop-down').toggleClass('rotate');
             });
         });
-        
+
 </script> --}}
 @yield('third_party_scripts')
 

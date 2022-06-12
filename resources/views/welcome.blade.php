@@ -443,7 +443,7 @@
                         <h1>Welcome To Hotelio</h1>
                         <span></span>
                         <p>Where customer satisfaction is a philosophy</p>
-                       
+
                     </div>
                 </div>
                 <div class="banner4">

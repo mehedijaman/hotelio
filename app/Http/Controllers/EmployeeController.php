@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Employee;
+use App\Models\Hotel;
 use Exception;
 
 class EmployeeController extends Controller
@@ -26,7 +27,8 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        return view('employee.create');
+        $Hotels = Hotel::all();
+        return view('employee.create',compact('Hotels'));
     }
 
     /**
@@ -37,12 +39,13 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request->all();
         try{
             Employee::create($request->all());
             return back();
         }
         catch(Exception $error){
-            $error->getMessage();
+            return $error->getMessage();
         }
     }
 

@@ -3,11 +3,8 @@
 @section('content')
 <div class="container-fluid">
     <a href="/bank/create" class="btn btn-primary">Add to Bank</a>
-    <!--Table-->
     <div class="table col-md-12">
-        <table class="table table-striped w-auto ">
-
-            <!--Table head-->
+        <table class="table table-striped w-auto " id="bankTable">
             <thead>
               <tr>
                 <th>id</th>
@@ -20,9 +17,6 @@
                 <th>Action</th>
               </tr>
             </thead>
-            <!--Table head-->
-          
-            <!--Table body-->
             <tbody>
               @foreach ($Banks as $Bank )
                 <tr class="table-info">
@@ -40,12 +34,13 @@
                 </tr>
               @endforeach
             </tbody>
-            <!--Table body-->
-          
-          
-          </table>
-          <!--Table-->
+        </table>
     </div>
-
 </div>
+
+<script>
+    $(document).ready( function () {
+        $('#bankTable').DataTable();
+    } );
+</script>
 @endsection
