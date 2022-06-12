@@ -1,6 +1,15 @@
 body{
 	background-color: #202428;
-    overflow: hidden;
+    /* overflow: hidden; */
+}
+*{
+	list-style: none;
+	text-decoration: none;
+	margin: 0;
+	padding: 0;
+}
+.custom__container{
+	padding:1rem 1.5rem;
 }
 .pt{
 	padding-top: 100px;
@@ -29,3 +38,109 @@ body{
     height: 630px;
     border-radius: 8px;
 }
+
+ul #menu-btn{
+	/* background-color: greenyellow; */
+	padding: 10px 20px;
+	border-radius: 4px;
+	color: #fff;
+	font-size: 1.1rem;
+	transition: .3 ease;
+}
+ul #menu-btn i{
+	padding: 0px 6px 0px 2px;
+	font-size: 20px;
+}
+.rotate{
+	transform: rotate(90deg);
+	transition: .3 ease;
+}
+ul li .drop-down::before 
+{
+	transition: 0.3 ease;
+	font-size: x-large;
+	font-size: 20px !important;
+}
+.custom__toggle
+{
+	background-color: #283046 !important; 
+	/* border: none !important;
+	border-radius: none !important;
+	background-clip: none !important;
+	box-shadow: none !important; */
+	display: none;
+	
+}
+
+ul#sub-btn {
+    /* background-color: seagreen; */
+    padding: 10px 65px;
+}
+.custom__toggle li{
+	margin-top: 1rem !important;
+}
+.navbar {
+    padding: 0 !important;
+    position: relative;
+}
+
+.dashbroad__bg
+{
+	background-color: #161E31 !important;
+}
+.content__wrapper__body__bg{
+	background-color: #161E31 !important;
+}
+.dashbroad__sidebar__bg
+{
+	background-color: #283046 !important;
+}
+.custom__main__header{
+	border: 0rem !important;
+	/* margin-left: 250px !important; */
+}
+.dashbroad__nav__custom{
+	background-color: #283046 !important;
+	border-radius: .5rem !important;
+	
+	
+}
+.custom__navber__list li a{
+	margin-left: 1.5rem !important;
+}
+.custom__navber__list li a svg{
+	color: #fff !important;
+	
+}
+.custom__navber__list li .star svg{
+	color:  rgb(252, 154, 35) !important;
+	
+}
+.badge__up {
+    position: absolute;
+    top: -11px;
+    min-width: 1.429rem;
+    min-height: 1.429rem;
+    display: flex;
+    justify-content: center;
+   
+}
+.nav__profile__circle
+{
+	/* font-size: calc(11.2px); */
+    bottom: 0px;
+    right: 0px;
+	position: relative;
+	z-index: 1;
+	margin-bottom: 9px;
+    margin-right: 12px;
+}
+.custom__main__footer
+{
+	background-color: #161E31 !important;
+}
+.custom__main__footer i{
+	font-size: large;
+}
+
+

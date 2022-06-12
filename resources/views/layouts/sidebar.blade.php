@@ -1,4 +1,4 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-dark-primary elevation-4 dashbroad__sidebar__bg">
     <a href="{{ route('home') }}" class="brand-link">
         <img src="/uploads/hotelio.png"
              alt="Hotelio Logo"

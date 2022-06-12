@@ -39,8 +39,11 @@ Route::resource('bank',BankController::class);
 
 Route::resource('hotel1',HotelController::class);
 
+
+
 Route::resource('room',RoomController::class);
 
 Route::resource('guest',GuestController::class);
+
 
 Route::resource('employee',EmployeeController::class);
