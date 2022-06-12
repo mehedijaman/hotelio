@@ -34,6 +34,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::resource('bank',BankController::class);
 
-Route::resource('hotel',HotelController::class);
+Route::resource('hotel1',HotelController::class);
 
 Route::resource('room',RoomController::class);
