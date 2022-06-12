@@ -3,7 +3,7 @@
 
 @section('content')
 <div class="container-fluid">
-    <a href="/hotel/create" class="btn btn-primary">Add to Hotel</a>
+    <a href="/hotel1/create" class="btn btn-primary">Add to Hotel</a>
     <!--Table-->
     <div class="table col-md-12">
         <table class="table table-striped w-auto ">
@@ -38,8 +38,8 @@
                   <td>{{$Hotel->Logo}}</td>
                   <td>{{$Hotel->Photo}}</td>
                   <td>
-                    <a href="/hotel/{{$Hotel->id}}/edit" class="btn btn-warning">Edit</a>
-                    <a href="/hotel/{{$Hotel->id}}/delete" class="btn btn-danger mx-md-2">Delete</a>
+                    <a href="/hotel1/{{$Hotel->id}}/edit" class="btn btn-warning">Edit</a>
+                    <a href="/hotel1/{{$Hotel->id}}/delete" class="btn btn-danger mx-md-2">Delete</a>
                   </td>
                 </tr>
               @endforeach

@@ -3,7 +3,7 @@
 
 @section('content')
 <div class="container-fluid">
-    <a href="/guest/create" class="btn btn-primary">Add to New Guest</a>
+    <a href="/Guest/create" class="btn btn-primary">Add to New Guest</a>
     <!--Table-->
     <div class="table col-md-12">
         <table class="table table-striped w-auto ">
@@ -24,30 +24,31 @@
                 <th>Mother</th>
                 <th>Spouse</th>
                 <th>Photo</th>
+                <th>Action</th>
               </tr>
             </thead>
             <!--Table head-->
           
             <!--Table body-->
             <tbody>
-              @foreach ( $Guests as $guest)
+              @foreach ( $Guests as $Guest)
                 <tr class="table-info">
-                  <td>{{$guest->id}}</td>
-                  <td>{{$guest->Name}}</td>
-                  <td>{{$guest->Email}}</td>
-                  <td>{{$guest->Address}}</td>
-                  <td>{{$guest->Phone}}</td>
-                  <td>{{$guest->NIDNo}}</td>
-                  <td>{{$guest->NID}}</td>
-                  <td>{{$guest->PassportNo}}</td>
-                  <td>{{$guest->Passport}}</td>
-                  <td>{{$guest->Father}}</td>
-                  <td>{{$guest->Mother}}</td>
-                  <td>{{$guest->Spouse}}</td>
-                  <td>{{$guest->Photo}}</td>
+                  <td>{{$Guest->id}}</td>
+                  <td>{{$Guest->Name}}</td>
+                  <td>{{$Guest->Email}}</td>
+                  <td>{{$Guest->Address}}</td>
+                  <td>{{$Guest->Phone}}</td>
+                  <td>{{$Guest->NIDNo}}</td>
+                  <td>{{$Guest->NID}}</td>
+                  <td>{{$Guest->PassportNo}}</td>
+                  <td>{{$Guest->Passport}}</td>
+                  <td>{{$Guest->Father}}</td>
+                  <td>{{$Guest->Mother}}</td>
+                  <td>{{$Guest->Spouse}}</td>
+                  <td>{{$Guest->Photo}}</td>
                   <td>
-                    <a href="/guest/{{$guest->id}}/edit" class="btn btn-warning">Edit</a>
-                    <a href="/guest/{{$guest->id}}/delete" class="btn btn-danger mx-md-2">Delete</a>
+                    <a href="/guest/{{$Guest->id}}/edit" class="btn btn-warning">Edit</a>
+                    <a href="/guest/{{$Guest->id}}/delete" class="btn btn-danger mx-md-2">Delete</a>
                   </td>
                 </tr>
               @endforeach
