@@ -52,7 +52,7 @@
                                 </a>
                             </li>
                             <li>
-                            <a href="">
+                            <a href="" class="star">
                                 <svg data-v-1134b199="" xmlns="http://www.w3.org/2000/svg" width="21px" height="21px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-warning feather feather-star"><polygon data-v-1134b199="" points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
                             </a>
                             </li>
@@ -154,12 +154,13 @@
     </div>
 
     <!-- Main Footer -->
-    <footer class="main-footer">
+    <footer class="main-footer custom__main__footer">
         <div class="float-right d-none d-sm-block">
-            <b>Version</b> 3.0.5
+            <b>Hand-crafted & Made with  </b>
+            <i class="bi bi-heart text-danger fs-5"></i>
         </div>
-        <strong>Copyright &copy; 2014-2022 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights
-        reserved.
+        <strong>Copyright &copy; Creative Software Tim</strong> All rights
+        Reserved.
     </footer>
 </div>
 

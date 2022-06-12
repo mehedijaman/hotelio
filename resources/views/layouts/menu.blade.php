@@ -35,22 +35,22 @@
             Invoice 
             <i class="fa-solid fa-angle-right drop-down offset-5"></i>
         </li>
-
-        <ul id="sub-btn" class="dropdown-menu">
+        {{-- drop down Strat --}}
+        <ul id="sub-btn" class="dropdown-menu invioce__dropdown__custom">
             <li><a href="" class="">
-                    <i class="bi bi-arrow-right"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg>
                     Invoice
                 </a>
             </li>
-            <li>
+            <li class="">
                 <a href="">
-                    <i class="bi bi-arrow-right"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg>
                     Invoice Item
                 </a>
             </li>
             <li>
                 <a href="">
-                    <i class="bi bi-arrow-right"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg>
                     Tax Settings
                 </a>
             </li>

@@ -61,9 +61,20 @@ ul li .drop-down::before
 	font-size: x-large;
 	font-size: 20px !important;
 }
+.invioce__dropdown__custom
+{
+	background-color: #283046 !important; 
+	border: none !important;
+	border-radius: none !important;
+	background-clip: none !important;
+	box-shadow: none !important;
+}
 ul#sub-btn {
     /* background-color: seagreen; */
-    padding: 20px 67px;
+    padding: 10px 65px;
+}
+.invioce__dropdown__custom li{
+	margin-top: 1rem !important;
 }
 .navbar {
     padding: 0 !important;
@@ -98,6 +109,10 @@ ul#sub-btn {
 	color: #fff !important;
 	
 }
+.custom__navber__list li .star svg{
+	color:  rgb(252, 154, 35) !important;
+	
+}
 .badge__up {
     position: absolute;
     top: -11px;
@@ -116,6 +131,13 @@ ul#sub-btn {
 	z-index: 1;
 	margin-bottom: 9px;
     margin-right: 12px;
+}
+.custom__main__footer
+{
+	background-color: #161E31 !important;
+}
+.custom__main__footer i{
+	font-size: large;
 }
 
 
