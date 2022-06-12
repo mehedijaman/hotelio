@@ -45,6 +45,10 @@
                   <td>{{$guest->Mother}}</td>
                   <td>{{$guest->Spouse}}</td>
                   <td>{{$guest->Photo}}</td>
+                  <td>
+                    <a href="/guest/{{$guest->id}}/edit" class="btn btn-warning">Edit</a>
+                    <a href="/guest/{{$guest->id}}/delete" class="btn btn-danger mx-md-2">Delete</a>
+                  </td>
                 </tr>
               @endforeach
             </tbody>

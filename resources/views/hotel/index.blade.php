@@ -37,6 +37,10 @@
                   <td>{{$Hotel->RegNO}}</td>
                   <td>{{$Hotel->Logo}}</td>
                   <td>{{$Hotel->Photo}}</td>
+                  <td>
+                    <a href="/hotel/{{$Hotel->id}}/edit" class="btn btn-warning">Edit</a>
+                    <a href="/hotel/{{$Hotel->id}}/delete" class="btn btn-danger mx-md-2">Delete</a>
+                  </td>
                 </tr>
               @endforeach
             </tbody>

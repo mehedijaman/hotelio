@@ -43,6 +43,10 @@
                               <td>{{$Employee->Address}}</td>
                               <td>{{$Employee->DateOfJoin}}</td>
                               <td>{{$Employee->Status}}</td>
+                              <td>
+                                    <a href="/employee/{{$Employee->id}}/edit" class="btn btn-warning">Edit</a>
+                                    <a href="/employee/{{$Employee->id}}/delete" class="btn btn-danger mx-md-2">Delete</a>
+                              </td>
                         </tr>
                   @endforeach
 
