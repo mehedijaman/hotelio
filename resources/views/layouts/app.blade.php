@@ -169,16 +169,7 @@
 
 <script src="/js/jquery.js"></script>
 <script src="{{URL::asset('/js/custom.js')}}"></script>
-
- {{-- <script type="text/javascript">
-        $(document).ready(function(){
-            $('#menu-btn').click(function(){
-                $(this).next('#sub-btn').slideToggle('slow');
-                $('.drop-down').toggleClass('rotate');
-            });
-        });
-        
-</script> --}}
+ 
 @yield('third_party_scripts')
 
 @stack('page_scripts')

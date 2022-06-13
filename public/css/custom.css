@@ -39,46 +39,8 @@ body{
     border-radius: 8px;
 }
 
-ul #menu-btn{
-	/* background-color: greenyellow; */
-	padding: 10px 20px;
-	border-radius: 4px;
-	color: #fff;
-	font-size: 1.1rem;
-	transition: .3 ease;
-}
-ul #menu-btn i{
-	padding: 0px 6px 0px 2px;
-	font-size: 20px;
-}
-.rotate{
-	transform: rotate(90deg);
-	transition: .3 ease;
-}
-ul li .drop-down::before 
-{
-	transition: 0.3 ease;
-	font-size: x-large;
-	font-size: 20px !important;
-}
-.custom__toggle
-{
-	background-color: #283046 !important; 
-	/* border: none !important;
-	border-radius: none !important;
-	background-clip: none !important;
-	box-shadow: none !important; */
-	display: none;
-	
-}
 
-ul#sub-btn {
-    /* background-color: seagreen; */
-    padding: 10px 65px;
-}
-.custom__toggle li{
-	margin-top: 1rem !important;
-}
+
 .navbar {
     padding: 0 !important;
     position: relative;
@@ -142,5 +104,53 @@ ul#sub-btn {
 .custom__main__footer i{
 	font-size: large;
 }
+/* side ber menu */
+ul .menu-btn{
+	/* background-color: greenyellow; */
+	padding: 10px 20px;
+	border-radius: 4px;
+	color: #fff;
+	font-size: 1.1rem;
+	transition: .3 ease;
+}
+ul .menu-btn i{
+	padding: 0px 6px 0px 2px;
+	font-size: 20px;
+}
+.rotated{
+	transform: rotate(90deg);
+	transition: .3 ease;
+}
 
+ul li .drop-down::before 
+{
+	transition: 0.3 ease;
+	font-size: x-large;
+	font-size: 20px !important;
+}
+.custom__toggle
+{
+	background-color: #283046 !important; 
+	display: none;
+	
+}
+
+ul .sub-btn {
+    /* background-color: seagreen; */
+    padding: 10px 65px;
+}
+.custom__toggle li{
+	margin-top: 1rem !important;
+}
+#custom__offset__invoice
+{
+	margin-left: 50%;
+}
+#custom__offset__invoice__item{
+	margin-left: 30%;
+}
+#custom__offset__tax__setting
+{
+	margin-left: 28%;
+}
 
