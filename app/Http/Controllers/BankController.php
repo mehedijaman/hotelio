@@ -43,7 +43,7 @@ class BankController extends Controller
             return back();
         }
         catch(Exception $error){
-            $error->getMessage();
+            return $error->getMessage();
         }
     }
 
@@ -66,7 +66,8 @@ class BankController extends Controller
      */
     public function edit($id)
     {
-        //
+        $Banks = Bank::find($id);
+        return view('bank.edit',compact('Banks'));
     }
 
     /**
@@ -89,6 +90,7 @@ class BankController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Bank::find($id)->delete();
+        return back();
     }
 }

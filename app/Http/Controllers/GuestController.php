@@ -42,7 +42,7 @@ class GuestController extends Controller
             return back();
         }
         catch(Exception $error){
-            $error->getMessage();
+            return $error->getMessage();
         }
     }
 
@@ -65,7 +65,8 @@ class GuestController extends Controller
      */
     public function edit($id)
     {
-        //
+        $Guests = Guest::find($id);
+        return view('guest.edit' ,compact('Guests'));
     }
 
     /**
@@ -88,6 +89,7 @@ class GuestController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Guest::find($id)->delete();
+        return back();
     }
 }

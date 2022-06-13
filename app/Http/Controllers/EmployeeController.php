@@ -68,7 +68,9 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $Hotels = Hotel::all();
+        $Employees = Employee::find($id);
+        return view('employee.edit',compact('Hotels','Employees'));
     }
 
     /**
@@ -91,6 +93,7 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Employee::find($id)->delete();
+        return back();
     }
 }

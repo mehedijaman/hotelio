@@ -4,11 +4,12 @@
     <div class="container-fluid">
         <a href="/employee" class="btn btn-primary">Back to List</a>
         {!! Form::open(array('url' => '/employee' , 'method'=>'POST')) !!}
-            <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
+            <div class="page-wrapper  p-t-45 p-b-50">
                 <div class="wrapper wrapper--w790">
                     <div class="card card-5">
-                        <div class="card-heading">
+                        <div class="card-heading bg-light">
                             <h2 class="title">Employee Registration Form</h2>
+                            <hr style="width:100%;text-align:left;margin-left:0; background-color:red;">
                         </div>
                         <div class="card-body">
                             <form method="POST">
@@ -117,21 +118,8 @@
                                       </div>
                                 </div>
 
-                                <div class="form-row p-t-20">
-                                    <label class="label label--block">Are you an existing customer?</label>
-                                    <div class="p-t-15">
-                                        <label class="radio-container m-r-55">Yes
-                                            <input type="radio" checked="checked" name="exist">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <label class="radio-container">No
-                                            <input type="radio" name="exist">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </div>
-                                </div>
                                 <div>
-                                    <button class="btn btn--radius-2 btn--red" type="submit">Register</button>
+                                    <button class="btn btn--radius-2 btn-lg btn-block bg-gray" type="submit">Register</button>
                                 </div>
                             </form>
                         </div>
