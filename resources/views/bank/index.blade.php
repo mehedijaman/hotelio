@@ -4,7 +4,7 @@
 <div class="container-fluid">
     <a href="/bank/create" class="btn btn-primary">Add to Bank</a>
     <div class="table col-md-12">
-        <table class="table table-striped w-auto " id="bankTable">
+        <table class="table text-light " id="bankTable">
             <thead>
               <tr>
                 <th>id</th>
@@ -19,7 +19,7 @@
             </thead>
             <tbody>
               @foreach ($Banks as $Bank )
-                <tr class="table-info">
+                <tr class="table-info text-dark">
                   <td>{{$Bank->id}}</td>
                   <td>{{$Bank->Name}}</td>
                   <td>{{$Bank->Branch}}</td>

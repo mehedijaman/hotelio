@@ -43,7 +43,7 @@ class HotelController extends Controller
             return back();
         }
         catch(Exception $error){
-            $error->getMessage();
+            return $error->getMessage();
         }
 
     }
@@ -67,7 +67,8 @@ class HotelController extends Controller
      */
     public function edit($id)
     {
-        //
+        $Hotels = Hotel::find($id);
+        return view('hotel.edit' ,compact('Hotels'));
     }
 
     /**
@@ -90,6 +91,7 @@ class HotelController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Hotel::find($id)->delete();
+        return back();
     }
 }

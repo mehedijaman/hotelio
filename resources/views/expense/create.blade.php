@@ -4,11 +4,12 @@
     <div class="container-fluid">
         <a href="/expense" class="btn btn-primary">Back to List</a>
         {!! Form::open(array('url' => '/expense' , 'method'=>'POST')) !!}
-            <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
+            <div class="page-wrapper  p-t-45 p-b-50">
                 <div class="wrapper wrapper--w790">
                     <div class="card card-5">
-                        <div class="card-heading">
-                            <h2 class="title">Expense</h2>
+                        <div class="card-heading bg-light">
+                            <h2 class="title text-dark">Expense</h2>
+                            <hr style="width:100%;text-align:left;margin-left:0; background-color:red;">
                         </div>
                         <div class="card-body">
                             <form method="POST">
@@ -45,7 +46,7 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <button class="btn btn--radius-2 btn--red" type="submit">Add Expense</button>
+                                    <button class="btn btn--radius-2 btn-lg btn-block bg-gray" type="submit">Add Expense</button>
                                 </div>
                             </form>
                         </div>

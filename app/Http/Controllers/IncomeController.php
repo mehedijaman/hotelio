@@ -42,7 +42,7 @@ class IncomeController extends Controller
             return back();
         }
         catch(Exception $error){
-            $error->getMessage();
+            return $error->getMessage();
         }
     }
 
