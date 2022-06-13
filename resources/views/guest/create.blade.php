@@ -5,11 +5,11 @@
     <div class="container-fluid">
         <a href="/guest" class="btn btn-primary">Back to List</a>
         {!! Form::open(array('url' => '/guest' , 'method'=>'POST')) !!}
-            <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
+            <div class="page-wrapper p-t-45 p-b-50">
                 <div class="wrapper wrapper--w790">
                     <div class="card card-5">
-                        <div class="card-heading">
-                            <h2 class="title">Guest Registration Form</h2>
+                        <div class="card-heading bg-light">
+                            <h2 class="title text-dark">Guest Registration Form</h2>
                         </div>
                         <div class="card-body">
                             <form method="POST">

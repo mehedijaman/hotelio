@@ -3,7 +3,7 @@
 
 @section('content')
 <div class="container-fluid">
-    <a href="/Guest/create" class="btn btn-primary">Add to New Guest</a>
+    <a href="/guest/create" class="btn btn-primary">Add to New Guest</a>
     <!--Table-->
     <div class="table col-md-12">
         <table class="table table-striped w-auto ">
