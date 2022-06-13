@@ -31,14 +31,11 @@ require __DIR__.'/auth.php';
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
+// Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource('bank',BankController::class);
-
-Route::resource('hotel',HotelController::class);
-
 
 
 Route::resource('room',RoomController::class);
@@ -47,3 +44,6 @@ Route::resource('guest',GuestController::class);
 
 
 Route::resource('employee',EmployeeController::class);
+Route::resource('hotel',HotelController::class);
+
+// Route::post('hotel',[HotelController::class,'index']);

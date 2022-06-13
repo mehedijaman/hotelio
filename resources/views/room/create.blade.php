@@ -1,5 +1,4 @@
 @extends('layouts.app')
-@extends('layouts.Header')
 
 @section('content')
     <div class="container-fluid">
@@ -52,7 +51,7 @@
                                           </div>
                                     </div>
                               </div>
-                              
+
                                 <div class="form-row">
                                     <div class="name">AC</div>
                                       <div class="AC">
@@ -169,12 +168,12 @@
                                     <div class="name">Intercom</div>
                                       <div class="Intercom">
                                           <div class="p-t-15">
-                                               
+
                                                 <label class="radio-container m-r-55">Yes
                                                     <input type="radio" checked="checked" name="exist">
                                                     <span class="checkmark"></span>
                                                 </label>
-                                              
+
                                                 <label class="radio-container">No
                                                     <input type="radio" name="exist">
                                                     <span class="checkmark"></span>
@@ -187,12 +186,12 @@
                                     <div class="name">TV</div>
                                       <div class="TV">
                                           <div class="p-t-15">
-                                               
+
                                                 <label class="radio-container m-r-55">Yes
                                                     <input type="radio" checked="checked" name="exist">
                                                     <span class="checkmark"></span>
                                                 </label>
-                                              
+
                                                 <label class="radio-container">No
                                                     <input type="radio" name="exist">
                                                     <span class="checkmark"></span>
@@ -205,12 +204,12 @@
                                     <div class="name">Wardrobe</div>
                                       <div class="Wardrobe">
                                           <div class="p-t-15">
-                                               
+
                                                 <label class="radio-container m-r-55">Yes
                                                     <input type="radio" checked="checked" name="exist">
                                                     <span class="checkmark"></span>
                                                 </label>
-                                              
+
                                                 <label class="radio-container">No
                                                     <input type="radio" name="exist">
                                                     <span class="checkmark"></span>
@@ -241,12 +240,12 @@
                                     <div class="name">Status</div>
                                       <div class="Status">
                                           <div class="p-t-15">
-                                               
+
                                                 <label class="radio-container m-r-55">Yes
                                                     <input type="radio" checked="checked" name="exist">
                                                     <span class="checkmark"></span>
                                                 </label>
-                                              
+
                                                 <label class="radio-container">No
                                                     <input type="radio" name="exist">
                                                     <span class="checkmark"></span>

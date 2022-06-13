@@ -1,5 +1,4 @@
 @extends('layouts.app')
-@extends('layouts.Header')
 
 @section('content')
     <div class="container-fluid">
@@ -13,6 +12,20 @@
                         </div>
                         <div class="card-body">
                             <form method="POST">
+                                <div class="form-row">
+                                    <div class="name">Hotel</div>
+                                    <div class="value">
+                                        <div class="input-group">
+                                            <select name="HotelID" id="">
+                                                <option value="">Select Hotel</option>
+                                                @foreach($Hotels as $Hotel)
+                                                <option value="{{ $Hotel->id }}"> {{ $Hotel->Name }} </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="form-row">
                                     <div class="name">Name</div>
                                     <div class="value">
@@ -90,12 +103,12 @@
                                     <div class="name">Status</div>
                                       <div class="Status">
                                           <div class="p-t-15">
-                                               
+
                                                 <label class="radio-container m-r-55">Yes
                                                     <input type="radio" checked="checked" name="exist">
                                                     <span class="checkmark"></span>
                                                 </label>
-                                              
+
                                                 <label class="radio-container">No
                                                     <input type="radio" name="exist">
                                                     <span class="checkmark"></span>
