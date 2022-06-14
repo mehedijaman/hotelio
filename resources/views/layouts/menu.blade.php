@@ -39,21 +39,6 @@
     </a>
 </li>
 
-{{-- dropdwon  --}}
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"  crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-<div class="btn-group">
-    <button type="button" class="btn dropdown-toggle text-light" data-bs-toggle="dropdown" aria-expanded="false">
-      Income
-    </button>
-    <ul class="dropdown-menu">
-      <li><a class="dropdown-item text-info" href="/incomeCategory">Income Category</a></li>
-      <li><a class="dropdown-item text-info" href="/income">Income Add</a></li>
-    </ul>
-  </div>
-{{-- dropdwon  --}}
-
-
 
 
 {{-- Invoice Start --}}
@@ -111,14 +96,5 @@
         </ul>
     </div>
 </div>
-</div>
-</div>
-
-
-
-
-
-
-
 
 
