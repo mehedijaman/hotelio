@@ -55,7 +55,7 @@
                                     <div class="Geyser">
                                           <div class="p-t-15">
                                                 <label class="radio-container m-r-55">Yes
-                                                    <input type="radio" checked="checked" name="exist">
+                                                    <input type="radio"  name="exist">
                                                     <span class="checkmark"></span>
                                                 </label>
                                                 <label class="radio-container">No
@@ -71,7 +71,7 @@
                                       <div class="AC">
                                           <div class="p-t-15">
                                                 <label class="radio-container m-r-55">Yes
-                                                    <input type="radio" checked="checked" name="exist">
+                                                    <input type="radio" name="exist">
                                                     <span class="checkmark"></span>
                                                 </label>
                                                 <label class="radio-container">No
@@ -87,7 +87,7 @@
                                       <div class="Balcony">
                                           <div class="p-t-15">
                                                 <label class="radio-container m-r-55">Yes
-                                                    <input type="radio" checked="checked" name="exist">
+                                                    <input type="radio"  name="exist">
                                                     <span class="checkmark"></span>
                                                 </label>
                                                 <label class="radio-container">No
@@ -103,7 +103,7 @@
                                       <div class="Bathtub">
                                           <div class="p-t-15">
                                                 <label class="radio-container m-r-55">Yes
-                                                    <input type="radio" checked="checked" name="exist">
+                                                    <input type="radio" name="exist">
                                                     <span class="checkmark"></span>
                                                 </label>
                                                 <label class="radio-container">No
@@ -119,7 +119,7 @@
                                       <div class="HiComode">
                                           <div class="p-t-15">
                                                 <label class="radio-container m-r-55">Yes
-                                                    <input type="radio" checked="checked" name="exist">
+                                                    <input type="radio"  name="exist">
                                                     <span class="checkmark"></span>
                                                 </label>
                                                 <label class="radio-container">No
@@ -135,7 +135,7 @@
                                       <div class="Locker">
                                           <div class="p-t-15">
                                                 <label class="radio-container m-r-55">Yes
-                                                    <input type="radio" checked="checked" name="exist">
+                                                    <input type="radio"  name="exist">
                                                     <span class="checkmark"></span>
                                                 </label>
                                                 <label class="radio-container">No
@@ -151,7 +151,7 @@
                                       <div class="Freeze">
                                           <div class="p-t-15">
                                                 <label class="radio-container m-r-55">Yes
-                                                    <input type="radio" checked="checked" name="exist">
+                                                    <input type="radio"  name="exist">
                                                     <span class="checkmark"></span>
                                                 </label>
                                                 <label class="radio-container">No
@@ -167,7 +167,7 @@
                                       <div class="Internet">
                                           <div class="p-t-15">
                                                 <label class="radio-container m-r-55">Yes
-                                                    <input type="radio" checked="checked" name="exist">
+                                                    <input type="radio"  name="exist">
                                                     <span class="checkmark"></span>
                                                 </label>
                                                 <label class="radio-container">No
@@ -184,7 +184,7 @@
                                           <div class="p-t-15">
 
                                                 <label class="radio-container m-r-55">Yes
-                                                    <input type="radio" checked="checked" name="exist">
+                                                    <input type="radio"  name="exist">
                                                     <span class="checkmark"></span>
                                                 </label>
 
@@ -202,7 +202,7 @@
                                           <div class="p-t-15">
 
                                                 <label class="radio-container m-r-55">Yes
-                                                    <input type="radio" checked="checked" name="exist">
+                                                    <input type="radio"  name="exist">
                                                     <span class="checkmark"></span>
                                                 </label>
 
@@ -220,7 +220,7 @@
                                           <div class="p-t-15">
 
                                                 <label class="radio-container m-r-55">Yes
-                                                    <input type="radio" checked="checked" name="exist">
+                                                    <input type="radio"  name="exist">
                                                     <span class="checkmark"></span>
                                                 </label>
 
@@ -256,7 +256,7 @@
                                           <div class="p-t-15">
 
                                                 <label class="radio-container m-r-55">Yes
-                                                    <input type="radio" checked="checked" name="exist">
+                                                    <input type="radio"  name="exist">
                                                     <span class="checkmark"></span>
                                                 </label>
 
@@ -268,19 +268,6 @@
                                       </div>
                                 </div>
 
-                                <div class="form-row p-t-20">
-                                    <label class="label label--block">Are you an existing customer?</label>
-                                    <div class="p-t-15">
-                                        <label class="radio-container m-r-55">Yes
-                                            <input type="radio" checked="checked" name="exist">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <label class="radio-container">No
-                                            <input type="radio" name="exist">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </div>
-                                </div>
                                 <div>
                                     <button class="btn btn--radius-2 btn-lg btn-block bg-gray" type="submit">Register</button>
                                 </div>

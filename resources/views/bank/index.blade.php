@@ -2,9 +2,9 @@
 
 @section('content')
 <div class="container-fluid">
-    <a href="/bank/create" class="btn btn-primary">Add to Bank</a>
+    <a href="/bank/create" class="btn btn-primary mb-md-3" >Add to Bank</a>
     <div class="table col-md-12">
-        <table class="table text-light " id="bankTable">
+        <table class="table table-stripd table-bordered table-dark text-light w-auto" id="bankTable">
             <thead>
               <tr>
                 <th>id</th>
@@ -28,7 +28,7 @@
                   <td>{{$Bank->Phone}}</td>
                   <td>{{$Bank->Email}}</td>
                   <td>
-                    <a href="/bank/{{$Bank->id}}/edit" class="btn btn-warning">Edit</a>
+                    <a href="/bank/{{$Bank->id}}/edit" class="btn btn-warning mx-md-2 mb-md-2">Edit</a>
                     <a href="/bank/{{$Bank->id}}/delete" class="btn btn-danger mx-md-2">Delete</a>
                   </td>
                 </tr>

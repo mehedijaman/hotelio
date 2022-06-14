@@ -3,7 +3,7 @@
 @section('content')
     <div class="container-fluid">
         <a href="/guest" class="btn btn-primary">Back to List</a>
-        {!! Form::open(array('url' => '/guest/update' , 'method'=>'POST')) !!}
+        {!! Form::open(array('url' => '/guest/update' , 'method'=>'PATCH')) !!}
         <input type="hidden" name="id" value="{{$Guests->id}}">
             <div class="page-wrapper p-t-45 p-b-50">
                 <div class="wrapper wrapper--w790">
@@ -82,7 +82,7 @@
                                     <label class="label label--block">Guardian</label>
                                     <div class="p-t-15">
                                         <label class="radio-container m-r-55">Father
-                                            <input type="radio" checked="checked" name="Father value="{{$Guests->Father}}"">
+                                            <input type="radio" name="Father" value="{{$Guests->Father}}">
                                             <span class="checkmark"></span>
                                         </label>
                                         <label class="radio-container">Mother

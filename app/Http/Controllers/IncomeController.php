@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Income;
+use App\Models\IncomeCategory;
 use PHPUnit\Framework\Exception;
 
 class IncomeController extends Controller
@@ -26,7 +27,8 @@ class IncomeController extends Controller
      */
     public function create()
     {
-        return view('income.create');
+        $IncomeCategoris = IncomeCategory::all();
+        return view('income.create', compact('IncomeCategoris'));
     }
 
     /**

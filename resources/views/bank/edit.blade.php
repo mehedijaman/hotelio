@@ -3,7 +3,7 @@
 @section('content')
     <div class="container-fluid">
         <a href="/bank" class="btn btn-primary">Back to List</a>
-        {!! Form::open(array('url'=>'/bank/update' , 'method'=>'POST')) !!}
+        {!! Form::open(array('url'=>'/bank/update' , 'method'=>'PATCH')) !!}
         <input type="hidden" name="id" value ="{{$Banks->id}}">
             <div class="page-wrapper  p-t-45 p-b-50">
                 <div class="wrapper wrapper--w790">
@@ -62,19 +62,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-row p-t-20">
-                                    <label class="label label--block">Are you an existing customer?</label>
-                                    <div class="p-t-15">
-                                        <label class="radio-container m-r-55">Yes
-                                            <input type="radio" checked="checked" name="exist">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <label class="radio-container">No
-                                            <input type="radio" name="exist">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </div>
-                                </div>
+                                
                                 <div>
                                     <button class="btn btn--radius-2 btn-lg btn-block bg-info" type="submit">Update</button>
                                 </div>

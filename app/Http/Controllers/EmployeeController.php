@@ -80,9 +80,26 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $Employees  = new Employee();
+        $Employees  = Employee::find($request->id);
+        
+        $Employees->HotelID     = $request->HotelID;
+        $Employees->Name        = $request->Name;
+        $Employees->Designation = $request->Designation;
+        $Employees->DateOfBirth = $request->DateOfBirth;
+        $Employees->NIDNo       = $request->NIDNo;
+        $Employees->NID         = $request->NID;
+        $Employees->Phone       = $request->Phone;
+        $Employees->Email       = $request->Email;
+        $Employees->Address     = $request->Address;
+        $Employees->DateOfJoin  = $request->DateOfJoin;
+        $Employees->Status      = $request->Status;
+
+        $Employees->save();
+        
+        return $this->index();
     }
 
     /**

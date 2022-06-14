@@ -3,7 +3,7 @@
 @section('content')
     <div class="container-fluid">
         <a href="/hotel" class="btn btn-primary">Back to List</a>
-        {!! Form::open(array('url' => '/hotel' , 'method'=>'POST')) !!}
+        {!! Form::open(array('url' => '/hotel/update' , 'method'=>'PATCH')) !!}
             <input type="hidden" name="id" value="{{$Hotels->id}}">
             <div class="page-wrapper p-t-45 p-b-50">
                 <div class="wrapper wrapper--w790">
