@@ -24,6 +24,8 @@
         <p>Room</p>
     </a>
 </li>
+
+
 <li class="nav-item">
     <a href="/guest" class="nav-link {{ Request::is('guest') ? 'active' : '' }}">
         <i class="nav-icon fas fa-briefcase"></i>
@@ -38,32 +40,57 @@
 </li>
 
 
-{{-- Invoice Start --}}
 
+{{-- Invoice Start --}}
 <div class="sidebar-toggle d-flex flex-column position-relative">
     <div class="">
-        <li id="menu-btn" class="">
+        <li  class="menu-btn">
             <i class="fa-solid fa-file-invoice-dollar"></i>
             Invoice 
-            <i class="fa-solid fa-angle-right drop-down offset-5"></i>
+            <i class="fa-solid fa-angle-right drop-down " id="custom__offset__invoice"></i>
         </li>
         {{-- drop down Strat --}}
-        <ul id="sub-btn" class=" custom__toggle">
-            <li><a href="" class="">
+        <ul class="custom__toggle sub-btn">
+            <li><a href="{{ asset('/invoice') }}" class="">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg>
                     Invoice
                 </a>
             </li>
-            <li class="">
-                <a href="">
+        </ul>
+    </div>
+</div>
+
+{{-- invoince Item--}}
+<div class="sidebar-toggle d-flex flex-column position-relative">
+    <div class="">
+        <li  class="menu-btn">
+            <i class="fa-solid fa-file-invoice-dollar"></i>
+            Invoice Item
+            <i class="fa-solid fa-angle-right drop-down" id="custom__offset__invoice__item"></i>
+        </li>
+        {{-- drop down Strat --}}
+        <ul class="custom__toggle sub-btn">
+            <li><a href="" class="">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg>
                     Invoice Item
                 </a>
             </li>
-            <li>
-                <a href="">
+        </ul>
+    </div>
+</div>
+{{-- Tax Settings--}}
+<div class="sidebar-toggle d-flex flex-column position-relative">
+    <div class="">
+        <li  class="menu-btn">
+            <i class="fa-solid fa-file-invoice-dollar"></i>
+                Tax Settings
+            <i class="fa-solid fa-angle-right drop-down" id="custom__offset__tax__setting"></i>
+        </li>
+        {{-- drop down Strat --}}
+        <ul class="custom__toggle sub-btn">
+            <li><a href="" class="">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg>
-                    Tax Settings
+                     Tax Settings
                 </a>
             </li>
         </ul>
@@ -71,39 +98,9 @@
 </div>
 
 
- 
 
-{{-- invoince end --}}
 
-{{-- <div class="sidebar-toggle d-flex flex-column position-relative">
-    <div class="">
-        <li id="menu-btn1" class="">
-            <i class="fa-solid fa-file-invoice-dollar"></i>
-                Income 
-            <i class="fa-solid fa-angle-right drop-down offset-5"></i>
-        </li>
-        {{-- drop down Strat --}}
-        <ul id="sub-btn1" class=" custom__toggle">
-            <li><a href="" class="">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg>
-                    Invoice
-                </a>
-            </li>
-            <li class="">
-                <a href="">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg>
-                    Invoice Item
-                </a>
-            </li>
-            <li>
-                <a href="">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg>
-                    Tax Settings
-                </a>
-            </li>
-        </ul>
-    </div>
-{{-- </div>  --}}
+
 
 
 
