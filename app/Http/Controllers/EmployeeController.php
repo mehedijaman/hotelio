@@ -16,7 +16,9 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $Employees = Employee::all();
+        $Employees = Employee::select('employees.*','hotels.Name as Hotel')
+        ->leftJoin('hotels','employees.HotelID','=','hotels.id')
+        ->get();
         return view('employee.index' ,compact('Employees'));
     }
 
@@ -84,7 +86,7 @@ class EmployeeController extends Controller
     {
         $Employees  = new Employee();
         $Employees  = Employee::find($request->id);
-        
+
         $Employees->HotelID     = $request->HotelID;
         $Employees->Name        = $request->Name;
         $Employees->Designation = $request->Designation;
@@ -98,7 +100,7 @@ class EmployeeController extends Controller
         $Employees->Status      = $request->Status;
 
         $Employees->save();
-        
+
         return $this->index();
     }
 

@@ -26,11 +26,11 @@
               </tr>
             </thead>
             <tbody>
-                  
+
                   @foreach ( $Employees as $Employee )
                         <tr class="table-info text-dark">
                               <td>{{$Employee->id}}</td>
-                              <td>{{$Employee->HoteID}}</td>
+                              <td>{{$Employee->Hotel}}</td>
                               <td>{{$Employee->Name}}</td>
                               <td>{{$Employee->Designation}}</td>
                               <td>{{$Employee->DateOfBirth}}</td>

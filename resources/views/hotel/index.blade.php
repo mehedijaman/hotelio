@@ -23,18 +23,21 @@
             <tbody>
                 @foreach ( $Hotels as $Hotel)
                 <tr class="table-info text-dark">
-                    <td>{{$Hotel->id}}</td>
-                    <td>{{$Hotel->Name}}</td>
-                    <td>{{$Hotel->Titel}}</td>
-                    <td>{{$Hotel->Email}}</td>
-                    <td>{{$Hotel->Address}}</td>
-                    <td>{{$Hotel->Phone}}</td>
-                    <td>{{$Hotel->RegNO}}</td>
-                    <td>{{$Hotel->Logo}}</td>
-                    <td>{{$Hotel->Photo}}</td>
+                    <td>{{ $Hotel->id }}</td>
+                    <td>{{ $Hotel->Name }}</td>
+                    <td>{{ $Hotel->Title }}</td>
+                    <td>{{ $Hotel->Email }}</td>
+                    <td>{{ $Hotel->Address }}</td>
+                    <td>{{ $Hotel->Phone }}</td>
+                    <td>{{ $Hotel->RegNo }}</td>
+                    <td>{{ $Hotel->Logo }}</td>
+                    <td>{{ $Hotel->Photo }}</td>
                     <td>
                         <a href="/hotel/{{$Hotel->id}}/edit" class="btn btn-warning">Edit</a>
-                        <a href="/hotel/{{$Hotel->id}}/delete" class="btn btn-danger">Delete</a>
+
+                        {{ Form::open(['url' => '/hotel/'.$Hotel->id,'method' => 'DELETE']) }}
+                            <input type="submit" name="submit" value="Delete" class="btn btn-danger">
+                        {{ Form::close()}}
                     </td>
                 </tr>
                 @endforeach

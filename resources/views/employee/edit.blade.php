@@ -56,7 +56,7 @@
                                     <div class="name">NID No</div>
                                     <div class="value">
                                         <div class="input-group">
-                                            <input class="input--style-5" type="text" name="NIDNo" value="{{$Employees->NIDNo}}"> 
+                                            <input class="input--style-5" type="text" name="NIDNo" value="{{$Employees->NIDNo}}">
                                         </div>
                                     </div>
                                 </div>
@@ -105,11 +105,11 @@
                                     <div class="name">Status</div>
                                     <div class="value">
                                         <div class="input-group">
-                                            <input class="input--style-5" type="text" name="Status" value="{{$Employees->Status}}>
+                                            <input class="input--style-5" type="text" name="Status" value="{{$Employees->Status}}">
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div>
                                     <button class="btn btn--radius-2 btn-lg btn-block bg-gray" type="submit">Register</button>
                                 </div>

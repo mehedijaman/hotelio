@@ -17,7 +17,7 @@
                                     <div class="name">Hotel</div>
                                     <div class="value">
                                         <div class="input-group">
-                                            <select name="HoteID" id="">
+                                            <select name="HotelID" id="">
                                                 <option value="">Select Hotel</option>
                                                 @foreach($Hotels as $Hotel)
                                                 <option value="{{ $Hotel->id }}"> {{ $Hotel->Name }} </option>
@@ -46,23 +46,23 @@
                                     <div class="name">Type</div>
                                     <div class="value">
                                         <div class="input-group">
-                                            <input class="input--style-5" type="text" name="AccountNo">
+                                            <input class="input--style-5" type="text" name="Type">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="name">Geyser</div>
                                     <div class="Geyser">
-                                          <div class="p-t-15">
-                                                <label class="radio-container m-r-55">Yes
-                                                    <input type="radio"  name="exist">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                <label class="radio-container">No
-                                                    <input type="radio" name="exist">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                          </div>
+                                        <div class="p-t-15">
+                                            <label class="radio-container m-r-55">Yes
+                                                <input type="radio" value="1" name="Geyser">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                            <label class="radio-container">No
+                                                <input type="radio" value="0" name="Geyser">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </div>
                                     </div>
                               </div>
 
@@ -71,11 +71,11 @@
                                       <div class="AC">
                                           <div class="p-t-15">
                                                 <label class="radio-container m-r-55">Yes
-                                                    <input type="radio" name="exist">
+                                                    <input type="radio" name="AC" value="1">
                                                     <span class="checkmark"></span>
                                                 </label>
                                                 <label class="radio-container">No
-                                                    <input type="radio" name="exist">
+                                                    <input type="radio" name="AC" value="0">
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </div>
@@ -241,14 +241,15 @@
                                     </div>
                                 </div>
 
-                                <div class="form-row">
+                                {{-- <div class="form-row">
                                     <div class="name">Additional Features</div>
                                     <div class="value">
                                         <div class="input-group">
-                                            <input class="input--style-5" type="text" name="AdditionalFeatures">
+                                            <input class="input--style-2" type="checkbox" name="Tiles" value="1"> Tiles
+                                            <input class="input--style-2" type="checkbox" name="Mozaik" value="1"> Mozaik
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 <div class="form-row">
                                     <div class="name">Status</div>

@@ -3,8 +3,7 @@
 @section('content')
     <div class="container-fluid">
         <a href="/hotel" class="btn btn-primary">Back to List</a>
-        {!! Form::open(array('url' => '/hotel/update' , 'method'=>'PATCH')) !!}
-            <input type="hidden" name="id" value="{{$Hotels->id}}">
+        {!! Form::open(array('url' => '/hotel/'.$Hotels->id , 'method'=>'PATCH')) !!}
             <div class="page-wrapper p-t-45 p-b-50">
                 <div class="wrapper wrapper--w790">
                     <div class="card card-5">
@@ -26,7 +25,7 @@
                                     <div class="name">Title</div>
                                     <div class="value">
                                         <div class="input-group">
-                                            <input class="input--style-5" type="text" name="Title" value="{{$Hotels->Titel}}">
+                                            <input class="input--style-5" type="text" name="Title" value="{{ $Hotels->Title }}">
                                         </div>
                                     </div>
                                 </div>

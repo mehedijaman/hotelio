@@ -38,6 +38,7 @@ class HotelController extends Controller
      */
     public function store(Request $request)
     {
+        // return  $request->all();
         try{
             Hotel::create($request->all());
             return back();
@@ -78,20 +79,9 @@ class HotelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        $Hotels = new Hotel();
-        $Hotels = Hotel::find($request->id);
-        $Hotels->Name = $request->Name;
-        $Hotels->Title      = $request->Title;
-        $Hotels->Email      = $request->Email;
-        $Hotels->Address    = $request->Address;
-        $Hotels->Phone      = $request->Phone;
-        $Hotels->RegNo      = $request->RegNo;
-        $Hotels->Logo       = $request->Logo;
-        $Hotels->Photo      = $request->Photo;
-
-        $Hotels->save();
+        Hotel::find($id)->update($request->all());
 
         return $this->index();
 
