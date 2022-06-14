@@ -8,9 +8,6 @@ use App\Http\Controllers\GuestController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\InvoiceController;
 
-
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,12 +35,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-//resource route
-
 Route::resource('bank',BankController::class);
 
 
 Route::resource('room',RoomController::class);
+
 Route::resource('guest',GuestController::class);
 
 
@@ -51,5 +47,4 @@ Route::resource('employee',EmployeeController::class);
 Route::resource('hotel',HotelController::class);
 Route::resource('invoice',InvoiceController::class);
 
-Route::resource('incomeCategory',IncomeCategoryController::class);
-Route::resource('income',IncomeController::class);
+// Route::post('hotel',[HotelController::class,'index']);
