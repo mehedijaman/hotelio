@@ -1,5 +1,3 @@
-
-
 <!-- need to remove -->
 <li class="nav-item">
     <a href="{{ route('home') }}" class="nav-link {{ Request::is('home') ? 'active' : '' }}">
@@ -112,10 +110,10 @@
             </li>
         </ul>
     </div>
-
+</div>
+</div>
 </div>
 
-</div>
 
 
 
