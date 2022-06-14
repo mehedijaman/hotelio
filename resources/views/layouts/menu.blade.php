@@ -97,7 +97,10 @@
     </div>
 </div>
 
-
-
-
+<li class="nav-item">
+    <a href="/null" class="nav-link {{ Request::is('null') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-briefcase"></i>
+        <p>null</p>
+    </a>
+</li>
 
