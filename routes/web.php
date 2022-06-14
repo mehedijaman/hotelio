@@ -7,10 +7,6 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\InvoiceController;
-
-
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
