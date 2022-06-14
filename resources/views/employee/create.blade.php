@@ -8,7 +8,7 @@
                 <div class="wrapper wrapper--w790">
                     <div class="card card-5">
                         <div class="card-heading bg-light">
-                            <h2 class="title">Employee Registration Form</h2>
+                            <h2 class="title text-dark">Employee Registration Form</h2>
                             <hr style="width:100%;text-align:left;margin-left:0; background-color:red;">
                         </div>
                         <div class="card-body">
@@ -102,24 +102,15 @@
 
                                 <div class="form-row">
                                     <div class="name">Status</div>
-                                      <div class="Status">
-                                          <div class="p-t-15">
-
-                                                <label class="radio-container m-r-55">Yes
-                                                    <input type="radio" checked="checked" name="exist">
-                                                    <span class="checkmark"></span>
-                                                </label>
-
-                                                <label class="radio-container">No
-                                                    <input type="radio" name="exist">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </div>
-                                      </div>
+                                    <div class="value">
+                                        <div class="input-group">
+                                            <input class="input--style-5" type="text" name="Status">
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div>
-                                    <button class="btn btn--radius-2 btn-lg btn-block bg-gray" type="submit">Register</button>
+                                    <button class="btn btn--radius-2 btn-lg btn-block bg-gray" type="submit">Add New Employee</button>
                                 </div>
                             </form>
                         </div>

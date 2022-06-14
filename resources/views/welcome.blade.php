@@ -421,7 +421,7 @@
 
             <body>
                 <div class="banner1">
-                    <img src="hotel/hotel1.jpg" alt="">
+                    <img src="img/hotel/hotel1.jpg" alt="">
                     <div class="text_box text_box1">
                         <h1>Welcome To Hotelio</h1>
                         <span></span>
@@ -429,7 +429,7 @@
                     </div>
                 </div>
                 <div class="banner2">
-                    <img src="hotel/spa.jpg" alt="">
+                    <img src="img/hotel/spa.jpg" alt="">
                     <div class="text_box text_box2">
                         <h1>Welcome To Hotelio</h1>
                         <span></span>
@@ -438,7 +438,7 @@
                     </div>
                 </div>
                 <div class="banner3">
-                    <img src="hotel/room.jpg" alt="">
+                    <img src="img/hotel/room.jpg" alt="">
                     <div class="text_box text_box3">
                         <h1>Welcome To Hotelio</h1>
                         <span></span>
@@ -447,7 +447,7 @@
                     </div>
                 </div>
                 <div class="banner4">
-                    <img src="hotel/washroom.jpg" alt="">
+                    <img src="img/hotel/washroom.jpg" alt="">
                     <div class="text_box text_box4">
                         <h1>Welcome To Hotelio</h1>
                         <span></span>

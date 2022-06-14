@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Guest;
 use Exception;
+use Ramsey\Uuid\Guid\Guid;
 
 class GuestController extends Controller
 {
@@ -76,9 +77,26 @@ class GuestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $Guests = new Guest();
+        $Guests = Guest::find($request->id);
+        $Guests->Name       = $request->Name;
+        $Guests->Email      = $request->Email;
+        $Guests->Address    = $request->Address;
+        $Guests->Phone      = $request->Phone;
+        $Guests->NIDNo      = $request->NIDNo;
+        $Guests->NID        = $request->NID;
+        $Guests->PassportNo = $request->PassportNo;
+        $Guests->Passport   = $request->Passport;
+        $Guests->Father     = $request->Father;
+        $Guests->Mother     = $request->Mother;
+        $Guests->Spouse     = $request->Spouse;
+        $Guests->Photo      = $request->Photo;
+
+        $Guests->save();
+
+        return $this->index();
     }
 
     /**

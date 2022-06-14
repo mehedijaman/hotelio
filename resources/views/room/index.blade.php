@@ -2,10 +2,10 @@
 
 @section('content')
 <div class="container-fluid">
-    <a href="/room/create" class="btn btn-primary">Add to Room</a>
+    <a href="/room/create" class="btn btn-primary mb-md-3">Add to Room</a>
 
     <div class="table col-md-12">
-        <table class="table text-light" id="dataTable">
+        <table class="table table-stripd table-bordered table-dark text-light w-auto" id="dataTable">
             <thead>
                 <tr>
                     <th>id</th>
