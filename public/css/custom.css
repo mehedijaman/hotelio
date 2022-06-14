@@ -8,8 +8,20 @@ body{
 	margin: 0;
 	padding: 0;
 }
+.table td {
+    border-top: 1px solid #6a6868 !important;
+	padding: 0.72rem 2rem !important;
+}
+.table th {
+    border-top: 1px solid #626262 !important;
+    border-bottom: 1px solid #626262 !important;
+}
+.table thead{
+	background-color: #343D55;
+}
 .custom__container{
 	padding:1rem 1.5rem;
+	height: auto;
 }
 .pt{
 	padding-top: 100px;
@@ -17,7 +29,7 @@ body{
 .container-custom{
    padding: 40px;
 }
-
+/* register */
 .img{
 	background-image: url(../img/toa-heftiba-bcLE7reXFLM-unsplash.jpg);
 	height: 584px !important;
@@ -39,51 +51,7 @@ body{
     border-radius: 8px;
 }
 
-ul #menu-btn{
-	/* background-color: greenyellow; */
-	padding: 10px 20px;
-	border-radius: 4px;
-	color: #fff;
-	font-size: 1.1rem;
-	transition: .3 ease;
-}
-ul #menu-btn i{
-	padding: 0px 6px 0px 2px;
-	font-size: 20px;
-}
-.rotate{
-	transform: rotate(90deg);
-	transition: .3 ease;
-}
-ul li .drop-down::before 
-{
-	transition: 0.3 ease;
-	font-size: x-large;
-	font-size: 20px !important;
-}
-.custom__toggle
-{
-	background-color: #283046 !important; 
-	/* border: none !important;
-	border-radius: none !important;
-	background-clip: none !important;
-	box-shadow: none !important; */
-	display: none;
-	
-}
-
-ul#sub-btn {
-    /* background-color: seagreen; */
-    padding: 10px 65px;
-}
-.custom__toggle li{
-	margin-top: 1rem !important;
-}
-.navbar {
-    padding: 0 !important;
-    position: relative;
-}
-
+/* dashbroad */
 .dashbroad__bg
 {
 	background-color: #161E31 !important;
@@ -95,14 +63,28 @@ ul#sub-btn {
 {
 	background-color: #283046 !important;
 }
+
+/* nevber */
+
+.navbar {
+    padding: 0 !important;
+	
+	
+}
+.custom-nav{
+	position: -webkit-sticky;
+  	position: sticky;
+  	top: 0;
+}
+
 .custom__main__header{
 	border: 0rem !important;
+	
 	/* margin-left: 250px !important; */
 }
 .dashbroad__nav__custom{
 	background-color: #283046 !important;
 	border-radius: .5rem !important;
-	
 	
 }
 .custom__navber__list li a{
@@ -135,6 +117,7 @@ ul#sub-btn {
 	margin-bottom: 9px;
     margin-right: 12px;
 }
+/* footer */
 .custom__main__footer
 {
 	background-color: #161E31 !important;
@@ -142,5 +125,78 @@ ul#sub-btn {
 .custom__main__footer i{
 	font-size: large;
 }
+/* side ber menu */
+ul .menu-btn{
+	/* background-color: greenyellow; */
+	padding: 10px 20px;
+	border-radius: 4px;
+	color: #fff;
+	font-size: 1.1rem;
+	transition: .3 ease;
+}
+ul .menu-btn i{
+	padding: 0px 6px 0px 2px;
+	font-size: 20px;
+}
+.rotated{
+	transform: rotate(90deg);
+	transition: .3 ease;
+}
+
+ul li .drop-down::before 
+{
+	transition: 0.3 ease;
+	font-size: x-large;
+	font-size: 20px !important;
+}
+.custom__toggle
+{
+	background-color: #283046 !important; 
+	display: none;
+	
+}
+
+ul .sub-btn {
+    padding: 10px 30px;
+}
+.sub-btn li a:active{
+	
+	background: linear-gradient(118deg,#7367f0,rgba(115,103,240,.7));
+	box-shadow: 0 0 10px 1px rgb(115 103 240 / 70%);
+    border-radius: 4px;
+	padding: 1rem 4rem;
+}
+/* sideber invoice */
+.custom__toggle li{
+	margin-top: 1rem !important;
+}
+#custom__offset__invoice
+{
+	margin-left: 50%;
+}
+#custom__offset__invoice__item{
+	margin-left: 30%;
+}
+#custom__offset__tax__setting
+{
+	margin-left: 28%;
+}
+
+
+/* invoice */
+
+.invoice__index__table__bg{
+	background-color: #283046 !important;
+	border-radius: 0.5rem;
+}
+.invoice__index__table__bg thead tr th{
+	color: #d0d2d6;
+	padding: 1rem !important;
+	
+}
+.invoice__index__table__bg tbody tr td{
+	color: #d0d2d6;
+}
+
 
 

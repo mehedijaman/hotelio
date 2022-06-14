@@ -9,13 +9,20 @@
     <link rel="stylesheet" href="{{asset('css/regular.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/solid.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/brands.min.css')}}">
-    {{-- fontawsome link --}}
     {{-- Bootsrap icon list --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('css/custom.css')}}">
     <link href="/css/main.css" rel="stylesheet" media="all">
-    <script src="/js/jquery.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/jquery.dataTables.min.css" integrity="sha512-1k7mWiTNoyx2XtmI96o+hdjP8nn0f3Z2N4oF/9ZZRgijyV4omsKOXEnqL1gKQNPy2MTSP9rIEWGcH/CInulptA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script language="JavaScript" type="text/javascript" src="/js/jquery.min.js"></script>
+    <script
+    src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
+    integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY="
+    crossorigin="anonymous"></script>
+    <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js" defer></script>
+    <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    
+    
 
 
     <!-- Font special for pages-->
@@ -27,7 +34,8 @@
 
     {{-- Bootsrap icon list --}}
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-    @yield('third_party_stylesheets')
+    {{-- @yield('third_party_stylesheets') --}}
+    @yield('css')
     @stack('page_css')
 </head>
 
@@ -35,7 +43,7 @@
 
     <div class="wrapper">
         <!-- Main Header -->
-        <div class="custom__container">
+        <div class="custom__container custom-nav">
             <nav class="main-header custom__main__header navbar navbar-expand  dashbroad__nav__custom">
                 <!-- Left navbar links -->
                 <ul class="custom__main__header navbar-nav custom__navber__list">
@@ -156,49 +164,45 @@
         </div>
 
         <!-- Left side column. contains the logo and sidebar -->
-    @include('layouts.sidebar')
+        @include('layouts.sidebar')
 
-<!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper content__wrapper__body__bg">
-        <section class="content">
-            @yield('content')
-        </section>
-    </div>
-
-    <!-- Main Footer -->
-    <footer class="main-footer custom__main__footer">
-        <div class="float-right d-none d-sm-block">
-            <b>Hand-crafted & Made with  </b>
-            <i class="bi bi-heart text-danger fs-5"></i>
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper content__wrapper__body__bg">
+            <section class="content">
+                @yield('content')
+            </section>
         </div>
-        <strong>Copyright &copy; Creative Software Tim</strong> All rights
-        Reserved.
-    </footer>
+
+        <!-- Main Footer -->
+        <footer class="main-footer custom__main__footer">
+            <div class="float-right d-none d-sm-block">
+                <b>Hand-crafted & Made with  </b>
+                <i class="bi bi-heart text-danger fs-5"></i>
+            </div>
+            <strong>Copyright &copy; Creative Software Tim</strong> All rights
+            Reserved.
+        </footer>
 </div>
 
 
 <script src="{{ mix('js/app.js') }}" defer></script>
 
 <script src="{{URL::asset('/js/custom.js')}}"></script>
+
 <!-- Vendor JS-->
 <script src="/vendor/select2/select2.min.js"></script>
 <script src="/vendor/datepicker/moment.min.js"></script>
 <script src="/vendor/datepicker/daterangepicker.js"></script>
 <!-- Main JS-->
 <script src="/js/global.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js" integrity="sha512-BkpSL20WETFylMrcirBahHfSnY++H2O1W+UnEEO4yNIl+jI2+zowyoGJpbtk6bx97fBXf++WJHSSK2MV4ghPcg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
- {{-- <script type="text/javascript">
-        $(document).ready(function(){
-            $('#menu-btn').click(function(){
-                $(this).next('#sub-btn').slideToggle('slow');
-                $('.drop-down').toggleClass('rotate');
-            });
-        });
 
-</script> --}}
+
+
 @yield('third_party_scripts')
 
-@stack('page_scripts')
+{{-- @stack('page_scripts') --}}
+@stack('scripts')
+
 </body>
 </html>
