@@ -6,6 +6,7 @@ use App\Http\Controllers\HotelController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\EmployeeController;
+<<<<<<< HEAD
 use App\Http\Controllers\IncomeCategoryController;
 use App\Http\Controllers\IncomeController;
 
@@ -13,6 +14,9 @@ use App\Http\Controllers\IncomeController;
 
 
 
+=======
+use App\Http\Controllers\InvoiceController;
+>>>>>>> a13349c5ff0bb94c9048371e103098ba92d2f6cd
 
 /*
 |--------------------------------------------------------------------------
