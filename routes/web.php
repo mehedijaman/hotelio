@@ -7,6 +7,9 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\IncomeCategoryController;
+use App\Http\Controllers\IncomeController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -47,4 +50,6 @@ Route::resource('employee',EmployeeController::class);
 Route::resource('hotel',HotelController::class);
 Route::resource('invoice',InvoiceController::class);
 
+Route::resource('incomeCategory',IncomeCategoryController::class);
+Route::resource('income',IncomeController::class);
 // Route::post('hotel',[HotelController::class,'index']);
