@@ -6,8 +6,12 @@ use App\Http\Controllers\HotelController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\EmployeeController;
+
 use App\Http\Controllers\IncomeCategoryController;
 use App\Http\Controllers\IncomeController;
+
+
+
 use App\Http\Controllers\InvoiceController;
 
 
