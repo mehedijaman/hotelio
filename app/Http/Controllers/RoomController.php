@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Room;
+use App\Models\Hotel;
 use Exception;
 
 class RoomController extends Controller
@@ -26,7 +27,8 @@ class RoomController extends Controller
      */
     public function create()
     {
-        return view('room.create');
+        $Hotels= Hotel::all();
+        return view('room.create',compact('Hotels'));
     }
 
     /**
@@ -42,7 +44,7 @@ class RoomController extends Controller
             return back();
         }
         catch(Exception $error){
-            $error->getMessage();
+            return $error->getMessage();
         }
     }
 
@@ -88,6 +90,7 @@ class RoomController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Room::find($id)->delete();
+        return back();
     }
 }
