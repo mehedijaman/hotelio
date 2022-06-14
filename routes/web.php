@@ -6,7 +6,7 @@ use App\Http\Controllers\HotelController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\EmployeeController;
-
+use App\Http\Controllers\InvoiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,14 +31,11 @@ require __DIR__.'/auth.php';
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
+// Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource('bank',BankController::class);
-
-Route::resource('hotel1',HotelController::class);
-
 
 
 Route::resource('room',RoomController::class);
@@ -47,3 +44,7 @@ Route::resource('guest',GuestController::class);
 
 
 Route::resource('employee',EmployeeController::class);
+Route::resource('hotel',HotelController::class);
+Route::resource('invoice',InvoiceController::class);
+
+// Route::post('hotel',[HotelController::class,'index']);

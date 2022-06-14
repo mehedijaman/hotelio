@@ -1,9 +1,8 @@
 @extends('layouts.app')
-@extends('layouts.Header')
 
 @section('content')
 <div class="container-fluid">
-    <a href="/hotel1/create" class="btn btn-primary">Add to Bank</a>
+    <a href="/hotel/create" class="btn btn-primary">Add to Bank</a>
     <!--Table-->
     <div class="table col-md-12">
         <table class="table table-striped w-auto ">
@@ -23,7 +22,7 @@
               </tr>
             </thead>
             <!--Table head-->
-          
+
             <!--Table body-->
             <tbody>
               <tr class="table-info">
@@ -109,8 +108,8 @@
               </tr>
             </tbody>
             <!--Table body-->
-          
-          
+
+
           </table>
           <!--Table-->
     </div>

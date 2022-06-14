@@ -12,10 +12,23 @@
     {{-- fontawsome link --}}
     {{-- Bootsrap icon list --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="{{ asset('css/custom.css')}}">     
+    <link rel="stylesheet" href="{{ asset('css/custom.css')}}">
+    <link href="/css/main.css" rel="stylesheet" media="all">
+    <script src="/js/jquery.js"></script>
+    {{-- <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"> --}}
+
+
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
     {{-- Bootsrap icon list --}}
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     @yield('third_party_stylesheets')
+    {{-- @yield('css') --}}
     @stack('page_css')
 </head>
 
@@ -58,7 +71,7 @@
                             </li>
                         </div>
                     </ul>
-                
+
                 <ul class="navbar-nav ml-auto custom__navber__list ">
                     <div class="d-flex align-items-center p-0 m-0">
                         <li>
@@ -167,11 +180,21 @@
 
 <script src="{{ mix('js/app.js') }}" defer></script>
 
-<script src="/js/jquery.js"></script>
 <script src="{{URL::asset('/js/custom.js')}}"></script>
- 
+
+<!-- Vendor JS-->
+<script src="/vendor/select2/select2.min.js"></script>
+<script src="/vendor/datepicker/moment.min.js"></script>
+<script src="/vendor/datepicker/daterangepicker.js"></script>
+<!-- Main JS-->
+<script src="/js/global.js"></script>
+
+{{-- <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script> --}}
+
+
 @yield('third_party_scripts')
 
 @stack('page_scripts')
+{{-- @stack('scripts') --}}
 </body>
 </html>

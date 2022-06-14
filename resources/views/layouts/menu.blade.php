@@ -7,7 +7,7 @@
 </li>
 
 <li class="nav-item">
-    <a href="/hotel1" class="nav-link {{ Request::is('hotel') ? 'active' : '' }}">
+    <a href="/hotel" class="nav-link {{ Request::is('hotel') ? 'active' : '' }}">
         <i class="nav-icon fas  fa-hotel"></i>
         <p>Hotel</p>
     </a>
@@ -24,6 +24,23 @@
         <p>Room</p>
     </a>
 </li>
+
+
+<li class="nav-item">
+    <a href="/guest" class="nav-link {{ Request::is('guest') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-briefcase"></i>
+        <p>Guest</p>
+    </a>
+</li>
+<li class="nav-item">
+    <a href="/employee" class="nav-link {{ Request::is('employee') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-briefcase"></i>
+        <p>Employee</p>
+    </a>
+</li>
+
+
+
 {{-- Invoice Start --}}
 <div class="sidebar-toggle d-flex flex-column position-relative">
     <div class="">
@@ -34,7 +51,7 @@
         </li>
         {{-- drop down Strat --}}
         <ul class="custom__toggle sub-btn">
-            <li><a href="" class="">
+            <li><a href="{{ asset('/invoice') }}" class="">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg>
                     Invoice
                 </a>

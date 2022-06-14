@@ -10,6 +10,7 @@ body{
 }
 .custom__container{
 	padding:1rem 1.5rem;
+	height: auto;
 }
 .pt{
 	padding-top: 100px;
@@ -153,4 +154,20 @@ ul .sub-btn {
 {
 	margin-left: 28%;
 }
+
+
+/* invoice */
+.invoice__index__table__bg{
+	background-color: #283046 !important;
+	border-radius: 0.5rem;
+}
+.invoice__index__table__bg thead tr th{
+	color: #d0d2d6;
+	padding: 1rem !important;
+	
+}
+.invoice__index__table__bg tbody tr td{
+	color: #d0d2d6;
+}
+
 

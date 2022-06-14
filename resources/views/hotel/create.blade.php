@@ -1,11 +1,10 @@
 @extends('layouts.app')
-@extends('layouts.Header')
 
 @section('content')
     <div class="container-fluid">
-        <a href="/hotel1" class="btn btn-primary">Back to List</a>
+        <a href="/hotel" class="btn btn-primary">Back to List</a>
 
-        
+
 
         {!! Form::open(array('url' => '/hotel1' , 'method'=>'POST')) !!}
 

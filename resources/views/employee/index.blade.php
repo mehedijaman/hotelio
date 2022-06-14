@@ -1,5 +1,4 @@
 @extends('layouts.app')
-@extends('layouts.Header')
 
 @section('content')
 <div class="container-fluid">
@@ -23,11 +22,11 @@
                 <th>Address</th>
                 <th>Date Of Join</th>
                 <th>Status</th>
-                
+
               </tr>
             </thead>
             <!--Table head-->
-          
+
             <!--Table body-->
             <tbody>
                   @foreach ( $Employees as $Employee )
@@ -52,8 +51,8 @@
 
             </tbody>
             <!--Table body-->
-          
-          
+
+
           </table>
           <!--Table-->
     </div>

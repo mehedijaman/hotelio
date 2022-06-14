@@ -1,9 +1,8 @@
 @extends('layouts.app')
-@extends('layouts.Header')
 
 @section('content')
 <div class="container-fluid">
-    <a href="/Guest/create" class="btn btn-primary">Add to New Guest</a>
+    <a href="/guest/create" class="btn btn-primary">Add to New Guest</a>
     <!--Table-->
     <div class="table col-md-12">
         <table class="table table-striped w-auto ">
@@ -28,7 +27,7 @@
               </tr>
             </thead>
             <!--Table head-->
-          
+
             <!--Table body-->
             <tbody>
               @foreach ( $Guests as $Guest)
@@ -54,8 +53,8 @@
               @endforeach
             </tbody>
             <!--Table body-->
-          
-          
+
+
           </table>
           <!--Table-->
     </div>
