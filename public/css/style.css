@@ -1,0 +1,190 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	overflow: hidden;
+}
+.loginOption{
+	margin-top:50px;
+	background: green;
+}
+.banner1, .banner2, .banner3, .banner4{
+	height: 100vh;
+	width: 100%;
+	position: absolute;
+	left: 0;
+	top:0;
+}
+img{
+	width: 120%;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50% ,-50%);
+	animation: zoom_out 3s linear infinite;
+
+}
+@keyframes zoom_out{
+	100%{
+		width: 100%
+	}
+}
+.text_box{
+	width: 600px;
+	position:absolute;
+	top: 400px;
+	left: 100px;
+	color: white;
+	animation: textup 12s linear infinite ;
+	transform: translateY(100px);
+}
+.text_box h1{
+	margin-bottom: 40px;
+	font-size: 50px;
+}
+.text_box span{
+	background:red;
+	width: 100px;
+	height: 3px;
+	position: absolute;
+}
+.text_box p{
+	font-size: 20px;
+	line-height: 18px;
+	margin-top:60px;
+	color:orangered;
+}
+
+.banner1{
+	animation: slide1 12s linear infinite;
+}
+.banner2{
+	animation: slide2 12s linear infinite;
+}
+.banner3{
+	animation: slide3 12s linear infinite;
+}
+.banner4{
+	animation: slide4 12s linear infinite;
+}
+
+@keyframes slide1{
+	0%{
+		visibility: visible;
+	}
+	25%{
+		visibility: hidden;
+	}
+	50%{
+		visibility: hidden;
+	}
+	75%{
+		visibility: hidden;
+	}
+	100%{
+		visibility: visible;
+	}
+}
+
+@keyframes slide2{
+	0%{
+		visibility: visible;
+	}
+	25%{
+		visibility: hidden;
+	}
+	50%{
+		visibility: visible;
+	}
+	75%{
+		visibility: hidden;
+	}
+	100%{
+		visibility: hidden;
+	}
+}
+
+@keyframes slide3{
+	0%{
+		visibility: visible;
+	}
+	25%{
+		visibility: hidden;
+	}
+	50%{
+		visibility: hidden;
+	}
+	75%{
+		visibility: visible;
+	}
+	100%{
+		visibility: hidden;
+	}
+}
+
+@keyframes slide4{
+	0%{
+		visibility: hidden;
+	}
+	25%{
+		visibility: hidden;
+	}
+	50%{
+		visibility: hidden;
+	}
+	75%{
+		visibility: hidden;
+	}
+	100%{
+		visibility: visible;
+	}
+}
+
+/*textup*/
+
+@keyframes textup{
+	10%{
+		transform:translateY(0px);
+	}
+	100%{
+		transform:translateY(0px);
+	}
+}
+
+.text_box1{
+	animation-delay: 0s;
+}
+.text_box2{
+	animation-delay: 3s;
+}
+.text_box3{
+	animation-delay: 6s;
+}
+.text_box4{
+	animation-delay: 9s;
+}
+
+body{
+    background-color: #E4ECFC;
+    overflow: hidden;
+}
+
+.left
+{
+    /* width: 100%; */
+    height: 100vh;
+    background-color: #fff;
+    clip-path: polygon(0 0, 95% 0, 67% 100%, 0% 100%);
+}
+
+.left-headig{
+    margin-top: 40px;
+}
+
+.left-img img{
+
+    height: 280px !important;
+    width: 330px !important;
+    position: relative;
+    margin-top: 30px;
+}

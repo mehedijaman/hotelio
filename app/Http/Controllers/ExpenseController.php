@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Expense;
+use Exception;
 
 class ExpenseController extends Controller
 {
@@ -14,7 +15,8 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        //
+        $Expenses = Expense::all();
+        return view('expense.index', compact($Expenses));
     }
 
     /**
@@ -24,7 +26,7 @@ class ExpenseController extends Controller
      */
     public function create()
     {
-        //
+        return view('expense.create');
     }
 
     /**
@@ -35,7 +37,13 @@ class ExpenseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            Expense::create($request->all());
+            return back();
+        }
+        catch (Exception $error){
+            return $error->getMessage();
+        }
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\IncomeCategory;
+use Exception;
 
 class IncomeCategoryController extends Controller
 {
@@ -14,7 +15,8 @@ class IncomeCategoryController extends Controller
      */
     public function index()
     {
-        //
+        $IncomeCategoris = IncomeCategory::all();
+        return view('incomeCategory.index',compact('IncomeCategoris'));
     }
 
     /**
@@ -24,7 +26,7 @@ class IncomeCategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('incomeCategory.create');
     }
 
     /**
@@ -35,7 +37,13 @@ class IncomeCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            IncomeCategory::create($request->all());
+            return back();
+        }
+        catch(Exception $error){
+            return $error->getMessage();
+        }
     }
 
     /**
@@ -57,7 +65,8 @@ class IncomeCategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $IncomeCategoris = IncomeCategory::find($id);
+        return view('incomeCategory.edit',compact('IncomeCategoris'));
     }
 
     /**
@@ -67,9 +76,15 @@ class IncomeCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $IncomeCategoris = new IncomeCategory();
+        $IncomeCategoris = IncomeCategory::find($request->id);
+        $IncomeCategoris->Name = $request->Name;
+
+        $IncomeCategoris->save();
+
+        return $this->index();
     }
 
     /**

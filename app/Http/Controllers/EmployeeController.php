@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Employee;
+use App\Models\Hotel;
+use Exception;
 
 class EmployeeController extends Controller
 {
@@ -14,7 +16,10 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        //
+        $Employees = Employee::select('employees.*','hotels.Name as Hotel')
+        ->leftJoin('hotels','employees.HotelID','=','hotels.id')
+        ->get();
+        return view('employee.index' ,compact('Employees'));
     }
 
     /**
@@ -24,7 +29,8 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        //
+        $Hotels = Hotel::all();
+        return view('employee.create',compact('Hotels'));
     }
 
     /**
@@ -35,7 +41,14 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // return $request->all();
+        try{
+            Employee::create($request->all());
+            return back();
+        }
+        catch(Exception $error){
+            return $error->getMessage();
+        }
     }
 
     /**
@@ -57,7 +70,9 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $Hotels = Hotel::all();
+        $Employees = Employee::find($id);
+        return view('employee.edit',compact('Hotels','Employees'));
     }
 
     /**
@@ -67,9 +82,26 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $Employees  = new Employee();
+        $Employees  = Employee::find($request->id);
+
+        $Employees->HotelID     = $request->HotelID;
+        $Employees->Name        = $request->Name;
+        $Employees->Designation = $request->Designation;
+        $Employees->DateOfBirth = $request->DateOfBirth;
+        $Employees->NIDNo       = $request->NIDNo;
+        $Employees->NID         = $request->NID;
+        $Employees->Phone       = $request->Phone;
+        $Employees->Email       = $request->Email;
+        $Employees->Address     = $request->Address;
+        $Employees->DateOfJoin  = $request->DateOfJoin;
+        $Employees->Status      = $request->Status;
+
+        $Employees->save();
+
+        return $this->index();
     }
 
     /**
@@ -80,6 +112,7 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Employee::find($id)->delete();
+        return back();
     }
 }
