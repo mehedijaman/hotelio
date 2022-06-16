@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Income;
+use App\Models\Income;
+use App\Models\IncomeCategory;
+use PHPUnit\Framework\Exception;
 
 class IncomeController extends Controller
 {
@@ -14,7 +16,8 @@ class IncomeController extends Controller
      */
     public function index()
     {
-        //
+        $Incomes = Income::all();
+        return view('income.index' , compact('Incomes'));
     }
 
     /**
@@ -24,7 +27,8 @@ class IncomeController extends Controller
      */
     public function create()
     {
-        //
+        $IncomeCategoris = IncomeCategory::all();
+        return view('income.create', compact('IncomeCategoris'));
     }
 
     /**
@@ -35,7 +39,13 @@ class IncomeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            Income::create($request->all());
+            return back();
+        }
+        catch(Exception $error){
+            return $error->getMessage();
+        }
     }
 
     /**

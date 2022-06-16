@@ -1,0 +1,202 @@
+body{
+	background-color: #202428;
+    /* overflow: hidden; */
+}
+*{
+	list-style: none;
+	text-decoration: none;
+	margin: 0;
+	padding: 0;
+}
+.table td {
+    border-top: 1px solid #6a6868 !important;
+	padding: 0.72rem 2rem !important;
+}
+.table th {
+    border-top: 1px solid #626262 !important;
+    border-bottom: 1px solid #626262 !important;
+}
+.table thead{
+	background-color: #343D55;
+}
+.custom__container{
+	padding:1rem 1.5rem;
+	height: auto;
+}
+.pt{
+	padding-top: 100px;
+}
+.container-custom{
+   padding: 40px;
+}
+/* register */
+.img{
+	background-image: url(../img/toa-heftiba-bcLE7reXFLM-unsplash.jpg);
+	height: 584px !important;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+
+}
+.overlay{
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 255, 255, .4);
+}
+.custom-form{
+	background-color: #111418;
+	color: beige;
+    padding: 44px;
+    height: 630px;
+    border-radius: 8px;
+}
+
+/* dashbroad */
+.dashbroad__bg
+{
+	background-color: #161E31 !important;
+}
+.content__wrapper__body__bg{
+	background-color: #161E31 !important;
+}
+.dashbroad__sidebar__bg
+{
+	background-color: #283046 !important;
+}
+
+/* nevber */
+
+.navbar {
+    padding: 0 !important;
+	
+	
+}
+.custom-nav{
+	position: -webkit-sticky;
+  	position: sticky;
+  	top: 0;
+}
+
+.custom__main__header{
+	border: 0rem !important;
+	
+	/* margin-left: 250px !important; */
+}
+.dashbroad__nav__custom{
+	background-color: #283046 !important;
+	border-radius: .5rem !important;
+	
+}
+.custom__navber__list li a{
+	margin-left: 1.5rem !important;
+}
+.custom__navber__list li a svg{
+	color: #fff !important;
+	
+}
+.custom__navber__list li .star svg{
+	color:  rgb(252, 154, 35) !important;
+	
+}
+.badge__up {
+    position: absolute;
+    top: -11px;
+    min-width: 1.429rem;
+    min-height: 1.429rem;
+    display: flex;
+    justify-content: center;
+   
+}
+.nav__profile__circle
+{
+	/* font-size: calc(11.2px); */
+    bottom: 0px;
+    right: 0px;
+	position: relative;
+	z-index: 1;
+	margin-bottom: 9px;
+    margin-right: 12px;
+}
+/* footer */
+.custom__main__footer
+{
+	background-color: #161E31 !important;
+}
+.custom__main__footer i{
+	font-size: large;
+}
+/* side ber menu */
+ul .menu-btn{
+	/* background-color: greenyellow; */
+	padding: 10px 20px;
+	border-radius: 4px;
+	color: #fff;
+	font-size: 1.1rem;
+	transition: .3 ease;
+}
+ul .menu-btn i{
+	padding: 0px 6px 0px 2px;
+	font-size: 20px;
+}
+.rotated{
+	transform: rotate(90deg);
+	transition: .3 ease;
+}
+
+ul li .drop-down::before 
+{
+	transition: 0.3 ease;
+	font-size: x-large;
+	font-size: 20px !important;
+}
+.custom__toggle
+{
+	background-color: #283046 !important; 
+	display: none;
+	
+}
+
+ul .sub-btn {
+    padding: 10px 30px;
+}
+.sub-btn li a:active{
+	
+	background: linear-gradient(118deg,#7367f0,rgba(115,103,240,.7));
+	box-shadow: 0 0 10px 1px rgb(115 103 240 / 70%);
+    border-radius: 4px;
+	padding: 1rem 4rem;
+}
+/* sideber invoice */
+.custom__toggle li{
+	margin-top: 1rem !important;
+}
+#custom__offset__invoice
+{
+	margin-left: 50%;
+}
+#custom__offset__invoice__item{
+	margin-left: 30%;
+}
+#custom__offset__tax__setting
+{
+	margin-left: 28%;
+}
+
+
+/* invoice */
+
+.invoice__index__table__bg{
+	background-color: #283046 !important;
+	border-radius: 0.5rem;
+}
+.invoice__index__table__bg thead tr th{
+	color: #d0d2d6;
+	padding: 1rem !important;
+	
+}
+.invoice__index__table__bg tbody tr td{
+	color: #d0d2d6;
+}
+
+
+

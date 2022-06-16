@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Room;
+use App\Models\Hotel;
+use Exception;
 
 class RoomController extends Controller
 {
@@ -14,7 +16,8 @@ class RoomController extends Controller
      */
     public function index()
     {
-        //
+        $Rooms = Room::all();
+        return view('room.index',compact('Rooms'));
     }
 
     /**
@@ -24,7 +27,8 @@ class RoomController extends Controller
      */
     public function create()
     {
-        //
+        $Hotels= Hotel::all();
+        return view('room.create',compact('Hotels'));
     }
 
     /**
@@ -35,7 +39,14 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $AdditionalFeatures = {'Mozaik' : $request->Mozaik,}
+        try{
+            Room::create($request->all());
+            return back();
+        }
+        catch(Exception $error){
+            return $error->getMessage();
+        }
     }
 
     /**
@@ -80,6 +91,7 @@ class RoomController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Room::find($id)->delete();
+        return back();
     }
 }

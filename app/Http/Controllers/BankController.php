@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Bank;
+use Exception;
 
 class BankController extends Controller
 {
@@ -14,7 +15,8 @@ class BankController extends Controller
      */
     public function index()
     {
-        //
+        $Banks = Bank::all();
+        return view('bank.index', compact('Banks'));
     }
 
     /**
@@ -24,7 +26,8 @@ class BankController extends Controller
      */
     public function create()
     {
-        //
+        return view('bank.create');
+        
     }
 
     /**
@@ -35,7 +38,13 @@ class BankController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            Bank::create($request->all());
+            return back();
+        }
+        catch(Exception $error){
+            return $error->getMessage();
+        }
     }
 
     /**
@@ -57,7 +66,8 @@ class BankController extends Controller
      */
     public function edit($id)
     {
-        //
+        $Banks = Bank::find($id);
+        return view('bank.edit',compact('Banks'));
     }
 
     /**
@@ -67,9 +77,20 @@ class BankController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $Banks = new Bank();
+        $Banks = Bank::find($request->id);
+        $Banks->Name        = $request->Name;
+        $Banks->Branch      = $request->Branch;
+        $Banks->AccountNo   = $request->AccountNo;
+        $Banks->Address     = $request->Address;
+        $Banks->Phone       = $request->Phone;
+        $Banks->Email       = $request->Email;
+
+        $Banks->save();
+
+        return $this->index();
     }
 
     /**
@@ -80,6 +101,7 @@ class BankController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Bank::find($id)->delete();
+        return back();
     }
 }

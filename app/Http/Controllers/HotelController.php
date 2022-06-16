@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Hotel;
+use Exception;
 
 class HotelController extends Controller
 {
@@ -14,7 +15,9 @@ class HotelController extends Controller
      */
     public function index()
     {
-        //
+        // return "hello";
+        $Hotels = Hotel::all();
+        return view('hotel.index',compact('Hotels'));
     }
 
     /**
@@ -24,7 +27,7 @@ class HotelController extends Controller
      */
     public function create()
     {
-        //
+        return view('hotel.create');
     }
 
     /**
@@ -35,7 +38,15 @@ class HotelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // return  $request->all();
+        try{
+            Hotel::create($request->all());
+            return back();
+        }
+        catch(Exception $error){
+            return $error->getMessage();
+        }
+
     }
 
     /**
@@ -57,7 +68,8 @@ class HotelController extends Controller
      */
     public function edit($id)
     {
-        //
+        $Hotels = Hotel::find($id);
+        return view('hotel.edit' ,compact('Hotels'));
     }
 
     /**
@@ -69,7 +81,10 @@ class HotelController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Hotel::find($id)->update($request->all());
+
+        return $this->index();
+
     }
 
     /**
@@ -80,6 +95,7 @@ class HotelController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Hotel::find($id)->delete();
+        return back();
     }
 }
