@@ -14,7 +14,7 @@ class TaxSettingController extends Controller
      */
     public function index()
     {
-        //
+        return view('taxSetting.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class TaxSettingController extends Controller
      */
     public function create()
     {
-        //
+        return view('taxSetting.create');
     }
 
     /**

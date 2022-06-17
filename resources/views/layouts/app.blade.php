@@ -4,35 +4,34 @@
     <meta charset="UTF-8">
     <title>{{ config('app.name') }}</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    {{-- Metarial Icon --}}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"/>
     {{-- fontawsome link --}}
     <link rel="stylesheet" href="{{asset('css/fontawesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/regular.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/solid.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/brands.min.css')}}">
+    {{-- bootstrap --}}
+    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     {{-- Bootsrap icon list --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    {{-- custom css --}}
     <link rel="stylesheet" href="{{ asset('css/custom.css')}}">
     <link href="/css/main.css" rel="stylesheet" media="all">
-
+    {{-- jquery --}}
     <script language="JavaScript" type="text/javascript" src="/js/jquery.min.js"></script>
-    <script
-    src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
-    integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY="
+    {{-- jquery -ui --}}
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
+     integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY="
     crossorigin="anonymous"></script>
+    {{-- data table --}}
     <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js" defer></script>
     <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
-    
-    
-
-
     <!-- Font special for pages-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
-
     <!-- Vendor CSS-->
     <link href="/vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
-
-    {{-- Bootsrap icon list --}}
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     {{-- @yield('third_party_stylesheets') --}}
     @yield('css')
@@ -182,27 +181,21 @@
             <strong>Copyright &copy; Creative Software Tim</strong> All rights
             Reserved.
         </footer>
-</div>
+    </div>
 
-
-<script src="{{ mix('js/app.js') }}" defer></script>
-
-<script src="{{URL::asset('/js/custom.js')}}"></script>
-
-<!-- Vendor JS-->
-<script src="/vendor/select2/select2.min.js"></script>
-<script src="/vendor/datepicker/moment.min.js"></script>
-<script src="/vendor/datepicker/daterangepicker.js"></script>
-<!-- Main JS-->
-<script src="/js/global.js"></script>
-
-
-
-
-@yield('third_party_scripts')
-
-{{-- @stack('page_scripts') --}}
-@stack('scripts')
-
+    {{-- bootsstrap --}}
+    <script src="{{ URL::asset('/js/bootstrap.esm.min.js') }}"></script>
+    <script src="{{ mix('js/app.js') }}" defer></script>
+    {{-- custom js --}}
+    <script src="{{ URL::asset('/js/custom.js') }}"></script>
+    <!-- Vendor JS-->
+    <script src="/vendor/select2/select2.min.js"></script>
+    <script src="/vendor/datepicker/moment.min.js"></script>
+    <script src="/vendor/datepicker/daterangepicker.js"></script>
+    <!-- Main JS-->
+    <script src="/js/global.js"></script>
+    @yield('third_party_scripts')
+    {{-- @stack('page_scripts') --}}
+    @stack('scripts')
 </body>
 </html>

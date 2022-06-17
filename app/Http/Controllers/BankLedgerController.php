@@ -14,7 +14,7 @@ class BankLedgerController extends Controller
      */
     public function index()
     {
-        //
+        return view('bankLedger.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class BankLedgerController extends Controller
      */
     public function create()
     {
-        //
+        return view('bankLedger.create');
     }
 
     /**

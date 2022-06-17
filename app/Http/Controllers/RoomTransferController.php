@@ -14,7 +14,7 @@ class RoomTransferController extends Controller
      */
     public function index()
     {
-        //
+        return view('roomTransfer.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class RoomTransferController extends Controller
      */
     public function create()
     {
-        //
+        return view('roomTransfer.create');
     }
 
     /**
