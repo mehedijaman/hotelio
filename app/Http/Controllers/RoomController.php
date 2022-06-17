@@ -39,6 +39,7 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
+        return Room::all();
         // $AdditionalFeatures = {'Mozaik' : $request->Mozaik,}
         try{
             Room::create($request->all());

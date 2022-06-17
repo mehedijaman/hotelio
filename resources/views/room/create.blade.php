@@ -87,11 +87,11 @@
                                       <div class="Balcony">
                                           <div class="p-t-15">
                                                 <label class="radio-container m-r-55">Yes
-                                                    <input type="radio"  name="exist">
+                                                    <input type="radio"  name="Balcony" value="1">
                                                     <span class="checkmark"></span>
                                                 </label>
                                                 <label class="radio-container">No
-                                                    <input type="radio" name="exist">
+                                                    <input type="radio" name="Balcony" value="0">
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </div>
@@ -103,11 +103,11 @@
                                       <div class="Bathtub">
                                           <div class="p-t-15">
                                                 <label class="radio-container m-r-55">Yes
-                                                    <input type="radio" name="exist">
+                                                    <input type="radio" name="Bathtub" value="1">
                                                     <span class="checkmark"></span>
                                                 </label>
                                                 <label class="radio-container">No
-                                                    <input type="radio" name="exist">
+                                                    <input type="radio" name="Bathtub" value="0">
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </div>
@@ -119,11 +119,11 @@
                                       <div class="HiComode">
                                           <div class="p-t-15">
                                                 <label class="radio-container m-r-55">Yes
-                                                    <input type="radio"  name="exist">
+                                                    <input type="radio"  name="HiComode" value="1">
                                                     <span class="checkmark"></span>
                                                 </label>
                                                 <label class="radio-container">No
-                                                    <input type="radio" name="exist">
+                                                    <input type="radio" name="HiComode" value="0">
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </div>
@@ -135,11 +135,11 @@
                                       <div class="Locker">
                                           <div class="p-t-15">
                                                 <label class="radio-container m-r-55">Yes
-                                                    <input type="radio"  name="exist">
+                                                    <input type="radio"  name="Locker" value="1">
                                                     <span class="checkmark"></span>
                                                 </label>
                                                 <label class="radio-container">No
-                                                    <input type="radio" name="exist">
+                                                    <input type="radio" name="Locker" value="0">
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </div>
@@ -151,11 +151,11 @@
                                       <div class="Freeze">
                                           <div class="p-t-15">
                                                 <label class="radio-container m-r-55">Yes
-                                                    <input type="radio"  name="exist">
+                                                    <input type="radio"  name="Freeze" value="1">
                                                     <span class="checkmark"></span>
                                                 </label>
                                                 <label class="radio-container">No
-                                                    <input type="radio" name="exist">
+                                                    <input type="radio" name="Freeze" value="0">
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </div>
@@ -167,11 +167,11 @@
                                       <div class="Internet">
                                           <div class="p-t-15">
                                                 <label class="radio-container m-r-55">Yes
-                                                    <input type="radio"  name="exist">
+                                                    <input type="radio"  name="Internet" value="1">
                                                     <span class="checkmark"></span>
                                                 </label>
                                                 <label class="radio-container">No
-                                                    <input type="radio" name="exist">
+                                                    <input type="radio" name="Internet" value="0">
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </div>
@@ -184,12 +184,12 @@
                                           <div class="p-t-15">
 
                                                 <label class="radio-container m-r-55">Yes
-                                                    <input type="radio"  name="exist">
+                                                    <input type="radio"  name="Intercom" value="1">
                                                     <span class="checkmark"></span>
                                                 </label>
 
                                                 <label class="radio-container">No
-                                                    <input type="radio" name="exist">
+                                                    <input type="radio" name="Intercom" value="0"> 
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </div>
@@ -202,12 +202,12 @@
                                           <div class="p-t-15">
 
                                                 <label class="radio-container m-r-55">Yes
-                                                    <input type="radio"  name="exist">
+                                                    <input type="radio"  name="TV" value="1"> 
                                                     <span class="checkmark"></span>
                                                 </label>
 
                                                 <label class="radio-container">No
-                                                    <input type="radio" name="exist">
+                                                    <input type="radio" name="TV" value="0">
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </div>
@@ -220,12 +220,12 @@
                                           <div class="p-t-15">
 
                                                 <label class="radio-container m-r-55">Yes
-                                                    <input type="radio"  name="exist">
+                                                    <input type="radio"  name="Wardrobe" value="1">
                                                     <span class="checkmark"></span>
                                                 </label>
 
                                                 <label class="radio-container">No
-                                                    <input type="radio" name="exist">
+                                                    <input type="radio" name="Wardrobe" value="0">
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </div>
@@ -257,12 +257,12 @@
                                           <div class="p-t-15">
 
                                                 <label class="radio-container m-r-55">Yes
-                                                    <input type="radio"  name="exist">
+                                                    <input type="radio"  name="Status" value="1">
                                                     <span class="checkmark"></span>
                                                 </label>
 
                                                 <label class="radio-container">No
-                                                    <input type="radio" name="exist">
+                                                    <input type="radio" name="Status" value="2">
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </div>

@@ -3,8 +3,8 @@
 @section('content')
     <div class="container-fluid">
         <a href="/employee" class="btn btn-primary">Back to List</a>
-        {!! Form::open(array('url' => '/employee/update' , 'method'=>'PATCH')) !!}
-        <input type="hidden" name="id" value="{{$Employees->id}}">
+        {!! Form::open(array('url' => '/employee/'.$Employees->id , 'method'=>'PATCH')) !!}
+
             <div class="page-wrapper  p-t-45 p-b-50">
                 <div class="wrapper wrapper--w790">
                     <div class="card card-5">

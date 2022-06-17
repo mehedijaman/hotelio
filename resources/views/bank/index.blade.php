@@ -2,9 +2,9 @@
 
 @section('content')
 <div class="container-fluid">
-    <a href="/bank/create" class="btn btn-primary mb-md-3" >Add to Bank</a>
-    <div class="table col-md-12">
-        <table class="table table-stripd table-bordered table-dark text-light w-auto" id="bankTable">
+    <a href="/bank/create" class="btn btn-primary mb-md-3 mx-md-2" >Add to Bank</a>
+    <div class="table col-md-12 table-responsive">
+        <table class="table table-hover text-center invoice__index__table__bg text-light w-auto mx-md-1" id="bankTable">
             <thead>
               <tr>
                 <th>id</th>
@@ -19,17 +19,20 @@
             </thead>
             <tbody>
               @foreach ($Banks as $Bank )
-                <tr class="table-info text-dark">
-                  <td>{{$Bank->id}}</td>
-                  <td>{{$Bank->Name}}</td>
-                  <td>{{$Bank->Branch}}</td>
-                  <td>{{$Bank->AccountNo}}</td>
-                  <td>{{$Bank->Address}}</td>
-                  <td>{{$Bank->Phone}}</td>
-                  <td>{{$Bank->Email}}</td>
+                <tr class="">
+                  <td>{{ $Bank->id }}</td>
+                  <td>{{ $Bank->Name }}</td>
+                  <td>{{ $Bank->Branch }}</td>
+                  <td>{{ $Bank->AccountNo }}</td>
+                  <td>{{ $Bank->Address }}</td>
+                  <td>{{ $Bank->Phone }}</td>
+                  <td>{{ $Bank->Email }}</td>
                   <td>
-                    <a href="/bank/{{$Bank->id}}/edit" class="btn btn-warning mx-md-2 mb-md-2">Edit</a>
-                    <a href="/bank/{{$Bank->id}}/delete" class="btn btn-danger mx-md-2">Delete</a>
+                    <a href="/bank/{{ $Bank->id }}/edit" class="btn btn-warning mx-md-2 mb-md-2">Edit</a>
+
+                    {!! Form::open(['url' => '/bank/'.$Bank->id,'method' => 'DELETE']) !!}
+                        <input type="submit" name="sumbit" value="Delete" class="btn btn-danger mx-md-2">
+                    {!! Form::close() !!}
                   </td>
                 </tr>
               @endforeach

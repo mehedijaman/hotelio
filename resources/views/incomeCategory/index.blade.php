@@ -17,10 +17,10 @@
             <tbody>
                 @foreach ( $IncomeCategoris as $IncomeCategory)
                 <tr class="table-info text-dark">
-                    <td>{{$IncomeCategory->id}}</td>
-                    <td>{{$IncomeCategory->Name}}</td>
+                    <td>{{ $IncomeCategory->id }}</td>
+                    <td>{{ $IncomeCategory->Name }}</td>
                     <td>
-                        <a href="/incomeCategory/{{$IncomeCategory->id}}/edit" class="btn btn-warning">Edit</a>
+                        <a href="/incomeCategory/{{ $IncomeCategory->id }}/edit" class="btn btn-warning">Edit</a>
                     </td>
                 </tr>
                 @endforeach

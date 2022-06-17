@@ -2,10 +2,10 @@
 
 @section('content')
 <div class="container-fluid">
-    <a href="/room/create" class="btn btn-primary mb-md-3">Add to Room</a>
+    <a href="/room/create" class="btn btn-primary mb-md-3 mx-md-2">Add to Room</a>
 
-    <div class="table col-md-12">
-        <table class="table table-stripd table-bordered table-dark text-light w-auto" id="dataTable">
+    <div class="table col-md-12 table-responsive">
+        <table class="table table-hover text-center invoice__index__table__bg text-light w-auto mx-md-1" id="dataTable">
             <thead>
                 <tr>
                     <th>id</th>
@@ -31,29 +31,32 @@
             </thead>
             <tbody>
                 @foreach ( $Rooms as $Room)
-                    <tr class="table-info text-dark">
-                        <td>{{$Room->id}}</td>
-                        <td>{{$Room->HoteID}}</td>
-                        <td>{{$Room->RoomNo}}</td>
-                        <td>{{$Room->Floor}}</td>
-                        <td>{{$Room->Type}}</td>
-                        <td>{{$Room->Geyser}}</td>
-                        <td>{{$Room->AC}}</td>
-                        <td>{{$Room->Balcony}}</td>
-                        <td>{{$Room->Bathtub}}</td>
-                        <td>{{$Room->HiComode}}</td>
-                        <td>{{$Room->Locker}}</td>
-                        <td>{{$Room->Freeze}}</td>
-                        <td>{{$Room->Internet}}</td>
-                        <td>{{$Room->Intercom}}</td>
-                        <td>{{$Room->TV}}</td>
-                        <td>{{$Room->Wardrobe}}</td>
-                        <td>{{$Room->Price}}</td>
-                        <td>{{$Room->AdditionalFeatures}}</td>
-                        <td>{{$Room->Status}}</td>
+                    <tr class="">
+                        <td>{{ $Room->id }}</td>
+                        <td>{{ $Room->HoteID }}</td>
+                        <td>{{ $Room->RoomNo }}</td>
+                        <td>{{ $Room->Floor }}</td>
+                        <td>{{ $Room->Type }}</td>
+                        <td>{{ $Room->Geyser }}</td>
+                        <td>{{ $Room->AC }}</td>
+                        <td>{{ $Room->Balcony }}</td>
+                        <td>{{ $Room->Bathtub }}</td>
+                        <td>{{ $Room->HiComode }}</td>
+                        <td>{{ $Room->Locker }}</td>
+                        <td>{{ $Room->Freeze }}</td>
+                        <td>{{ $Room->Internet }}</td>
+                        <td>{{ $Room->Intercom }}</td>
+                        <td>{{ $Room->TV }}</td>
+                        <td>{{ $Room->Wardrobe }}</td>
+                        <td>{{ $Room->Price }}</td>
+                        <td>{{ $Room->AdditionalFeatures }}</td>
+                        <td>{{ $Room->Status }}</td>
                         <td>
-                            <a href="/room/{{$Room->id}}/edit" class="btn btn-warning">Edit</a>
-                            <a href="/room/{{$Room->id}}/delete" class="btn btn-danger mx-md-2">Delete</a>
+                            <a href="/room/{{ $Room->id }}/edit" class="btn btn-warning">Edit</a>
+
+                            {!! Form::open(['url' => '/room/'.$Room->id ,'method' => 'DELETE']) !!}
+                                <input type="submit" name="submit" value="Delete" class="btn btn-danger mx-md-2">
+                            {!! Form::close() !!}
                         </td>
                     </tr>
                 @endforeach

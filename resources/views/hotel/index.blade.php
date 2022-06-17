@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid">
-    <a href="/hotel/create" class="btn btn-primary mb-md-3 ">Add to Hotel</a>
-
+<div class="container-fluid ">
     <div class="table col-md-12">
-        <table class="table table-stripd table-bordered table-dark text-light w-auto">
+        <a href="/hotel/create" class="btn btn-primary mb-md-3 mx-md-2">Add to Hotel</a>
+
+        <table class="table table-hover text-center invoice__index__table__bg text-light mx-md-2">
             <thead>
                 <tr>
                     <th>id</th>
@@ -22,7 +22,7 @@
             </thead>
             <tbody>
                 @foreach ( $Hotels as $Hotel)
-                <tr class="table-info text-dark">
+                <tr class="">
                     <td>{{ $Hotel->id }}</td>
                     <td>{{ $Hotel->Name }}</td>
                     <td>{{ $Hotel->Title }}</td>
@@ -33,7 +33,7 @@
                     <td>{{ $Hotel->Logo }}</td>
                     <td>{{ $Hotel->Photo }}</td>
                     <td>
-                        <a href="/hotel/{{$Hotel->id}}/edit" class="btn btn-warning">Edit</a>
+                        <a href="/hotel/{{ $Hotel->id }}/edit" class="btn btn-warning">Edit</a>
 
                         {{ Form::open(['url' => '/hotel/'.$Hotel->id,'method' => 'DELETE']) }}
                             <input type="submit" name="submit" value="Delete" class="btn btn-danger">

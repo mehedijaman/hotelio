@@ -18,14 +18,17 @@
             <tbody>
                 @foreach ( $Expenses as $Expense)
                 <tr class="table-info text-dark">
-                    <td>{{$Expense->id}}</td>
-                    <td>{{$Expense->Name}}</td>
-                    <td>{{$Expense->Amount}}</td>
-                    <td>{{$Expense->Description}}</td>
-                    <td>{{$Expense->Date}}</td>
+                    <td>{{ $Expense->id }}</td>
+                    <td>{{ $Expense->Name }}</td>
+                    <td>{{ $Expense->Amount }}</td>
+                    <td>{{ $Expense->Description }}</td>
+                    <td>{{ $Expense->Date }}</td>
                     <td>
-                        <a href="/expense/{{$Expense->id}}/edit" class="btn btn-warning">Edit</a>
-                        <a href="/expense/{{$Expense->id}}/delete" class="btn btn-danger mx-md-2">Delete</a>
+                        <a href="/expense/{{ $Expense->id }}/edit" class="btn btn-warning">Edit</a>
+
+                        {!! Form::open(['url'=>'/expense/'.$Expense->id, 'method'=>'DELETE' ]) !!}
+                            <input type="submit" name="submit" value="Delete"  class="btn btn-danger mx-md-2">
+                        {!! Form::close() !!}
                     </td>
                 </tr>
                 @endforeach
