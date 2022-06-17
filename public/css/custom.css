@@ -8,8 +8,13 @@ body{
 	margin: 0;
 	padding: 0;
 }
+.custom__container{
+	padding:1rem 1.5rem;
+	height: auto;
+}
 .table td {
     border-top: 1px solid #6a6868 !important;
+    border-bottom: 1px solid #626262 !important;
 	padding: 0.72rem 2rem !important;
 }
 .table th {
@@ -17,12 +22,74 @@ body{
     border-bottom: 1px solid #626262 !important;
 }
 .table thead{
-	background-color: #343D55;
+	background-color: #343D55 !important;
+	
 }
-.custom__container{
-	padding:1rem 1.5rem;
-	height: auto;
+.table-hover>tbody>tr:hover>* {
+    color: #d0d2d6 !important;
 }
+.custom__index__table__bg{
+	background-color: #283046 !important;
+	border-radius: 0.5rem;
+}
+.custom__index__table__bg thead tr th{
+	color: #d0d2d6;
+	padding: 1rem !important;
+	
+}
+.custom__index__table__bg tbody tr td{
+	color: #d0d2d6;
+}
+.custom__index__table__bg tbody tr td svg{
+	color: #d0d2d6 !important;
+}
+.custom__add__heading{
+	color: #d0d2d6;
+	padding: 1rem 0rem 0rem 0rem;
+}
+.custom__add__heading h3{
+	font-size: 2rem;
+}
+.custom__add__tb__bg{
+	background-color: #283046 !important;
+	border-radius: 5px;
+}
+.form__custom label{
+	color: #d0d2d6;
+}
+.form__custom select.form-select {
+	background-color:#283046;
+	color: #d0d2d6;
+	border: 1px solid #626262 !important;
+}
+.form__custom input.form-control {
+	background-color:#283046;
+	color: #d0d2d6;
+	border: 1px solid #626262 !important;
+}
+.form__custom option{
+	color: #d0d2d6;
+}
+form .form-label{
+   margin-left: 4px !important;
+  
+}
+
+.custom__btn__puple{
+	border-radius: 4px;
+	padding: 0.9rem 1.5rem;
+	color: #d0d2d6;
+	background-color: #7367f0;
+}
+.custom__btn__puple:hover{
+	background: linear-gradient(118deg,#7367f0,rgba(115,103,240,.7));
+	box-shadow: 0 0 10px 1px rgb(115 103 240 / 70%);
+    border-radius: 4px;
+	padding: 0.9rem 1.5rem;
+	color: #d0d2d6;
+}
+
+/* ............................................................. */
 .pt{
 	padding-top: 100px;
 }
@@ -160,7 +227,6 @@ ul .sub-btn {
     padding: 10px 30px;
 }
 .sub-btn li a:active{
-	
 	background: linear-gradient(118deg,#7367f0,rgba(115,103,240,.7));
 	box-shadow: 0 0 10px 1px rgb(115 103 240 / 70%);
     border-radius: 4px;
@@ -185,18 +251,23 @@ ul .sub-btn {
 
 /* invoice */
 
-.invoice__index__table__bg{
-	background-color: #283046 !important;
-	border-radius: 0.5rem;
-}
-.invoice__index__table__bg thead tr th{
+
+
+.invioce__add__btn{
+	border-radius: 4px;
+	padding: 0.7rem 0rem !important;
 	color: #d0d2d6;
-	padding: 1rem !important;
-	
+	background-color: #686deb;
 }
-.invoice__index__table__bg tbody tr td{
+.invioce__add__btn:hover{
+	background: linear-gradient(118deg,#7367f0,rgba(115,103,240,.7));
+	box-shadow: 0 0 10px 1px rgba(97, 84, 243, 0.7);
+    border-radius: 4px;
+	padding: 0.9rem 0.5rem;
 	color: #d0d2d6;
 }
+
+
 
 
 

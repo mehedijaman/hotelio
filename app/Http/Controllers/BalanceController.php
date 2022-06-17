@@ -14,7 +14,7 @@ class BalanceController extends Controller
      */
     public function index()
     {
-        //
+        return view('balance.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class BalanceController extends Controller
      */
     public function create()
     {
-        //
+        return view('balance.create');
     }
 
     /**

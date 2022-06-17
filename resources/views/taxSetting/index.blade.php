@@ -1,31 +1,23 @@
 @extends('layouts.app')
-{{-- @section('css')
-    <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="{{ asset('css/datatables.min.css') }}">
-@endsection  --}}
-
 @section('content')
     
     <div class="custom__container">
         <section class="button mb-4">
-            <a href="{{ asset('invoice/create') }}" class="custom__btn__puple">Add Invoice</a>
+            <a href="{{ asset('taxSetting/create') }}" class="custom__btn__puple">Add TaxSetting</a>
         </section>
         <section class="custom__table">
             <table class="table table-hover text-center custom__index__table__bg" id="myTable">
                 <thead>
                     <tr>
                         <th>Id</th>
-                        <th>GuestID</th>
-                        <th>TaxID</th>
-                        <th>PymentMethod</th>
-                        <th>SubTotal</th>
-                        <th>TaxTotal</th>
-                        <th>Total</th>
+                        <th>Name</th>
+                        <th>Parcent</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($invoices as $invoice)
+                    {{-- @foreach ($invoices as $invoice)
                         <tr>
                             <td>{{$invoice->id}}</td>
                             <td>1</td>
@@ -38,13 +30,10 @@
                                 
                             </td>
                         </tr>
-                    @endforeach
+                    @endforeach --}}
                         <tr>
                             <td>1</td>
-                            <td>1</td>
-                            <td>1</td>
                             <td>Nogot</td>
-                            <td>455</td>
                             <td>48952</td>
                             <td>489524822</td>
                             <td>
@@ -55,32 +44,11 @@
                                 </svg>
                             </td>
                         </tr>
-                </tbody>
+                    </tbody>
                 <tfoot>
 
                 </tfoot>
             </table>
         </section>
     </div>
-    
-
 @endsection
-
-<script type="text/javascript">
-        $.noConflict();
-        $(document).ready( function () {
-            $('#myTable').DataTable();
-        });
-</script>
-
-{{-- @push('scripts')
-    <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js">
-    </script>
-    <script src="{{ asset('js/datatables.min.js') }}"></script>
-    <script>
-        $.noConflict();
-        $(document).ready( function () {
-            $('#myTable').DataTable();
-        });
-    </script>
-@endpush --}}
