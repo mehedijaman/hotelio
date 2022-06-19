@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid ">
+<div class="container-fluid " style="position: fixed;">
     <div class="table col-md-12">
         <a href="/hotel/create" class="btn btn-primary mb-md-3 mx-md-2">Add to Hotel</a>
 
