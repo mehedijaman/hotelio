@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Booking;
+use App\Models\Guest;
+use App\Models\Room;
+use Exception;
 
 class BookingController extends Controller
 {
@@ -14,7 +17,8 @@ class BookingController extends Controller
      */
     public function index()
     {
-        return view('booking.index');
+        $Bookings = Booking::all();
+        return view('booking.index',compact('Bookings'));
     }
 
     /**
@@ -24,7 +28,9 @@ class BookingController extends Controller
      */
     public function create()
     {
-        return view('booking.create');
+        $Rooms = Room::all();
+        $Guests = Guest::all();
+        return view('booking.create',compact('Rooms', 'Guests'));
     }
 
     /**
@@ -35,7 +41,12 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            Booking::create($request->all());
+            return back();
+        } catch (Exception $error) {
+            $error->getMessage();
+        }
     }
 
     /**

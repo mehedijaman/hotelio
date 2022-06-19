@@ -18,26 +18,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{-- @foreach ($invoices as $invoice)
+                    @foreach ($Bookings as $Booking)
                         <tr>
-                            <td>{{$invoice->id}}</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>Nogot</td>
-                            <td>455</td>
-                            <td>48952</td>
-                            <td>489524822</td>
-                            <td>
-                                
-                            </td>
-                        </tr>
-                    @endforeach --}}
-                        <tr>
-                            <td>1</td>
-                            <td>Nogot</td>
-                            <td>48952</td>
-                            <td>489524822</td>
-                            <td>489524822</td>
+                            <td>{{$Booking->id}}</td>
+                            <td>{{$Booking->RoomID}}</td>
+                            <td>{{$Booking->GuestID}}</td>
+                            <td>{{$Booking->CheckInDate}}</td>
+                            <td>{{$Booking->CheckOutDate}}</td>
                             <td>
                                 <svg data-v-9a6e255c="" xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="invoice-row-5036-send-icon" class="cursor-pointer feather feather-send"><line data-v-9a6e255c="" x1="22" y1="2" x2="11" y2="13"></line><polygon data-v-9a6e255c="" points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
 
@@ -46,6 +33,7 @@
                                 </svg>
                             </td>
                         </tr>
+                    @endforeach
                     </tbody>
                 <tfoot>
 
