@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Invoice;
 use Illuminate\Http\Request;
 use App\Models\InvoiceItem;
+use Exception;
 
 class InvoiceItemController extends Controller
 {
@@ -14,6 +16,7 @@ class InvoiceItemController extends Controller
      */
     public function index()
     {
+        $InvoiceItems = InvoiceItem::all();
         return view('invoiceItem.index');
     }
 
@@ -24,7 +27,8 @@ class InvoiceItemController extends Controller
      */
     public function create()
     {
-        return view('invoiceItem.create');
+        $Invoices = Invoice::all();
+        return view('invoiceItem.create',compact('Invoices'));
     }
 
     /**
@@ -35,7 +39,12 @@ class InvoiceItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $InvoiceItems = InvoiceItem::create($request->all());
+            return back();
+        } catch (Exception $error) {
+            $error->getMessage();
+        }
     }
 
     /**

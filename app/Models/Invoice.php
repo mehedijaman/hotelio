@@ -10,12 +10,12 @@ class Invoice extends Model
     use HasFactory;
     protected $table = 'invoices';
     protected $fillable = [
+        'GuestID',
+        'TaxID',
+        'PaymentMethod',
         'Date',
         'SubTotal',
         'TaxTotal',
         'Total',
-        'PaymentMethod',
-        'GuestID',
-        'TaxID',
     ];
 }

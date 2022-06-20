@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Invoice;
+use App\Models\Guest;
+use App\Models\TaxSetting;
+use Exception;
 
 class InvoiceController extends Controller
 {
@@ -25,7 +28,9 @@ class InvoiceController extends Controller
      */
     public function create()
     {
-        return view('invoice.create');
+        $Guests = Guest::all();
+        $Taxs   = TaxSetting::all();
+        return view('invoice.create',compact('Guests','Taxs'));
     }
 
     /**
@@ -36,7 +41,12 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $invoices = Invoice::create($request->all());
+            return back();
+        } catch (Exception $error) {
+            $error->getMessage();
+        }
     }
 
     /**

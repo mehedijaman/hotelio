@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\RoomTransfer;
+use App\Models\Guest;
+use Exception;
 
 class RoomTransferController extends Controller
 {
@@ -14,7 +16,8 @@ class RoomTransferController extends Controller
      */
     public function index()
     {
-        return view('roomTransfer.index');
+        $RoomTransfers = RoomTransfer::all();
+        return view('roomTransfer.index',compact('RoomTransfers'));
     }
 
     /**
@@ -24,7 +27,8 @@ class RoomTransferController extends Controller
      */
     public function create()
     {
-        return view('roomTransfer.create');
+        $Guests = Guest::all();
+        return view('roomTransfer.create', compact('Guests'));
     }
 
     /**
@@ -35,7 +39,12 @@ class RoomTransferController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $RoomTransfers = RoomTransfer::create($request->all());
+            return back();
+        } catch (Exception $error) {
+            $error->getMessage();
+        }
     }
 
     /**
