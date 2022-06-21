@@ -39,7 +39,7 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        return Room::all();
+        // return Room::all();
         // $AdditionalFeatures = {'Mozaik' : $request->Mozaik,}
         try{
             Room::create($request->all());
@@ -69,7 +69,9 @@ class RoomController extends Controller
      */
     public function edit($id)
     {
-        //
+        $Hotels= Hotel::all();
+        $Rooms = Room::find($id);
+        return view('room.edit' , compact('Rooms','Hotels'));
     }
 
     /**
@@ -81,7 +83,8 @@ class RoomController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Room::find($id)->update($request->all());
+        return $this->index();
     }
 
     /**

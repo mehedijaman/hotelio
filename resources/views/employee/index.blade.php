@@ -44,7 +44,7 @@
                                     <a href="/employee/{{ $Employee->id }}/edit" class="btn btn-warning mx-md-2 mb-md-2">Edit</a>
 
                                     {!! Form::open(['url' => '/employee/'.$Employee->id, 'method' => 'DELETE']) !!}
-                                          <input type="submit" name="submit" value="Delete" class="btn btn-danger mx-md-2">
+                                          <input type="submit" name="submit" value="Delete" >
                                     {!! Form::close() !!}
                               </td>
                         </tr>
