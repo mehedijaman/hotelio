@@ -51,15 +51,15 @@
                                             </svg></button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                                 <li>
-                                                    <a class="dropdown-item" href="/hotel/{{ $Hotel->id }}/edit">
+                                                    <a class="dropdown-item" href="/hotel/{{ $Hotel->id }}/edit" style="letter-spacing:3px; font-family:'Courier New', Courier, monospace ;">
                                                         <i class="fa-regular fa-pen-to-square mr-2"></i>Edit
                                                     </a>
                                                 </li>
                                                 {!! Form::open(['url' => '/hotel/'.$Hotel->id, 'method' => 'DELETE']) !!}
-                                                <i class="fa-regular fa-pen-to-square mr-2"></i>
-                                                    <input type="submit" name="submit" value="Delete" class="px-md-1">
-                                                {!! Form::close() !!}
-                                            </ul>
+                                                <i class="fa-regular fa-trash-can mr-2" style="margin-left:10%;">
+                                                    <input type="submit" name="submit" value=" Delete" style="letter-spacing:3px; font-family:'Courier New', Courier, monospace ;" class="bg-danger pt-md-3 pb-md-3">
+                                                </i>
+                                            {!! Form::close() !!}
                                         </span>
                                     </td>
                                     </tr>
