@@ -17,7 +17,7 @@ class InvoiceItemController extends Controller
     public function index()
     {
         $InvoiceItems = InvoiceItem::all();
-        return view('invoiceItem.index');
+        return view('invoiceItem.index',compact('InvoiceItems'));
     }
 
     /**
@@ -66,7 +66,9 @@ class InvoiceItemController extends Controller
      */
     public function edit($id)
     {
-        //
+        $Invoices = Invoice::all();
+        $InvoiceItem = InvoiceItem::find($id);
+        return view('invoiceItem.edit',compact('Invoices', 'InvoiceItem'));
     }
 
     /**
@@ -78,7 +80,8 @@ class InvoiceItemController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        InvoiceItem::find($id)->update($request->all());
+        return $this->index();
     }
 
     /**
