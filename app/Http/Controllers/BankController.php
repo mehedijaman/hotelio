@@ -79,7 +79,7 @@ class BankController extends Controller
      */
     public function update(Request $request , $id)
     {
-        Bank::find($id)->update($request->all);
+        Bank::find($id)->update($request->all());
         return $this->index();
     }
 

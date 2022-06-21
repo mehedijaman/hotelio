@@ -38,7 +38,7 @@ class ExpenseCategoryController extends Controller
     public function store(Request $request)
     {
         try{
-            ExpenseCategory::create($request->all);
+            ExpenseCategory::create($request->all());
             return back();
         }
         catch(Exception $error){
@@ -65,7 +65,8 @@ class ExpenseCategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $ExpenseCategoris = ExpenseCategory::find($id);
+        return view('expenseCategory.edit', compact('ExpenseCategoris'));
     }
 
     /**
@@ -77,7 +78,8 @@ class ExpenseCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        ExpenseCategory::find($id)->update($request->all());
+        return $this->index();
     }
 
     /**

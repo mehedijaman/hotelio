@@ -9,7 +9,7 @@ class ExpenseCategory extends Model
 {
     use HasFactory;
 
-    protected $table ='expense_categories';
+    protected $table ='expenses_categories';
     protected $fillable = [
         'Name',
     ];
