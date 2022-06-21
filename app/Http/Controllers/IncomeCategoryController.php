@@ -76,14 +76,9 @@ class IncomeCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request , $id)
     {
-        $IncomeCategoris = new IncomeCategory();
-        $IncomeCategoris = IncomeCategory::find($request->id);
-        $IncomeCategoris->Name = $request->Name;
-
-        $IncomeCategoris->save();
-
+        IncomeCategory::find($id)->update($request->all());
         return $this->index();
     }
 

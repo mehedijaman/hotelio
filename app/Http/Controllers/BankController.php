@@ -77,19 +77,9 @@ class BankController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request , $id)
     {
-        $Banks = new Bank();
-        $Banks = Bank::find($request->id);
-        $Banks->Name        = $request->Name;
-        $Banks->Branch      = $request->Branch;
-        $Banks->AccountNo   = $request->AccountNo;
-        $Banks->Address     = $request->Address;
-        $Banks->Phone       = $request->Phone;
-        $Banks->Email       = $request->Email;
-
-        $Banks->save();
-
+        Bank::find($id)->update($request->all());
         return $this->index();
     }
 
@@ -102,6 +92,6 @@ class BankController extends Controller
     public function destroy($id)
     {
         Bank::find($id)->delete();
-        return back();
+        return $this->index();
     }
 }

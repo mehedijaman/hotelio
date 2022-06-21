@@ -1,57 +1,81 @@
 @extends('layouts.app')
-
 @section('content')
-<div class="container-fluid">
-    <a href="/employee/create" class="btn btn-primary mb-md-3">Add new Employee</a>
+    <div class="container col-md-12">
+        <section class="button mb-4">
+            <a href="{{ asset('employee/create') }}" class="btn btn-info text-capitalize">Add Employee Informetion</a>
+        </section>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card ">
+                    <div class="card-header bg-info">
+                        <div class="card-title">
+                            <h2 class="card-title">Employee List</h2>
+                        </div>
+                    </div>
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-hover text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>id</th>
+                                    <th>Hote Name</th>
+                                    <th>Name</th>
+                                    <th>Designation</th>
+                                    <th>DateOfBirth</th>
+                                    <th>NID No</th>
+                                    <th>NID Document</th>
+                                    <th>Phone</th>
+                                    <th>Email</th>
+                                    <th>Address</th>
+                                    <th>Date Of Join</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                              @foreach ( $Employees as $Employee )
+                                    <tr class="">
+                                          <td>{{ $Employee->id }}</td>
+                                          <td>{{ $Employee->Hotel }}</td>
+                                          <td>{{ $Employee->Name }}</td>
+                                          <td>{{ $Employee->Designation }}</td>
+                                          <td>{{ $Employee->DateOfBirth }}</td>
+                                          <td>{{ $Employee->NIDNo }}</td>
+                                          <td>{{ $Employee->NID }}</td>
+                                          <td>{{ $Employee->Phone }}</td>
+                                          <td>{{ $Employee->Email }}</td>
+                                          <td>{{ $Employee->Address }}</td>
+                                          <td>{{ $Employee->DateOfJoin }}</td>
+                                          <td>{{ $Employee->Status }}</td>
+                                          <td class="">
+                                                {{-- <svg data-v-9a6e255c="" xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="invoice-row-5036-send-icon" class="cursor-pointer feather feather-send"><line data-v-9a6e255c="" x1="22" y1="2" x2="11" y2="13"></line><polygon data-v-9a6e255c="" points="22 2 15 22 11 13 2 9 22 2"></polygon></svg> --}}
 
-    <div class="table col-md-12">
-        <table class="table table-stripd table-bordered table-dark text-light w-auto">
+                                                <svg data-v-9a6e255c="" xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="invoice-row-5036-preview-icon" class="mx-1 feather feather-eye"><path data-v-9a6e255c="" d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle data-v-9a6e255c="" cx="12" cy="12" r="3"></circle>
+                                                </svg>
 
-            <thead>
-              <tr>
-                <th>id</th>
-                <th>HoteID</th>
-                <th>Name</th>
-                <th>Designation</th>
-                <th>DateOfBirth</th>
-                <th>NID No</th>
-                <th>NID Document</th>
-                <th>Phone</th>
-                <th>Email</th>
-                <th>Address</th>
-                <th>Date Of Join</th>
-                <th>Status</th>
-                <th>Action</th>
-
-              </tr>
-            </thead>
-            <tbody>
-
-                  @foreach ( $Employees as $Employee )
-                        <tr class="table-info text-dark">
-                              <td>{{$Employee->id}}</td>
-                              <td>{{$Employee->Hotel}}</td>
-                              <td>{{$Employee->Name}}</td>
-                              <td>{{$Employee->Designation}}</td>
-                              <td>{{$Employee->DateOfBirth}}</td>
-                              <td>{{$Employee->NIDNo}}</td>
-                              <td>{{$Employee->NID}}</td>
-                              <td>{{$Employee->Phone}}</td>
-                              <td>{{$Employee->Email}}</td>
-                              <td>{{$Employee->Address}}</td>
-                              <td>{{$Employee->DateOfJoin}}</td>
-                              <td>{{$Employee->Status}}</td>
-                              <td>
-                                    <a href="/employee/{{$Employee->id}}/edit" class="btn btn-warning mx-md-2 mb-md-2">Edit</a>
-                                    <a href="/employee/{{$Employee->id}}/delete" class="btn btn-danger mx-md-2">Delete</a>
-                              </td>
-                        </tr>
-                  @endforeach
-
-            </tbody>
-          </table>
-
+                                                <span class="dropdown">
+                                                      <button class="" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><svg data-v-9a6e255c="" xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="align-middle text-body feather feather-more-vertical"><circle data-v-9a6e255c="" cx="12" cy="12" r="1"></circle><circle data-v-9a6e255c="" cx="12" cy="5" r="1"></circle><circle data-v-9a6e255c="" cx="12" cy="19" r="1"></circle>
+                                                      </svg></button>
+                                                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                      <li>
+                                                            <a class="dropdown-item" href="/employee/{{ $Employee->id }}/edit" style="letter-spacing:3px; font-family:'Courier New', Courier, monospace ;">
+                                                                  <i class="fa-regular fa-pen-to-square mr-2"></i>Edit
+                                                            </a>
+                                                      </li>
+                                                      {!! Form::open(['url' => '/employee/'.$Employee->id, 'method' => 'DELETE']) !!}
+                                                      <i class="fa-regular fa-trash-can mr-2" style="margin-left:10%;">
+                                                            <input type="submit" name="submit" value=" Delete" style="letter-spacing:3px; font-family:'Courier New', Courier, monospace ;" class="bg-danger pt-md-3 pb-md-3">
+                                                      </i>
+                                                      {!! Form::close() !!}
+                                                </span>
+                                          </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-</div>
 @endsection
