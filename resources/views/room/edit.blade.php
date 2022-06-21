@@ -9,7 +9,7 @@
             <div class="col-md-7 m-auto">
                 <div class="card card-info">
                     <div class="card-header">
-                        <h3 class="card-title">Update Bank</h3>
+                        <h3 class="card-title">Update Room</h3>
                     </div>
                     {{ Form::open(array('url' => '/room/'.$Rooms->id,'method' => 'PATCH','class'=>'form-horizontal', 'files' => true)) }}
                         <div class="card-body">

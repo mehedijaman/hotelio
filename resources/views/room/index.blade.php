@@ -2,14 +2,14 @@
 @section('content')
     <div class="container col-md-12 ">
         <section class="button mb-4">
-            <a href="{{ asset('room/create') }}" class="btn btn-info text-capitalize">Add Hotel Informetion</a>
+            <a href="{{ asset('room/create') }}" class="btn btn-info text-capitalize">Add Room Informetion</a>
         </section>
         <div class="row">
             <div class="col-md-12">
                 <div class="card ">
                     <div class="card-header bg-info">
                         <div class="card-title">
-                            <h2 class="card-title">Hotel List</h2>
+                            <h2 class="card-title">Room List</h2>
                         </div>
                     </div>
                     <div class="card-body table-responsive p-0">
@@ -25,11 +25,7 @@
                                 @foreach ( $Rooms as $Room)
                                     <tr class="">
                                         <tr>
-                                            <th>id</th>
-                                            <td>{{ $Room->id }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>HoteID</th>
+                                            <th>Hote Name</th>
                                             <td>{{ $Room->HoteID }}</td>
                                         </tr>
                                         <tr>

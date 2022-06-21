@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Expense;
+use App\Models\ExpenseCategory;
 use Exception;
 
 class ExpenseController extends Controller
@@ -15,8 +16,10 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        $Expenses = Expense::all();
-        return view('expense.index', compact($Expenses));
+        $Expenses = Expense::select('expenses.*','expenses_categories.Name as CategoryName')
+        ->leftJoin('expenses_categories','expenses.CategoryID','=','expenses_categories.id')
+        ->get();
+        return view('expense.index', compact('Expenses'));
     }
 
     /**
@@ -25,8 +28,9 @@ class ExpenseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('expense.create');
+    {   
+        $ExpenseCategoris = ExpenseCategory::all();
+        return view('expense.create',compact('ExpenseCategoris'));
     }
 
     /**
@@ -37,6 +41,7 @@ class ExpenseController extends Controller
      */
     public function store(Request $request)
     {
+
         try{
             Expense::create($request->all());
             return back();
@@ -65,7 +70,9 @@ class ExpenseController extends Controller
      */
     public function edit($id)
     {
-        //
+        $ExpenseCategoris = ExpenseCategory::all();
+        $Expenses = Expense::find($id);
+        return view('expense.edit' , compact('ExpenseCategoris', 'Expenses'));
     }
 
     /**
@@ -77,7 +84,8 @@ class ExpenseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Expense::find($id)->update($request->all());
+        return $this->index();
     }
 
     /**
@@ -88,6 +96,7 @@ class ExpenseController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Expense::find($id)->delete();
+        return back();
     }
 }

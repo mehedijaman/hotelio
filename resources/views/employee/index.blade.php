@@ -17,7 +17,7 @@
                             <thead>
                                 <tr>
                                     <th>id</th>
-                                    <th>HoteID</th>
+                                    <th>Hote Name</th>
                                     <th>Name</th>
                                     <th>Designation</th>
                                     <th>DateOfBirth</th>

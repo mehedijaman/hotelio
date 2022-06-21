@@ -3,13 +3,13 @@
 
     <div class="container">
          <section class="button__list__show mb-md-4">
-            <a href="{{ asset('room') }}" class="btn btn-md btn-info py-3 text-capitalize">RoomList</a>
+            <a href="{{ asset('room') }}" class="btn btn-md btn-info py-3 text-capitalize">Room List</a>
         </section>
         <div class="row">
             <div class="col-md-7 m-auto">
                 <div class="card card-info">
                     <div class="card-header">
-                        <h3 class="card-title">Add New Bank</h3>
+                        <h3 class="card-title">Add New Room</h3>
                     </div>
                     {{ Form::open(array('url' => '/room','method' => 'POST','class'=>'form-horizontal', 'files' => true)) }}
                         <div class="card-body">
@@ -212,7 +212,7 @@
                             <div class="form-group row">
                                 <label for="Price" class="form-label col-md-3">Price:</label>
                                 <div class="col-md-8">
-                                    <input type="num" name="Price" class="form-control"> 
+                                    <input type="number" name="Price" class="form-control"> 
                                 </div>
                             </div>
                             {{-- <div class="form-group row">
