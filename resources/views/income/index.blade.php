@@ -25,7 +25,7 @@
                               </thead>
                               <tbody>
                                 @foreach ( $Incomes as $Income)
-                                    <tr class="table-info text-dark">
+                                    <tr class="">
                                         <td>{{ $Income->CategoryName }}</td>
                                         <td>{{ $Income->Amount }}</td>
                                         <td>{{ $Income->Description }}</td>

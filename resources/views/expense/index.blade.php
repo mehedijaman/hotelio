@@ -25,7 +25,7 @@
                               </thead>
                               <tbody>
                                 @foreach ( $Expenses as $Expense)
-                                    <tr class="table-info text-dark">
+                                    <tr class="">
                                         <td>{{ $Expense->CategoryName }}</td>
                                         <td>{{ $Expense->Amount }}</td>
                                         <td>{{ $Expense->Description }}</td>
