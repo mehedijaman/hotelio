@@ -16,7 +16,8 @@ class RoomController extends Controller
      */
     public function index()
     {
-        $Rooms = Room::all();
+        $Rooms = Room::select('rooms.*','hotels.Name as HotelName')->leftJoin('hotels','rooms.HotelID','=','hotels.id')
+        ->get();
         return view('room.index',compact('Rooms'));
     }
 

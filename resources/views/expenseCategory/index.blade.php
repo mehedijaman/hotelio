@@ -40,11 +40,11 @@
                                                             <i class="fa-regular fa-pen-to-square mr-2"></i>Edit
                                                         </a>
                                                     </li>
-                                                    {!! Form::open(['url' => '/expenseCategory/'.$Category->id, 'method' => 'DELETE']) !!}
+                                                    {{-- {!! Form::open(['url' => '/expenseCategory/'.$Category->id, 'method' => 'DELETE']) !!}
                                                         <i class="fa-regular fa-trash-can mr-2" style="margin-left:10%;">
                                                             <input type="submit" name="submit" value=" Delete" style="letter-spacing:3px; font-family:'Courier New', Courier, monospace ;" class="bg-danger pt-md-3 pb-md-3">
                                                         </i>
-                                                    {!! Form::close() !!}
+                                                    {!! Form::close() !!} --}}
                                                 </ul>
                                             </span>
                                         </td>

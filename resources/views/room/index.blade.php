@@ -26,7 +26,7 @@
                                     <tr class="">
                                         <tr>
                                             <th>Hote Name</th>
-                                            <td>{{ $Room->HoteID }}</td>
+                                            <td>{{ $Room->HotelName }}</td>
                                         </tr>
                                         <tr>
                                             <th>RoomNo</th>

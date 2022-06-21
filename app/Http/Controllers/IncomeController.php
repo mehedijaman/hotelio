@@ -56,7 +56,7 @@ class IncomeController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
