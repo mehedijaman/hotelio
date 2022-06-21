@@ -57,7 +57,7 @@ class BookingController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -68,7 +68,11 @@ class BookingController extends Controller
      */
     public function edit($id)
     {
-        //
+        $Rooms    = Room::all();
+        $Guests   = Guest::all();
+        $Booking = Booking::find($id);
+        return view('booking.edit',compact('Rooms','Guests','Booking'));
+
     }
 
     /**
@@ -78,9 +82,16 @@ class BookingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$id)
     {
-        //
+        // $Booking = new Booking();
+        // $Booking = Booking::find($request->id);
+        // $Booking->CheckInDate   = $request->CheckInDate;
+        // $Booking->CheckOutDate  = $request->CheckOutDate;
+        // $Booking->update();
+        // return $this->index();
+        Booking::find($id)->update($request->all());
+        return $this->index();
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\RoomTransfer;
 use App\Models\Guest;
+use App\Models\Room;
 use Exception;
 
 class RoomTransferController extends Controller
@@ -66,7 +67,9 @@ class RoomTransferController extends Controller
      */
     public function edit($id)
     {
-        //
+        $Guests = Guest::all();
+        $RoomTransfer = RoomTransfer::find($id); 
+        return view('roomTransfer.edit',compact('Guests', 'RoomTransfer'));
     }
 
     /**
@@ -78,7 +81,8 @@ class RoomTransferController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        RoomTransfer::find($id)->update($request->all());
+        return $this->index();
     }
 
     /**

@@ -64,7 +64,8 @@ class TaxSettingController extends Controller
      */
     public function edit($id)
     {
-        //
+        $TaxSetting = TaxSetting::find($id);
+        return view('taxSetting.edit',compact('TaxSetting'));
     }
 
     /**
@@ -76,7 +77,8 @@ class TaxSettingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        TaxSetting::find($id)->update($request->all());
+        return $this->index();
     }
 
     /**
