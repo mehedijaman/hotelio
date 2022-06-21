@@ -26,7 +26,7 @@
                               <tbody>
                                 @foreach ( $Incomes as $Income)
                                     <tr class="table-info text-dark">
-                                        <td>{{ $Income->id }}</td>
+                                        <td>{{ $Income->CategoryName }}</td>
                                         <td>{{ $Income->Amount }}</td>
                                         <td>{{ $Income->Description }}</td>
                                         <td>{{ $Income->Date }}</td>

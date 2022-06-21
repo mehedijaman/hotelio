@@ -97,6 +97,6 @@ class ExpenseController extends Controller
     public function destroy($id)
     {
         Expense::find($id)->delete();
-        return back();
+        return $this->index();
     }
 }

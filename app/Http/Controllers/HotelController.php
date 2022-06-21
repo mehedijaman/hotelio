@@ -103,6 +103,6 @@ class HotelController extends Controller
     public function destroy($id)
     {
         Hotel::find($id)->delete();
-        return back();
+        return $this->index();
     }
 }

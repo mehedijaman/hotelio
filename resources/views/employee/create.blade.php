@@ -57,6 +57,12 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <label for="Phone" class="form-label col-md-3">Phone :</label>
+                                <div class="col-md-8">
+                                    <input type="tel" name="Phone" class="form-control"> 
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label for="Email" class="form-label col-md-3">Email :</label>
                                 <div class="col-md-8">
                                     <input type="mail" name="Email" class="form-control"> 

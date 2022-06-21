@@ -17,7 +17,6 @@
                         <table class="table table-hover text-nowrap">
                             <thead>
                                 <tr>
-                                    <th>id</th>
                                     <th>Name</th>
                                     <th>Branch</th>
                                     <th>Account No</th>
@@ -30,7 +29,6 @@
                             <tbody>
                                 @foreach ($Banks as $Bank)
                                     <tr>
-                                        <td>{{ $Bank->id }}</td>
                                         <td>{{ $Bank->Name }}</td>
                                         <td>{{ $Bank->Branch }}</td>
                                         <td>{{ $Bank->AccountNo }}</td>

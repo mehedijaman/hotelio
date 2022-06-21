@@ -92,6 +92,6 @@ class BankController extends Controller
     public function destroy($id)
     {
         Bank::find($id)->delete();
-        return back();
+        return $this->index();
     }
 }

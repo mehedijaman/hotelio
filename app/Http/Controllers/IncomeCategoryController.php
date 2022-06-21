@@ -78,7 +78,7 @@ class IncomeCategoryController extends Controller
      */
     public function update(Request $request , $id)
     {
-        $IncomeCategoris = IncomeCategory::find($id)->update($request->all());
+        IncomeCategory::find($id)->update($request->all());
         return $this->index();
     }
 

@@ -93,6 +93,6 @@ class GuestController extends Controller
     public function destroy($id)
     {
         Guest::find($id)->delete();
-        return back();
+        return $this->index();
     }
 }
