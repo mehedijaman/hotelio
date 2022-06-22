@@ -19,6 +19,7 @@ class RoomTransferController extends Controller
     public function index()
     {
         $RoomTransfers = RoomTransfer::all();
+
         return view('roomTransfer.index',compact('RoomTransfers'));
     }
 
@@ -30,7 +31,8 @@ class RoomTransferController extends Controller
     public function create()
     {
         $Guests = Guest::all();
-        return view('roomTransfer.create', compact('Guests'));
+        $Rooms = Room::all();
+        return view('roomTransfer.create', compact('Rooms','Guests'));
     }
 
     /**
@@ -69,7 +71,7 @@ class RoomTransferController extends Controller
     public function edit($id)
     {
         $Guests = Guest::all();
-        $RoomTransfer = RoomTransfer::find($id); 
+        $RoomTransfer = RoomTransfer::find($id);
         return view('roomTransfer.edit',compact('Guests', 'RoomTransfer'));
     }
 
