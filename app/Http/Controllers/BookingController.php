@@ -18,7 +18,11 @@ class BookingController extends Controller
      */
     public function index()
     {
-        $Bookings = Booking::all();
+        $Bookings = Booking::select('bookings.*','rooms.RoomNo','guests.Name as Guest')
+        ->leftJoin('rooms','bookings.RoomID','=','rooms.id')
+        ->leftJoin('guests','bookings.GuestID','=','guests.id')
+        ->get();
+
         return view('booking.index',compact('Bookings'));
     }
 
@@ -58,7 +62,7 @@ class BookingController extends Controller
      */
     public function show($id)
     {
-        
+
     }
 
     /**

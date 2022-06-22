@@ -46,13 +46,13 @@
                             <div class="form-group row">
                                  <label for="CheckInDate" class="form-label col-md-3">CheckInDate:</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="CheckInDate" class="form-control" value="{{ $Booking->CheckInDate}}"> 
+                                    <input type="date" name="CheckInDate" class="form-control" value="{{ date('mm-dd-Y',strtotime($Booking->CheckInDate))}}">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="CheckOutDate" class="form-label col-md-3">CheckOutDate:</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="CheckOutDate" class="form-control" value="{{ $Booking->CheckOutDate}}"> 
+                                    <input type="text" name="CheckOutDate" class="form-control" value="{{ $Booking->CheckOutDate}}">
                                 </div>
                             </div>
                         </div>

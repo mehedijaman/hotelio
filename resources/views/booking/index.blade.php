@@ -25,8 +25,8 @@
                             <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th>RoomID</th>
-                                    <th>GuestID</th>
+                                    <th>Room</th>
+                                    <th>Guest</th>
                                     <th>CheckInDate</th>
                                     <th>CheckOutDate</th>
                                     <th>Action</th>
@@ -37,9 +37,13 @@
                                 @foreach ($Bookings as $Booking)
                                     <tr class="">
                                         <td>{{$Booking->id}}</td>
-                                        <td>{{$Booking->RoomID}}</td>
-                                        <td>{{$Booking->GuestID}}</td>
-                                        <td>{{$Booking->CheckInDate}}</td>
+                                        <td>{{$Booking->RoomNo}}</td>
+                                        <td>{{$Booking->Guest}}</td>
+                                        <td>
+                                            @php
+                                                echo date('d/m/Y H:i:s',strtotime($Booking->CheckInDate))
+                                            @endphp
+                                        </td>
                                         <td>{{$Booking->CheckOutDate}}</td>
                                         <td class="d-flex">
                                            <a href="" class="mr-3 text-purple" data-bs-toggle="tooltip" data-bs-placement="bottom" title="View">

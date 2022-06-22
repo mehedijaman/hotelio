@@ -26,32 +26,37 @@
                                                 {{ $Guest->Name }}
                                             </option>
                                         @endforeach
-                                    </select> 
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="FromRoomID" class="form-label col-md-3">FromRoomID:</label>
                                 <div class="col-md-8">
-                                    <input type="number" name="FromRoomID" class="form-control"> 
+                                    <input type="number" name="FromRoomID" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="ToRoomID" class="form-label col-md-3">ToRoomID:</label>
+                                <label for="ToRoomID" class="form-label col-md-3">To Room</label>
                                 <div class="col-md-8">
-                                    <input type="number" name="ToRoomID" class="form-control"> 
+                                    <select name="RoomID" class="form-control">
+                                        <option value="">Select To Room</option>
+                                        @foreach($Rooms as $Room)
+                                        <option value="{{ $Room->id }}">{{ $Room->RoomNo }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="Date" class="form-label col-md-3">Date:</label>
                                 <div class="col-md-8">
-                                    <input type="date" name="Date" class="form-control"> 
+                                    <input type="date" name="Date" class="form-control">
                                 </div>
                             </div>
                         </div>
                         <div class="card-footer">
                             <input type="submit" name="submit" id="" class="btn bg-navy float-right w-25 text-capitalize">
                         </div>
-                    {{ Form::close()}} 
+                    {{ Form::close()}}
                 </div>
             </div>
         </div>
