@@ -1,15 +1,18 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container">
-        <section class="button mb-4">
+    <div class="container py-5">
+        {{-- <section class="button mb-4">
             <a href="{{ asset('booking') }}" class="btn btn-info text-capitalize">Back To List</a>
-        </section>
+        </section> --}}
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header bg-info">
+                    <div class="card-header bg-defult">
                         <div class="card-title">
-                            <h2 class="card-title">Booking Trash List</h2>
+                            <h2 class="card-title">
+                                <a href="{{ asset('booking') }}" class="mr-3"><i class="fa-solid fa-circle-arrow-left fs-5 text-navy" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Back to List"></i></a>
+                                Booking Trash List
+                            </h2>
                         </div>
                         <a class="btn btn-sm bg-maroon float-right text-capitalize" href="/booking/emptyTrash"><i class="fa-solid fa-recycle mr-2"></i>Empty Trash</a>
                         <a class="btn btn-sm bg-teal float-right text-capitalize mr-3" href="/booking/restoreAll"><i class="fa-solid fa-trash-can mr-2"></i>Restore All</a>
