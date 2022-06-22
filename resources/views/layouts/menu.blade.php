@@ -14,10 +14,8 @@
 </li>
 <li class="nav-item">
     <a href="/accountLedger" class="nav-link {{ Request::is('accountLedger') ? 'active' : '' }}">
-       <span class="material-symbols-outlined">
-            account_circle
-        </span>
-        <p>AccountLedger</p>
+       <span class="material-symbols-outlined">account_circle</span>
+        <p class="">AccountLedger</p>
     </a>
 </li>
 

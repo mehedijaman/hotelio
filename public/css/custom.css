@@ -1,6 +1,10 @@
+body::-webkit-scrollbar {
+    display: none;
+	
+}
 body{
 	background-color: #202428;
-    /* overflow: hidden; */
+    overflow-x: hidden;
 }
 *{
 	list-style: none;
@@ -12,22 +16,6 @@ body{
 	padding:1rem 1.5rem;
 	height: auto;
 }
-/* .table td {
-    border-top: 1px solid #6a6868 !important;
-    border-bottom: 1px solid #626262 !important;
-	padding: 0.72rem 2rem !important;
-}
-.table th {
-    border-top: 1px solid #626262 !important;
-    border-bottom: 1px solid #626262 !important;
-}
-.table thead{
-	background-color: #343D55 !important;
-	
-} */
-/* .table-hover>tbody>tr:hover>* {
-    color: #d0d2d6 !important;
-} */
 .custom__index__table__bg{
 	background-color: #283046 !important;
 	border-radius: 0.5rem;
@@ -118,38 +106,36 @@ form .form-label{
     border-radius: 8px;
 }
 
-/* dashbroad */
-.dashbroad__bg
+/* Sideber */
+/* .dashbroad__bg
 {
 	background-color: #161E31 !important;
-}
-.content__wrapper__body__bg{
+} */
+/* .content__wrapper__body__bg{
 	background-color: #161E31 !important;
+} */
+.sidebar::-webkit-scrollbar {
+    display: none;
+	
+}
+.sidebar{
+	-ms-overflow-style: none !important; 
+    scrollbar-width: none !important; 
 }
 .dashbroad__sidebar__bg
 {
 	background-color: #283046 !important;
-}
-
-/* nevber */
-
-.navbar {
-    padding: 0 !important;
-	
 	
 }
-.custom-nav{
-	position: -webkit-sticky;
-  	position: sticky;
-  	top: 0;
-}
+/* dashbroad nevber */
 
-.custom__main__header{
+
+/* .custom__main__header{
 	border: 0rem !important;
 	
-	/* margin-left: 250px !important; */
-}
-.dashbroad__nav__custom{
+	margin-left: 250px !important;
+} */
+/* .dashbroad__nav__custom{
 	background-color: #283046 !important;
 	border-radius: .5rem !important;
 	
@@ -164,7 +150,7 @@ form .form-label{
 .custom__navber__list li .star svg{
 	color:  rgb(252, 154, 35) !important;
 	
-}
+} */
 .badge__up {
     position: absolute;
     top: -11px;
@@ -187,7 +173,7 @@ form .form-label{
 /* footer */
 .custom__main__footer
 {
-	background-color: #161E31 !important;
+	background-color: #283046 !important;
 }
 .custom__main__footer i{
 	font-size: large;
