@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Booking;
+use App\Models\Guest;
+use App\Models\Room;
+use Exception;
 
 class BookingController extends Controller
 {
@@ -14,7 +17,8 @@ class BookingController extends Controller
      */
     public function index()
     {
-        return view('booking.index');
+        $Bookings = Booking::all();
+        return view('booking.index',compact('Bookings'));
     }
 
     /**
@@ -24,7 +28,9 @@ class BookingController extends Controller
      */
     public function create()
     {
-        return view('booking.create');
+        $Rooms = Room::all();
+        $Guests = Guest::all();
+        return view('booking.create',compact('Rooms', 'Guests'));
     }
 
     /**
@@ -35,7 +41,12 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            Booking::create($request->all());
+            return back();
+        } catch (Exception $error) {
+            $error->getMessage();
+        }
     }
 
     /**
@@ -46,7 +57,7 @@ class BookingController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -57,7 +68,11 @@ class BookingController extends Controller
      */
     public function edit($id)
     {
-        //
+        $Rooms    = Room::all();
+        $Guests   = Guest::all();
+        $Booking = Booking::find($id);
+        return view('booking.edit',compact('Rooms','Guests','Booking'));
+
     }
 
     /**
@@ -67,9 +82,16 @@ class BookingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$id)
     {
-        //
+        // $Booking = new Booking();
+        // $Booking = Booking::find($request->id);
+        // $Booking->CheckInDate   = $request->CheckInDate;
+        // $Booking->CheckOutDate  = $request->CheckOutDate;
+        // $Booking->update();
+        // return $this->index();
+        Booking::find($id)->update($request->all());
+        return $this->index();
     }
 
     /**

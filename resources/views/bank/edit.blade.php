@@ -1,78 +1,61 @@
 @extends('layouts.app')
-
 @section('content')
-    <div class="container-fluid">
-        <a href="/bank" class="btn btn-primary">Back to List</a>
-        {!! Form::open(array('url'=>'/bank/update' , 'method'=>'PATCH')) !!}
-        <input type="hidden" name="id" value ="{{$Banks->id}}">
-            <div class="page-wrapper  p-t-45 p-b-50">
-                <div class="wrapper wrapper--w790">
-                    <div class="card card-5">
-                        <div class="card-heading bg-light">
-                            <h2 class="title text-dark">Update Bank Form</h2>
-                            <hr style="width:100%;text-align:left;margin-left:0; background-color:red;">
-                        </div>
-                        <div class="card-body">
-                            <form method="POST">
-                                <div class="form-row">
-                                    <div class="name">Name</div>
-                                    <div class="value">
-                                        <div class="input-group">
-                                            <input class="input--style-5" type="text" name="Name" value="{{$Banks->Name}}">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="name">Branch</div>
-                                    <div class="value">
-                                        <div class="input-group">
-                                            <input class="input--style-5" type="text" name="Branch" value="{{$Banks->Branch}}">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="name">Account No</div>
-                                    <div class="value">
-                                        <div class="input-group">
-                                            <input class="input--style-5" type="text" name="AccountNo" value="{{$Banks->AccountNo}}">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="name">Address</div>
-                                    <div class="value">
-                                        <div class="input-group">
-                                            <input class="input--style-5" type="text" name="Address" value="{{$Banks->Address}}">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="name">Phone</div>
-                                    <div class="value">
-                                        <div class="input-group">
-                                            <input class="input--style-5" type="tel" name="Phone" value="{{$Banks->Phone}}">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="name">Email</div>
-                                    <div class="value">
-                                        <div class="input-group">
-                                            <input class="input--style-5" type="mail" name="Email" value="{{$Banks->Email}}">
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div>
-                                    <button class="btn btn--radius-2 btn-lg btn-block bg-info" type="submit">Update</button>
-                                </div>
-                            </form>
-                        </div>
+
+    <div class="container">
+         <section class="button__list__show mb-md-4">
+            <a href="{{ asset('bank') }}" class="btn btn-md btn-info py-3 text-capitalize">Bank List</a>
+        </section>
+        <div class="row">
+            <div class="col-md-7 m-auto">
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">Update New Bank</h3>
                     </div>
+                    {{ Form::open(array('url' => '/bank/'.$Banks->id,'method' => 'PATCH','class'=>'form-horizontal', 'files' => true)) }}
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <label for="Name" class="form-label col-md-3">Name:</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="Name" class="form-control" value="{{$Banks->Name}}"> 
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="Branch" class="form-label col-md-3">Branch:</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="Branch" class="form-control" value="{{$Banks->Branch}}"> 
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="AccountNo" class="form-label col-md-3">Account No:</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="AccountNo" class="form-control" value="{{$Banks->AccountNo}}"> 
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="Address" class="form-label col-md-3">Address:</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="Address" class="form-control" value="{{$Banks->Address}}"> 
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="Phone" class="form-label col-md-3">Phone:</label>
+                                <div class="col-md-8">
+                                    <input type="tel" name="Phone" class="form-control" value="{{$Banks->Phone}}"> 
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="Email" class="form-label col-md-3">Email:</label>
+                                <div class="col-md-8">
+                                    <input type="mail" name="Email" class="form-control" value="{{$Banks->Email}}"> 
+                                </div>
+                            </div>
+                        <div class="card-footer">
+                            <input type="submit" name="submit" id="" class="btn btn-danger float-right w-25" value="Reset">
+                            <input type="submit" name="submit" id="" class="btn btn-info float-right w-25 mx-md-3 px-md-2" value="Update">
+                        </div>
+                    {{ Form::close()}} 
                 </div>
             </div>
-
-
-        {!! Form::close() !!}
+        </div>
     </div>
 @endsection

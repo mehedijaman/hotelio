@@ -1,3 +1,4 @@
+
 body{
 	background-color: #202428;
     /* overflow: hidden; */
@@ -12,7 +13,7 @@ body{
 	padding:1rem 1.5rem;
 	height: auto;
 }
-.table td {
+/* .table td {
     border-top: 1px solid #6a6868 !important;
     border-bottom: 1px solid #626262 !important;
 	padding: 0.72rem 2rem !important;
@@ -24,10 +25,10 @@ body{
 .table thead{
 	background-color: #343D55 !important;
 	
-}
-.table-hover>tbody>tr:hover>* {
+} */
+/* .table-hover>tbody>tr:hover>* {
     color: #d0d2d6 !important;
-}
+} */
 .custom__index__table__bg{
 	background-color: #283046 !important;
 	border-radius: 0.5rem;

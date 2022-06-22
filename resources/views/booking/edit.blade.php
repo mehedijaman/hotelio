@@ -1,16 +1,16 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        <section class="button__list__show">
+        {{-- <section class="button__list__show">
             <a href="{{ asset('booking') }}" class="btn btn-info text-capitalize">List Booking</a>
-        </section>
+        </section> --}}
         <div class="row">
             <div class="col-md-7 m-auto">
                 <div class="card card-info">
                     <div class="card-header">
-                        <h3 class="card-title">Add New Booking</h3>
+                        <h3 class="card-title">Booking Update</h3>
                     </div>
-                    {{ Form::Open(array('url' => '/booking','method' => 'POST','class' => 'form-horizontal', 'files' => true)) }}
+                    {{ Form::Open(array('url' => '/booking/'.$Booking->id, 'method' => 'PATCH', 'class' => 'form-horizontal', 'files' => true)) }}
                         <div class="card-body">
                             <div class="form-group row">
                                 <label for="RoomID" class="form-label col-md-3">RoomID:</label>
@@ -41,19 +41,18 @@
                             <div class="form-group row">
                                  <label for="CheckInDate" class="form-label col-md-3">CheckInDate:</label>
                                 <div class="col-md-8">
-                                    <input type="date" name="CheckInDate" class="form-control"> 
+                                    <input type="text" name="CheckInDate" class="form-control" value="{{ $Booking->CheckInDate}}"> 
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="CheckOutDate" class="form-label col-md-3">CheckOutDate:</label>
                                 <div class="col-md-8">
-                                    <input type="date" name="CheckOutDate" class="form-control"> 
+                                    <input type="text" name="CheckOutDate" class="form-control" value="{{ $Booking->CheckOutDate}}"> 
                                 </div>
                             </div>
                         </div>
                         <div class="card-footer">
-                            <input type="submit" name="submit" id="" class="btn btn-defult float-right w-25" value="Reset">
-                            <input type="submit" name="submit" id="" class="btn btn-info float-right w-25">
+                            <input type="submit" name="submit" id="" class="btn btn-info float-right w-25" value="Update">
                         </div>
                     {{ Form::close() }}
                 </div>
@@ -61,6 +60,3 @@
         </div>
     </div>
 @endsection
-
-
-

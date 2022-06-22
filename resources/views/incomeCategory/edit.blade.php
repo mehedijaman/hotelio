@@ -1,35 +1,31 @@
 @extends('layouts.app')
-
 @section('content')
-    <div class="container-fluid">
-        <a href="/incomeCategory" class="btn btn-primary">Back to List</a>
-        {!! Form::open(array('url' => '/incomeCategory/update' , 'method'=>'PATCH')) !!}
-        <input type="hidden" name="id" value="{{$IncomeCategoris->id}}">
-            <div class="page-wrapper p-t-45 p-b-50">
-                <div class="wrapper wrapper--w790">
-                    <div class="card card-5">
-                        <div class="card-heading bg-light">
-                            <h2 class="title text-dark">Income Category Update</h2>
-                        </div>
-                        <div class="card-body">
-                            <form method="POST">
-                                <div class="form-row">
-                                    <div class="name">Name</div>
-                                    <div class="value">
-                                        <div class="input-group">
-                                            <input class="input--style-5" type="text" name="Name" value="{{$IncomeCategoris->Name}}">
-                                        </div>
-                                    </div>
-                                </div>
-                                    <button class="btn btn--radius-2 btn-lg btn-block bg-gray " type="submit">Add Income Category</button>
-                                </div>
-                            </form>
-                        </div>
+
+    <div class="container">
+         <section class="button__list__show mb-md-4">
+            <a href="{{ asset('incomeCategory') }}" class="btn btn-md btn-info py-3 text-capitalize">List Income Category</a>
+        </section>
+        <div class="row">
+            <div class="col-md-7 m-auto">
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">Update Catergory</h3>
                     </div>
+                    {{ Form::open(array('url' => "/incomeCategory/".$IncomeCategoris->id,'method' => 'PATCH','class'=>'form-horizontal', 'files' => true)) }}
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <label for="Name" class="form-label col-md-3">Name:</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="Name" class="form-control" value="{{$IncomeCategoris->Name}}"> 
+                                </div>
+                            </div>
+                        <div class="card-footer">
+                            <input type="submit" name="submit" id="" class="btn btn-danger float-right w-25" value="Reset">
+                            <input type="submit" name="submit" id="" class="btn btn-info float-right w-25 mx-md-3 px-md-2" value="Update">
+                        </div>
+                    {{ Form::close()}} 
                 </div>
             </div>
-
-
-        {!! Form::close() !!}
+        </div>
     </div>
 @endsection

@@ -16,7 +16,9 @@ class IncomeController extends Controller
      */
     public function index()
     {
-        $Incomes = Income::all();
+        $Incomes = Income::select('incomes.*','income_categories.Name as CategoryName')
+        ->leftJoin('income_categories','incomes.CategoryID','=','income_categories.id')
+        ->get();
         return view('income.index' , compact('Incomes'));
     }
 
@@ -56,7 +58,7 @@ class IncomeController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -67,7 +69,9 @@ class IncomeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $IncomeCategoris = IncomeCategory::all();
+        $Incomes = Income::find($id);
+        return view('income.edit', compact('Incomes','IncomeCategoris'));
     }
 
     /**
@@ -79,7 +83,8 @@ class IncomeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Income::find($id)->update($request->all());
+        return $this->index();
     }
 
     /**
@@ -90,6 +95,7 @@ class IncomeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Income::find($id)->delete();
+        return $this->index();
     }
 }

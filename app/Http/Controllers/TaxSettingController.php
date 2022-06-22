@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\TaxSetting;
+use Exception;
 
 class TaxSettingController extends Controller
 {
@@ -14,7 +15,8 @@ class TaxSettingController extends Controller
      */
     public function index()
     {
-        return view('taxSetting.index');
+        $TaxSettings = TaxSetting::all();
+        return view('taxSetting.index',compact('TaxSettings'));
     }
 
     /**
@@ -35,7 +37,12 @@ class TaxSettingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $TaxSettings = TaxSetting::create($request->all());
+            return back();
+        } catch (Exception $error) {
+            $error->getMessage();
+        }
     }
 
     /**
@@ -57,7 +64,8 @@ class TaxSettingController extends Controller
      */
     public function edit($id)
     {
-        //
+        $TaxSetting = TaxSetting::find($id);
+        return view('taxSetting.edit',compact('TaxSetting'));
     }
 
     /**
@@ -69,7 +77,8 @@ class TaxSettingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        TaxSetting::find($id)->update($request->all());
+        return $this->index();
     }
 
     /**

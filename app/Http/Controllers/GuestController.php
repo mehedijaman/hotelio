@@ -38,6 +38,7 @@ class GuestController extends Controller
      */
     public function store(Request $request)
     {
+        
         try{
             Guest::create($request->all());
             return back();
@@ -77,25 +78,9 @@ class GuestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request , $id)
     {
-        $Guests = new Guest();
-        $Guests = Guest::find($request->id);
-        $Guests->Name       = $request->Name;
-        $Guests->Email      = $request->Email;
-        $Guests->Address    = $request->Address;
-        $Guests->Phone      = $request->Phone;
-        $Guests->NIDNo      = $request->NIDNo;
-        $Guests->NID        = $request->NID;
-        $Guests->PassportNo = $request->PassportNo;
-        $Guests->Passport   = $request->Passport;
-        $Guests->Father     = $request->Father;
-        $Guests->Mother     = $request->Mother;
-        $Guests->Spouse     = $request->Spouse;
-        $Guests->Photo      = $request->Photo;
-
-        $Guests->save();
-
+        Guest::find($id)->update($request->all());
         return $this->index();
     }
 
@@ -108,6 +93,6 @@ class GuestController extends Controller
     public function destroy($id)
     {
         Guest::find($id)->delete();
-        return back();
+        return $this->index();
     }
 }
