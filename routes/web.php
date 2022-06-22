@@ -46,7 +46,15 @@ require __DIR__.'/auth.php';
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource('accountLedger',AccountLedgerController::class);
+// -------------------------------------Bank's Route ---------------------------------------------------------------
+Route::get('bank/trash',[BankController::class, 'trash']);
+Route::get('/bank/delete',[BankController::class, 'destroyAll']);
+Route::get('bank/{id}/restore',[BankController::class, 'restore']);
+Route::get('bank/restoreAll',[BankController::class, 'restoreAll']);
+Route::get('/bank/{id}/parmanently/delete',[BankController::class, 'forceDeleted']);
+Route::get('bank/emptyTrash',[BankController::class,'emptyTrash']);
 Route::resource('bank',BankController::class);
+
 Route::resource('bankLedger',BankLedgerController::class);
 Route::resource('balance',BalanceController::class);
 Route::resource('room',RoomController::class);
