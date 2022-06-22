@@ -13,7 +13,7 @@
 	width: 100%;
 	position: absolute;
 	left: 0;
-	top:0;
+	top:3%;
 }
 img{
 	width: 120%;
@@ -40,7 +40,7 @@ img{
 }
 .text_box h1{
 	margin-bottom: 40px;
-	font-size: 50px;
+	font-size: 60px;
 }
 .text_box span{
 	background:red;
@@ -49,10 +49,10 @@ img{
 	position: absolute;
 }
 .text_box p{
-	font-size: 20px;
+	font-size: 30px;
 	line-height: 18px;
 	margin-top:60px;
-	color:orangered;
+	color:rgb(254, 255, 255);
 }
 
 .banner1{

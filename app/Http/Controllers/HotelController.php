@@ -41,6 +41,13 @@ class HotelController extends Controller
         // return  $request->all();
         try{
             Hotel::create($request->all());
+
+            // if($request->file('image')){
+            //     $file= $request->file('image');
+            //     $filename= date('YmdHi').$file->getClientOriginalName();
+            //     $file-> move(public_path('public/HotelImage'), $filename);
+            //     $data['image']= $filename;
+            // }
             return back();
         }
         catch(Exception $error){
@@ -96,6 +103,6 @@ class HotelController extends Controller
     public function destroy($id)
     {
         Hotel::find($id)->delete();
-        return back();
+        return $this->index();
     }
 }

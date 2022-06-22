@@ -82,25 +82,9 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request , $id)
     {
-        $Employees  = new Employee();
-        $Employees  = Employee::find($request->id);
-
-        $Employees->HotelID     = $request->HotelID;
-        $Employees->Name        = $request->Name;
-        $Employees->Designation = $request->Designation;
-        $Employees->DateOfBirth = $request->DateOfBirth;
-        $Employees->NIDNo       = $request->NIDNo;
-        $Employees->NID         = $request->NID;
-        $Employees->Phone       = $request->Phone;
-        $Employees->Email       = $request->Email;
-        $Employees->Address     = $request->Address;
-        $Employees->DateOfJoin  = $request->DateOfJoin;
-        $Employees->Status      = $request->Status;
-
-        $Employees->save();
-
+        Employee::find($id)->update($request->all());
         return $this->index();
     }
 
@@ -113,6 +97,6 @@ class EmployeeController extends Controller
     public function destroy($id)
     {
         Employee::find($id)->delete();
-        return back();
+        return $this->index();
     }
 }

@@ -1,7 +1,11 @@
+<<<<<<< HEAD
 body::-webkit-scrollbar {
     display: none;
 	
 }
+=======
+
+>>>>>>> 451e129d0ddd7104fef52c2d14a86bade8d61e6c
 body{
 	background-color: #202428;
     overflow-x: hidden;

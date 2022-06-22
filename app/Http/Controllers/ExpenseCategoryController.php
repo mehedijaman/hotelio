@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ExpenseCategory;
+use Exception;
 
 class ExpenseCategoryController extends Controller
 {
@@ -14,7 +15,8 @@ class ExpenseCategoryController extends Controller
      */
     public function index()
     {
-        //
+        $ExpenseCategoris = ExpenseCategory::all();
+        return view('expenseCategory.index',compact('ExpenseCategoris'));
     }
 
     /**
@@ -24,7 +26,7 @@ class ExpenseCategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('expenseCategory.create');
     }
 
     /**
@@ -35,7 +37,13 @@ class ExpenseCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            ExpenseCategory::create($request->all());
+            return back();
+        }
+        catch(Exception $error){
+            return $error->getMessage();
+        }
     }
 
     /**
@@ -57,7 +65,8 @@ class ExpenseCategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $ExpenseCategoris = ExpenseCategory::find($id);
+        return view('expenseCategory.edit', compact('ExpenseCategoris'));
     }
 
     /**
@@ -69,7 +78,8 @@ class ExpenseCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        ExpenseCategory::find($id)->update($request->all());
+        return $this->index();
     }
 
     /**
