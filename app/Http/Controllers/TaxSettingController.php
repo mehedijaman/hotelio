@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
 use App\Models\TaxSetting;
 use Exception;
@@ -89,6 +90,37 @@ class TaxSettingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        TaxSetting::find($id)->delete();
+        return back();
+    }
+    public function destroyAll()
+    {
+        TaxSetting::withTrashed()->delete();
+        return back();
+    }
+    public function trash()
+    {
+        $TaxSettings = TaxSetting::onlyTrashed()->get();
+        return view('taxSetting.trash',compact('TaxSettings'));
+    }
+    public function restore($id)
+    {
+        TaxSetting::withTrashed()->where('id',$id)->restore();
+        return back();
+    }
+    public function restoreAll()
+    {
+        TaxSetting::withTrashed()->restore();
+        return back();
+    }
+    public function forceDeleted($id)
+    {
+        TaxSetting::withTrashed()->where('id',$id)->forceDelete();
+        return back();
+    }
+    public function emptyTrash()
+    {
+        TaxSetting::onlyTrashed()->forceDelete();
+        return back();
     }
 }

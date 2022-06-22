@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
 use App\Models\Booking;
 use App\Models\Guest;
@@ -102,6 +103,37 @@ class BookingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Booking::find($id)->delete();
+        return back();
+    }
+    public function destroyAll()
+    {
+        Booking::withTrashed()->delete();
+        return back();
+    }
+    public function trash()
+    {
+        $Bookings = Booking::onlyTrashed()->get();
+        return view('booking.trash',compact('Bookings'));
+    }
+    public function restore($id)
+    {
+        Booking::withTrashed()->where('id',$id)->restore();
+        return back();
+    }
+    public function restoreAll()
+    {
+        Booking::withTrashed()->restore();
+        return back();
+    }
+    public function forceDeleted($id)
+    {
+        Booking::withTrashed()->where('id',$id)->forceDelete();
+        return back();
+    }
+    public function emptyTrash()
+    {
+        Booking::onlyTrashed()->forceDelete();
+        return back();
     }
 }

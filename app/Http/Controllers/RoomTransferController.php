@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\RoomTransfer;
 use App\Models\Guest;
 use App\Models\Room;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Exception;
 
 class RoomTransferController extends Controller
@@ -93,6 +94,39 @@ class RoomTransferController extends Controller
      */
     public function destroy($id)
     {
-        //
+        RoomTransfer::find($id)->delete();
+        return back();
     }
+    public function destroyAll()
+    {
+        RoomTransfer::withTrashed()->delete();
+        return back();
+    }
+
+    public  function trash()
+    {
+        $RoomTransfers = RoomTransfer::onlyTrashed()->get();
+        return view('roomTransfer.trash',compact('RoomTransfers'));
+    }
+    public function restore($id)
+    {
+        RoomTransfer::withTrashed()->where('id',$id)->restore();
+        return back();
+    }
+    public function restoreAll()
+    {
+        RoomTransfer::withTrashed()->restore();
+        return back();
+    }
+    public function forceDeleted($id)
+    {
+        RoomTransfer::withTrashed()->where('id',$id)->forceDelete();
+        return back();
+    }
+    public function emptyTrash()
+    {
+        RoomTransfer::onlyTrashed()->forceDelete();
+        return back();
+    }
+
 }
