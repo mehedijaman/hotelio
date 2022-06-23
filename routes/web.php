@@ -19,6 +19,7 @@ use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\InvoiceItemController;
 use App\Http\Controllers\RoomTransferController;
 use App\Http\Controllers\TaxSettingController;
+use App\Models\Hotel;
 use App\Models\Room;
 use App\Models\TaxSetting;
 
@@ -76,7 +77,22 @@ Route::get('/booking/emptyTrash',[BookingController::class, 'emptyTrash']);
 Route::resource('booking',BookingController::class);
 
 Route::resource('guest',GuestController::class);
+//---------------------------------------------Employee Rout's----------------------------------------------------------------
+Route::get('/employee/trash',[EmployeeController::class,'trash']);
+Route::get('/employee/delete',[EmployeeController::class,'destroyAll']);
+Route::get('/employee/{id}/restore',[EmployeeController::class,'restore']);
+Route::get('/employee/restoreAll',[EmployeeController::class,'restoreAll']);
+Route::get('/employee/{id}/parmanently/delete',[EmployeeController::class,'forceDeleted']);
+Route::get('/employee/emptyTrash',[EmployeeController::class,'emptyTrash']);
 Route::resource('employee',EmployeeController::class);
+// --------------------------------------------Hotel Routes-------------------------------------------------------------------
+Route::get('/hotel/trash',[HotelController::class,'trash']);
+Route::get('/hotel/delete',[HotelController::class,'destroyAll']);
+Route::get('hotel/{id}/restore',[HotelController::class,'restore']);
+Route::get('/hotel/restoreAll',[HotelController::class,'restoreAll']);
+Route::get('/hotel/{id}/parmanently/delete',[HotelController::class,'forceDeleted']);
+Route::get('/hotel/emptyTrash',[HotelController::class,'emptyTrash']);
+
 Route::resource('hotel',HotelController::class);
 Route::resource('incomeCategory',IncomeCategoryController::class);
 Route::resource('income',IncomeController::class);

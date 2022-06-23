@@ -18,7 +18,7 @@
                                 <div class="value">
                                     <div class="input-group">
                                         <select name="HotelID" id="" class="col-md-8">
-                                            <option value="">Select Hotel</option>
+                                            <option value="{{$Hotels->id}}">Select Hotel</option>
                                             @foreach($Hotels as $Hotel)
                                             <option value="{{ $Hotel->id }}"> {{ $Hotel->Name }} </option>
                                             @endforeach
