@@ -1,51 +1,42 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container col-md-12">
-        <section class="button mb-4">
-            <a href="{{ asset('guest/create') }}" class="btn btn-info text-capitalize">Add Guest Informetion</a>
-        </section>
+    <div class="container py-5 col-md-12">
         <div class="row">
             <div class="col-md-12">
-                <div class="card ">
-                    <div class="card-header bg-info">
+                <div class="card">
+                    <div class="card-header bg-defult">
                         <div class="card-title">
-                            <h2 class="card-title">Guest List</h2>
+                            <h2 class="card-title">
+                                <a href="{{ asset('guest/create') }}" class="btn bg-navy text-capitalize mr-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create Booking"> 
+                                    <i class="fa-solid fa-circle-plus mr-2"></i>
+                                    Add
+                                </a>
+                                Guest List
+                            </h2>
                         </div>
+                        <a class="btn btn-sm bg-navy float-right text-capitalize" href="/guest/trash"><i class="fa-solid fa-recycle mr-2"></i>View Trash</a>
+                        <a class="btn btn-sm bg-maroon float-right text-capitalize mr-3" href="/guest/delete"><i class="fa-solid fa-trash-can mr-2"></i>Delete All</a>
                     </div>
                     <div class="card-body table-responsive p-0">
                         <table class="table table-hover text-nowrap">
                             <thead>
                                 <tr>
-                                    <th>id</th>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Address</th>
                                     <th>Phone</th>
-                                    <th>NID NO</th>
-                                    <th>Passport NO</th>
-                                    <th>Father</th>
-                                    <th>Mother</th>
-                                    <th>Spouse</th>
-                                    <th>Photo</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ( $Guests as $Guest)
                                     <tr>
-                                        <td>{{ $Guest->id }}</td>
                                         <td>{{ $Guest->Name }}</td>
                                         <td>{{ $Guest->Email }}</td>
                                         <td>{{ $Guest->Address }}</td>
                                         <td>{{ $Guest->Phone }}</td>
-                                        <td>{{ $Guest->NIDNo }}</td>
-                                        <td>{{ $Guest->PassportNo }}</td>
-                                        <td>{{ $Guest->Father }}</td>
-                                        <td>{{ $Guest->Mother }}</td>
-                                        <td>{{ $Guest->Spouse }}</td>
-                                        <td>{{ $Guest->Photo }}</td>
                                         <td class="d-flex">
-                                            <a href="" class="mr-3 text-purple" data-bs-toggle="tooltip" data-bs-placement="bottom" title="View">
+                                            <a href="{{URL::to('guest/'.$Guest->id)}}" class="mr-3 text-purple" data-bs-toggle="tooltip" data-bs-placement="bottom" title="View">
                                                  <svg data-v-9a6e255c="" xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="invoice-row-5036-preview-icon" class="mx-1 feather feather-eye"><path data-v-9a6e255c="" d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle data-v-9a6e255c="" cx="12" cy="12" r="3"></circle></svg>
                                             </a>
                                              <a class="" href="/guest/{{ $Guest->id }}/edit" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit">
@@ -64,9 +55,11 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="card-footer">
+                     
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
 @endsection

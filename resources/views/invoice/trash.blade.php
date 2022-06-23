@@ -39,7 +39,6 @@
                                         <td>{{ $invoice->TaxTotal }}</td>
                                         <td>{{ $invoice->Total }}</td>
                                         <td>
-
                                             {{-- Restore --}}
                                             <a href="/invoice/{{ $invoice->id }}/restore" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Restore"><i class="fa-solid fa-trash-arrow-up ml-2 text-success"></i></a>
                                             
