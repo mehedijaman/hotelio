@@ -50,7 +50,7 @@ class BookingController extends Controller
             Booking::create($request->all());
             return back();
         } catch (Exception $error) {
-            $error->getMessage();
+            return $error->getMessage();
         }
     }
 
@@ -62,7 +62,8 @@ class BookingController extends Controller
      */
     public function show($id)
     {
-
+        $Booking = Booking::find($id);
+        return view('booking.show', compact('Booking'));
     }
 
     /**
