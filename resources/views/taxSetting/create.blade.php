@@ -1,14 +1,17 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container">
-        <section class="button__list__show">
+    <div class="container py-5">
+        {{-- <section class="button__list__show">
             <a href="{{ asset('taxSetting') }}" class="btn btn-info text-capitalize">List TaxSetting</a>
-        </section>
+        </section> --}}
         <div class="row">
             <div class="col-md-7 m-auto">
-                <div class="card card-info">
+                <div class="card card-primary">
                     <div class="card-header">
-                        <h2 class="card-title">Add a new taxSetting</h2>
+                        <h2 class="card-title">
+                            <a href="{{ asset('taxSetting') }}" class="mr-3"><i class="fa-solid fa-circle-arrow-left fs-5 text-navy" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Back to List"></i></a> 
+                            Add a new taxSetting
+                        </h2>
                     </div>
                     {{ Form::open(array('url' => '/taxSetting', 'method' => 'post','class' => 'form-horizantal', 'files' => true)) }}
                         <div class="card-body">
@@ -43,8 +46,8 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <input type="submit" name="submit" id="" class="btn btn-defult float-right w-25" value="Reset">
-                            <input type="submit" name="submit" id="" class="btn btn-info float-right w-25">
+                            {{-- <input type="submit" name="submit" id="" class="btn btn-defult float-right w-25" value="Reset"> --}}
+                            <input type="submit" name="submit" id="" class="btn bg-navy float-right w-25">
                         </div>
                     {{ Form::close() }}
                 </div>

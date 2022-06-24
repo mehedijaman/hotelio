@@ -18,7 +18,7 @@
                     {{ Form::Open(array('url' => '/booking/'.$Booking->id, 'method' => 'PATCH', 'class' => 'form-horizontal', 'files' => true)) }}
                         <div class="card-body">
                             <div class="form-group row">
-                                <label for="RoomID" class="form-label col-md-3">RoomID:</label>
+                                <label for="RoomID" class="form-label col-md-3">Room:</label>
                                 <div class="col-md-8">
                                     <select type="number" name="RoomID" id=""  class="form-select">
                                         <option>Open this select menu</option>
@@ -31,7 +31,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="GuestID" class="form-label col-md-3">GuestID:</label>
+                                <label for="GuestID" class="form-label col-md-3">Guest:</label>
                                 <div class="col-md-8">
                                     <select type="number" name="GuestID" id=""  class="form-select">
                                         <option>Open this select menu</option>

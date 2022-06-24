@@ -2,9 +2,6 @@
 @section('content')
 
     <div class="container py-5">
-         {{-- <section class="button__list__show">
-            <a href="{{ asset('roomTransfer') }}" class="btn btn-md btn-info py-3 text-capitalize">List RoomTransfer</a>
-        </section> --}}
         <div class="row">
             <div class="col-md-7 m-auto">
                 <div class="card card-primary">
@@ -17,7 +14,7 @@
                     {{ Form::open(array('url' => '/roomTransfer','method' => 'POST','class'=>'form-horizontal', 'files' => true)) }}
                         <div class="card-body">
                             <div class="form-group row">
-                                <label for="GuestID" class="form-label col-md-3">GuestID:</label>
+                                <label for="GuestID" class="form-label col-md-3">Guest:</label>
                                 <div class="col-md-8">
                                     <select type="number" name="GuestID" id=""  class="form-select">
                                         <option>Open this select menu</option>
@@ -30,18 +27,18 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="FromRoomID" class="form-label col-md-3">FromRoomID:</label>
+                                <label for="FromRoomID" class="form-label col-md-3">FromRoom:</label>
                                 <div class="col-md-8">
                                     <input type="number" name="FromRoomID" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="ToRoomID" class="form-label col-md-3">To Room</label>
+                                <label for="ToRoomID" class="form-label col-md-3">ToRoom</label>
                                 <div class="col-md-8">
-                                    <select name="RoomID" class="form-control">
+                                    <select name="ToRoomID" class="form-control">
                                         <option value="">Select To Room</option>
                                         @foreach($Rooms as $Room)
-                                        <option value="{{ $Room->id }}">{{ $Room->RoomNo }}</option>
+                                            <option value="{{ $Room->id }}">{{ $Room->RoomNo }}</option>
                                         @endforeach
                                     </select>
                                 </div>

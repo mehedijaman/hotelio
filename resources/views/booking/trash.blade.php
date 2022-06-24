@@ -15,13 +15,12 @@
                             </h2>
                         </div>
                         <a class="btn btn-sm bg-maroon float-right text-capitalize" href="/booking/emptyTrash"><i class="fa-solid fa-recycle mr-2"></i>Empty Trash</a>
-                        <a class="btn btn-sm bg-teal float-right text-capitalize mr-3" href="/booking/restoreAll"><i class="fa-solid fa-trash-can mr-2"></i>Restore All</a>
+                        <a class="btn btn-sm btn-success float-right text-capitalize mr-3" href="/booking/restoreAll"><i class="fa-solid fa-trash-can mr-2"></i>Restore All</a>
                     </div>
                     <div class="card-body table-responsive p-0">
                         <table class="table table-hover text-nowrap">
                             <thead>
                                 <tr>
-                                    <th>Id</th>
                                     <th>RoomID</th>
                                     <th>GuestID</th>
                                     <th>CheckInDate</th>
@@ -33,7 +32,6 @@
                             <tbody>
                                 @foreach ($Bookings as $Booking)
                                     <tr>
-                                        <td>{{$Booking->id}}</td>
                                         <td>{{$Booking->RoomID}}</td>
                                         <td>{{$Booking->GuestID}}</td>
                                         <td>{{$Booking->CheckInDate}}</td>

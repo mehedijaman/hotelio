@@ -10,15 +10,12 @@
                     <div class="card-header bg-defult">
                         <div class="card-title">
                             <h2 class="card-title">
-                                <a href="{{ asset('room/create') }}" class="btn bg-navy text-capitalize mr-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create Room"> 
-                                    <i class="fa-solid fa-circle-plus mr-2"></i>
-                                    Add
-                                </a>
-                                Room List
+                                <a href="{{ asset('room') }}" class="mr-3"><i class="fa-solid fa-circle-arrow-left fs-5 text-navy" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Back to List"></i></a>
+                                Room Trash List
                             </h2>
                         </div>
-                        <a class="btn btn-sm bg-navy float-right text-capitalize" href="/room/trash"><i class="fa-solid fa-recycle mr-2"></i>View Trash</a>
-                        <a class="btn btn-sm bg-maroon float-right text-capitalize mr-3" href="/room/delete"><i class="fa-solid fa-trash-can mr-2"></i>Delete All</a>
+                        <a class="btn btn-sm bg-maroon float-right text-capitalize" href="/Room/emptyTrash"><i class="fa-solid fa-recycle mr-2"></i>Empty Trash</a>
+                        <a class="btn btn-sm btn-success float-right text-capitalize mr-3" href="/room/restoreAll"><i class="fa-solid fa-trash-can mr-2"></i>Restore All</a>
                     </div>
                     <div class="card-body table-responsive p-0">
                         <table class="table table-hover text-nowrap table__custom">
@@ -53,21 +50,9 @@
                                         <td>@if($Room->Tv)Avilable @else Inavilable @endif</td>
                                         <td>{{$Room->Price}}</td>
                                         <td>@if($Room->Status)<b class="text-success">Active</b> @else <b class="text-danger">Deactive</b> @endif</td>
-
-                                        
-                                        <td class="d-flex">
-                                           <a href="{{ URL::to('/room/'.$Room->id) }}" class="mr-3 text-purple" data-bs-toggle="tooltip" data-bs-placement="bottom" title="View">
-                                            <svg data-v-9a6e255c="" xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="invoice-row-5036-preview-icon" class="mx-1 feather feather-eye"><path data-v-9a6e255c="" d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle data-v-9a6e255c="" cx="12" cy="12" r="3"></circle></svg>
-                                           </a>
-                                            <a class="" href="/room/{{ $Room->id }}/edit" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit">
-                                                <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i></i>
-                                            </a>
-                                        
-                                            {{ Form::open(array('url' => '/room/'.$Room->id,'method' => 'DELETE')) }}
-                                                <button class="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
-                                                    <i class="fa-regular fa-trash-can mr-3 text-danger"></i>
-                                                </button>
-                                            {{ Form::close() }} 
+                                        <td class="">
+                                            <a href="/room/{{ $Room->id }}/restore" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Restore"><i class="fa-solid fa-trash-arrow-up ml-2 text-success"></i></a>
+                                            <a href="/room/{{ $Room->id }}/parmanently/delete" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Parmanently Delete"><i class="fa-solid fa-trash-can ml-2 text-danger"></i> </a>
                                         </td>
                                     </tr>
                                 @endforeach

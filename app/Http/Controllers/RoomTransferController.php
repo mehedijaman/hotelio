@@ -18,7 +18,9 @@ class RoomTransferController extends Controller
      */
     public function index()
     {
-        $RoomTransfers = RoomTransfer::all();
+        $RoomTransfers = RoomTransfer::select('room_transfers.*','guests.Name as Guest')
+        ->leftJoin('guests', 'room_transfers.GuestID','=', 'guests.id')
+        ->get();
 
         return view('roomTransfer.index',compact('RoomTransfers'));
     }
@@ -31,7 +33,7 @@ class RoomTransferController extends Controller
     public function create()
     {
         $Guests = Guest::all();
-        $Rooms = Room::all();
+        $Rooms  = Room::all();
         return view('roomTransfer.create', compact('Rooms','Guests'));
     }
 
@@ -44,10 +46,10 @@ class RoomTransferController extends Controller
     public function store(Request $request)
     {
         try {
-            $RoomTransfers = RoomTransfer::create($request->all());
+           RoomTransfer::create($request->all());
             return back();
         } catch (Exception $error) {
-            $error->getMessage();
+           return $error->getMessage();
         }
     }
 
@@ -59,7 +61,21 @@ class RoomTransferController extends Controller
      */
     public function show($id)
     {
-        //
+        $RoomTransfer = RoomTransfer::find($id);
+        // $RoomTransfer = RoomTransfer::find($id)->select(
+        //     'room_transfers.id',
+        //     'guests.Name as Guest',
+        //     'room_transfers.FromRoomID',
+        //     'room_transfers.ToRoomID',
+        //     'room_transfers.Date',
+        //     'room_transfers.created_at',
+        //     'room_transfers.updated_at')
+        //     ->leftJoin('guests', 
+        //     'room_transfers.GuestID',
+        //     '=', 'guests.id')
+        //     ->get();
+        
+        return view('roomTransfer.show',compact('RoomTransfer'));
     }
 
     /**
@@ -71,8 +87,9 @@ class RoomTransferController extends Controller
     public function edit($id)
     {
         $Guests = Guest::all();
+        $Rooms = Room::all();
         $RoomTransfer = RoomTransfer::find($id);
-        return view('roomTransfer.edit',compact('Guests', 'RoomTransfer'));
+        return view('roomTransfer.edit',compact('Guests','Rooms','RoomTransfer'));
     }
 
     /**
