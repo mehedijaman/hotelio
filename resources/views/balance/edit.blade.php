@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<div class="container py-5">
+<div class="custom__container">
     <div class="row">
         <div class="col-md-7 m-auto">
             <div class="card card-primary">
@@ -10,42 +10,34 @@
                         Add New Booking
                     </h3>
                 </div>
-                {{ Form::Open(array('url' => '/balance','method' => 'POST','class' => 'form-horizontal', 'files' => true)) }}
+                {{Form::open(array('url' => '/balance/'.$Balances->id,'method' => 'PATCH'))}}
                 <div class="card-body">
                     <div class="form-group row">
-                        <label for="RoomID" class="form-label col-md-3">RoomID:</label>
-                        <div class="col-md-8">
-                            <select type="number" name="AcountID" id="" class="form-select">
-                                <option>Open this select menu</option>
-                                @foreach ($AcountLeagers as $AcountLeager)
-                                <option value="{{ $AcountLeager->id }}">
-                                    {{ $AcountLeager->id }}
-                                </option>
-                                @endforeach
-                            </select>
+                        <label for="AcountID" class="col-sm-3 col-form-label">Acount ID:</label>
+                        <div class="col-sm-9">
+                            <input type="number" class="form-control" id="AcountID" name="AcountID" placeholder="Date" value="{{$Balances->AcountID}}">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="Date" class="form-label col-md-3">Date:</label>
-                        <div class="col-md-8">
-                            <input type="date" name="Date" class="form-control">
+                        <label for="Date" class="col-sm-3 col-form-label">Date</label>
+                        <div class="col-sm-9">
+                            <input type="date" class="form-control" id="Date" name="Date" placeholder="Date" value="{{$Balances->Date}}">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="OpeningBalance" class="form-label col-md-3">Opening Balance:</label>
-                        <div class="col-md-8">
-                            <input type="number" name="OpeningBalance" class="form-control">
+                        <label for="OpeningBalance" class="col-sm-3 col-form-label">Opening Balance</label>
+                        <div class="col-sm-9">
+                            <input type="number" class="form-control" id="OpeningBalance" name="OpeningBalance" placeholder="Opening Balance" value="{{$Balances->OpeningBalance}}">
                         </div>
                     </div>
-
                     <div class="form-group row">
-                        <label for="ClosingBalance" class="form-label col-md-3">Closing Balance:</label>
-                        <div class="col-md-8">
-                            <input type="number" name="ClosingBalance" class="form-control">
+                        <label for="ClosingBalance" class="col-sm-3 col-form-label">Closing Balance</label>
+                        <div class="col-sm-9">
+                            <input type="numner" class="form-control" id="ClosingBalance" name="ClosingBalance" placeholder="Closing Balance" value="{{$Balances->ClosingBalance}}">
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="name text-black  col-sm-3 mx-3">Status</div>
+                        <div class="name text-black col-sm-3 mx-3">Status</div>
                         <div class="Status">
                             <div class="p-t-15">
                                 <label class="radio-container m-r-55">Yes
@@ -67,16 +59,22 @@
                             </div>
                         </div>
                     </div>
-                    <input type="submit" name="submit" id="" class="btn bg-navy float-right w-25 text-capitalize">
+                    <input type="submit" name="submit" id="" class="btn bg-navy float-right w-25">
+                    <button type="submit" class="btn btn-default float-left">Cancel</button>
                 </div>
-
+                <div class="card-footer">
+                </div>
+                {{ Form::close()}}
             </div>
-            <!-- <div class="card-footer"> -->
-            {{-- <input type="submit" name="submit" id="" class="btn btn-danger float-right w-25 ml-2" value="Reset"> --}}
-            <!-- </div> -->
-            {{ Form::close() }}
         </div>
     </div>
 </div>
-</div>
+<script>
+    $(document).ready(function() {
+        $('select').selectize({
+            sortField: 'text'
+        });
+    });
+</script>
+
 @endsection

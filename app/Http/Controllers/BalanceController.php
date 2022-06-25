@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Balance;
+use App\Models\AccountLedger;
+use Exception;
 
 class BalanceController extends Controller
 {
@@ -14,7 +16,8 @@ class BalanceController extends Controller
      */
     public function index()
     {
-        return view('balance.index');
+        $Balances = Balance::all();
+        return view('balance.index', compact('Balances'));
     }
 
     /**
@@ -24,7 +27,8 @@ class BalanceController extends Controller
      */
     public function create()
     {
-        return view('balance.create');
+        $AcountLeagers = AccountLedger::all();
+        return view('balance.create', compact('AcountLeagers'));
     }
 
     /**
@@ -35,7 +39,12 @@ class BalanceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            Balance::create($request->all());
+            return back();
+        } catch (Exception $error) {
+            return $error->getMessage();
+        }
     }
 
     /**
@@ -46,7 +55,8 @@ class BalanceController extends Controller
      */
     public function show($id)
     {
-        //
+        $Balances = Balance::find($id);
+        return view('balance.show', compact('Balances'));
     }
 
     /**
@@ -57,7 +67,9 @@ class BalanceController extends Controller
      */
     public function edit($id)
     {
-        //
+        $Balances = Balance::find($id);
+
+        return view('balance.edit', compact('Balances'));
     }
 
     /**
@@ -69,7 +81,9 @@ class BalanceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Balance::find($id)->update($request->all());
+
+        return $this->index();
     }
 
     /**
@@ -80,6 +94,38 @@ class BalanceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Balance::find($id)->delete();
+        return back();
+    }
+    public function deleteAll()
+    {
+        Balance::withTrashed()->delete();
+        return back();
+    }
+    public function trash()
+    {
+        $TrasedBalances = Balance::onlyTrashed()->get();
+        return view('balance.trash', compact('TrasedBalances'));
+    }
+    public function forceDelete($id)
+    {
+        // Balance::find($id)->forceDelete();
+        Balance::withTrashed()->where('id', $id)->forceDelete();
+        return back();
+    }
+    public function restore($id)
+    {
+        Balance::withTrashed()->where('id', $id)->restore();
+        return back();
+    }
+    public function restoreAll()
+    {
+        Balance::withTrashed()->restore();
+        return back();
+    }
+    public function emtyTrash()
+    {
+        Balance::withTrashed()->forceDelete();
+        return back();
     }
 }

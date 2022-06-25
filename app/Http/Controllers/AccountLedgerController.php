@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AccountLedger;
 use Illuminate\Http\Request;
 use App\Models\AccoutLedger;
+use Exception;
 
 class AccountLedgerController extends Controller
 {
@@ -14,7 +16,8 @@ class AccountLedgerController extends Controller
      */
     public function index()
     {
-        return view('accountLedger.index');
+        $AccountLedgers = AccountLedger::all();
+        return view('accountLedger.index', compact('AccountLedgers'));
     }
 
     /**
@@ -35,7 +38,12 @@ class AccountLedgerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            AccountLedger::create($request->all());
+            return back();
+        } catch (Exception $error) {
+            return $error->getMessage();
+        }
     }
 
     /**
@@ -46,7 +54,8 @@ class AccountLedgerController extends Controller
      */
     public function show($id)
     {
-        //
+        $AccountLedger = AccountLedger::find($id);
+        return view('accountLedger.show', compact('AccountLedger'));
     }
 
     /**
@@ -57,7 +66,9 @@ class AccountLedgerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $AccountLedgers = AccountLedger::find($id);
+
+        return view('accountLedger.edit', compact('AccountLedgers'));
     }
 
     /**
@@ -69,7 +80,8 @@ class AccountLedgerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        AccountLedger::find($id)->update($request->all());
+        return $this->index();
     }
 
     /**
@@ -80,6 +92,8 @@ class AccountLedgerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        AccountLedger::find($id)->delete();
+
+        return back();
     }
 }

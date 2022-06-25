@@ -9,7 +9,7 @@ class AccountLedger extends Model
 {
     use HasFactory;
 
-    protected $table ='account_ledgers';
+    protected $table = 'account_ledgers';
     protected $fillable = [
         'Debit',
         'Credit',
@@ -17,5 +17,4 @@ class AccountLedger extends Model
         'Method',
         'Description',
     ];
-    
 }
