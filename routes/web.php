@@ -19,10 +19,6 @@ use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\InvoiceItemController;
 use App\Http\Controllers\RoomTransferController;
 use App\Http\Controllers\TaxSettingController;
-use App\Models\Guest;
-use App\Models\Hotel;
-use App\Models\Room;
-use App\Models\TaxSetting;
 use Ramsey\Uuid\Guid\Guid;
 
 /*
@@ -101,10 +97,24 @@ Route::get('hotel/{id}/restore',[HotelController::class,'restore']);
 Route::get('/hotel/restoreAll',[HotelController::class,'restoreAll']);
 Route::get('/hotel/{id}/parmanently/delete',[HotelController::class,'forceDeleted']);
 Route::get('/hotel/emptyTrash',[HotelController::class,'emptyTrash']);
-
 Route::resource('hotel',HotelController::class);
+// -----------------------------------------Income Category Routes------------------------------------------------
+Route::get('/incomeCategory/trash',[IncomeCategoryController::class,'trash']);
+Route::get('/incomeCategory/delete',[IncomeCategoryController::class,'destroyAll']);
+Route::get('/incomeCategory/{id}/parmanently/delete',[IncomeCategoryController::class,'forceDelete']);
+Route::get('/incomeCategory/{id}/restore',[IncomeCategoryController::class,'restore']);
+Route::get('/incomeCategory/restoreAll',[IncomeCategoryController::class,'restoreAll']);
+Route::get('/incomeCategory/emptyTrash',[IncomeCategoryController::class,'emptyTrash']);
 Route::resource('incomeCategory',IncomeCategoryController::class);
+// -----------------------------------------Income Routes------------------------------------------------
+Route::get('/income/trash',[IncomeController::class,'trash']);
+Route::get('/income/delete',[IncomeController::class,'destroyAll']);
+Route::get('/income/{id}/parmanently/delete',[IncomeController::class,'forceDelete']);
+Route::get('/income/{id}/restore',[IncomeController::class,'restore']);
+Route::get('/income/restoreAll',[IncomeController::class,'restoreAll']);
+Route::get('/income/emptyTrash',[IncomeController::class,'emptyTrash']);
 Route::resource('income',IncomeController::class);
+
 Route::resource('expenseCategory',ExpenseCategoryController::class);
 Route::resource('expense',ExpenseController::class);
 Route::resource('user',RegisteredUserController::class);

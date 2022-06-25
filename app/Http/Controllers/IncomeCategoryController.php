@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\IncomeCategory;
 use Exception;
+use PhpParser\Node\Expr\FuncCall;
 
 class IncomeCategoryController extends Controller
 {
@@ -54,7 +55,8 @@ class IncomeCategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        $Category = IncomeCategory::find($id);
+        return view('incomeCategory.show',compact('Category'));
     }
 
     /**
@@ -90,6 +92,50 @@ class IncomeCategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        IncomeCategory::find($id);
+        return back();
     }
+
+    //destoryAll
+    public function destroyAll()
+    {
+        IncomeCategory::withTrashed()->delete;
+        return $this->index();
+    }
+
+    //trash
+    public function trash()
+    {
+        $CategoryTrashed = IncomeCategory::onlyTrashed()->get();
+        return view('incomeCategory.trash',compact("CategoryTrashed"));
+    }
+
+    //forceDelete
+    public function forceDelete($id)
+    {
+        IncomeCategory::withTrashed()->where('id',$id)->forceDelete();
+        return back();
+    }
+
+    //restore
+    public function restore($id)
+    {
+        IncomeCategory::withTrashed()->where('id',$id)->restore();
+        return $this->index();
+    }
+
+    //restoreAll
+    public function restoreAll()
+    {
+        IncomeCategory::withTrashed()->restore();
+        return $this->index();
+    }
+
+    //emptyTrash
+    public function emptyTrsh()
+    {
+        IncomeCategory::onlyTrashed()->forceDelete();
+        return $this->index();
+    }
+
 }
