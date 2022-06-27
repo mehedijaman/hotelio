@@ -19,6 +19,7 @@ class EmployeeController extends Controller
         $Employees = Employee::select('employees.*','hotels.Name as Hotel')
         ->leftJoin('hotels','employees.HotelID','=','hotels.id')
         ->get();
+        // $Employees = Employee::all();
         return view('employee.index' ,compact('Employees'));
     }
 
@@ -59,7 +60,8 @@ class EmployeeController extends Controller
      */
     public function show($id)
     {
-        //
+        $Employees = Employee::find($id);
+        return view('employee.show' , compact('Employees'));
     }
 
     /**
@@ -98,5 +100,47 @@ class EmployeeController extends Controller
     {
         Employee::find($id)->delete();
         return $this->index();
+    }
+
+    //destroyAll
+    public function destroyAll()
+    {
+        Employee::withTrashed()->delete();
+        return back();
+    }
+    
+    //trash
+    public function trash()
+    {
+        $EmployeesTrashed = Employee::onlyTrashed()->get();
+        return view('employee.trash' , compact('EmployeesTrashed'));
+    }
+
+    //forceDelete
+    public function forceDelete($id)
+    {
+        Employee::withTrashed()->where('id',$id)->forceDelete();
+        return back();
+    }
+
+    //restore 
+    public function restore($id)
+    {
+        Employee::withTrashed()->where('id',$id)->restore();
+        return back();
+    }
+
+    //restoreAll
+    public function restoreAll()
+    {
+        Employee::withTrashed()->restore();
+        return $this->index();
+    }
+
+    //emptyTrash
+    public function emptyTrash()
+    {
+        Employee::onlyTrashed()->forceDelete();
+        return back();
     }
 }

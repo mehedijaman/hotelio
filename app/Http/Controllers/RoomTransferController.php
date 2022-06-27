@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\RoomTransfer;
 use App\Models\Guest;
 use App\Models\Room;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Exception;
 
 class RoomTransferController extends Controller
@@ -17,7 +18,10 @@ class RoomTransferController extends Controller
      */
     public function index()
     {
-        $RoomTransfers = RoomTransfer::all();
+        $RoomTransfers = RoomTransfer::select('room_transfers.*','guests.Name as Guest')
+        ->leftJoin('guests', 'room_transfers.GuestID','=', 'guests.id')
+        ->get();
+
         return view('roomTransfer.index',compact('RoomTransfers'));
     }
 
@@ -29,7 +33,8 @@ class RoomTransferController extends Controller
     public function create()
     {
         $Guests = Guest::all();
-        return view('roomTransfer.create', compact('Guests'));
+        $Rooms  = Room::all();
+        return view('roomTransfer.create', compact('Rooms','Guests'));
     }
 
     /**
@@ -41,10 +46,10 @@ class RoomTransferController extends Controller
     public function store(Request $request)
     {
         try {
-            $RoomTransfers = RoomTransfer::create($request->all());
+           RoomTransfer::create($request->all());
             return back();
         } catch (Exception $error) {
-            $error->getMessage();
+           return $error->getMessage();
         }
     }
 
@@ -56,7 +61,21 @@ class RoomTransferController extends Controller
      */
     public function show($id)
     {
-        //
+        $RoomTransfer = RoomTransfer::find($id);
+        // $RoomTransfer = RoomTransfer::find($id)->select(
+        //     'room_transfers.id',
+        //     'guests.Name as Guest',
+        //     'room_transfers.FromRoomID',
+        //     'room_transfers.ToRoomID',
+        //     'room_transfers.Date',
+        //     'room_transfers.created_at',
+        //     'room_transfers.updated_at')
+        //     ->leftJoin('guests', 
+        //     'room_transfers.GuestID',
+        //     '=', 'guests.id')
+        //     ->get();
+        
+        return view('roomTransfer.show',compact('RoomTransfer'));
     }
 
     /**
@@ -68,8 +87,9 @@ class RoomTransferController extends Controller
     public function edit($id)
     {
         $Guests = Guest::all();
-        $RoomTransfer = RoomTransfer::find($id); 
-        return view('roomTransfer.edit',compact('Guests', 'RoomTransfer'));
+        $Rooms = Room::all();
+        $RoomTransfer = RoomTransfer::find($id);
+        return view('roomTransfer.edit',compact('Guests','Rooms','RoomTransfer'));
     }
 
     /**
@@ -93,6 +113,39 @@ class RoomTransferController extends Controller
      */
     public function destroy($id)
     {
-        //
+        RoomTransfer::find($id)->delete();
+        return back();
     }
+    public function destroyAll()
+    {
+        RoomTransfer::withTrashed()->delete();
+        return back();
+    }
+
+    public  function trash()
+    {
+        $RoomTransfers = RoomTransfer::onlyTrashed()->get();
+        return view('roomTransfer.trash',compact('RoomTransfers'));
+    }
+    public function restore($id)
+    {
+        RoomTransfer::withTrashed()->where('id',$id)->restore();
+        return back();
+    }
+    public function restoreAll()
+    {
+        RoomTransfer::withTrashed()->restore();
+        return back();
+    }
+    public function forceDeleted($id)
+    {
+        RoomTransfer::withTrashed()->where('id',$id)->forceDelete();
+        return back();
+    }
+    public function emptyTrash()
+    {
+        RoomTransfer::onlyTrashed()->forceDelete();
+        return back();
+    }
+
 }

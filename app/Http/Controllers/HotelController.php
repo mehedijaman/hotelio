@@ -64,7 +64,8 @@ class HotelController extends Controller
      */
     public function show($id)
     {
-        //
+        $Hotels = Hotel::find($id);
+        return view('hotel.show',compact('Hotels'));
     }
 
     /**
@@ -104,5 +105,49 @@ class HotelController extends Controller
     {
         Hotel::find($id)->delete();
         return $this->index();
+    }
+
+
+    //destroyAll 
+    public function destroyAll()
+    {
+        Hotel::withTrashed()->delete();
+        return back();
+    }
+    
+    //trash 
+    public function trash()
+    {
+        $HotelTrashed = Hotel::onlyTrashed()->get();
+       return view('hotel.trash', compact('HotelTrashed'));
+
+    }
+
+    //forceDelete
+    public function forceDelete($id)
+    {
+        Hotel::withTrashed()->where('id',$id)->forceDelete();
+        return back();
+    }
+
+    //restore
+    public function restore($id)
+    {
+        Hotel::withTrashed()->where('id',$id)->restore();
+        return back();
+    }
+
+    //restoreAll
+    public function restoreAll()
+    {
+        Hotel::withTrashed()->restore();
+        return $this->index();
+    }
+
+    //emptyTrash
+    public function emptyTrash()
+    {
+        Hotel::onlyTrashed()->forceDelete();
+        return back();
     }
 }

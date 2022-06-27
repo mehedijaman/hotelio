@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
 use App\Models\Invoice;
 use App\Models\Guest;
@@ -68,10 +69,7 @@ class InvoiceController extends Controller
      */
     public function edit($id)
     {
-        $Guests = Guest::all();
-        $Taxs   = TaxSetting::all();
-        $invoice= Invoice::find($id);
-        return view('invoice.edit',compact('Guests','Taxs', 'invoice'));
+        
     }
 
     /**
@@ -83,8 +81,7 @@ class InvoiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Invoice::find($id)->update($request->all());
-        return $this->index();
+        
     }
 
     /**
@@ -95,6 +92,7 @@ class InvoiceController extends Controller
      */
     public function destroy($id)
     {
-        
+       
     }
+
 }

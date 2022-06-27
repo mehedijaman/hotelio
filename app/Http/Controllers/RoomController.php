@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
 use App\Models\Room;
 use App\Models\Hotel;
@@ -16,7 +17,8 @@ class RoomController extends Controller
      */
     public function index()
     {
-        $Rooms = Room::select('rooms.*','hotels.Name as HotelName')->leftJoin('hotels','rooms.HotelID','=','hotels.id')
+        $Rooms = Room::select('rooms.*','hotels.Name as HotelName')
+        ->leftJoin('hotels','rooms.HotelID','=','hotels.id')
         ->get();
         return view('room.index',compact('Rooms'));
     }
@@ -40,8 +42,6 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        // return Room::all();
-        // $AdditionalFeatures = {'Mozaik' : $request->Mozaik,}
         try{
             Room::create($request->all());
             return back();
@@ -59,7 +59,8 @@ class RoomController extends Controller
      */
     public function show($id)
     {
-        //
+        $Room = Room::find($id);
+        return view('room.show',compact('Room'));
     }
 
     /**
@@ -71,8 +72,8 @@ class RoomController extends Controller
     public function edit($id)
     {
         $Hotels= Hotel::all();
-        $Rooms = Room::find($id);
-        return view('room.edit' , compact('Rooms','Hotels'));
+        $Room = Room::find($id);
+        return view('room.edit' , compact('Room','Hotels'));
     }
 
     /**
@@ -97,6 +98,38 @@ class RoomController extends Controller
     public function destroy($id)
     {
         Room::find($id)->delete();
-        return $this->index();
+        return back();
+    }
+
+    public function destroyAll()
+    {
+        Room::withTrashed()->delete();
+        return back();
+    }
+    public function trash()
+    {
+        $Rooms = Room::onlyTrashed()->get();
+        return view('room.trash',compact('Rooms'));
+    }
+    public function restore($id)
+    {
+        Room::withTrashed()->where('id',$id)->restore();
+        return back();
+    }
+    public function restoreAll()
+    {
+        Room::withTrashed()->restore();
+        return back();
+    }
+    public function forceDeleted($id)
+    {
+        Room::withTrashed()->where('id',$id)->forceDelete();
+        return back();
+    }
+    public function emptyTrash()
+    {
+
+        Room::onlyTrashed()->forceDelete();
+        return back();
     }
 }
