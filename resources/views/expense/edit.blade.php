@@ -1,23 +1,23 @@
 @extends('layouts.app')
 @section('content')
-
-    <div class="container">
-         <section class="button__list__show mb-md-4">
-            <a href="{{ asset('expense') }}" class="btn btn-md btn-info py-3 text-capitalize">List Expense Item</a>
-        </section>
+    <div class="container py-5">
         <div class="row">
             <div class="col-md-7 m-auto">
-                <div class="card card-info">
-                    <div class="card-header">
-                        <h3 class="card-title">Add New Expense Item</h3>
-                    </div>
-                    {{ Form::open(array('url' => "/expense/".$Expenses->id,'method' => 'PATCH','class'=>'form-horizontal', 'files' => true)) }}
+                <div class="card card-primary">
+
+                        <div class="card-header">
+                            <h3 class="card-title text-light">
+                                <a href="{{ asset('expense') }}" class="mr-3"><i class="fa-solid fa-circle-arrow-left fs-5 text-navy" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Back to List"></i></a>
+                                Update To Income Item
+                            </h3>
+                        </div>
+                        {{ Form::open(array('url' => "/expense/".$Expenses->id,'method' => 'PATCH','class'=>'form-horizontal', 'files' => true)) }}
                         <div class="card-body">
                             <div class="form-group row">
-                                <label for="Type" class="form-label col-md-8">Expense Category</label>
-                                <div class="value">
+                                <label for="Type" class="form-label col-md-3">Expense Category</label>
+                                <div class="col-md-8">
                                     <div class="input-group">
-                                        <select name="CategoryID" id="" class="col-md-8">
+                                        <select name="CategoryID" id="" class="form-select">
                                             <option value="">Select Category</option>
                                             @foreach($ExpenseCategoris as $Expense)
                                             <option value="{{ $Expense->id }}"> {{ $Expense->Name }} </option>
@@ -44,13 +44,14 @@
                                     <input type="date" name="Date" class="form-control" value="{{$Expenses->Date}}"> 
                                 </div>
                             </div>
-                        <div class="card-footer">
-                            <input type="submit" name="submit" id="" class="btn btn-danger float-right w-25" value="Reset">
-                            <input type="submit" name="submit" id="" class="btn btn-info float-right w-25 mx-md-3 px-md-2" value="Update">
+                            <div class="card-footer">
+                                <input type="submit" name="submit" id="" class="btn bg-success float-right w-25 text-capitalize" value="Update">
+                            </div>
                         </div>
-                    {{ Form::close()}} 
+                    {{ Form::close()}}
                 </div>
             </div>
         </div>
     </div>
+    
 @endsection
