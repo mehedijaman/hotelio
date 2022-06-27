@@ -56,6 +56,13 @@ Route::resource('bank',BankController::class);
 
 Route::resource('bankLedger',BankLedgerController::class);
 Route::resource('balance',BalanceController::class);
+
+Route::get('/room/delete',[RoomController::class,'destroyAll']);
+Route::get('/room/trash',[RoomController::class,'trash']);
+Route::get('/room/{id}/restore',[RoomController::class,'restore']);
+Route::get('/room/restoreAll',[RoomController::class,'restoreAll']);
+Route::get('/room/{id}/parmanently/delete',[RoomController::class,'forceDeleted']);
+Route::get('/Room/emptyTrash',[RoomController::class, 'emptyTrash']);
 Route::resource('room',RoomController::class);
 
 Route::get('roomTransfer/trash',[RoomTransferController::class, 'trash']);

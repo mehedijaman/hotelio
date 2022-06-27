@@ -16,8 +16,8 @@ class GuestController extends Controller
      */
     public function index()
     {
-        $Guests = Guest::all();
-        return view('guest.index' , compact('Guests'));
+      
+        return view('guest.index');
     }
 
     /**
@@ -27,7 +27,8 @@ class GuestController extends Controller
      */
     public function create()
     {
-        return view('guest.create');
+        $Guest = Guest::all();
+        return view('guest.create',compact('Guest'));
     }
 
     /**
