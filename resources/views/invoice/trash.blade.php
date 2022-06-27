@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 @extends('layouts.app')
 @section('content')
     <div class="container">
@@ -55,3 +57,4 @@
         </div>
     </div>
 @endsection
+>>>>>>> 1455991d4c7e43b0525a2057b63a42923ea0a442
