@@ -26,6 +26,7 @@
                                 <tr>
                                     <td>FromRoom</td>
                                     <td>{{ $RoomTransfer->FromRoomID}}</td>
+                                    
                                 </tr>
                                 <tr>
                                     <td>ToRoom</td>

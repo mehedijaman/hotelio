@@ -59,7 +59,8 @@ class ExpenseController extends Controller
      */
     public function show($id)
     {
-        //
+        $Expense = Expense::find($id);
+        return view('expense.show',compact('Expense'));
     }
 
     /**
@@ -97,6 +98,48 @@ class ExpenseController extends Controller
     public function destroy($id)
     {
         Expense::find($id)->delete();
+        return $this->index();
+    }
+
+    //destroyAll
+    public function destroyAll()
+    {
+        Expense::withTrashed()->delete();
+        return $this->index();
+    }
+
+    //trash
+    public function trash()
+    {
+        $ExpenseTrashed = Expense::onlyTrashed()->get();
+        return view('expense.trash',compact('ExpenseTrashed'));
+    }
+
+    //restore
+    public function forceDelete($id)
+    {
+        Expense::withTrashed()->where('id',$id)->forceDelete();
+        return back();
+    }
+
+    //restore
+    public function restore($id)
+    {
+        Expense::withTrashed()->where('id',$id)->restore();
+        return back();
+    }
+
+    //restoreAll
+    public function restoreAll()
+    {
+        Expense::withTrashed()->restore();
+        return $this->index();
+    }
+
+    //emptyTrash
+    public function emptyTrash()
+    {
+        Expense::onlyTrashed()->forceDelete();
         return $this->index();
     }
 }

@@ -69,10 +69,7 @@ class InvoiceController extends Controller
      */
     public function edit($id)
     {
-        $Guests = Guest::all();
-        $Taxs   = TaxSetting::all();
-        $invoice= Invoice::find($id);
-        return view('invoice.edit',compact('Guests','Taxs', 'invoice'));
+        
     }
 
     /**
@@ -84,8 +81,7 @@ class InvoiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Invoice::find($id)->update($request->all());
-        return $this->index();
+        
     }
 
     /**
@@ -96,38 +92,7 @@ class InvoiceController extends Controller
      */
     public function destroy($id)
     {
-        Invoice::find($id)->delete();
-        return back();
+       
     }
 
-    public function destroyAll()
-    {
-        Invoice::withTrashed()->delete();
-        return back();
-    }
-    public function trash()
-    {
-        $invoices = Invoice::onlyTrashed()->get();
-        return view('invoice.trash',compact('invoices'));
-    }
-    public function restore($id)
-    {
-        Invoice::withTrashed()->where('id',$id)->restore();
-        return back();
-    }
-    public function restoreAll()
-    {
-        Invoice::withTrashed()->restore();
-        return back();
-    }
-    public function forceDeleted($id)
-    {
-        Invoice::withTrashed()->where('id',$id)->forceDelete();
-        return back();
-    }
-    public function emptyTrash()
-    {
-        Invoice::onlyTrashed()->forceDelete();
-        return back();
-    }
 }
