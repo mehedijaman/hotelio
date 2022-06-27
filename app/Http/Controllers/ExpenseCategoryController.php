@@ -54,7 +54,8 @@ class ExpenseCategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        $Category = ExpenseCategory::find($id);
+        return view('expenseCategory.show',compact('Category'));
     }
 
     /**
@@ -90,6 +91,49 @@ class ExpenseCategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        ExpenseCategory::find($id)->delete();
+        return $this->index();
+    }
+
+    //destroyAll
+    public function destroyAll()
+    {
+        ExpenseCategory::withTrashed()->delete();
+        return $this->index();
+    }
+
+    //trash
+    public function trash()
+    {
+        $CategoryTrashed = ExpenseCategory::onlyTrashed()->get();
+        return view('expenseCategory.trash', compact('CategoryTrashed'));
+    }
+
+    //parmanentlyDelete
+    public function forceDelete($id)
+    {
+        ExpenseCategory::withTrashed()->where('id',$id)->forceDelete();
+        return back();
+    }
+
+    //restore
+    public function restore($id)
+    {
+        ExpenseCategory::withTrashed()->where('id',$id)->restore();
+        return back();
+    }
+
+    //restoreAll
+    public function restoreAll()
+    {
+        ExpenseCategory::withTrashed()->restore();
+        return $this->index();
+    }
+
+    //emptyTrash
+    public function emptyTrash()
+    {
+        ExpenseCategory::onlyTrashed()->forceDelete();
+        return $this->index();
     }
 }

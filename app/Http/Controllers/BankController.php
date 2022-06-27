@@ -92,6 +92,45 @@ class BankController extends Controller
     public function destroy($id)
     {
         Bank::find($id)->delete();
-        return $this->index();
+        return $this->index(); 
     }
+
+// trsh function 
+
+    public function destroyAll()
+    {
+        Bank::withTrashed()->delete();
+        return back();
+    }
+
+    public function trash()
+    {
+        $BankTrashed =  Bank::onlyTrashed()->get();
+        return view('bank.trash',compact('BankTrashed'));
+
+    }
+
+    public function forceDelete($id){
+        Bank::withTrashed()->where('id',$id)->forceDelete();
+        return back();
+    }
+
+    public function restore($id){
+        Bank::withTrashed()->where('id',$id)->restore();
+        return back();
+    }
+
+    public function restoreAll()
+    {
+        Bank::withTrashed()->restore();
+        return back();
+
+    }
+
+    public function emptyTrash()
+    {
+        Bank::onlyTrashed()->forceDelete();
+        return back();
+    }
+
 }

@@ -37,8 +37,8 @@
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
-                            </thead>
 
+                              </thead>
                             <tbody>
                                 @foreach ($Rooms as $Room)
                                     <tr class="">
@@ -69,6 +69,7 @@
                                                 </button>
                                             {{ Form::close() }} 
                                         </td>
+
                                     </tr>
                                 @endforeach
                             </tbody>

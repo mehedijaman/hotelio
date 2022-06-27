@@ -1,29 +1,26 @@
 @extends('layouts.app')
 @section('content')
-
-    <div class="container col-md-8">
-         <section class="button__list__show mb-md-4">
-            <a href="{{ asset('employee') }}" class="btn btn-md btn-info py-3 text-capitalize">Employee List</a>
-        </section>
+    <div class="container py-5">
         <div class="row">
             <div class="col-md-7 m-auto">
-                <div class="card card-info">
+                <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Add Employee Informetion </h3>
+                        <h3 class="card-title text-light ">
+                            <a href="{{ asset('employee') }}" class="mr-3"><i class="fa-solid fa-circle-arrow-left fs-5 text-orange" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Back to List"></i></a>
+                            Update Employee
+                        </h3>
                     </div>
                     {{ Form::open(array('url' => '/employee/'.$Employees->id ,'method' => 'PATCH','class'=>'form-horizontal', 'files' => true)) }}
                         <div class="card-body">
                             <div class="form-group row">
-                                <label for="Type" class="form-label col-md-3">Hotel</label>
-                                <div class="value">
-                                    <div class="input-group">
-                                        <select name="HotelID" id="" class="col-md-8">
-                                            <option value="">Select Hotel</option>
-                                            @foreach($Hotels as $Hotel)
-                                            <option value="{{ $Hotel->id }}"> {{ $Hotel->Name }} </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+                                <label for="HotelID" class="form-label col-md-3">Hotel</label>
+                                <div class="col-md-8">
+                                    <select name="HotelID" id="" class="form-select">
+                                        <option value="">Select Hotel</option>
+                                        @foreach($Hotels as $Hotel)
+                                        <option value="{{ $Hotel->id }}"> {{ $Hotel->Name }} </option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -94,12 +91,12 @@
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <input type="submit" name="submit" id="" class="btn btn-danger float-right w-25" value="Reset">
-                                <input type="submit" name="submit" id="" class="btn btn-info float-right w-25 mx-md-3 px-md-2">
+                                <input type="submit" name="submit" id="" class="btn bg-success float-right w-25 text-capitalize" value="Update">
                             </div>
+                        </div>
                     {{ Form::close()}} 
                 </div>
             </div>
-        </div>
+        </div> 
     </div>
 @endsection

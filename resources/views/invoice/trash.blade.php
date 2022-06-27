@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 @extends('layouts.app')
 @section('content')
     <div class="container">
@@ -39,7 +41,6 @@
                                         <td>{{ $invoice->TaxTotal }}</td>
                                         <td>{{ $invoice->Total }}</td>
                                         <td>
-
                                             {{-- Restore --}}
                                             <a href="/invoice/{{ $invoice->id }}/restore" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Restore"><i class="fa-solid fa-trash-arrow-up ml-2 text-success"></i></a>
                                             
@@ -56,3 +57,4 @@
         </div>
     </div>
 @endsection
+>>>>>>> 1455991d4c7e43b0525a2057b63a42923ea0a442

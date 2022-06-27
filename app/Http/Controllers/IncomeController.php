@@ -58,7 +58,8 @@ class IncomeController extends Controller
      */
     public function show($id)
     {
-        
+        $Income = Income::find($id);
+        return view('income.show',compact('Income'));
     }
 
     /**
@@ -96,6 +97,48 @@ class IncomeController extends Controller
     public function destroy($id)
     {
         Income::find($id)->delete();
+        return $this->index();
+    }
+
+    //destroyAll
+    public function destroyAll()
+    {
+        Income::withTrashed()->delete();
+        return back();
+    }
+
+    //trash
+    public function trash()
+    {
+        $IncomeTrashed = Income::onlyTrashed()->get();
+        return view('income.trash',compact('IncomeTrashed'));
+    }
+
+    //forceDelete
+    public function forceDelete($id)
+    {
+        Income::withTrashed()->where('id',$id)->forceDelete();
+        return back();
+    }
+
+    //restore
+    public function restore($id)
+    {
+        Income::withTrashed()->where('id',$id)->restore();
+        return back();
+    }
+
+    //restoreAll
+    public function restoreAll()
+    {
+        Income::withTrashed()->restore();
+        return $this->index();
+    }
+
+    //emptyTrash
+    public function emptyTrash()
+    {
+        Income::onlyTrashed()->forceDelete();
         return $this->index();
     }
 }
