@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\AccountLedger;
 use Illuminate\Http\Request;
-use App\Models\AccoutLedger;
 use Exception;
 
 class AccountLedgerController extends Controller
@@ -94,6 +93,37 @@ class AccountLedgerController extends Controller
     {
         AccountLedger::find($id)->delete();
 
+        return back();
+    }
+
+    public function deleteAll()
+    {
+        AccountLedger::withTrashed()->delete();
+        return back();
+    }
+    public function trash()
+    {
+        $TrashAccounts = AccountLedger::onlyTrashed()->get();
+        return view('accountLedger.trash', compact('TrashAccounts'));
+    }
+    public function forceDelete($id)
+    {
+        AccountLedger::withTrashed()->where('id', $id)->forceDelete();
+        return back();
+    }
+    public function restore($id)
+    {
+        AccountLedger::withTrashed()->where('id', $id)->restore();
+        return back();
+    }
+    public function restoreAll()
+    {
+        AccountLedger::withTrashed()->restore();
+        return back();
+    }
+    public function emtyTrash()
+    {
+        AccountLedger::withTrashed()->forceDelete();
         return back();
     }
 }

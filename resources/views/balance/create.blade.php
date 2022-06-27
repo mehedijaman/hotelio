@@ -13,7 +13,7 @@
                 {{ Form::Open(array('url' => '/balance','method' => 'POST','class' => 'form-horizontal', 'files' => true)) }}
                 <div class="card-body">
                     <div class="form-group row">
-                        <label for="RoomID" class="form-label col-md-3">RoomID:</label>
+                        <label for="RoomID" class="form-label col-md-3">Acount ID:</label>
                         <div class="col-md-8">
                             <select type="number" name="AcountID" id="" class="form-select">
                                 <option>Open this select menu</option>
@@ -49,11 +49,11 @@
                         <div class="Status">
                             <div class="p-t-15">
                                 <label class="radio-container m-r-55">Yes
-                                    <input type="radio" name="exist">
+                                    <input type="radio" name="Status" value="1">
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="radio-container">No
-                                    <input type="radio" name="exist">
+                                    <input type="radio" name="Status" value="0">
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
@@ -69,7 +69,6 @@
                     </div>
                     <input type="submit" name="submit" id="" class="btn bg-navy float-right w-25 text-capitalize">
                 </div>
-
             </div>
             <!-- <div class="card-footer"> -->
             {{-- <input type="submit" name="submit" id="" class="btn btn-danger float-right w-25 ml-2" value="Reset"> --}}

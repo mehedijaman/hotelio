@@ -2,7 +2,7 @@
 @section('content')
 <div class="container py-5">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-10 offset-md-1">
             <div class="card">
                 <div class="card-header bg-defult">
                     <div class="card-title">
@@ -39,7 +39,9 @@
                                 <td>{{$Balance->Date}}</td>
                                 <td>{{$Balance->OpeningBalance}}</td>
                                 <td>{{$Balance->ClosingBalance}}</td>
-                                <td>{{$Balance->Status}}</td>
+                                <td>@if($Balance->Status)<b class="text-success">Active</b>
+                                    @else <b class="text-danger">Deactive</b> @endif
+                                </td>
                                 <td class="d-flex">
                                     <a href="/balance/{{$Balance->id}}" class="mr-3 text-purple" data-bs-toggle="tooltip" data-bs-placement="bottom" title="View">
                                         <svg data-v-9a6e255c="" xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="invoice-row-5036-preview-icon" class="mx-1 feather feather-eye">

@@ -21,7 +21,7 @@
                     <div class="form-group row">
                         <label for="Date" class="col-sm-3 col-form-label">Date</label>
                         <div class="col-sm-9">
-                            <input type="date" class="form-control" id="Date" name="Date" placeholder="Date" value="{{$Balances->Date}}">
+                            <input type="text" class="form-control" id="Date" name="Date" placeholder="Date" value="{{ date('m-d-Y',strtotime($Balances->Date))}}">
                         </div>
                     </div>
                     <div class="form-group row">

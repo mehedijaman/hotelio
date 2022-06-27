@@ -109,7 +109,6 @@ class BalanceController extends Controller
     }
     public function forceDelete($id)
     {
-        // Balance::find($id)->forceDelete();
         Balance::withTrashed()->where('id', $id)->forceDelete();
         return back();
     }

@@ -2,7 +2,7 @@
 @section('content')
 <div class="custom__container">
     <section class="button__list__show">
-        <a href="{{ asset('balance') }}" class="custom__btn__puple">List Balance</a>
+        <a href="{{ asset('acount/ledger') }}" class="custom__btn__puple">List Balance</a>
     </section>
     <section class="form__custom">
         <div class="row">
