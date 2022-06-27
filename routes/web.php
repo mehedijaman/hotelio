@@ -83,12 +83,6 @@ Route::resource('expenseCategory',ExpenseCategoryController::class);
 Route::resource('expense',ExpenseController::class);
 Route::resource('user',RegisteredUserController::class);
 
-Route::get('/invoice/trash',[InvoiceController::class, 'trash']);
-Route::get('/invoice/delete',[InvoiceController::class, 'destroyAll']);
-Route::get('/invoice/{id}/restore',[InvoiceController::class, 'restore']);
-Route::get('/invoice/restoreAll',[InvoiceController::class, 'restoreAll']);
-Route::get('/invoice/{id}/parmanently/delete',[InvoiceController::class, 'forceDeleted']);
-Route::get('/invoice/emptyTrash',[InvoiceController::class, 'emptyTrash']);
 Route::resource('invoice', InvoiceController::class);
 
 Route::resource('invoiceItem', InvoiceItemController::class);
