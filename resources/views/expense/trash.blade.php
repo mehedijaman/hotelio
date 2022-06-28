@@ -36,7 +36,7 @@
                                             <a class="" href="/expense/{{ $Expense->id }}/restore" data-bs-toggle="restore" data-bs-placement="bottom" title="restore">
                                                 <i class="fa-solid fa-trash-arrow-up ml-2 text-success"></i></i>
                                             </a>
-                                            <a class="" href="/expense/{{ $Expense->id }}//parmanently/delete" data-bs-toggle="ParmanentDelete" data-bs-placement="bottom" title="Parmanent Delete">
+                                            <a class="" href="/expense/{{ $Expense->id }}/parmanently/delete" data-bs-toggle="ParmanentDelete" data-bs-placement="bottom" title="Parmanent Delete">
                                                 <i class="fa-solid fa-trash-can ml-2 text-dange"></i>
                                             </a>
                                         </td>

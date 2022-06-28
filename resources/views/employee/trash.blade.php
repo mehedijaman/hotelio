@@ -20,7 +20,7 @@
                         <table class="table table-hover text-nowrap">
                             <thead>
                                 <tr>
-                                    <th>id</th>
+                                    {{-- <th>id</th> --}}
                                     <th>Hote Name</th>
                                     <th>Name</th>
                                     <th>Designation</th>
@@ -35,7 +35,7 @@
                             <tbody>
                               @foreach ( $EmployeesTrashed as $Employee )
                                     <tr class="">
-                                          <td>{{ $Employee->id }}</td>
+                                          {{-- <td>{{ $Employee->id }}</td> --}}
                                           <td>{{ $Employee->Hotel }}</td>
                                           <td>{{ $Employee->Name }}</td>
                                           <td>{{ $Employee->Designation }}</td>
@@ -48,7 +48,7 @@
                                                 <a class="" href="/employee/{{ $Employee->id }}/restore" data-bs-toggle="restore" data-bs-placement="bottom" title="Edit">
                                                     <i class="fa-solid fa-trash-arrow-up ml-2 text-success"></i></i>
                                                 </a>
-                                                <a class="" href="/employee/{{ $Employee->id }}//parmanently/delete" data-bs-toggle="tooltip" data-bs-placement="bottom" title="/Parmanent Delete">
+                                                <a class="" href="/employee/{{ $Employee->id }}/parmanently/delete" data-bs-toggle="tooltip" data-bs-placement="bottom" title="/Parmanent Delete">
                                                     <i class="fa-solid fa-trash-can ml-2 text-dange"></i>
                                                 </a>
                                             </td>

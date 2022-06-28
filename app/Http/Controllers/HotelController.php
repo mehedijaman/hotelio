@@ -124,7 +124,7 @@ class HotelController extends Controller
     }
 
     //forceDelete
-    public function forceDelete($id)
+    public function forceDeleted($id)
     {
         Hotel::withTrashed()->where('id',$id)->forceDelete();
         return back();

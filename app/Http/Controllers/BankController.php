@@ -110,7 +110,7 @@ class BankController extends Controller
 
     }
 
-    public function forceDelete($id){
+    public function forceDeleted($id){
         Bank::withTrashed()->where('id',$id)->forceDelete();
         return back();
     }

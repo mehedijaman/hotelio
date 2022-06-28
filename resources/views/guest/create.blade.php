@@ -69,33 +69,34 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label class="form-label col-md-3">Guardian :</label>
-                                <div class="p-t-15">
-                                    <label class="radio-container m-r-55">Father
-                                        <input type="radio" name="Father">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="radio-container">Mother
-                                        <input type="radio" name="Mother">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
-                            </div>
                             <div class="form-group row col-md-12">
+                                <div class="form-group row col-md-6">
+                                    <label class="form-label col-md-5">Guardian :</label>
+                                    <div class="p-t-15">
+                                        <label class="radio-container m-r-55">Father
+                                            <input type="radio" name="Father" class="form-control">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="radio-container">Mother
+                                            <input type="radio" name="Mother" class="form-control">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                </div>
                                 <div class="form-group row  col-md-6">
                                     <label for="Spouse" class="form-label col-md-3">Spouse :</label>
                                     <div class="col-md-8 mx-md-2">
                                         <input type="text" name="Spouse" class="form-control"> 
                                     </div>
                                 </div>
-                                <div class="form-group row col-md-6">
-                                    <label for="Photo" class="form-label col-md-3">Photo :</label>
-                                    <div class="col-md-8 mx-md-2">
-                                        <input type="file" name="Photo" class="form-control"> 
-                                    </div>
+                            </div>
+                            <div class="form-group row col-md-10">
+                                <label for="Photo" class="form-label col-md-2">Photo :</label>
+                                <div class="col-md-9  mx-md-2 ">
+                                    <input type="file" name="Photo" class="form-control"> 
                                 </div>
                             </div>
+                        
                             <div class="card-footer">
                                 <input type="submit" name="submit" id="" class="btn btn-danger float-right w-25 ml-2" value="Reset">
                                 <input type="submit" name="submit" id="" class="btn bg-navy float-right w-25 text-capitalize">

@@ -23,10 +23,10 @@
                               </thead>
                               <tbody>
                                     <tr class="">
-                                          {{-- <tr>
+                                          <tr>
                                                 <th>Id</th>
                                                 <td>{{ $Hotels->id }}</td>
-                                          </tr> --}}
+                                          </tr>
                                           <tr>
                                                 <th>Name</th>
                                                 <td>{{ $Hotels->Name }}</td>
@@ -54,21 +54,20 @@
                                           <tr>
                                                 <th>Logo</th>
                                                 <td>{{ $Hotels->Logo }}</td>
-                                                <td>
-                                                      <a class="" href="/hotel/{{ $Hotels->id }}/edit" data-bs-toggle="Edit" data-bs-placement="bottom" title="Edit">
-                                                            <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i></i>
-                                                      </a> 
-                                                </td>
                                           </tr> 
                                           <tr>
                                                 <th>Photo</th>
                                                 <td>{{ $Hotels->Photo }}</td>
+                                          </tr> 
+                                          <tr>
+                                                <th>Action</th>
+                                                <td></td>
                                                 <td>
                                                       <a class="" href="/hotel/{{ $Hotels->id }}/edit" data-bs-toggle="Edit" data-bs-placement="bottom" title="Edit">
                                                             <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i></i>
                                                       </a> 
                                                 </td>
-                                          </tr>                         
+                                          </tr>                        
                                     </tr>
                                     <tr>
                                           <th class="bg-danger"></th>

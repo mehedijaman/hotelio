@@ -27,9 +27,6 @@
                                     <th>Phone</th>
                                     <th>NID NO</th>
                                     <th>Passport NO</th>
-                                    <th>Father</th>
-                                    <th>Mother</th>
-                                    <th>Spouse</th>
                                     <th>Photo</th>
                                     <th>Action</th>
                                 </tr>
@@ -44,9 +41,6 @@
                                         <td>{{ $Guest->Phone }}</td>
                                         <td>{{ $Guest->NIDNo }}</td>
                                         <td>{{ $Guest->PassportNo }}</td>
-                                        <td>{{ $Guest->Father }}</td>
-                                        <td>{{ $Guest->Mother }}</td>
-                                        <td>{{ $Guest->Spouse }}</td>
                                         <td>{{ $Guest->Photo }}</td>
                                         <td>
                                           {{-- Restore --}}

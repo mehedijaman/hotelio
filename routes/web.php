@@ -102,13 +102,6 @@ Route::get('/Booking/{id}/parmanently/delete', [BookingController::class, 'force
 Route::get('/booking/emptyTrash', [BookingController::class, 'emptyTrash']);
 Route::resource('booking', BookingController::class);
 
-Route::resource('guest', GuestController::class);
-Route::resource('employee', EmployeeController::class);
-Route::resource('hotel', HotelController::class);
-Route::resource('incomeCategory', IncomeCategoryController::class);
-Route::resource('income', IncomeController::class);
-Route::resource('expenseCategory', ExpenseCategoryController::class);
-Route::resource('expense', ExpenseController::class);
 Route::resource('user', RegisteredUserController::class);
 
 Route::get('/invoice/trash', [InvoiceController::class, 'trash']);

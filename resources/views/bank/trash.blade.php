@@ -12,7 +12,7 @@
                             </h2>
                         </div>
                         <a class="btn btn-sm bg-maroon float-right text-capitalize mr-3" href="/bank/emptyTrash"><i class="fa-solid fa-trash-can mr-2"></i>Empty Trash</a>
-                        <a class="btn btn-sm bg-maroon float-right text-capitalize mr-3" href="/bank/restoreAll"><i class="fa-solid fa-trash-can mr-2"></i>Restor All</a>
+                        <a class="btn btn-sm bg-maroon float-right text-capitalize mr-3 bg-success" href="/bank/restoreAll"><i class="fa-solid fa-trash-can mr-2"></i>Restor All</a>
                     </div>
                     <div class="card-body table-responsive p-0">
                         <table class="table table-hover text-nowrap">
@@ -41,7 +41,7 @@
                                             <a class="" href="/bank/{{ $Bank->id }}/restore" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Restore">
                                                 <i class="fa-solid fa-trash-arrow-up ml-2 text-success"></i>
                                             </a>
-                                            <a class="" href="/bank/{{ $Bank->id }}//parmanently/delete" data-bs-toggle="tooltip" data-bs-placement="bottom" title="/Parmanent Delete">
+                                            <a class="" href="/bank/{{ $Bank->id }}/parmanently/delete" data-bs-toggle="tooltip" data-bs-placement="bottom" title="/Parmanent Delete">
                                                 <i class="fa-solid fa-trash-can ml-2 text-dange"></i>
                                             </a>
                                     </tr>

@@ -20,7 +20,7 @@
                             <div class="form-group row">
                                 <label for="RoomID" class="form-label col-md-3">Room:</label>
                                 <div class="col-md-8">
-                                    <select type="number" name="RoomID" id=""  class="form-select">
+                                    <select type="number" name="RoomID" id=""  class="form-select" value="">
                                         <option>Open this select menu</option>
                                         @foreach ($Rooms as $Room)
                                             <option value="{{ $Room->id }}">

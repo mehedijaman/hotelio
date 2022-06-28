@@ -26,10 +26,10 @@
                             </thead>
                             <tbody>
                                     <tr class="">
-                                          <td>{{ $Employees->id }}</td>
-                                          <td>{{ $Employees->DateOfBirth }}</td>
-                                          <td>{{ $Employees->NIDNo }}</td>
-                                          <td>{{ $Employees->NID }}</td>
+                                          <td>{{ $Employee->id }}</td>
+                                          <td>{{ $Employee->DateOfBirth }}</td>
+                                          <td>{{ $Employee->NIDNo }}</td>
+                                          <td>{{ $Employee->NID }}</td>
                                     </tr>
                             </tbody>
                            

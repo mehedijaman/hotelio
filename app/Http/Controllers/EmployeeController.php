@@ -60,8 +60,8 @@ class EmployeeController extends Controller
      */
     public function show($id)
     {
-        $Employees = Employee::find($id);
-        return view('employee.show' , compact('Employees'));
+        $Employee = Employee::find($id);
+        return view('employee.show' , compact('Employee'));
     }
 
     /**
@@ -71,7 +71,8 @@ class EmployeeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
+    {   
+        // return Employee::all();
         $Hotels = Hotel::all();
         $Employees = Employee::find($id);
         return view('employee.edit',compact('Hotels','Employees'));
@@ -117,7 +118,7 @@ class EmployeeController extends Controller
     }
 
     //forceDelete
-    public function forceDelete($id)
+    public function forceDeleted($id)
     {
         Employee::withTrashed()->where('id',$id)->forceDelete();
         return back();

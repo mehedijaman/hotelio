@@ -16,8 +16,8 @@ class GuestController extends Controller
      */
     public function index()
     {
-      
-        return view('guest.index');
+        $Guests = Guest::all();
+        return view('guest.index',compact('Guests'));
     }
 
     /**
@@ -27,8 +27,8 @@ class GuestController extends Controller
      */
     public function create()
     {
-        $Guest = Guest::all();
-        return view('guest.create',compact('Guest'));
+        
+        return view('guest.create');
     }
 
     /**
@@ -128,6 +128,7 @@ class GuestController extends Controller
     public function forceDelete($id)
     {
         Guest::withTrashed()->where('id',$id)->forceDelete();
+        return back();
     }
 
     public function emptyTrash()
