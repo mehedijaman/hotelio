@@ -46,8 +46,10 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request->all();
         try {
             Booking::create($request->all());
+            Room::find($request->RoomID)->update(['Status' => 1]);
             return back();
         } catch (Exception $error) {
             return $error->getMessage();
@@ -62,7 +64,14 @@ class BookingController extends Controller
      */
     public function show($id)
     {
-        $Booking = Booking::find($id);
+        $Booking = Booking::select('bookings.*','rooms.RoomNo','guests.Name')
+        ->where('bookings.id',$id)
+        ->leftJoin('rooms','bookings.RoomID','=','rooms.id')
+        ->leftJoin('guests','bookings.GuestID','=','guests.id')
+        ->first();
+
+        // find();
+
         return view('booking.show', compact('Booking'));
     }
 

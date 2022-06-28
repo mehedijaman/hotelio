@@ -18,7 +18,11 @@
                                     <select name="HotelID" id="" class="form-select">
                                         <option value="">Select Hotel</option>
                                         @foreach($Hotels as $Hotel)
-                                        <option value="{{ $Hotel->id }}"> {{ $Hotel->Name }} </option>
+                                            @if($Employees->HotelID == $Hotel->id)
+                                                <option value="{{ $Hotel->id }}" selected> {{ $Hotel->Name }} </option>
+                                            @else
+                                                <option value="{{ $Hotel->id }}"> {{ $Hotel->Name }} </option>
+                                            @endif
                                         @endforeach
                                     </select>
                                 </div>
