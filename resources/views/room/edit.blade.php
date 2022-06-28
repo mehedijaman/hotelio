@@ -72,13 +72,13 @@
                                         <label for="Geyser" class="form-label col-md-4">Geyser:</label>
                                         <div class="col-md-7">
                                             <div class="form-check form-check-inline ml-1">
-                                                <input type="radio" class="form-check-input" name="Geyser" value="1">
+                                                <input type="radio" class="form-check-input" name="Geyser" value="1" @if($Room->Geysar) checked @endif>
                                                 <label for="" class="form-check-label">
                                                     Yes
                                                 </label>
                                             </div>
                                             <div class="form-check form-check-inline ml-4">
-                                                <input type="radio" class="form-check-input" name="Geyser" value="0">
+                                                <input type="radio" class="form-check-input" name="Geyser" value="0" @if(!$Room->Geysar) checked @endif>
                                                 <label for="" class="form-check-label">
                                                     No
                                                 </label>

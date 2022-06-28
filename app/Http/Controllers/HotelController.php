@@ -48,7 +48,7 @@ class HotelController extends Controller
             //     $file-> move(public_path('public/HotelImage'), $filename);
             //     $data['image']= $filename;
             // }
-            return back();
+            return back()->with('Success','Hotel Added Successfully!');
         }
         catch(Exception $error){
             return $error->getMessage();
@@ -112,14 +112,18 @@ class HotelController extends Controller
     public function destroyAll()
     {
         Hotel::withTrashed()->delete();
-        return back();
+        return $this->index();
     }
     
-    //trash 
+    /**
+     * View Trash Page
+     * @return \Illumindate\Http\Response
+     * 
+     */
     public function trash()
     {
         $HotelTrashed = Hotel::onlyTrashed()->get();
-       return view('hotel.trash', compact('HotelTrashed'));
+        return view('hotel.trash', compact('HotelTrashed'));
 
     }
 
@@ -141,7 +145,7 @@ class HotelController extends Controller
     public function restoreAll()
     {
         Hotel::withTrashed()->restore();
-        return $this->index();
+        return back();
     }
 
     //emptyTrash

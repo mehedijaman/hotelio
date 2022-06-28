@@ -18,7 +18,6 @@
                                 <tr>
                                     <th>Column Name</th>
                                     <th>Data</th>
-                                    <th>Action</th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -68,18 +67,18 @@
                                                       </a> 
                                                 </td>
                                           </tr>                        
-                                    </tr>
-                                    <tr>
-                                          <th class="bg-danger"></th>
-                                          <th class="bg-danger"></th>
-                                          <th class="bg-danger"></th>
+                                          </tr>                         
                                     </tr>
                             </tbody>
                            
                         </table>
+
                     </div>
                     <div class="card-footer">
-                     
+                        <a href="/hotel/{{ $Hotels->id }}/edit" data-bs-toggle="Edit" data-bs-placement="bottom" title="Edit" class="btn btn-warning">
+                        <i class="fa-regular fa-pen-to-square mr-3"></i></i> Edit</a> 
+                        
+                        <a href="/hotel/{{ $Hotels->id }}/edit" data-bs-toggle="Edit" data-bs-placement="bottom" title="Edit" class="btn btn-danger"><i class="fa-regular fa-trash-can mr-3"></i></i> Delete</a> 
                     </div>
                 </div>
             </div>

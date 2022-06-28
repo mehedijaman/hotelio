@@ -48,25 +48,8 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
             </ul>
-            <ul class="navbar-nav ml-auto">
-                           
-                {{-- <li class="ml-5">
-                    <a href="">
-                    <div>
-                        <h6 class="m-0 p-0 text-navy">Mehadi jaman</h6>
-                    </div>
-                    <div>
-                        <p class="text-right text-navy">admin</p>
-                    </div>
-                    </a>
-                </li>
-                <li class="ml-3 mr-2">
-                    <span>
-                        <img src="{{ asset('img/nav_profile.jpeg') }}" alt="" width="60px" height="60px" class="rounded-circle">
-                        <span class="position-absolute top-0 start-100 translate-middle p-2 bg-success border border-light rounded-circle nav__profile__circle">
-                        </span>
-                    </span>
-                </li> --}}
+            <ul class="navbar-nav ml-auto">                           
+               
                 <li class="nav-item">
                     <a class="nav-link" data-widget="navbar-search" href="#" role="button">
                         <i class="fas fa-search"></i>
@@ -134,19 +117,18 @@
         </div>
 
         <!-- Main Footer -->
-        <footer class="main-footer custom__main__footer">
+       <!--  <footer class="main-footer custom__main__footer">
             <div class="float-right d-none d-sm-block">
                 <b>Hand-crafted & Made with  </b>
                 <i class="bi bi-heart text-danger fs-5"></i>
             </div>
             <strong>Copyright &copy; Creative Software Tim</strong> All rights
             Reserved.
-        </footer>
+        </footer> -->
     </div>
 
     {{-- bootsstrap --}}
-    {{-- <script src="{{ URL::asset('/js/bootstrap.esm.min.js') }}"></script> --}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script> -->
     <script src="{{ mix('js/app.js') }}" defer></script>
     {{-- custom js --}}
     <script src="{{ URL::asset('/js/custom.js') }}"></script>
@@ -157,7 +139,7 @@
     <!-- Main JS-->
     <script src="/js/global.js"></script>
     @yield('third_party_scripts')
-    {{-- @stack('page_scripts') --}}
+    @stack('page_scripts')
     @stack('scripts')
 </body>
 </html>

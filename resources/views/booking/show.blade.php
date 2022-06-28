@@ -21,11 +21,11 @@
                             <tbody>
                                 <tr>
                                     <td>Room</td>
-                                    <td>{{ $Booking->Room}}</td>
+                                    <td>{{ $Booking->RoomNo}}</td>
                                 </tr>
                                 <tr>
                                     <td>Guest</td>
-                                    <td>{{ $Booking->Guest}}</td>
+                                    <td>{{ $Booking->Name}}</td>
                                 </tr>
                                 <tr>
                                     <td>CheckInDate</td>
