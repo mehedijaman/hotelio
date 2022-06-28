@@ -13,9 +13,9 @@
     </a>
 </li>
 <li class="nav-item">
-    <a href="/accountLedger" class="nav-link {{ Request::is('accountLedger') ? 'active' : '' }}">
-       <span class="material-symbols-outlined nav-icon ">account_circle</span>
-       <p>AccountLedger</p>
+    <a href="/acount/ledger" class="nav-link {{ Request::is('acount/ledger') ? 'active' : '' }}">
+        <span class="material-symbols-outlined nav-icon ">account_circle</span>
+        <p>AccountLedger</p>
         {{-- <span class="">AccountLedger</span> --}}
     </a>
 </li>
@@ -28,7 +28,7 @@
 </li>
 <li class="nav-item">
     <a href="/bankLedger" class="nav-link {{ Request::is('bankLedger') ? 'active' : '' }}">
-       <i class="fa-solid fa-money-bill-trend-up nav-icon fas"></i>
+        <i class="fa-solid fa-money-bill-trend-up nav-icon fas"></i>
         <p>BankLedger</p>
     </a>
 </li>
@@ -89,38 +89,46 @@
         </li>
        
         <ul class="custom__toggle sub-btn">
-            <li><a href="/income" class="nav-link {{ Request::is('income') ? 'active' : '' }} class="">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg>
-                    Income
-                </a>
-            </li>
-            <li><a href="/incomeCategory" class="nav-link {{ Request::is('incomeCategory') ? 'active' : '' }}" class="">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg>
-                    Income Category
-                </a>
-            </li>
-        </ul>
-    </div>
+            <li><a href="/income" class="nav-link {{ Request::is('income') ? 'active' : '' }}">
+<svg xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle">
+    <circle cx="12" cy="12" r="10"></circle>
+</svg>
+Income
+</a>
+</li>
+<li><a href="/incomeCategory" class="nav-link {{ Request::is('incomeCategory') ? 'active' : '' }}" class="">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle">
+            <circle cx="12" cy="12" r="10"></circle>
+        </svg>
+        Income Category
+    </a>
+</li>
+</ul>
+</div>
 </div>
 
 <div class="sidebar-toggle d-flex flex-column position-relative">
     <div class="">
-        <li  class="menu-btn">
+        <li class="menu-btn">
             <i class="fa-solid fa-wallet nav-icon"></i>
-               Expense
+            Expense
             <i class="fa-solid fa-angle-right drop-down" id="custom__offset__tax__setting"></i>
         </li>
 
         <ul class="custom__toggle sub-btn">
             <li><a href="/expense" class="nav-link {{ Request::is('expense') ? 'active' : '' }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg>
-                     Expense
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle">
+                        <circle cx="12" cy="12" r="10"></circle>
+                    </svg>
+                    Expense
                 </a>
             </li>
             <li>
                 <a href="/expenseCategory" class="nav-link {{ Request::is('expenseCategory') ? 'active' : '' }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg>
-                     Expense Category
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle">
+                        <circle cx="12" cy="12" r="10"></circle>
+                    </svg>
+                    Expense Category
                 </a>
             </li>
         </ul>
@@ -128,33 +136,25 @@
 </div> --}}
 <li class="nav-item">
     <a href="/balance" class="nav-link {{ Request::is('balance') ? 'active' : '' }}">
-         <i class="fa-solid fa-file-invoice-dollar nav-icon fas"></i>
+        <i class="fa-solid fa-file-invoice-dollar nav-icon fas"></i>
         <p>Balance</p>
     </a>
 </li>
 <li class="nav-item">
     <a href="/invoice" class="nav-link {{ Request::is('invoice') ? 'active' : '' }}">
-         <i class="fa-solid fa-file-invoice-dollar nav-icon fas"></i>
+        <i class="fa-solid fa-file-invoice-dollar nav-icon fas"></i>
         <p>Invoice</p>
     </a>
 </li>
 <li class="nav-item">
     <a href="/invoiceItem" class="nav-link {{ Request::is('invoiceItem') ? 'active' : '' }}">
-         <i class="fa-solid fa-receipt nav-icon fas"></i>
+        <i class="fa-solid fa-receipt nav-icon fas"></i>
         <p>Invoice Item</p>
     </a>
 </li>
 <li class="nav-item">
     <a href="/taxSetting" class="nav-link {{ Request::is('taxSetting') ? 'active' : '' }}">
-         <i class="fa-brands fa-gg nav-icon fas"></i>
+        <i class="fa-brands fa-gg nav-icon fas"></i>
         <p>TaxSetting</p>
     </a>
 </li>
-
-
-
-
-
-
-
-

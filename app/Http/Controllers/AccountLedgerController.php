@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AccountLedger;
 use Illuminate\Http\Request;
-use App\Models\AccoutLedger;
+use Exception;
 
 class AccountLedgerController extends Controller
 {
@@ -14,7 +15,8 @@ class AccountLedgerController extends Controller
      */
     public function index()
     {
-        return view('accountLedger.index');
+        $AccountLedgers = AccountLedger::all();
+        return view('accountLedger.index', compact('AccountLedgers'));
     }
 
     /**
@@ -35,7 +37,12 @@ class AccountLedgerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            AccountLedger::create($request->all());
+            return back();
+        } catch (Exception $error) {
+            return $error->getMessage();
+        }
     }
 
     /**
@@ -46,7 +53,8 @@ class AccountLedgerController extends Controller
      */
     public function show($id)
     {
-        //
+        $AccountLedger = AccountLedger::find($id);
+        return view('accountLedger.show', compact('AccountLedger'));
     }
 
     /**
@@ -57,7 +65,9 @@ class AccountLedgerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $AccountLedgers = AccountLedger::find($id);
+
+        return view('accountLedger.edit', compact('AccountLedgers'));
     }
 
     /**
@@ -69,7 +79,8 @@ class AccountLedgerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        AccountLedger::find($id)->update($request->all());
+        return $this->index();
     }
 
     /**
@@ -80,6 +91,39 @@ class AccountLedgerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        AccountLedger::find($id)->delete();
+
+        return back();
+    }
+
+    public function deleteAll()
+    {
+        AccountLedger::withTrashed()->delete();
+        return back();
+    }
+    public function trash()
+    {
+        $TrashAccounts = AccountLedger::onlyTrashed()->get();
+        return view('accountLedger.trash', compact('TrashAccounts'));
+    }
+    public function forceDelete($id)
+    {
+        AccountLedger::withTrashed()->where('id', $id)->forceDelete();
+        return back();
+    }
+    public function restore($id)
+    {
+        AccountLedger::withTrashed()->where('id', $id)->restore();
+        return back();
+    }
+    public function restoreAll()
+    {
+        AccountLedger::withTrashed()->restore();
+        return back();
+    }
+    public function emtyTrash()
+    {
+        AccountLedger::withTrashed()->forceDelete();
+        return back();
     }
 }
