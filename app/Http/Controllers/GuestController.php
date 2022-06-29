@@ -17,7 +17,6 @@ class GuestController extends Controller
     public function index()
     {
         $Guests = Guest::all();
-
         return view('guest.index',compact('Guests'));
     }
 
@@ -43,7 +42,7 @@ class GuestController extends Controller
         
         try{
             Guest::create($request->all());
-            return back();
+            return back()->with('Success','Guest Add Succeessfull!');
         }
         catch(Exception $error){
             return $error->getMessage();
@@ -99,42 +98,43 @@ class GuestController extends Controller
         return $this->index();
     }
 
-    //destroyAll 
+ 
     public function destroyAll()
     {
         Guest::withTrashed()->delete();
         return $this->index();
     } 
 
-    //trash
+    
     public function trash()
     {
         $GuestTrashed = Guest::onlyTrashed()->get();
         return view('guest.trash',compact('GuestTrashed'));
     }    
 
-    //restore
+    
     public function restore($id)
     {
         Guest::withTrashed()->where('id',$id)->restore();
-        return back();
+        return back()->with('Restore','Restore Successfull !');
     }
 
     public function restoreAll()
     {
         Guest::withTrashed()->restore();
-        return $this->index();
+        return back()->with('RestoreAll','সমস্ত ডাটাকে পুনরুদ্ধার করা হয়েছে ');
     }
 
     public function forceDelete($id)
     {
         Guest::withTrashed()->where('id',$id)->forceDelete();
+        return back()->with('Parmanentlly','Parmanentlly Delete');
     }
 
     public function emptyTrash()
     {
         Guest::onlyTrashed()->forceDelete();
-        return $this->index();
+        return $this->index()->with('emptyTrash','ট্রাস সম্পূর্ণরূপে খালি করা হলো ');
     }
 
 }

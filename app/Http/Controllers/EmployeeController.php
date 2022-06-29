@@ -45,7 +45,7 @@ class EmployeeController extends Controller
         // return $request->all();
         try{
             Employee::create($request->all());
-            return back();
+            return back()->with('Success','Employee Add Successfull!');
         }
         catch(Exception $error){
             return $error->getMessage();
@@ -59,9 +59,12 @@ class EmployeeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        $Employees = Employee::find($id);
-        return view('employee.show' , compact('Employees'));
+    {   
+        $Employee = Employee::select('employees.*','hotels.Name')
+        ->where('employees.id',$id)
+        ->leftJoin('hotels','employees.HotelID','=','hotels.id')
+        ->first();
+        return view('employee.show' , compact('Employee'));
     }
 
     /**
@@ -71,7 +74,8 @@ class EmployeeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
+    {   
+        // return Employee::all();
         $Hotels = Hotel::all();
         $Employees = Employee::find($id);
         return view('employee.edit',compact('Hotels','Employees'));
@@ -102,45 +106,51 @@ class EmployeeController extends Controller
         return $this->index();
     }
 
-    //destroyAll
+    /**
+     * Destroy All Data on table 
+     * 
+     * @return \Illuminate\Http\Response
+     */
     public function destroyAll()
     {
         Employee::withTrashed()->delete();
         return back();
     }
     
-    //trash
+    
     public function trash()
     {
         $EmployeesTrashed = Employee::onlyTrashed()->get();
         return view('employee.trash' , compact('EmployeesTrashed'));
     }
 
-    //forceDelete
-    public function forceDelete($id)
+    
+    public function forceDeleted($id)
     {
         Employee::withTrashed()->where('id',$id)->forceDelete();
-        return back();
+
+        return back()->with('Parmanentlly','Parmanentlly Delete');
     }
 
-    //restore 
+    
     public function restore($id)
     {
         Employee::withTrashed()->where('id',$id)->restore();
-        return back();
+
+        return back()->with('restore','Restore Successfully!');
     }
 
-    //restoreAll
+    
     public function restoreAll()
     {
         Employee::withTrashed()->restore();
-        return $this->index();
+        return back()->with('restoreAll','সমস্ত ডাটাকে পুনরুদ্ধার করা হয়েছে ');
     }
 
-    //emptyTrash
+    
     public function emptyTrash()
     {
         Employee::onlyTrashed()->forceDelete();
-        return back();
+        return back()->with('emptyTrash','ট্রাস সম্পূর্ণরূপে খালি করা হলো ');
     }
 }
