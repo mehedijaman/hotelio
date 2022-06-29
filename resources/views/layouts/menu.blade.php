@@ -146,12 +146,12 @@ Income
         <p>Invoice</p>
     </a>
 </li>
-<li class="nav-item">
+{{-- <li class="nav-item">
     <a href="/invoiceItem" class="nav-link {{ Request::is('invoiceItem') ? 'active' : '' }}">
         <i class="fa-solid fa-receipt nav-icon fas"></i>
         <p>Invoice Item</p>
     </a>
-</li>
+</li> --}}
 <li class="nav-item">
     <a href="/taxSetting" class="nav-link {{ Request::is('taxSetting') ? 'active' : '' }}">
         <i class="fa-brands fa-gg nav-icon fas"></i>
