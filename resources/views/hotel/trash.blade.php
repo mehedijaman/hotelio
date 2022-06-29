@@ -3,6 +3,39 @@
     <div class="container py-5 col-md-12">
         <div class="row">
             <div class="col-md-12">
+                @if (Session::get('Delete'))
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss='alert' aria-hidden="true"></button>
+                        <h5><i class="icone fas fa-exclamation-triangle"></i> Permanent delete !</h5>
+                        {{Session::get('Delete')}}
+                    </div>
+                @endif
+
+                @if (Session::get('Restore'))
+                <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                    <h5><i class="icon fas fa-check"></i>Restore Successfull!</h5>
+                    {{Session::get('Restore')}}
+                </div>
+                    
+                @endif
+
+                @if(Session::get('RestoreAll'))
+                <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <h5><i class="icon fas fa-check"></i> Success!</h5>
+                    {{ Session::get('RestoreAll') }}
+                </div>
+                @endif
+
+                @if(Session::get('emptyTrash'))
+                <div class="alert alert-success alert-danger">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <h5><i class="icon fas fa-ban"></i> Success!</h5>
+                    {{ Session::get('emptyTrash') }}
+                </div>
+                @endif
+
                 <div class="card">
                     <div class="card-header bg-defult">
                         <div class="card-title">

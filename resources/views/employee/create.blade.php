@@ -3,6 +3,15 @@
     <div class="container py-5 col-md-10">
         <div class="row">
             <div class="col-md-12 m-auto">
+
+                @if (Session::get('Success'))
+                <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                    <h5><i class="icon fas fa-check"></i>Success!</h5>
+                    {{Session::get('Success')}}
+                </div>        
+                @endif
+
                 <div class="card card-primary">
                     <div class="card-header">
                         <h3 class="card-title text-light ">

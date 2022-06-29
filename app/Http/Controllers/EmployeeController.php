@@ -45,7 +45,7 @@ class EmployeeController extends Controller
         // return $request->all();
         try{
             Employee::create($request->all());
-            return back();
+            return back()->with('Success','Employee Add Successfull!');
         }
         catch(Exception $error){
             return $error->getMessage();
@@ -128,27 +128,29 @@ class EmployeeController extends Controller
     public function forceDeleted($id)
     {
         Employee::withTrashed()->where('id',$id)->forceDelete();
-        return back();
+
+        return back()->with('Parmanentlly','Parmanentlly Delete');
     }
 
     
     public function restore($id)
     {
         Employee::withTrashed()->where('id',$id)->restore();
-        return back();
+
+        return back()->with('restore','Restore Successfully!');
     }
 
     
     public function restoreAll()
     {
         Employee::withTrashed()->restore();
-        return $this->index();
+        return back()->with('restoreAll','সমস্ত ডাটাকে পুনরুদ্ধার করা হয়েছে ');
     }
 
     
     public function emptyTrash()
     {
         Employee::onlyTrashed()->forceDelete();
-        return back();
+        return back()->with('emptyTrash','ট্রাস সম্পূর্ণরূপে খালি করা হলো ');
     }
 }
