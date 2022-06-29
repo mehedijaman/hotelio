@@ -20,7 +20,11 @@
                                         <select name="CategoryID" id="" class="form-select">
                                             <option value="">Select Category</option>
                                             @foreach($ExpenseCategoris as $Expense)
-                                            <option value="{{ $Expense->id }}"> {{ $Expense->Name }} </option>
+                                            @if ($Expenses->CategoryID == $Expense->id )
+                                                <option value="{{ $Expense->id }}" selected> {{ $Expense->Name }} </option>
+                                            @else
+                                                <option value="{{ $Expense->id }}"> {{ $Expense->Name }} </option>
+                                            @endif
                                             @endforeach
                                         </select>
                                     </div>

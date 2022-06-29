@@ -135,7 +135,7 @@ Route::get('/employee/delete', [EmployeeController::class, 'destroyAll']);
 Route::get('/employee/{id}/restore', [EmployeeController::class, 'restore']);
 Route::get('/employee/restoreAll', [EmployeeController::class, 'restoreAll']);
 Route::get('/employee/{id}/parmanently/delete', [EmployeeController::class, 'forceDeleted']);
-// Route::get('/employee/emptyTrash', [EmployeeController::class, 'emptyTrash']);
+Route::get('/employee/emptyTrash', [EmployeeController::class, 'emptyTrash']);
 Route::resource('employee',EmployeeController::class);
 
 /*Hotel Routes*/
@@ -182,7 +182,7 @@ Route::resource('expenseCategory', ExpenseCategoryController::class);
 
 Route::get('/expense/trash', [ExpenseController::class, 'trash']);
 Route::get('/expense/delete', [ExpenseController::class, 'destroyAll']);
-Route::get('/expense/{id}/parmanently/delete', [IncomeConExpenseControllertroller::class, 'forceDelete']);
+Route::get('/expense/{id}/parmanently/delete', [ExpenseController::class, 'forceDelete']);
 Route::get('/expense/{id}/restore', [ExpenseController::class, 'restore']);
 Route::get('/expense/restoreAll', [ExpenseController::class, 'restoreAll']);
 Route::get('/expense/emptyTrash', [ExpenseController::class, 'emptyTrash']);

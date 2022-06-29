@@ -59,8 +59,11 @@ class EmployeeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        $Employee = Employee::find($id);
+    {   
+        $Employee = Employee::select('employees.*','hotels.Name')
+        ->where('hotels.id',$id)
+        ->leftJoin('hotels','employees.HotelID','=','hotels.id')
+        ->first();
         return view('employee.show' , compact('Employee'));
     }
 
@@ -103,7 +106,11 @@ class EmployeeController extends Controller
         return $this->index();
     }
 
-    //destroyAll
+    /**
+     * Destroy All Data on table 
+     * 
+     * @return \Illuminate\Http\Response
+     */
     public function destroyAll()
     {
         Employee::withTrashed()->delete();

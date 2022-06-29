@@ -13,8 +13,8 @@
                                     Trash Guest List
                             </h2>
                         </div>
-                        <a class="btn btn-sm bg-navy float-right text-capitalize" href="/guest/restoreAll"><i class="fa-solid fa-trash-arrow-up mr-2"></i>restore All</a>
-                        <a class="btn btn-sm bg-maroon float-right text-capitalize mr-3" href="/guest/emptyTrash"><i class="fa-solid fa-trash-can mr-2"></i>Empty Trash</a>
+                        <a class="btn btn-sm bg-maroon float-right text-capitalize" href="/guest/emptyTrash"><i class="fa-solid fa-trash-can mr-2"></i>Empty Trash</a>
+                        <a class="btn btn-sm bg-navy float-right text-capitalize mr-3" href="/guest/restoreAll"><i class="fa-solid fa-trash-arrow-up mr-2 "></i>restore All</a>
                     </div>
                     <div class="card-body table-responsive p-0">
                         <table class="table table-hover text-nowrap">

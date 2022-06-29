@@ -13,7 +13,7 @@
                                 Employee Trash List
                             </h2>
                         </div>
-                        <a class="btn btn-sm bg-navy float-right text-capitalize" href="/employee/emptytrash"><i class="fa-solid fa-recycle mr-2"></i>Empty Trash</a>
+                        <a class="btn btn-sm bg-navy float-right text-capitalize" href="/employee/emptyTrash"><i class="fa-solid fa-recycle mr-2"></i>Empty Trash</a>
                         <a class="btn btn-sm bg-maroon float-right text-capitalize mr-3" href="/employee/restoreAll"><i class="fa-solid fa-trash-can mr-2"></i>Restore All</a>
                     </div>
                     <div class="card-body table-responsive p-0">

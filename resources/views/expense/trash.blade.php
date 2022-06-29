@@ -8,7 +8,7 @@
                         <div class="card-title">
                             <h2 class="card-title">
                               <a href="{{ asset('expense') }}" class="mr-3"><i class="fa-solid fa-circle-arrow-left fs-5 text-navy" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Back to List"></i></a> 
-                                Income Trash List
+                                Expense Trash List
                             </h2>
                         </div>
                         <a class="btn btn-sm bg-navy float-right text-capitalize" href="/expense/emptyTrash"><i class="fa-solid fa-recycle mr-2"></i>Empty Trash</a>

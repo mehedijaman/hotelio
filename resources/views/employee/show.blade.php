@@ -18,18 +18,28 @@
                         <table class="table table-hover text-nowrap">
                             <thead>
                                 <tr>
-                                    <th>id</th>
-                                    <th>DateOfBirth</th>
-                                    <th>NID No</th>
-                                    <th>NID Document</th>
+                                    <th>Column</th>
+                                    <th>Data</th>
                                 </tr>
                             </thead>
                             <tbody>
                                     <tr class="">
-                                          <td>{{ $Employee->id }}</td>
-                                          <td>{{ $Employee->DateOfBirth }}</td>
-                                          <td>{{ $Employee->NIDNo }}</td>
-                                          <td>{{ $Employee->NID }}</td>
+                                        <tr>
+                                            <th>Id</th>
+                                            <td>{{ $Employee->id }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Date of Birth</th>
+                                            <td>{{ $Employee->DateOfBirth }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>NID No</th>
+                                            <td>{{ $Employee->NIDNo }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>NID Doc </th>
+                                            <td>{{ $Employee->NID }}</td>
+                                        </tr>  
                                     </tr>
                             </tbody>
                            

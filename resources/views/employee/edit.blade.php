@@ -12,19 +12,21 @@
                     </div>
                     {{ Form::Open(array('url' => '/employee/'.$Employees->id, 'method' => 'PATCH', 'class' => 'form-horizontal', 'files' => true)) }}
                         <div class="card-body">
-                            <div class="form-group row">
-                                <label for="HotelID" class="form-label col-md-3">Hotel</label>
-                                <div class="col-md-8">
-                                    <select name="HotelID" id="" class="form-select">
-                                        <option value="">Select Hotel</option>
-                                        @foreach($Hotels as $Hotel)
-                                            @if($Employees->HotelID == $Hotel->id)
-                                                <option value="{{ $Hotel->id }}" selected> {{ $Hotel->Name }} </option>
-                                            @else
-                                                <option value="{{ $Hotel->id }}"> {{ $Hotel->Name }} </option>
-                                            @endif
-                                        @endforeach
-                                    </select>
+                            <div class="form-group row col-md-12">
+                                <div class=" form-group row col-md-6">
+                                    <label for="HotelID" class="form-label col-md-3">Hotel</label>
+                                    <div class=" col-md-8">
+                                        <select name="HotelID" id="" class="form-selec form-control">
+                                            <option value="">Select Hotel</option>
+                                            @foreach($Hotels as $Hotel)
+                                                @if($Employees->HotelID == $Hotel->id)
+                                                    <option value="{{ $Hotel->id }}" selected> {{ $Hotel->Name }} </option>
+                                                @else
+                                                    <option value="{{ $Hotel->id }}"> {{ $Hotel->Name }} </option>
+                                                @endif
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="form-group row col-md-6">
                                     <label for="Name" class="form-label col-md-3">Name :</label>
