@@ -58,10 +58,13 @@ class IncomeController extends Controller
      */
     public function show($id)
     {
-        $Income = Income::find($id);
+        $Income = Income::select('incomes.*','income_categories.Name as CategoryName')
+        ->where('incomes.id',$id)
+        ->leftJoin('income_categories','incomes.CategoryID','=','income_categories.id')
+        ->first();
         return view('income.show',compact('Income'));
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      *
@@ -100,42 +103,42 @@ class IncomeController extends Controller
         return $this->index();
     }
 
-    //destroyAll
+    
     public function destroyAll()
     {
         Income::withTrashed()->delete();
         return back();
     }
 
-    //trash
+    
     public function trash()
     {
         $IncomeTrashed = Income::onlyTrashed()->get();
         return view('income.trash',compact('IncomeTrashed'));
     }
 
-    //forceDelete
+    
     public function forceDelete($id)
     {
         Income::withTrashed()->where('id',$id)->forceDelete();
         return back();
     }
 
-    //restore
+    
     public function restore($id)
     {
         Income::withTrashed()->where('id',$id)->restore();
         return back();
     }
 
-    //restoreAll
+   
     public function restoreAll()
     {
         Income::withTrashed()->restore();
         return $this->index();
     }
 
-    //emptyTrash
+   
     public function emptyTrash()
     {
         Income::onlyTrashed()->forceDelete();

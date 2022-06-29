@@ -16,7 +16,7 @@
                                 <div class=" form-group row col-md-6">
                                     <label for="HotelID" class="form-label col-md-3">Hotel</label>
                                     <div class=" col-md-8">
-                                        <select name="HotelID" id="" class="form-selec form-control">
+                                        <select name="HotelID" id="" class="form-selec form-control" required>
                                             <option value="">Select Hotel</option>
                                             @foreach($Hotels as $Hotel)
                                                 @if($Employees->HotelID == $Hotel->id)
@@ -95,11 +95,11 @@
                                 <label class="form-label col-md-3">Status :</label>
                                 <div class="p-t-15">
                                     <label class="radio-container m-r-55">yes
-                                        <input type="radio" name="Status" value="{{$Employees->Status}}">
+                                        <input type="radio" name="Status" value="1" @if ($Employees->Status) checked @endif >
                                         <span class="checkmark"></span>
                                     </label>
                                     <label class="radio-container">No
-                                        <input type="radio" name="Status" value="{{$Employees->Status}}">
+                                        <input type="radio" name="Status" value="0" @if (!$Employees->Status) checked @endif>
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>

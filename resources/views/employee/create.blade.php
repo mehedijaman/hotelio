@@ -16,7 +16,7 @@
                                 <div class="form-group row col-md-6">
                                     <label for="HotelID" class="form-label col-md-3">Hotel</label>
                                     <div class="col-md-8">
-                                        <select name="HotelID" id="" class="form-select">
+                                        <select name="HotelID" id="" class="form-select" required>
                                             <option value="">Select Hotel</option>
                                             @foreach($Hotels as $Hotel)
                                             <option value="{{ $Hotel->id }}"> {{ $Hotel->Name }} </option>

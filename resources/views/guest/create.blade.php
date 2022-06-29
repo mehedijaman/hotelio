@@ -73,13 +73,13 @@
                                 <div class="form-group row col-md-6">
                                     <label for="Father" class="form-label col-md-3">Father :</label>
                                     <div class="col-md-8 mx-md-2">
-                                        <input type="text" name="Father" class="form-control" placeholder="Enter Guest Passport NO"> 
+                                        <input type="text" name="Father" class="form-control" placeholder="Enter Guest's Father Name "> 
                                     </div>
                                 </div>
                                 <div class="form-group row col-md-6">
                                     <label for="Mother" class="form-label col-md-3">Mother :</label>
                                     <div class="col-md-8 mx-md-2">
-                                        <input type="text" name="Mother" class="form-control"> 
+                                        <input type="text" name="Mother" class="form-control"  placeholder="Enter Guest's Mother Name "> 
                                     </div>
                                 </div>
                             </div>

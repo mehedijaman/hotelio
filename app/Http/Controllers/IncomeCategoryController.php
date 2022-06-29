@@ -96,42 +96,41 @@ class IncomeCategoryController extends Controller
         return back();
     }
 
-    //destoryAll
     public function destroyAll()
     {
-        IncomeCategory::withTrashed()->delete;
-        return $this->index();
+        IncomeCategory::withTrashed()->delete();
+        return $this->trash();
     }
 
-    //trash
+
     public function trash()
     {
         $CategoryTrashed = IncomeCategory::onlyTrashed()->get();
         return view('incomeCategory.trash',compact("CategoryTrashed"));
     }
 
-    //forceDelete
+
     public function forceDelete($id)
     {
         IncomeCategory::withTrashed()->where('id',$id)->forceDelete();
         return back();
     }
 
-    //restore
+ 
     public function restore($id)
     {
         IncomeCategory::withTrashed()->where('id',$id)->restore();
         return $this->index();
     }
 
-    //restoreAll
+
     public function restoreAll()
     {
         IncomeCategory::withTrashed()->restore();
         return $this->index();
     }
 
-    //emptyTrash
+ 
     public function emptyTrsh()
     {
         IncomeCategory::onlyTrashed()->forceDelete();

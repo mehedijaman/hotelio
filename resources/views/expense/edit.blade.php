@@ -45,7 +45,7 @@
                             <div class="form-group row">
                                 <label for="Date" class="form-label col-md-3">Date:</label>
                                 <div class="col-md-8">
-                                    <input type="date" name="Date" class="form-control" value="{{$Expenses->Date}}"> 
+                                    <input type="date" name="Date" class="form-control" value="{{ date('Y-m-d H:i:s',strtotime($Expenses->Date)) }}"> 
                                 </div>
                             </div>
                             <div class="card-footer">

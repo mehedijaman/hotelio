@@ -98,21 +98,21 @@ class GuestController extends Controller
         return $this->index();
     }
 
-    //destroyAll 
+ 
     public function destroyAll()
     {
         Guest::withTrashed()->delete();
         return $this->index();
     } 
 
-    //trash
+    
     public function trash()
     {
         $GuestTrashed = Guest::onlyTrashed()->get();
         return view('guest.trash',compact('GuestTrashed'));
     }    
 
-    //restore
+    
     public function restore($id)
     {
         Guest::withTrashed()->where('id',$id)->restore();
