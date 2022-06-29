@@ -18,8 +18,8 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        $invoices = Invoice::all();
-        return view('invoice.index',compact('invoices'));
+        // $invoices = Invoice::all();
+        return view('invoice.index');
     }
 
     /**
@@ -29,9 +29,9 @@ class InvoiceController extends Controller
      */
     public function create()
     {
-        $Guests = Guest::all();
-        $Taxs   = TaxSetting::all();
-        return view('invoice.create',compact('Guests','Taxs'));
+        // $Guests = Guest::all();
+        // $Taxs   = TaxSetting::all();
+        return view('invoice.create');
     }
 
     /**

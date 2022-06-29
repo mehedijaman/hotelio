@@ -91,6 +91,35 @@ form .form-label{
 	color: #d0d2d6;
 }
 
+.btn__navy__add__invoice{
+	border-radius: 4px;
+	padding: 1rem 4rem;
+	
+}
+.btn__navy__preview__invoice{
+	border-radius: 4px;
+	padding: 0.8rem 2.9rem;
+	border: 2px solid #001f3f;
+	color:  #001f3f;
+	border-radius: 5px;
+	
+}
+.btn__navy__save__invoice{
+	border-radius: 4px;
+	padding: 0.8rem 3.6rem;
+	border: 2px solid #001f3f;
+	color:  #001f3f;
+	border-radius: 5px;
+}
+/* .btn__navy:hover{
+	background: linear-gradient(118deg,#001F3F,rgba(4, 0, 29, 0.7));
+	box-shadow: 0 0 10px 1px rgba(3, 1, 29, 0.7);
+    border-radius: 4px;
+	padding: 0.9rem 2.6rem;
+	color: #d0d2d6;
+} */
+
+
 /* ............................................................. */
 .pt{
 	padding-top: 100px;

@@ -3440,6 +3440,7 @@
                 "terminal"
             ],
             "support": {
+
                 "source": "https://github.com/symfony/console/tree/v6.1.2"
             },
             "funding": [
