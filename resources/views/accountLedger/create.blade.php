@@ -3,6 +3,13 @@
 <div class="container py-5">
     <div class="row">
         <div class="col-md-7 m-auto">
+            @if (Session::get('Success'))
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                <h5><i class="icon fas fa-check"></i>Success!</h5>
+                {{Session::get('Success')}}
+            </div>
+            @endif
             <div class="card card-primary">
                 <div class="card-header">
                     <h3 class="card-title text-navy">
@@ -43,15 +50,7 @@
                             <input type="text" class="form-control" id="Description" name="Description" placeholder="Description">
                         </div>
                     </div>
-            
-                    <div class="form-group row">
-                        <div class="offset-sm-3 col-sm-9">
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck2">
-                                <label class="form-check-label" for="exampleCheck2">Remember me</label>
-                            </div>
-                        </div>
-                    </div>
+
                     <input type="submit" name="submit" id="" class="btn bg-navy float-right w-25 text-capitalize">
                     <a href="{{ asset('/acount/ledger') }}" class="btn btn-default float-left">Cancel</a>
                 </div>

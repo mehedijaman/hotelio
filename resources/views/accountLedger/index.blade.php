@@ -14,7 +14,7 @@
                             Balance List
                         </h2>
                     </div>
-                    <a class="btn btn-sm bg-navy float-right text-capitalize" href="/acount/ledger/trash"><i class="fa-solid fa-recycle mr-2"></i>View Trash</a>
+                    <a class="btn btn-sm bg-navy float-right text-capitalize" href="/acountLedger/trash"><i class="fa-solid fa-recycle mr-2"></i>View Trash</a>
                     <a class="btn btn-sm bg-maroon float-right text-capitalize mr-3" href="/acount/ledger/delete"><i class="fa-solid fa-trash-can mr-2"></i>Delete All</a>
                 </div>
                 <div class="card-body table-responsive p-0">

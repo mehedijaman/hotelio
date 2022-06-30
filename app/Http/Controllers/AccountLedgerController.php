@@ -39,7 +39,7 @@ class AccountLedgerController extends Controller
     {
         try {
             AccountLedger::create($request->all());
-            return back();
+            return back()->with('Success', 'AccountLedger Add Successfull');
         } catch (Exception $error) {
             return $error->getMessage();
         }
@@ -109,12 +109,12 @@ class AccountLedgerController extends Controller
     public function forceDelete($id)
     {
         AccountLedger::withTrashed()->where('id', $id)->forceDelete();
-        return back();
+        return back()->with('Parmanent_Delete', 'AccountLedger Parmanent Successfull');
     }
     public function restore($id)
     {
         AccountLedger::withTrashed()->where('id', $id)->restore();
-        return back();
+        return back()->with('Restore', 'AccountLedger Restore Successfull');
     }
     public function restoreAll()
     {

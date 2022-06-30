@@ -41,7 +41,7 @@ class BalanceController extends Controller
     {
         try {
             Balance::create($request->all());
-            return back();
+            return back()->with('Success', 'Balance Add Successfull');
         } catch (Exception $error) {
             return $error->getMessage();
         }
@@ -110,12 +110,12 @@ class BalanceController extends Controller
     public function forceDelete($id)
     {
         Balance::withTrashed()->where('id', $id)->forceDelete();
-        return back();
+        return back()->with('Permanent_Delete','Balance Delete Successfull');
     }
     public function restore($id)
     {
         Balance::withTrashed()->where('id', $id)->restore();
-        return back();
+        return back()->with('Restore', 'Balance Restore Successfull');
     }
     public function restoreAll()
     {

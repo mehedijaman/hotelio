@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('bank_ledgers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('BankID');
-            // $table->foreign('BankID')->references('id')->on('banks');
             $table->decimal('Deposit')->nullable();
             $table->decimal('Withdraw')->nullable();
             $table->dateTime('Date')->nullable();
