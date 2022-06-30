@@ -47,7 +47,7 @@ class RoomTransferController extends Controller
     {
         try {
            RoomTransfer::create($request->all());
-            return back();
+            return back()->with('Success','Room Transfer Added Successfully !');
         } catch (Exception $error) {
            return $error->getMessage();
         }
@@ -61,21 +61,7 @@ class RoomTransferController extends Controller
      */
     public function show($id)
     {
-        $RoomTransfer = RoomTransfer::find($id);
-        // $RoomTransfer = RoomTransfer::find($id)->select(
-        //     'room_transfers.id',
-        //     'guests.Name as Guest',
-        //     'room_transfers.FromRoomID',
-        //     'room_transfers.ToRoomID',
-        //     'room_transfers.Date',
-        //     'room_transfers.created_at',
-        //     'room_transfers.updated_at')
-        //     ->leftJoin('guests', 
-        //     'room_transfers.GuestID',
-        //     '=', 'guests.id')
-        //     ->get();
         
-        return view('roomTransfer.show',compact('RoomTransfer'));
     }
 
     /**

@@ -3,6 +3,7 @@
 <div class="container-fluid py-5 ">
     {{-- <section class="button mb-4">
             <a href="{{ asset('booking/create') }}" class="btn btn-info text-capitalize"> <i class="fa-solid fa-circle-plus mr-2"></i>Add</a>
+
     </section> --}}
     <div class="row">
         <div class="col-md-12 ">
@@ -53,6 +54,7 @@
                                 <td>@if($Room->Tv)Avilable @else Inavilable @endif</td>
                                 <td>{{$Room->Price}}</td>
                                 <td>@if($Room->Status)<b class="text-success">Active</b> @else <b class="text-danger">Deactive</b> @endif</td>
+
 
 
                                 <td class="d-flex">
