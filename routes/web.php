@@ -78,6 +78,13 @@ Route::get('balance/trash', [BalanceController::class, 'trash']);
 Route::get('balance/delete', [BalanceController::class, 'deleteAll']);
 Route::resource('balance', BalanceController::class);
 
+/*Bank ledger*/
+Route::get('bankLedger/emptytrash', [BankLedgerController::class, 'emtyTrash']);
+Route::get('bankLedger/restoreall', [BankLedgerController::class, 'restoreAll']);
+Route::get('bankLedger/{id}/restore', [BankLedgerController::class, 'restore']);
+Route::get('bankLedger/{id}/delete/parmanently', [BankLedgerController::class, 'forceDelete']);
+Route::get('acountLedger/trash', [BankLedgerController::class, 'trash']);
+Route::get('bankLedger/delete', [BankLedgerController::class, 'deleteAll']);
 Route::resource('/bankLedger', BankLedgerController::class);
 
 /*room Route */

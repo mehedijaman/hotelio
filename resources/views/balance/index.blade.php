@@ -21,7 +21,6 @@
                     <table class="table table-hover text-nowrap">
                         <thead>
                             <tr>
-                                <th>Id</th>
                                 <th>Acount ID</th>
                                 <th>Date</th>
                                 <th>OpeningBalance</th>
@@ -34,7 +33,6 @@
                         <tbody>
                             @foreach ($Balances as $Balance)
                             <tr>
-                                <td>{{$Balance->id}}</td>
                                 <td>{{$Balance->AcountID}}</td>
                                 <td>{{$Balance->Date}}</td>
                                 <td>{{$Balance->OpeningBalance}}</td>

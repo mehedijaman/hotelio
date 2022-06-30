@@ -17,7 +17,9 @@ class BankLedgerController extends Controller
     public function index()
     {
         // return BankLedger::all();
-        $BankLedgers = BankLedger::all();
+        $BankLedgers = BankLedger::select('bank_ledgers.*', 'banks.Name as BankName')
+            ->leftJoin('banks', 'bank_ledgers.BankID', '=', 'banks.id')
+            ->get();
         return view('bankLedger.index', compact('BankLedgers'));
     }
 
@@ -42,7 +44,7 @@ class BankLedgerController extends Controller
     {
         try {
             BankLedger::create($request->all());
-            return back();
+            return back()->with('Success', 'BankLedger Add Successfull');
         } catch (Exception $error) {
             return $error->getMessage();
         }
@@ -96,5 +98,12 @@ class BankLedgerController extends Controller
     {
         BankLedger::find($id)->delete();
         return back();
+    }
+
+    public function trash()
+    {
+        return BankLedger::all();
+        // $BankLedgers = BankLedger::onlyTrashed()->get();
+        // return view('bankLedger.trash', compact('$BankLedgers'));
     }
 }

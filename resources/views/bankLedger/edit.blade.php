@@ -20,9 +20,11 @@
                                 <select type="number" name="BankID" id="" class="form-select">
                                     <option>Open this select menu</option>
                                     @foreach ($Banks as $Bank)
-                                    <option value="{{ $Bank->id }}">
-                                        {{ $Bank->id }}
-                                    </option>
+                                    @if($BankLedgers->BankID == $Bank->id)
+                                    <option value="{{ $Bank->id }}" selected>{{ $Bank->id }}</option>
+                                    @else
+                                    <option value="{{ $Bank->id }}"> {{ $Bank->id }}</option>
+                                    @endif
                                     @endforeach
                                 </select>
                             </div>
@@ -33,7 +35,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="Date" class="col-sm-3 col-form-label">Withdraw</label>
+                        <label for="Withdraw" class="col-sm-3 col-form-label">Withdraw</label>
                         <div class="col-sm-8">
                             <input type="number" class="form-control" id="Withdraw" name="Withdraw" placeholder="Withdraw Balance" value="{{ $BankLedgers->Withdraw }}">
                         </div>
@@ -41,19 +43,13 @@
                     <div class="form-group row">
                         <label for="Date" class="col-sm-3 col-form-label">Date :</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="Date" name="Date" value="{{ date('d-m-Y',strtotime($BankLedgers->Date))}}">
+                            <input type="date" class="form-control" id="Date" name="Date" value="{{ date('d-m-Y',strtotime($BankLedgers->Date))}}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="Description" class="col-sm-3 col-form-label">Description :</label>
                         <div class="col-sm-8">
                             <input type="text" class="form-control" id="Description" name="Description" placeholder="Description" value="{{ $BankLedgers->Description }}">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="ClosingBalance" class="col-sm-3 col-form-label">Closing Balance</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="ClosingBalance" name="Description" placeholder="Description" value="{{ $BankLedgers->Description }}">
                         </div>
                     </div>
                     <input type="submit" name="submit" id="" class="btn bg-navy float-right w-25">

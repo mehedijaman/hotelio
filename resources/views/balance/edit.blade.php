@@ -41,11 +41,11 @@
                         <div class="Status">
                             <div class="p-t-15">
                                 <label class="radio-container m-r-55">Yes
-                                    <input type="radio" name="exist">
+                                    <input type="radio" name="Status" value="1" @if ($Balances->Status) checked @endif>
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="radio-container">No
-                                    <input type="radio" name="exist">
+                                    <input type="radio" name="Status" value="0" @if (!$Balances->Status) checked @endif>
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
