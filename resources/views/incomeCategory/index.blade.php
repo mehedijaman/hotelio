@@ -7,7 +7,7 @@
                     <div class="card-header bg-defult">
                         <div class="card-title">
                             <h2 class="card-title">
-                                <a href="{{ asset('incomeCategory/create') }}" class="btn bg-navy text-capitalize mr-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create Booking"> 
+                                <a href="{{ asset('/income/category/create') }}" class="btn bg-navy text-capitalize mr-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create Booking"> 
                                     <i class="fa-solid fa-circle-plus mr-2"></i>
                                     Add
                                 </a>
@@ -29,10 +29,10 @@
                                     <tr>
                                         <td>{{$Category->Name}}</td>
                                         <td class="d-flex">
-                                           <a href="{{URL::to('incomeCategory/'.$Category->id)}}" class="mr-3 text-purple" data-bs-toggle="View" data-bs-placement="bottom" title="View">
+                                           <a href="{{URL::to('/income/category/'.$Category->id)}}" class="mr-3 text-purple" data-bs-toggle="View" data-bs-placement="bottom" title="View">
                                                 <svg data-v-9a6e255c="" xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="invoice-row-5036-preview-icon" class="mx-1 feather feather-eye"><path data-v-9a6e255c="" d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle data-v-9a6e255c="" cx="12" cy="12" r="3"></circle></svg>
                                            </a>
-                                            <a class="" href="/incomeCategory/{{ $Category->id }}/edit" data-bs-toggle="Edit" data-bs-placement="bottom" title="Edit">
+                                            <a class="" href="/income/category/{{ $Category->id }}/edit" data-bs-toggle="Edit" data-bs-placement="bottom" title="Edit">
                                                 <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i></i>
                                             </a>
                                         </td>

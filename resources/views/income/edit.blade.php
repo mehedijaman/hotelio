@@ -20,7 +20,12 @@
                                         <select name="CategoryID" id="" class="form-select">
                                             <option value="">Select Category</option>
                                             @foreach($IncomeCategoris as $IncomeCatagory)
-                                            <option value="{{ $IncomeCatagory->id }}"> {{ $IncomeCatagory->Name }} </option>
+                                            @if ($Incomes->CategoryID == $IncomeCatagory->id)
+                                                <option value="{{ $IncomeCatagory->id }}" selected> {{ $IncomeCatagory->Name }}    
+                                            @else
+                                                <option value="{{ $IncomeCatagory->id }}"> {{ $IncomeCatagory->Name }} 
+                                            @endif
+                                            </option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -41,7 +46,7 @@
                             <div class="form-group row">
                                 <label for="Date" class="form-label col-md-3">Date:</label>
                                 <div class="col-md-8">
-                                    <input type="datetime-local" name="Date" class="form-control" value="{{$Incomes->Date}}"> 
+                                    <input type="datetime-local" name="Date" class="form-control" value="{{date('Y-m-d H:i:s',strtotime($Incomes->Date))}}"> 
                                 </div>
                             </div>
                             <div class="card-footer">

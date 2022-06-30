@@ -48,7 +48,7 @@ class HotelController extends Controller
             //     $file-> move(public_path('public/HotelImage'), $filename);
             //     $data['image']= $filename;
             // }
-            return back();
+            return back()->with('Success','Hotel Added Successfully!');
         }
         catch(Exception $error){
             return $error->getMessage();
@@ -91,7 +91,7 @@ class HotelController extends Controller
     {
         Hotel::find($id)->update($request->all());
 
-        return $this->index();
+        return $this->index()->with('Success','Update Successfull!');
 
     }
 
@@ -112,42 +112,46 @@ class HotelController extends Controller
     public function destroyAll()
     {
         Hotel::withTrashed()->delete();
-        return back();
+        return $this->index();
     }
     
-    //trash 
+    /**
+     * View Trash Page
+     * @return \Illumindate\Http\Response
+     * 
+     */
     public function trash()
     {
         $HotelTrashed = Hotel::onlyTrashed()->get();
-       return view('hotel.trash', compact('HotelTrashed'));
+        return view('hotel.trash', compact('HotelTrashed'));
 
     }
 
     //forceDelete
-    public function forceDelete($id)
+    public function forceDeleted($id)
     {
         Hotel::withTrashed()->where('id',$id)->forceDelete();
-        return back();
+        return back()->with('Delete','Deleted completed !');
     }
 
     //restore
     public function restore($id)
     {
         Hotel::withTrashed()->where('id',$id)->restore();
-        return back();
+        return back()->with('Restore','Restore Successfull !');
     }
 
     //restoreAll
     public function restoreAll()
     {
         Hotel::withTrashed()->restore();
-        return $this->index();
+        return back()->with('RestoreAll','সমস্ত ডাটাকে পুনরুদ্ধার করা হয়েছে ');
     }
 
     //emptyTrash
     public function emptyTrash()
     {
         Hotel::onlyTrashed()->forceDelete();
-        return back();
+        return back()->with('emptyTrash','ট্রাস সম্পূর্ণরূপে খালি করা হলো ');
     }
 }

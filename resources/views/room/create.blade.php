@@ -18,15 +18,15 @@
                                     <div class="form-group row">
                                         <label for="HotelID" class="form-label col-md-3">Hotel:</label>
                                         <div class="col-md-8">
-                                            <select type="number" name="HotelID" id=""  class="form-select">
-                                                <option>Open this select menu</option>
+                                            <select type="number" name="HotelID" id=""  class="form-select" required>
+                                                <option value="">Select Hotel</option>
                                                 @foreach ($Hotels as $Hotel)
                                                 <option value="{{ $Hotel->id }}">
                                                     {{ $Hotel->Name }}
                                                 </option>
                                                 @endforeach
                                             </select>
-                                        </div>
+                                        </div>  
                                     
                                     </div>
                                 </div>
@@ -34,7 +34,7 @@
                                     <div class="form-group row">
                                         <label for="RoomNo" class="form-label col-md-3">RoomNo:</label>
                                         <div class="col-md-8">
-                                            <input type="text" name="RoomNo" class="form-control">
+                                            <input type="text" name="RoomNo" class="form-control" required>
                                         </div>
                                     </div>
                                    
@@ -46,7 +46,7 @@
                                     <div class="form-group row">
                                         <label for="Floor" class="form-label col-md-3">Floor:</label>
                                         <div class="col-md-8">
-                                            <input type="text" name="Floor" class="form-control"> 
+                                            <input type="text" name="Floor" class="form-control" required> 
                                         </div>
                                     </div>
                                     
@@ -56,9 +56,10 @@
                                         <label for="Type" class="form-label col-md-3">Type:</label>
                                         <div class="col-md-8">
                                             <select name="Type" id="" class="form-select">
-                                                <option>Open this select menu</option>
-                                                <option>Single-Room</option>
-                                                <option>Multi-Room</option>
+                                                <option value="">Open this select menu</option>
+                                                <option value="Single">Single Bed</option>
+                                                <option value="Double">Double Bed</option>
+                                                <option value="Tripe">Tripple Bed</option>
                                             </select>
                                         </div>
                                     </div>
@@ -73,15 +74,11 @@
                                         <div class="col-md-7">
                                             <div class="form-check form-check-inline ml-1">
                                                 <input type="radio" class="form-check-input" name="Geyser" value="1">
-                                                <label for="" class="form-check-label">
-                                                    Yes
-                                                </label>
+                                                <label for="" class="form-check-label">Yes</label>
                                             </div>
                                             <div class="form-check form-check-inline ml-4">
                                                 <input type="radio" class="form-check-input" name="Geyser" value="0">
-                                                <label for="" class="form-check-label">
-                                                    No
-                                                </label>
+                                                <label for="" class="form-check-label">No</label>
                                             </div>
                                         </div>
                                     </div>
@@ -92,15 +89,11 @@
                                         <div class="col-md-7">
                                             <div class="form-check form-check-inline ml-1">
                                                 <input type="radio" class="form-check-input" name="AC" value="1">
-                                                <label for="" class="form-check-label">
-                                                    Yes
-                                                </label>
+                                                <label for="" class="form-check-label">Yes</label>
                                             </div>
                                             <div class="form-check form-check-inline ml-4">
                                                 <input type="radio" class="form-check-input" name="AC" value="0">
-                                                <label for="" class="form-check-label">
-                                                    No
-                                                </label>
+                                                <label for="" class="form-check-label">No</label>
                                             </div>
                                         </div>
                                     </div>
@@ -297,7 +290,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <div class="col-md-8">
+                                <!-- <div class="col-md-8">
                                     <div class="form-group row">
                                         <label for="AdditionalFeatures" class="form-label col-md-4">AdditionalFeatures:</label>
                                         <div class="col-md-7">
@@ -308,26 +301,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group row">
-                                        <label for="Status" class="form-label col-md-4">Status:</label>
-                                        <div class="col-md-6">
-                                            <div class="form-check form-check-inline ml-1">
-                                                <input type="radio" class="form-check-input" name="Status" value="1">
-                                                <label for="" class="form-check-label">
-                                                    Yes
-                                                </label>
-                                            </div>
-                                            <div class="form-check form-check-inline ml-4">
-                                                <input type="radio" class="form-check-input" name="Status" value="0">
-                                                <label for="" class="form-check-label">
-                                                    No
-                                                </label>
-                                            </div>
-                                        </div>
-                                     </div>
-                                </div>
+                                </div> -->
                             </div>
 
 

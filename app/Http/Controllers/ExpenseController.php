@@ -59,10 +59,14 @@ class ExpenseController extends Controller
      */
     public function show($id)
     {
-        $Expense = Expense::find($id);
+        // return Expense::all();
+        // $Expense = Expense::find($id);
+        $Expense = Expense::select('expenses.*','expenses_categories.Name as CategoryName')
+        ->where('expenses.id',$id)
+        ->leftJoin('expenses_categories','expenses.CategoryID','=','expenses_categories.id')
+        ->first();
         return view('expense.show',compact('Expense'));
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -101,42 +105,41 @@ class ExpenseController extends Controller
         return $this->index();
     }
 
-    //destroyAll
+  
     public function destroyAll()
     {
         Expense::withTrashed()->delete();
         return $this->index();
     }
 
-    //trash
     public function trash()
     {
         $ExpenseTrashed = Expense::onlyTrashed()->get();
         return view('expense.trash',compact('ExpenseTrashed'));
     }
 
-    //restore
+  
     public function forceDelete($id)
     {
         Expense::withTrashed()->where('id',$id)->forceDelete();
         return back();
     }
 
-    //restore
+   
     public function restore($id)
     {
         Expense::withTrashed()->where('id',$id)->restore();
         return back();
     }
 
-    //restoreAll
+    
     public function restoreAll()
     {
         Expense::withTrashed()->restore();
         return $this->index();
     }
 
-    //emptyTrash
+    
     public function emptyTrash()
     {
         Expense::onlyTrashed()->forceDelete();

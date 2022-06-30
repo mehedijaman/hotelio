@@ -3,6 +3,39 @@
     <div class="container py-5 col-md-12">
         <div class="row">
             <div class="col-md-12">
+                @if (Session::get('Delete'))
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss='alert' aria-hidden="true"></button>
+                        <h5><i class="icone fas fa-exclamation-triangle"></i> Permanent delete !</h5>
+                        {{Session::get('Delete')}}
+                    </div>
+                @endif
+
+                @if (Session::get('Restore'))
+                <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                    <h5><i class="icon fas fa-check"></i>Restore Successfull!</h5>
+                    {{Session::get('Restore')}}
+                </div>
+                    
+                @endif
+
+                @if(Session::get('RestoreAll'))
+                <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <h5><i class="icon fas fa-check"></i> Success!</h5>
+                    {{ Session::get('RestoreAll') }}
+                </div>
+                @endif
+
+                @if(Session::get('emptyTrash'))
+                <div class="alert alert-success alert-danger">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <h5><i class="icon fas fa-ban"></i> Success!</h5>
+                    {{ Session::get('emptyTrash') }}
+                </div>
+                @endif
+
                 <div class="card">
                     <div class="card-header bg-defult">
                         <div class="card-title">
@@ -41,10 +74,10 @@
                                         <td>{{ $Hotel->Logo }}</td>
                                         <td>{{ $Hotel->Photo }}</td>
                                         <td class="d-flex">
-                                            <a class="" href="/hotel/{{ $Hotel->id }}/restore" data-bs-toggle="restore" data-bs-placement="bottom" title="Edit">
+                                            <a class="" href="/hotel/{{ $Hotel->id }}/restore" data-bs-toggle="restore" data-bs-placement="bottom" title="restore">
                                                 <i class="fa-solid fa-trash-arrow-up ml-2 text-success"></i></i>
                                             </a>
-                                            <a class="" href="/hotel/{{ $Hotel->id }}//parmanently/delete" data-bs-toggle="tooltip" data-bs-placement="bottom" title="/Parmanent Delete">
+                                            <a class="" href="/hotel/{{ $Hotel->id }}/parmanently/delete" data-bs-toggle="Parmanent Delete" data-bs-placement="bottom" title="Parmanent Delete">
                                                 <i class="fa-solid fa-trash-can ml-2 text-dange"></i>
                                             </a>
                                         </td>

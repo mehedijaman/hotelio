@@ -40,7 +40,7 @@ class BankController extends Controller
     {
         try{
             Bank::create($request->all());
-            return back();
+            return back()->with('Success','Bank Add Succeessfull!');
         }
         catch(Exception $error){
             return $error->getMessage();
@@ -92,11 +92,9 @@ class BankController extends Controller
     public function destroy($id)
     {
         Bank::find($id)->delete();
-        return $this->index(); 
+        return back(); 
     }
-
-// trsh function 
-
+ 
     public function destroyAll()
     {
         Bank::withTrashed()->delete();
@@ -110,27 +108,27 @@ class BankController extends Controller
 
     }
 
-    public function forceDelete($id){
+    public function forceDeleted($id){
         Bank::withTrashed()->where('id',$id)->forceDelete();
-        return back();
+        return back()->with('Parmanentlly','Parmanentlly Delete');
     }
 
     public function restore($id){
         Bank::withTrashed()->where('id',$id)->restore();
-        return back();
+        return back()->with('Restore','Restore Successfull !');
     }
 
     public function restoreAll()
     {
         Bank::withTrashed()->restore();
-        return back();
+        return back()->with('RestoreAll','সমস্ত ডাটাকে পুনরুদ্ধার করা হয়েছে ');
 
     }
 
     public function emptyTrash()
     {
         Bank::onlyTrashed()->forceDelete();
-        return back();
+        return back()->with('emptyTrash','ট্রাস সম্পূর্ণরূপে খালি করা হলো ');
     }
 
 }

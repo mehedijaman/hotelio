@@ -3,6 +3,39 @@
     <div class="container py-5 col-md-12">
         <div class="row">
             <div class="col-md-12">
+
+                @if (Session::get('RestoreAll'))
+                <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                    <h5><i class="icon fas fa-check"></i>Restore!</h5>
+                    {{Session::get('RestoreAll')}}
+                </div>        
+                @endif
+
+                @if (Session::get('Restore'))
+                <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                    <h5><i class="icon fas fa-check"></i>Restore!</h5>
+                    {{Session::get('Restore')}}
+                </div>        
+                @endif
+
+                @if (Session::get('Parmanentlly'))
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                    <h5><i class="icon fas fa-ban"></i>Restore!</h5>
+                    {{Session::get('Parmanentlly')}}
+                </div>        
+                @endif
+
+                @if (Session::get('emptyTrash'))
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                    <h5><i class="icon fas fa-ban"></i>Epmty Trash!</h5>
+                    {{Session::get('emptyTrash')}}
+                </div>        
+                @endif
+
                 <div class="card">
                     <div class="card-header bg-defult">
                         <div class="card-title">
@@ -12,7 +45,7 @@
                             </h2>
                         </div>
                         <a class="btn btn-sm bg-maroon float-right text-capitalize mr-3" href="/bank/emptyTrash"><i class="fa-solid fa-trash-can mr-2"></i>Empty Trash</a>
-                        <a class="btn btn-sm bg-maroon float-right text-capitalize mr-3" href="/bank/restoreAll"><i class="fa-solid fa-trash-can mr-2"></i>Restor All</a>
+                        <a class="btn btn-sm float-right text-capitalize mr-3 bg-success" href="/bank/restoreAll"><i class="fa-solid fa-trash-can mr-2"></i>Restor All</a>
                     </div>
                     <div class="card-body table-responsive p-0">
                         <table class="table table-hover text-nowrap">
@@ -41,7 +74,7 @@
                                             <a class="" href="/bank/{{ $Bank->id }}/restore" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Restore">
                                                 <i class="fa-solid fa-trash-arrow-up ml-2 text-success"></i>
                                             </a>
-                                            <a class="" href="/bank/{{ $Bank->id }}//parmanently/delete" data-bs-toggle="tooltip" data-bs-placement="bottom" title="/Parmanent Delete">
+                                            <a class="" href="/bank/{{ $Bank->id }}/parmanently/delete" data-bs-toggle="tooltip" data-bs-placement="bottom" title="/Parmanent Delete">
                                                 <i class="fa-solid fa-trash-can ml-2 text-dange"></i>
                                             </a>
                                     </tr>
