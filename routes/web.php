@@ -18,7 +18,6 @@ use App\Http\Controllers\ExpenseCategoryController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\TaxSettingController;
 use App\Http\Controllers\BankLedgerController;
-use App\Http\Controllers\InvoiceItemController;
 use Ramsey\Uuid\Guid\Guid;
 
 /*
@@ -45,7 +44,6 @@ require __DIR__ . '/auth.php';
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource('user', RegisteredUserController::class);
-Route::resource('invoiceItem', InvoiceItemController::class);
 Route::resource('bankLedger', BankLedgerController::class);
 
 /*Bank's Route's */
@@ -118,17 +116,14 @@ Route::get('/booking/emptyTrash', [BookingController::class, 'emptyTrash']);
 Route::resource('booking', BookingController::class);
 
 /** Invoice Routes */
-
-Route::get('/invoice/trash', [InvoiceController::class, 'trash']);
-Route::get('/invoice/delete', [InvoiceController::class, 'destroyAll']);
-Route::get('/invoice/{id}/restore', [InvoiceController::class, 'restore']);
-Route::get('/invoice/restoreAll', [InvoiceController::class, 'restoreAll']);
-Route::get('/invoice/{id}/parmanently/delete', [InvoiceController::class, 'forceDeleted']);
-Route::get('/invoice/emptyTrash', [InvoiceController::class, 'emptyTrash']);
+// Route::get('/invoice/trash', [InvoiceController::class, 'trash']);
+// Route::get('/invoice/delete', [InvoiceController::class, 'destroyAll']);
+// Route::get('/invoice/{id}/restore', [InvoiceController::class, 'restore']);
+// Route::get('/invoice/restoreAll', [InvoiceController::class, 'restoreAll']);
+// Route::get('/invoice/emptyTrash', [InvoiceController::class, 'emptyTrash']);
 Route::resource('invoice', InvoiceController::class);
 
 /** Guest Routes */
-
 Route::get('/guest/trash', [GuestController::class, 'trash']);
 Route::get('/guest/delete', [GuestController::class, 'destroyAll']);
 Route::get('/guest/{id}/restore', [GuestController::class, 'restore']);
@@ -198,9 +193,6 @@ Route::get('/expense/emptyTrash', [ExpenseController::class, 'emptyTrash']);
 Route::resource('expense', ExpenseController::class);
 
 Route::resource('user', RegisteredUserController::class);
-
-
-Route::resource('invoiceItem', InvoiceItemController::class);
 
 /*tax Setting route */
 Route::get('/taxSetting/trash', [TaxSettingController::class, 'trash']);
