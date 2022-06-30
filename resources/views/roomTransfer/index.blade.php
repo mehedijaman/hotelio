@@ -5,7 +5,7 @@
             <a href="{{ asset('roomTransfer/create') }}" class="btn btn-info text-capitalize">Add RoomTransfer</a>
         </section> --}}
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-10 m-auto">
                 <div class="card">
                     <div class="card-header bg-defult">
                         <div class="card-title">
@@ -35,13 +35,14 @@
                                 @foreach ($RoomTransfers as $RoomTransfer)
                                     <tr>
                                         <td>{{ $RoomTransfer->Guest }}</td>
-                                        <td>{{ $RoomTransfer->FromRoomID }} </td>
-                                        <td>{{ $RoomTransfer->ToRoomID}}</td>
-                                        <td>{{ $RoomTransfer->Date }}</td>
+                                        <td class="" style="padding-left: 3rem !important">{{ $RoomTransfer->FromRoomID }} </td>
+                                        <td style="padding-left: 2.2rem !important">{{ $RoomTransfer->ToRoomID}}</td>
+                                        <td>
+                                            @php
+                                                echo date('d-m-Y',strtotime($RoomTransfer->Date))  
+                                            @endphp
+                                        </td>
                                         <td class="d-flex">
-                                            <a href="{{ URL::to('roomTransfer/'.$RoomTransfer->id) }}" class="mr-3 text-purple" data-bs-toggle="tooltip" data-bs-placement="bottom" title="View">
-                                                <svg data-v-9a6e255c="" xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="invoice-row-5036-preview-icon" class="mx-1 feather feather-eye"><path data-v-9a6e255c="" d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle data-v-9a6e255c="" cx="12" cy="12" r="3"></circle></svg>
-                                            </a>
                                             <a class="" href="/roomTransfer/{{ $RoomTransfer->id }}/edit" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit">
                                                 <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i></i>
                                             </a>

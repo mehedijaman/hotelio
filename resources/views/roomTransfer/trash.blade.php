@@ -22,9 +22,9 @@
                             <thead>
                                 <tr>
                                     
-                                    <th>GuestID</th>
-                                    <th>FromRoomID</th>
-                                    <th>ToRoomID</th>
+                                    <th>Guest</th>
+                                    <th>FromRoom</th>
+                                    <th>ToRoom</th>
                                     <th>Date</th>
                                     <th>Action</th>
                                 </tr>
@@ -33,9 +33,13 @@
                                 @foreach ($RoomTransfers as $RoomTransfer)
                                     <tr>
                                         <td>{{ $RoomTransfer->GuestID }}</td>
-                                        <td>{{ $RoomTransfer->FromRoomID }} </td>
-                                        <td>{{ $RoomTransfer->ToRoomID}}</td>
-                                        <td>{{ $RoomTransfer->Date }}</td>
+                                        <td style="padding-left: 3rem !important">{{ $RoomTransfer->FromRoomID }} </td>
+                                        <td style="padding-left: 2.2rem !important">{{ $RoomTransfer->ToRoomID }}</td>
+                                        <td> 
+                                            @php
+                                                echo date('d-m-Y',strtotime($RoomTransfer->Date))  
+                                            @endphp
+                                        </td>
                                         <td class="action__trash">
                                             {{-- Restore --}}
                                             <a href="/roomTransfer/{{ $RoomTransfer->id }}/restore" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Restore"><i class="fa-solid fa-trash-arrow-up ml-2 text-success"></i></a>

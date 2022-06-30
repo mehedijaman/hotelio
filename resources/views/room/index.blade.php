@@ -5,7 +5,7 @@
             <a href="{{ asset('booking/create') }}" class="btn btn-info text-capitalize"> <i class="fa-solid fa-circle-plus mr-2"></i>Add</a>
         </section> --}}
         <div class="row">
-            <div class="col-md-12 ">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header bg-defult">
                         <div class="card-title">
@@ -25,7 +25,7 @@
                             <thead>
                                 <tr>
                                     <th>Hotel</th>
-                                    <th>RoomNo</th>
+                                    <th>Room</th>
                                     <th>Floor</th>
                                     <th>Type</th>
                                     <th>Geyser</th>
@@ -34,7 +34,6 @@
                                     <th>Internet</th>
                                     <th>Tv</th>
                                     <th>Price</th>
-                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
 
@@ -46,13 +45,13 @@
                                         <td>{{$Room->RoomNo}}</td>
                                         <td>{{$Room->Floor}}</td>
                                         <td>{{$Room->Type}}</td>
-                                        <td>@if($Room->Geyser)Avilable @else Inavilable @endif</td>
-                                        <td>@if($Room->Ac)Avilable @else Inavilable @endif</td>
-                                        <td>@if($Room->Balcony)Avilable @else Inavilable @endif</td>
-                                        <td>@if($Room->Internet)Avilable @else Inavilable @endif</td>
-                                        <td>@if($Room->Tv)Avilable @else Inavilable @endif</td>
+                                        <td>@if($Room->Geyser) <i class="fa-solid fa-square-check text-green ml-4"> @else <i class="fa-solid fa-square-xmark text-danger ml-4"> @endif</td>
+                                        <td>@if($Room->Ac)<i class="fa-solid fa-square-check text-green ml-1"> @else <i class="fa-solid fa-square-xmark text-danger ml-1"> @endif</td>
+
+                                        <td>@if($Room->Balcony)<i class="fa-solid fa-square-check text-green ml-4"> @else <i class="fa-solid fa-square-xmark text-danger ml-4"> @endif</td>
+                                        <td>@if($Room->Internet)<i class="fa-solid fa-square-check text-green ml-4"> @else <i class="fa-solid fa-square-xmark text-danger ml-4"> @endif</td>
+                                        <td>@if($Room->Tv)<i class="fa-solid fa-square-check text-green ml-1"> @else <i class="fa-solid fa-square-xmark text-danger ml-1"> @endif</td>
                                         <td>{{$Room->Price}}</td>
-                                        <td>@if($Room->Status)<b class="text-success">Active</b> @else <b class="text-danger">Deactive</b> @endif</td>
 
                                         
                                         <td class="d-flex">

@@ -31,7 +31,6 @@
                                     <th>Internet</th>
                                     <th>Tv</th>
                                     <th>Price</th>
-                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -43,13 +42,12 @@
                                         <td>{{$Room->RoomNo}}</td>
                                         <td>{{$Room->Floor}}</td>
                                         <td>{{$Room->Type}}</td>
-                                        <td>@if($Room->Geyser)Avilable @else Inavilable @endif</td>
-                                        <td>@if($Room->Ac)Avilable @else Inavilable @endif</td>
-                                        <td>@if($Room->Balcony)Avilable @else Inavilable @endif</td>
-                                        <td>@if($Room->Internet)Avilable @else Inavilable @endif</td>
-                                        <td>@if($Room->Tv)Avilable @else Inavilable @endif</td>
+                                        <td>@if($Room->Geyser) <i class="fa-solid fa-square-check text-green ml-4"> @else <i class="fa-solid fa-square-xmark text-danger ml-4"> @endif</td>
+                                        <td>@if($Room->Ac) <i class="fa-solid fa-square-check text-green ml-1"> @else <i class="fa-solid fa-square-xmark text-danger ml-1"> @endif</td>
+                                        <td>@if($Room->Balcony) <i class="fa-solid fa-square-check text-green ml-4"> @else <i class="fa-solid fa-square-xmark text-danger ml-4"> @endif</td>
+                                        <td>@if($Room->Internet) <i class="fa-solid fa-square-check text-green ml-4"> @else <i class="fa-solid fa-square-xmark text-danger ml-4"> @endif</td>
+                                        <td>@if($Room->Tv) <i class="fa-solid fa-square-check text-green ml-1"> @else <i class="fa-solid fa-square-xmark text-danger ml-1"> @endif</td>
                                         <td>{{$Room->Price}}</td>
-                                        <td>@if($Room->Status)<b class="text-success">Active</b> @else <b class="text-danger">Deactive</b> @endif</td>
                                         <td class="">
                                             <a href="/room/{{ $Room->id }}/restore" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Restore"><i class="fa-solid fa-trash-arrow-up ml-2 text-success"></i></a>
                                             <a href="/room/{{ $Room->id }}/parmanently/delete" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Parmanently Delete"><i class="fa-solid fa-trash-can ml-2 text-danger"></i> </a>
