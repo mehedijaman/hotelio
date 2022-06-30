@@ -2,7 +2,7 @@
 @section('content')
 <div class="container py-5">
     <div class="row">
-        <div class="col-md-10 offset-md-1">
+        <div class="col-md-12 ">
             <div class="card">
                 <div class="card-header bg-defult">
                     <div class="card-title">
@@ -21,7 +21,6 @@
                     <table class="table table-hover text-nowrap">
                         <thead>
                             <tr>
-                                <th>Id</th>
                                 <th>Acount ID</th>
                                 <th>Date</th>
                                 <th>OpeningBalance</th>
@@ -34,7 +33,6 @@
                         <tbody>
                             @foreach ($Balances as $Balance)
                             <tr>
-                                <td>{{$Balance->id}}</td>
                                 <td>{{$Balance->AcountID}}</td>
                                 <td>{{$Balance->Date}}</td>
                                 <td>{{$Balance->OpeningBalance}}</td>

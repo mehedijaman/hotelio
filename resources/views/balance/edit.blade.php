@@ -21,7 +21,7 @@
                     <div class="form-group row">
                         <label for="Date" class="col-sm-3 col-form-label">Date</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="Date" name="Date" placeholder="Date" value="{{ date('m-d-Y',strtotime($Balances->Date))}}">
+                            <input type="date" class="form-control" id="Date" name="Date" placeholder="Date" value="{{ date('m-d-Y',strtotime($Balances->Date))}}">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -41,21 +41,13 @@
                         <div class="Status">
                             <div class="p-t-15">
                                 <label class="radio-container m-r-55">Yes
-                                    <input type="radio" name="exist">
+                                    <input type="radio" name="Status" value="1" @if ($Balances->Status) checked @endif>
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="radio-container">No
-                                    <input type="radio" name="exist">
+                                    <input type="radio" name="Status" value="0" @if (!$Balances->Status) checked @endif>
                                     <span class="checkmark"></span>
                                 </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="offset-sm-3 col-sm-9">
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck2">
-                                <label class="form-check-label" for="exampleCheck2">Remember me</label>
                             </div>
                         </div>
                     </div>

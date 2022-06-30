@@ -38,35 +38,35 @@
                     <table class="table table-hover text-nowrap">
                         <thead>
                             <tr>
-                                <th>Debit</th>
-                                <th>Credit</th>
+                                <th>Bank ID</th>
+                                <th>Depositt</th>
+                                <th>Withdraw</th>
                                 <th>Date</th>
-                                <th>Method</th>
                                 <th>Description</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
 
                         <tbody>
-                            @foreach ($TrashAccounts as $TrashAccount)
+                            @foreach ($BankLedgers as $TrashBankLedger)
                             <tr>
-                                <td>{{$TrashAccount->Debit}}</td>
-                                <td>{{$TrashAccount->Credit}}</td>
-                                <td>{{$TrashAccount->Date}}</td>
-                                <td>{{$TrashAccount->Method}}</td>
-                                <td>{{$TrashAccount->Description}}</td>
+                                <td>{{$TrashBankLedger->BankID}}</td>
+                                <td>{{$TrashBankLedger->Depositt}}</td>
+                                <td>{{$TrashBankLedger->Withdraw}</td>
+                                <td>{{$TrashBankLedger->Date}}</td>
+                                <td>{{$TrashBankLedger->Description}}</td>
                                 <td class="d-flex">
-                                    <a href="/acount/ledger/{{$TrashAccount->id}}" class="mr-3 text-purple" data-bs-toggle="tooltip" data-bs-placement="bottom" title="View">
+                                    <a href="/acount/ledger/{{$TrashBankLedger->id}}" class="mr-3 text-purple" data-bs-toggle="tooltip" data-bs-placement="bottom" title="View">
                                         <svg data-v-9a6e255c="" xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="invoice-row-5036-preview-icon" class="mx-1 feather feather-eye">
                                             <path data-v-9a6e255c="" d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                             <circle data-v-9a6e255c="" cx="12" cy="12" r="3"></circle>
                                         </svg>
                                     </a>
-                                    <a href="/acount/ledger/{{$TrashAccount->id}}/delete/parmanently" class=" btn btn-danger btn-sm mx-2" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
+                                    <a href="/acount/ledger/{{$TrashBankLedger->id}}/delete/parmanently" class=" btn btn-danger btn-sm mx-2" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
                                         Parmanent Delete
                                         <i class="fa-regular fa-trash-can mr-3 text-black"></i>
                                     </a>
-                                    <a href="/acount/ledger/{{$TrashAccount->id}}/restore" class=" btn btn-warning btn-sm" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
+                                    <a href="/acount/ledger/{{$TrashBankLedger->id}}/restore" class=" btn btn-warning btn-sm" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
                                         Restore
                                         <i class="fa-solid fa-arrow-rotate-left"></i>
 
