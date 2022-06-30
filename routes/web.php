@@ -55,8 +55,8 @@ Route::get('/bank/{id}/parmanently/delete', [BankController::class, 'forceDelete
 Route::get('bank/emptyTrash', [BankController::class, 'emptyTrash']);
 Route::resource('bank', BankController::class);
 
-Route::resource('bankLedger', BankLedgerController::class);
-Route::resource('balance', BalanceController::class);
+
+
 
 
 Route::get('acount/ledger/emptytrash', [AccountLedgerController::class, 'emtyTrash']);
@@ -65,9 +65,8 @@ Route::get('acount/ledger/{id}/restore', [AccountLedgerController::class, 'resto
 Route::get('acount/ledger/{id}/delete/parmanently', [AccountLedgerController::class, 'forceDelete']);
 Route::get('acount/ledger/trash', [AccountLedgerController::class, 'trash']);
 Route::get('acount/ledger/delete', [AccountLedgerController::class, 'deleteAll']);
+Route::resource('acount/ledger', AccountLedgerController::class);
 
-Route::resource('bank', BankController::class);
-Route::resource('bankLedger', BankLedgerController::class);
 
 Route::get('balance/emptytrash', [BalanceController::class, 'emtyTrash']);
 Route::get('balance/restoreall', [BalanceController::class, 'restoreAll']);
@@ -76,7 +75,8 @@ Route::get('balance/{id}/delete/parmanently', [BalanceController::class, 'forceD
 Route::get('balance/trash', [BalanceController::class, 'trash']);
 Route::get('balance/delete', [BalanceController::class, 'deleteAll']);
 Route::resource('balance', BalanceController::class);
-Route::resource('acount/ledger', AccountLedgerController::class);
+
+Route::resource('/bankLedger', BankLedgerController::class);
 
 Route::get('/room/delete', [RoomController::class, 'destroyAll']);
 Route::get('/room/trash', [RoomController::class, 'trash']);
@@ -102,21 +102,13 @@ Route::get('/Booking/{id}/parmanently/delete', [BookingController::class, 'force
 Route::get('/booking/emptyTrash', [BookingController::class, 'emptyTrash']);
 Route::resource('booking', BookingController::class);
 
-Route::resource('guest', GuestController::class);
-Route::resource('employee', EmployeeController::class);
-Route::resource('hotel', HotelController::class);
-Route::resource('incomeCategory', IncomeCategoryController::class);
-Route::resource('income', IncomeController::class);
-Route::resource('expenseCategory', ExpenseCategoryController::class);
-Route::resource('expense', ExpenseController::class);
-Route::resource('user', RegisteredUserController::class);
-
 Route::get('/invoice/trash', [InvoiceController::class, 'trash']);
 Route::get('/invoice/delete', [InvoiceController::class, 'destroyAll']);
 Route::get('/invoice/{id}/restore', [InvoiceController::class, 'restore']);
 Route::get('/invoice/restoreAll', [InvoiceController::class, 'restoreAll']);
 Route::get('/invoice/{id}/parmanently/delete', [InvoiceController::class, 'forceDeleted']);
 Route::get('/invoice/emptyTrash', [InvoiceController::class, 'emptyTrash']);
+
 
 //-----------------------------------------Guest Route's------------------------------------------------
 Route::get('/guest/trash', [GuestController::class, 'trash']);
@@ -177,7 +169,6 @@ Route::resource('expense', ExpenseController::class);
 
 Route::resource('user', RegisteredUserController::class);
 
-Route::resource('invoice', InvoiceController::class);
 
 Route::resource('invoiceItem', InvoiceItemController::class);
 

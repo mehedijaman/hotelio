@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\BankLedger;
+use App\Models\Bank;
+use Exception;
 
 class BankLedgerController extends Controller
 {
@@ -14,7 +16,9 @@ class BankLedgerController extends Controller
      */
     public function index()
     {
-        return view('bankLedger.index');
+        // return BankLedger::all();
+        $BankLedgers = BankLedger::all();
+        return view('bankLedger.index', compact('BankLedgers'));
     }
 
     /**
@@ -24,7 +28,8 @@ class BankLedgerController extends Controller
      */
     public function create()
     {
-        return view('bankLedger.create');
+        $Banks = Bank::all();
+        return view('bankLedger.create', compact('Banks'));
     }
 
     /**
@@ -35,7 +40,12 @@ class BankLedgerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            BankLedger::create($request->all());
+            return back();
+        } catch (Exception $error) {
+            return $error->getMessage();
+        }
     }
 
     /**
@@ -46,7 +56,8 @@ class BankLedgerController extends Controller
      */
     public function show($id)
     {
-        //
+        $BankLedger = BankLedger::find($id);
+        return view('bankLedger.show', compact('BankLedger'));
     }
 
     /**
@@ -57,7 +68,9 @@ class BankLedgerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $Banks = Bank::all();
+        $BankLedgers = BankLedger::find($id);
+        return view('bankLedger.edit', compact('BankLedgers', 'Banks'));
     }
 
     /**
@@ -69,7 +82,8 @@ class BankLedgerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        BankLedger::find($id)->update($request->all());
+        return $this->index();
     }
 
     /**
@@ -80,6 +94,7 @@ class BankLedgerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        BankLedger::find($id)->delete();
+        return back();
     }
 }

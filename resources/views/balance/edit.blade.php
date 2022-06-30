@@ -21,7 +21,7 @@
                     <div class="form-group row">
                         <label for="Date" class="col-sm-3 col-form-label">Date</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="Date" name="Date" placeholder="Date" value="{{ date('m-d-Y',strtotime($Balances->Date))}}">
+                            <input type="date" class="form-control" id="Date" name="Date" placeholder="Date" value="{{ date('m-d-Y',strtotime($Balances->Date))}}">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -48,14 +48,6 @@
                                     <input type="radio" name="exist">
                                     <span class="checkmark"></span>
                                 </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="offset-sm-3 col-sm-9">
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck2">
-                                <label class="form-check-label" for="exampleCheck2">Remember me</label>
                             </div>
                         </div>
                     </div>

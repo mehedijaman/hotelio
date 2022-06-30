@@ -9,7 +9,7 @@ class BankLedger extends Model
 {
     use HasFactory;
 
-    protected $table ='bank_ledgers';
+    protected $table = 'bank_ledgers';
     protected $fillable = [
         'BankID',
         'Deposit',
