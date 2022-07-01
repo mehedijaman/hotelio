@@ -48,7 +48,7 @@
                         <a class="btn btn-sm float-right text-capitalize mr-3 bg-success" href="/bank/restoreAll"><i class="fa-solid fa-trash-can mr-2"></i>Restor All</a>
                     </div>
                     <div class="card-body table-responsive p-0">
-                        <table class="table table-hover text-nowrap">
+                        <table class="table table-hover table-responsive">
                             <thead>
                                 <tr>
                                     <th>Name</th>
