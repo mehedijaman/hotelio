@@ -80,7 +80,7 @@ class AccountLedgerController extends Controller
     public function update(Request $request, $id)
     {
         AccountLedger::find($id)->update($request->all());
-        return $this->index();
+        return back()->with('Update', 'Account Ledger Succesfull');
     }
 
     /**
@@ -93,13 +93,13 @@ class AccountLedgerController extends Controller
     {
         AccountLedger::find($id)->delete();
 
-        return back();
+        return back()->with('Delete', 'Account Ledger Succesfull');
     }
 
     public function deleteAll()
     {
         AccountLedger::withTrashed()->delete();
-        return back();
+        return back()->with('DeleteAll', 'Account Ledger Successfull');
     }
     public function trash()
     {
@@ -119,11 +119,11 @@ class AccountLedgerController extends Controller
     public function restoreAll()
     {
         AccountLedger::withTrashed()->restore();
-        return back();
+        return back()->with('Restore_All', 'AccountLedger Restore Successfull');
     }
     public function emtyTrash()
     {
-        AccountLedger::withTrashed()->forceDelete();
-        return back();
+        AccountLedger::onlyTrashed()->forceDelete();
+        return back()->with('Parmanent_All_Delete', 'AccountLedger Parmanent Successfull');
     }
 }

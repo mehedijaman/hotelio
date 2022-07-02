@@ -14,7 +14,7 @@
                 <div class="card-header">
                     <h3 class="card-title text-navy">
                         <a href="{{ asset('balance') }}" class="mr-3"><i class="fa-solid fa-circle-arrow-left fs-5 text-navy" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Back to List"></i></a>
-                        Add New Booking
+                        Add Balance
                     </h3>
                 </div>
                 {{ Form::Open(array('url' => '/balance','method' => 'POST','class' => 'form-horizontal', 'files' => true)) }}

@@ -3,12 +3,18 @@
 <div class="custom__container">
     <div class="row">
         <div class="col-md-7 m-auto">
-
+            @if (Session::get('Update'))
+            <div class="alert bg-teal alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                <h5><i class="icon fas fa-check"></i>Update!</h5>
+                {{Session::get('Update')}}
+            </div>
+            @endif
             <div class="card card-primary">
                 <div class="card-header">
                     <h3 class="card-title text-navy">
                         <a href="{{ asset('acount/ledger') }}" class="mr-3"><i class="fa-solid fa-circle-arrow-left fs-5 text-navy" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Back to List"></i></a>
-                        Add New Booking
+                        Edit Account Ledger
                     </h3>
                 </div>
                 {{ Form::open(array('url' => '/acount/ledger/'.$AccountLedgers->id,'method' => 'PATCH'))}}
@@ -46,7 +52,6 @@
                     </div>
 
                     <input type="submit" name="submit" id="" class="btn bg-navy float-right w-25">
-                    <button type="submit" class="btn btn-default float-left">Cancel</button>
                 </div>
                 <div class="card-footer">
                 </div>

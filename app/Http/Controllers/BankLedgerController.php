@@ -17,7 +17,7 @@ class BankLedgerController extends Controller
     public function index()
     {
         // return BankLedger::all();
-        $BankLedgers = BankLedger::select('bank_ledgers.*', 'banks.Name as BankName')
+        $BankLedgers = BankLedger::select('bank_ledgers.*', 'banks.Name as Bank')
             ->leftJoin('banks', 'bank_ledgers.BankID', '=', 'banks.id')
             ->get();
         return view('bankLedger.index', compact('BankLedgers'));
@@ -85,7 +85,7 @@ class BankLedgerController extends Controller
     public function update(Request $request, $id)
     {
         BankLedger::find($id)->update($request->all());
-        return $this->index();
+        return back()->with('Update', 'Bank Ledger Update Successfull');
     }
 
     /**

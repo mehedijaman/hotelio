@@ -13,7 +13,7 @@
             @if (Session::get('Parmanent_Delete'))
             <div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-                <h5> <i class="fa-regular fa-trash-can mr-3 text-black"></i>
+                <h5> <i class="icon fas fa-ban"></i>
                     Parmanent Delete!
                 </h5>
                 {{Session::get('Parmanent_Delete')}}
@@ -38,7 +38,7 @@
                     <table class="table table-hover text-nowrap">
                         <thead>
                             <tr>
-                                <th>Bank ID</th>
+                                <th>Bank</th>
                                 <th>Depositt</th>
                                 <th>Withdraw</th>
                                 <th>Date</th>
@@ -50,7 +50,7 @@
                         <tbody>
                             @foreach ($BankLedgers as $TrashBankLedger)
                             <tr>
-                                <td>{{$TrashBankLedger->BankID}}</td>
+                                <td>{{$TrashBankLedger->Bank}}</td>
                                 <td>{{$TrashBankLedger->Depositt}}</td>
                                 <td>{{$TrashBankLedger->Withdraw}</td>
                                 <td>{{$TrashBankLedger->Date}}</td>

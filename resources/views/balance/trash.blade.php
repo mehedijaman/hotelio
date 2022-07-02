@@ -15,7 +15,7 @@
                 @if (Session::get('Permanent_Delete'))
                 <div class="alert alert-danger alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-                    <h5><i class="fa-regular fa-trash-can mr-3 text-black"></i>
+                    <h5><i class="icon fas fa-ban"></i>
                         Permanent Delete!</h5>
                     {{Session::get('Permanent_Delete')}}
                 </div>
