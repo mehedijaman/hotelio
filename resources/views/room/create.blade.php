@@ -3,6 +3,14 @@
     <div class="container py-4">
         <div class="row">
             <div class="col-md-11 m-auto">
+                @if (Session::get('Success'))
+                <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <h5><i class="icon fas fa-check"></i> Success!</h5>
+                    {{Session::get('Success')}}
+                </div>
+                    
+                @endif
                 <div class="card card-primary">
                     <div class="card-header">
                         <h2 class="card-title text-navy">
@@ -66,7 +74,17 @@
                                     
                                 </div>
                             </div>
-
+                           <div class="form-group row">
+                                 <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="Price" class="form-label col-md-3">Price:</label>
+                                        <div class="col-md-8">
+                                            <input type="number" name="Price" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                           </div>
+                           
                             <div class="form-group row">
                                 <div class="col-md-4">
                                     <div class="form-group row">
@@ -278,60 +296,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="form-group row">
-                                        <label for="Price" class="form-label col-md-3">Price:</label>
-                                        <div class="col-md-8">
-                                            <input type="number" name="Price" class="form-control">
-                                            
-                                        </div>
-                                    </div>
-                                </div>
+                               
                             </div>
 
-                            <div class="form-group row">
-                                <!-- <div class="col-md-8">
-                                    <div class="form-group row">
-                                        <label for="AdditionalFeatures" class="form-label col-md-4">AdditionalFeatures:</label>
-                                        <div class="col-md-7">
-                                            <select type="text" name="AdditionalFeatures" id=""  class="form-select">
-                                                <option>Open this select menu</option>
-                                                <option value="">Flower Top</option>
-                                                
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div> -->
-                            </div>
-
-
-                            {{-- <div class="form-group row">
-                                <div class="col-md-6">
-                                    <label for="Total" class="form-label">Total</label>
-                                    <input type="number" name="Total" class="form-control">
-                                </div>
-                                <div class="col-md-6 room__create">
-                                    <div class="col-md-12">
-                                        <div class="form-group row">
-                                            <label for="Price" class="form-label col-md-3">Price:</label>
-                                            <div class="col-md-8">
-                                                <div class="form-check form-check-inline ml-1">
-                                                    <input type="radio" class="form-check-input" name="Price" value="1">
-                                                    <label for="" class="form-check-label">
-                                                        Yes
-                                                    </label>
-                                                </div>
-                                                <div class="form-check form-check-inline ml-4">
-                                                    <input type="radio" class="form-check-input" name="Price" value="0">
-                                                    <label for="" class="form-check-label">
-                                                        No
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> --}}
+                          
                         </div>
                         <div class="card-footer">
                             {{-- <input type="submit" name="submit" id="" class="btn btn-danger float-right w-25 text-capitalize" value="Reset"> --}}

@@ -48,7 +48,7 @@
                         <a class="btn btn-sm bg-maroon float-right text-capitalize mr-3" href="/hotel/restoreAll"><i class="fa-solid fa-trash-can mr-2"></i>Restore All</a>
                     </div>
                     <div class="card-body table-responsive p-0">
-                        <table class="table table-hover text-nowrap">
+                        <table class="table table-hover table-responsive">
                             <thead>
                                 <tr>
                                     <th>Name</th>
@@ -75,7 +75,7 @@
                                         <td>{{ $Hotel->Photo }}</td>
                                         <td class="d-flex">
                                             <a class="" href="/hotel/{{ $Hotel->id }}/restore" data-bs-toggle="restore" data-bs-placement="bottom" title="restore">
-                                                <i class="fa-solid fa-trash-arrow-up ml-2 text-success"></i></i>
+                                                <i class="fa-solid fa-undo ml-2 text-success"></i></i>
                                             </a>
                                             <a class="" href="/hotel/{{ $Hotel->id }}/parmanently/delete" data-bs-toggle="Parmanent Delete" data-bs-placement="bottom" title="Parmanent Delete">
                                                 <i class="fa-solid fa-trash-can ml-2 text-dange"></i>

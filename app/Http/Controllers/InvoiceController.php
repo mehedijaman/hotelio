@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
 use App\Models\Invoice;
+use App\Models\InvoiceItem;
 use App\Models\Guest;
+use App\Models\Hotel;
 use App\Models\TaxSetting;
 use Exception;
 
@@ -29,9 +31,10 @@ class InvoiceController extends Controller
      */
     public function create()
     {
-        // $Guests = Guest::all();
-        // $Taxs   = TaxSetting::all();
-        return view('invoice.create');
+        $Hotels = Hotel::all();
+        $Guests = Guest::all();
+        $Taxs   = TaxSetting::all();
+        return view('invoice.create',compact('Hotels','Guests','Taxs'));
     }
 
     /**
@@ -42,12 +45,25 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
-        try {
-            $invoices = Invoice::create($request->all());
-            return back();
-        } catch (Exception $error) {
-            $error->getMessage();
-        }
+       $Invoice = Invoice::create($request->all());
+
+       $TotalItems = sizeof($request->ItemName);
+
+       for($i = 0; $i < $TotalItems; $i++)
+       {
+            $InvoiceItem = new InvoiceItem();
+
+            $InvoiceItem->InvoiceID = $Invoice->id;
+            $InvoiceItem->Name = $request->ItemName[$i];
+            $InvoiceItem->Description = $request->ItemDescription[$i];
+            $InvoiceItem->Qty = $request->ItemQty[$i];
+            $InvoiceItem->UnitPrice = $request->ItemUnitPrice[$i];
+            $InvoiceItem->Price = $request->ItemPrice[$i];
+
+            $InvoiceItem->save();
+       }
+       
+
     }
 
     /**
@@ -81,7 +97,7 @@ class InvoiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+        // return $request->all();
     }
 
     /**

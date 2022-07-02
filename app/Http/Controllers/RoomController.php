@@ -44,7 +44,7 @@ class RoomController extends Controller
     {
         try{
             Room::create($request->all());
-            return back();
+            return back()->with('Success','Room Added SuccessFully...!');
         }
         catch(Exception $error){
             return $error->getMessage();
@@ -59,7 +59,11 @@ class RoomController extends Controller
      */
     public function show($id)
     {
-        $Room = Room::find($id);
+        // $Room = Room::find($id);
+        $Room = Room::select('rooms.*','hotels.Name as HotelName')
+        ->where('rooms.id',$id)
+        ->leftJoin('hotels','rooms.HotelID','=','hotels.id')
+        ->first();
         return view('room.show',compact('Room'));
     }
 
@@ -85,8 +89,9 @@ class RoomController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
         Room::find($id)->update($request->all());
-        return $this->index();
+        return $this->index()->with('Success','Hotel Update SuccessFully...!');
     }
 
     /**
@@ -109,6 +114,7 @@ class RoomController extends Controller
     public function trash()
     {
         $Rooms = Room::onlyTrashed()->get();
+        // $Rooms = Room::onlyTrashed()->get();
         return view('room.trash',compact('Rooms'));
     }
     public function restore($id)

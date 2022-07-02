@@ -17,8 +17,8 @@
                         <a class="btn btn-sm bg-navy float-right text-capitalize" href="/guest/trash"><i class="fa-solid fa-recycle mr-2"></i>View Trash</a>
                         <a class="btn btn-sm bg-maroon float-right text-capitalize mr-3" href="/guest/delete"><i class="fa-solid fa-trash-can mr-2"></i>Delete All</a>
                     </div>
-                    <div class="card-body table-responsive p-0">
-                        <table class="table table-hover text-nowrap">
+                    <div class="card-body table-responsive p-0 ">
+                        <table class="table table-hover table-responsive  ">
                             <thead>
                                 <tr>
                                     <th>Name</th>
