@@ -38,17 +38,10 @@ class HotelController extends Controller
      */
     public function store(Request $request)
     {
-        // return  $request->all();
         try{
             Hotel::create($request->all());
 
-            // if($request->file('image')){
-            //     $file= $request->file('image');
-            //     $filename= date('YmdHi').$file->getClientOriginalName();
-            //     $file-> move(public_path('public/HotelImage'), $filename);
-            //     $data['image']= $filename;
-            // }
-            return back()->with('Success','Hotel Added Successfully!');
+            return "Hotel Added Successfully !";
         }
         catch(Exception $error){
             return $error->getMessage();

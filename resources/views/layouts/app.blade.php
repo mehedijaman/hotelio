@@ -20,6 +20,7 @@
     <link href="/css/main.css" rel="stylesheet" media="all">
     {{-- jquery --}}
     <script language="JavaScript" type="text/javascript" src="/js/jquery.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   
     {{-- data table --}}
     <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js" defer></script>
