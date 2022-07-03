@@ -20,10 +20,10 @@
                 {{ Form::Open(array('url' => '/balance','method' => 'POST','class' => 'form-horizontal', 'files' => true)) }}
                 <div class="card-body">
                     <div class="form-group row">
-                        <label for="RoomID" class="form-label col-md-3">Acount ID:</label>
+                        <label for="RoomID" class="form-label col-md-3">Account ID:</label>
                         <div class="col-md-8">
                             <select type="number" name="AcountID" id="" class="form-select">
-                                <option>Open this select menu</option>
+                                <option value="">Select Account No</option>
                                 @foreach ($AcountLeagers as $AcountLeager)
                                 <option value="{{ $AcountLeager->id }}">
                                     {{ $AcountLeager->id }}
@@ -66,7 +66,12 @@
                             </div>
                         </div>
                     </div>
-                    <input type="submit" name="submit" id="" class="btn bg-navy float-right w-25 text-capitalize">
+                    <div class="row">
+                        <div class=" col-sm-8 offset-sm-3">
+                            <a href="#" class="btn btn-default float-left w-25">Reset</a>
+                            <input type="submit" name="submit" id="" class="btn bg-navy float-right  w-25 text-capitalize">
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- <div class="card-footer"> -->

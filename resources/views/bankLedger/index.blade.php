@@ -9,9 +9,8 @@
                         <h2 class="card-title">
                             <a href="{{  asset('bankLedger/create') }}" class="btn bg-navy text-capitalize mr-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create Booking">
                                 <i class="fa-solid fa-circle-plus mr-2"></i>
-                                Add
                             </a>
-                            Bank Ledger
+                            Add Bank Ledger
                         </h2>
                     </div>
                     <a class="btn btn-sm bg-navy float-right text-capitalize" href="bankLedger/trash"><i class="fa-solid fa-recycle mr-2"></i>View Trash</a>

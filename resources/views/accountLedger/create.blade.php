@@ -50,11 +50,13 @@
                             <input type="text" class="form-control" id="Description" name="Description" placeholder="">
                         </div>
                     </div>
-
-                    <input type="submit" name="submit" id="" class="btn bg-navy float-right w-25 text-capitalize">
-                    <a href="#" class="btn btn-default float-left">Reset</a>
+                    <div class="row">
+                        <div class=" col-sm-8 offset-sm-3">
+                            <a href="#" class="btn btn-default float-left w-25">Reset</a>
+                            <input type="submit" name="submit" id="" class="btn bg-navy float-right  w-25 text-capitalize">
+                        </div>
+                    </div>
                 </div>
-
             </div>
             <!-- <div class="card-footer"> -->
             {{-- <input type="submit" name="submit" id="" class="btn btn-danger float-right w-25 ml-2" value="Reset"> --}}

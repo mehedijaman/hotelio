@@ -22,36 +22,38 @@
                 <div class="card-body">
                     <div class="form-group row">
                         <label for="AcountID" class="col-sm-3 col-form-label">Debit:</label>
-                        <div class="col-sm-9">
+                        <div class="col-sm-8">
                             <input type="number" name="Debit" class="form-control" placeholder="Debit Balance" value="{{ $AccountLedgers->Debit }}">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="Date" class="col-sm-3 col-form-label">Credit</label>
-                        <div class="col-sm-9">
+                        <label for="Date" class="col-sm-3 col-form-label">Credit :</label>
+                        <div class="col-sm-8">
                             <input type="number" class="form-control" id="Credit" name="Credit" placeholder="Credit Balance" value="{{ $AccountLedgers->Credit }}">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="OpeningBalance" class="col-sm-3 col-form-label">Date</label>
-                        <div class="col-sm-9">
+                        <label for="OpeningBalance" class="col-sm-3 col-form-label">Date :</label>
+                        <div class="col-sm-8">
                             <input type="date" class="form-control" id="Date" name="Date" value="{{ date('d-m-Y',strtotime($AccountLedgers->Date))}}">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="ClosingBalance" class="col-sm-3 col-form-label">Method</label>
-                        <div class="col-sm-9">
+                        <label for="ClosingBalance" class="col-sm-3 col-form-label">Method :</label>
+                        <div class="col-sm-8">
                             <input type="text" class="form-control" id="Method" name="Method" placeholder="Method" value="{{ $AccountLedgers->Method }}">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="ClosingBalance" class="col-sm-3 col-form-label">Description</label>
-                        <div class="col-sm-9">
+                        <label for="ClosingBalance" class="col-sm-3 col-form-label">Description :</label>
+                        <div class="col-sm-8">
                             <input type="text" class="form-control" id="ClosingBalance" name="Description" placeholder="Description" value="{{ $AccountLedgers->Description }}">
                         </div>
                     </div>
 
-                    <input type="submit" name="submit" id="" class="btn bg-navy float-right w-25">
+                    <div class=" col-sm-8 offset-md-3">
+                        <input type="submit" name="submit" value="Update" id="" class="btn bg-navy float-right w-25">
+                    </div>
                 </div>
                 <div class="card-footer">
                 </div>

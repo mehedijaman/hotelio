@@ -70,6 +70,7 @@ class BankLedgerController extends Controller
      */
     public function edit($id)
     {
+
         $Banks = Bank::all();
         $BankLedgers = BankLedger::find($id);
         return view('bankLedger.edit', compact('BankLedgers', 'Banks'));
@@ -97,13 +98,15 @@ class BankLedgerController extends Controller
     public function destroy($id)
     {
         BankLedger::find($id)->delete();
-        return back();
+        return back()->with('Delete', 'Delete Bank Ledger Successfull');
     }
 
     public function trash()
     {
-        return BankLedger::all();
-        // $BankLedgers = BankLedger::onlyTrashed()->get();
-        // return view('bankLedger.trash', compact('$BankLedgers'));
+        // return BankLedger::all();
+        $BankLedgers = BankLedger::onlyTrashed('bank_ledgers.*', 'banks.Name as Bank')
+            ->leftJoin('banks', 'bank_ledgers.BankID', '=', 'banks.id')
+            ->get();
+        return view('bankLedger.trash', compact('$BankLedgers'));
     }
 }

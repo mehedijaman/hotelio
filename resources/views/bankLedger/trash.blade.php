@@ -63,11 +63,11 @@
                                         </svg>
                                     </a>
                                     <a href="/acount/ledger/{{$TrashBankLedger->id}}/delete/parmanently" class=" btn btn-danger btn-sm mx-2" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
-                                        Parmanent Delete
+
                                         <i class="fa-regular fa-trash-can mr-3 text-black"></i>
                                     </a>
                                     <a href="/acount/ledger/{{$TrashBankLedger->id}}/restore" class=" btn btn-warning btn-sm" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
-                                        Restore
+
                                         <i class="fa-solid fa-arrow-rotate-left"></i>
 
                                     </a>

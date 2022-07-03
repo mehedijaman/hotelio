@@ -23,7 +23,7 @@
                         <label for="BankID" class="form-label col-md-3">Bank ID:</label>
                         <div class="col-md-8">
                             <select type="number" name="BankID" id="" class="form-select">
-                                <option>Open this select menu</option>
+                                <option value="">Open this select menu</option>
                                 @foreach ($Banks as $Bank)
                                 <option value="{{ $Bank->id }}">
                                     {{ $Bank->id }}
@@ -57,7 +57,12 @@
                             <input type="text" name="Description" class="form-control">
                         </div>
                     </div>
-                    <input type="submit" name="submit" id="" class="btn bg-navy float-right w-25 text-capitalize">
+                    <div class="row">
+                        <div class=" col-sm-8 offset-sm-3">
+                            <a href="#" class="btn btn-default float-left w-25">Reset</a>
+                            <input type="submit" name="submit" id="" class="btn bg-navy float-right  w-25 text-capitalize">
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- <div class="card-footer"> -->
