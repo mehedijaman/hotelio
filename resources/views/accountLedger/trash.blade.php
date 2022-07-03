@@ -3,6 +3,14 @@
 <div class="container py-5">
     <div class="row">
         <div class="col-md-12">
+
+            @if (Session::get('Restore_All'))
+            <div class="alert alert-teal bg-teal alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                <h5><i class="fa-solid fa-arrow-rotate-left"></i>Restore All!</h5>
+                {{Session::get('Restore_All')}}
+            </div>
+            @endif
             @if (Session::get('Restore'))
             <div class="alert alert-teal bg-teal alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
@@ -13,10 +21,19 @@
             @if (Session::get('Parmanent_Delete'))
             <div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-                <h5> <i class="fa-regular fa-trash-can mr-3 text-black"></i>
+                <h5> <i class="icon fas fa-ban"></i>
                     Parmanent Delete!
                 </h5>
                 {{Session::get('Parmanent_Delete')}}
+            </div>
+            @endif
+            @if (Session::get('Parmanent_All_Delete'))
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                <h5> <i class="icon fas fa-ban"></i>
+                    Parmanent All Delete!
+                </h5>
+                {{Session::get('Parmanent_All_Delete')}}
             </div>
             @endif
             <div class="card">
@@ -26,9 +43,8 @@
                         <h2 class="card-title">
                             <a href="{{ asset('acount/ledger') }}" class="btn bg-navy text-capitalize mr-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create Booking">
                                 <i class="fa-solid fa-circle-arrow-left"></i>
-                                Add
                             </a>
-                            Balance List
+                            Trash Account Ledger
                         </h2>
                     </div>
                     <a href="/acount/ledger/emptytrash" class="btn btn-sm bg-maroon float-right text-capitalize"><i class="fa-solid fa-trash-can mr-2"></i>Empty Trash</a>
@@ -62,14 +78,12 @@
                                             <circle data-v-9a6e255c="" cx="12" cy="12" r="3"></circle>
                                         </svg>
                                     </a>
-                                    <a href="/acount/ledger/{{$TrashAccount->id}}/delete/parmanently" class=" btn btn-danger btn-sm mx-2" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
-                                        Parmanent Delete
-                                        <i class="fa-regular fa-trash-can mr-3 text-black"></i>
-                                    </a>
-                                    <a href="/acount/ledger/{{$TrashAccount->id}}/restore" class=" btn btn-warning btn-sm" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
-                                        Restore
-                                        <i class="fa-solid fa-arrow-rotate-left"></i>
 
+                                    <a href="/acount/ledger/{{$TrashAccount->id}}/restore" class="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
+                                        <i class="fa-solid fa-trash-arrow-up ml-2 text-success"></i>
+                                    </a>
+                                    <a href="/acount/ledger/{{$TrashAccount->id}}/delete/parmanently" class="mx-2" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
+                                        <i class="fa-solid fa-trash-can ml-2 text-danger"></i>
                                     </a>
 
                                 </td>

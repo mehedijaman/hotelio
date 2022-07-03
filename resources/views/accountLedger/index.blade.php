@@ -3,6 +3,22 @@
 <div class="container py-5">
     <div class="row">
         <div class="col-md-12">
+            <div class="col-md-6">
+                @if (Session::get('Delete'))
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                    <h5><i class="fa-solid fa-xmark text-light fs-3 mx-1"></i> Delete!</h5>
+                    {{Session::get('Delete')}}
+                </div>
+                @endif
+                @if (Session::get('DeleteAll'))
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                    <h5><i class="fa-solid fa-xmark text-light fs-3 mx-1"></i> All Delete!</h5>
+                    {{Session::get('DeleteAll')}}
+                </div>
+                @endif
+            </div>
             <div class="card">
                 <div class="card-header bg-defult">
                     <div class="card-title">
@@ -11,10 +27,10 @@
                                 <i class="fa-solid fa-circle-plus mr-2"></i>
                                 Add
                             </a>
-                            Balance List
+                            AccountLedger List
                         </h2>
                     </div>
-                    <a class="btn btn-sm bg-navy float-right text-capitalize" href="/acountLedger/trash"><i class="fa-solid fa-recycle mr-2"></i>View Trash</a>
+                    <a class="btn btn-sm bg-navy float-right text-capitalize" href="/acount/ledger/trash"><i class="fa-solid fa-recycle mr-2"></i>View Trash</a>
                     <a class="btn btn-sm bg-maroon float-right text-capitalize mr-3" href="/acount/ledger/delete"><i class="fa-solid fa-trash-can mr-2"></i>Delete All</a>
                 </div>
                 <div class="card-body table-responsive p-0">
@@ -44,14 +60,14 @@
                                             <circle data-v-9a6e255c="" cx="12" cy="12" r="3"></circle>
                                         </svg>
                                     </a>
-                                    <a class=" btn btn-info btn-sm mx-2" href="/acount/ledger/{{$AccountLedger->id}}/edit" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit">
-                                        Update
-                                        <i class="fa-regular fa-pen-to-square mr-3 text-black"></i></i>
+                                    <a class="mx-2" href="/acount/ledger/{{$AccountLedger->id}}/edit" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit">
+
+                                        <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i></i>
                                     </a>
                                     {{ Form::open(['url' => '/acount/ledger/'.$AccountLedger->id,'method' => 'DELETE'])}}
-                                    <button class=" btn btn-danger btn-sm" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
-                                        Delete
-                                        <i class="fa-regular fa-trash-can mr-3 text-black"></i>
+                                    <button class="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
+
+                                        <i class="fa-regular fa-trash-can mr-3 text-black text-danger"></i>
                                     </button>
                                     {{ Form::close() }}
                                 </td>

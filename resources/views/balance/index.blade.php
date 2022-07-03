@@ -3,6 +3,20 @@
 <div class="container py-5">
     <div class="row">
         <div class="col-md-12 ">
+            @if (Session::get('Delete'))
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                <h5><i class="fa-solid fa-xmark text-light fs-3 mx-1"></i> Delete!</h5>
+                {{Session::get('Delete')}}
+            </div>
+            @endif
+            @if (Session::get('DeleteAll'))
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                <h5><i class="fa-solid fa-xmark text-light fs-3 mx-1"></i> Delete All!</h5>
+                {{Session::get('DeleteAll')}}
+            </div>
+            @endif
             <div class="card">
                 <div class="card-header bg-defult">
                     <div class="card-title">
@@ -31,7 +45,6 @@
                         </thead>
 
                         <tbody>
-                            @foreach ($Balances as $Balance)
                             <tr>
                                 <td>{{$Balance->AcountID}}</td>
                                 <td>{{$Balance->Date}}</td>
@@ -47,20 +60,18 @@
                                             <circle data-v-9a6e255c="" cx="12" cy="12" r="3"></circle>
                                         </svg>
                                     </a>
-                                    <a class=" btn btn-info btn-sm mx-2" href="/balance/{{$Balance->id}}/edit" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit">
-                                        Update
-                                        <i class="fa-regular fa-pen-to-square mr-3 text-black"></i></i>
+                                    <a class=" mx-2" href="/balance/{{$Balance->id}}/edit" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit">
+
+                                        <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i></i>
                                     </a>
                                     {{ Form::open(['url' => '/balance/'.$Balance->id,'method' => 'DELETE'])}}
 
-                                    <button class=" btn btn-danger btn-sm" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
-                                        Delete
-                                        <i class="fa-regular fa-trash-can mr-3 text-black"></i>
+                                    <button class="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
+                                        <i class="fa-regular fa-trash-can mr-3 text-black text-danger"></i>
                                     </button>
                                     {{ Form::close() }}
                                 </td>
                             </tr>
-                            @endforeach
                         </tbody>
 
                     </table>
