@@ -2,7 +2,7 @@
 @section('content')
     <div class="container py-5 col-md-12">
         <div class="row">
-            <div class="col-md-7 m-auto col-md-11">
+            <div class="col-md-7 m-auto col-md-11 mt-4">
                 @if (Session::get('Success'))
                 <div class="alert alert-success alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>

@@ -31,15 +31,16 @@
                                 <label for="Status" class="form-label col-md-3">Status:</label>
                                 <div class="col-md-8">
                                     <div class="form-check form-check-inline ml-1">
-                                        <input type="radio" class="form-check-input" name="Status" value="1">
+                                        <input type="radio" class="form-check-input" name="Status" value="1" @if ($TaxSetting->Status) checked @endif >
                                         <label for="" class="form-check-label">
-                                            Yes
+                                            <b class="text-success fs-6">Active</b>
                                         </label>
                                     </div>
                                     <div class="form-check form-check-inline ml-4">
-                                        <input type="radio" class="form-check-input" name="Status" value="0">
+                                        <input type="radio" class="form-check-input" name="Status" value="0" @if(!$TaxSetting->Status)
+                                        checked @endif>
                                         <label for="" class="form-check-label">
-                                            No
+                                           <b class="text-danger fs-6">Deactive</b>
                                         </label>
                                     </div>
                                 </div>

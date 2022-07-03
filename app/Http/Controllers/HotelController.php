@@ -90,7 +90,6 @@ class HotelController extends Controller
     public function update(Request $request, $id)
     {
         Hotel::find($id)->update($request->all());
-
         return $this->index()->with('Success','Update Successfull!');
 
     }
@@ -104,7 +103,7 @@ class HotelController extends Controller
     public function destroy($id)
     {
         Hotel::find($id)->delete();
-        return $this->index();
+        return back()->with('delete','Deleted data is stored in the trash');
     }
 
 
@@ -112,7 +111,7 @@ class HotelController extends Controller
     public function destroyAll()
     {
         Hotel::withTrashed()->delete();
-        return $this->index();
+        return back()->with('destroyAll','Deleted All data is stored in the trash');
     }
     
     /**

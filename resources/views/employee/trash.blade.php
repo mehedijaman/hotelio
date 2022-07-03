@@ -46,8 +46,8 @@
                                 Employee Trash List
                             </h2>
                         </div>
-                        <a class="btn btn-sm bg-navy float-right text-capitalize" href="/employee/emptyTrash"><i class="fa-solid fa-recycle mr-2"></i>Empty Trash</a>
-                        <a class="btn btn-sm bg-maroon float-right text-capitalize mr-3" href="/employee/restoreAll"><i class="fa-solid fa-trash-can mr-2"></i>Restore All</a>
+                        <a class="btn btn-sm bg-danger float-right text-capitalize" href="/employee/emptyTrash"><i class="fa-solid fa-recycle mr-2"></i>Empty Trash</a>
+                        <a class="btn btn-sm bg-success float-right text-capitalize mr-3" href="/employee/restoreAll"><i class="fa-solid fa-trash-can mr-2"></i>Restore All</a>
                     </div>
                     <div class="card-body table-responsive p-0">
                         <table class="table table-hover table-responsive ">
@@ -79,7 +79,7 @@
                                           <td>{{ $Employee->Status }}</td>
                                           <td class="d-flex">
                                                 <a class="" href="/employee/{{ $Employee->id }}/restore" data-bs-toggle="restore" data-bs-placement="bottom" title="Edit">
-                                                    <i class="fa-solid fa-trash-arrow-up ml-2 text-success"></i></i>
+                                                    <i class="fa-solid fa-undo text-success"></i></i>
                                                 </a>
                                                 <a class="" href="/employee/{{ $Employee->id }}/parmanently/delete" data-bs-toggle="tooltip" data-bs-placement="bottom" title="/Parmanent Delete">
                                                     <i class="fa-solid fa-trash-can ml-2 text-dange"></i>

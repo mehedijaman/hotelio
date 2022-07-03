@@ -95,14 +95,14 @@ class GuestController extends Controller
     public function destroy($id)
     {
         Guest::find($id)->delete();
-        return $this->index();
+        return back()->with('delete','Deleted data is stored in the trash');
     }
 
  
     public function destroyAll()
     {
         Guest::withTrashed()->delete();
-        return $this->index();
+        return back()->with('destroyAll','Deleted All data is stored in the trash');
     } 
 
     

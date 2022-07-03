@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container py-5 col-md-12">
+    <div class="container py-5 col-md-10 m-auto">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -18,7 +18,7 @@
                     <div class="card-body table-responsive p-0">
                         <table class="table table-hover text-nowrap">
                             <thead>
-                                <tr>
+                                <tr class="border-bottom">
                                     <th>Name</th>
                                     <th>Action</th>
                                 </tr>
@@ -26,7 +26,7 @@
                           
                             <tbody>
                                 @foreach ($ExpenseCategoris as $Category)
-                                    <tr>
+                                    <tr class="border-bottom">
                                         <td>{{$Category->Name}}</td>
                                         <td class="d-flex">
                                            <a href="{{URL::to('expense/category/'.$Category->id)}}" class="mr-3 text-purple" data-bs-toggle="View" data-bs-placement="bottom" title="View">

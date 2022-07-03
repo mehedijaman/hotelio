@@ -77,7 +77,7 @@
                                         <td>{{ $Guest->Photo }}</td>
                                         <td>
                                           {{-- Restore --}}
-                                          <a href="/guest/{{ $Guest->id }}/restore" data-bs-toggle="restore" data-bs-placement="bottom" title="Restore"><i class="fa-solid fa-trash-arrow-up ml-2 text-success"></i></a>
+                                          <a href="/guest/{{ $Guest->id }}/restore" data-bs-toggle="restore" data-bs-placement="bottom" title="Restore"><i class="fa-solid fa-undo  text-success"></i></a>
                                           
                                           <a href="/guest/{{ $Guest->id }}/parmanently/delete" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Parmanently Delete"><i class="fa-solid fa-trash-can ml-2 text-danger"></i> </a>
                                       </td>

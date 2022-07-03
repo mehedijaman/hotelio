@@ -1,8 +1,25 @@
 @extends('layouts.app')
 @section('content')
-<div class="container py-5 col-md-12" style="width:100% ;">
+<div class="container py-5 col-md-12 m-auto" style="width:100% ;">
     <div class="row">
         <div class="col-md-12">
+
+            @if (Session::get('delete'))
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" arial-hide="true"></button>
+                    <h5><i class="icon fas fa-trash-can"></i>Delete!</h5>
+                    {{Session::get('delete')}}
+                </div>
+            @endif
+
+            @if (Session::get('destroyAll'))
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" arial-hide="true"></button>
+                    <h5><i class="icon fas fa-trash-can"></i>Delete All!</h5>
+                    {{Session::get('destroyAll')}}
+                </div>
+            @endif
+
             <div class="card">
                 <div class="card-header bg-defult">
                     <div class="card-title">
@@ -18,9 +35,10 @@
                     <a class="btn btn-sm bg-maroon float-right text-capitalize mr-3" href="/employee/delete"><i class="fa-solid fa-trash-can mr-2"></i>Delete All</a>
                 </div>
                 <div class="card-body table-responsive p-0">
-                    <table class="table table-hover table-responsive ">
+                    <table class="table table-hover table-responsive table-borderless">
+
                         <thead>
-                            <tr>
+                            <tr class="border-bottom">
                                 <th>Hote Name</th>
                                 <th>Name</th>
                                 <th>Designation</th>
@@ -34,7 +52,7 @@
                         </thead>
                         <tbody>
                             @foreach ( $Employees as $Employee )
-                            <tr class="">
+                            <tr class="border-bottom">
                                 <td>{{ $Employee->Hotel }}</td>
                                 <td>{{ $Employee->Name }}</td>
                                 <td>{{ $Employee->Designation }}</td>
@@ -42,9 +60,9 @@
                                 <td>{{ $Employee->Email }}</td>
                                 <td>{{ $Employee->Address }}</td>
                                 <td>{{ $Employee->DateOfJoin }}</td>
-                                <td>{{ $Employee->Status }}</td>
+                                <td>@if ($Employee->Status ) <i class="fa-solid fa-circle-check text-success ml-4"> </i> @else <i class="fa-solid fa-rectangle-xmark text-danger ml-4 "> </i> @endif</td>
                                 <td class="d-flex">
-                                    <a href="{{URL::to('employee/'.$Employee->id)}}" class="mr-3 text-purple" data-bs-toggle="View" data-bs-placement="bottom" title="View">
+                                    <a href="{{URL::to('employee/'.$Employee->id)}}" class="mr-3 text-purple data-bs-toggle="View" data-bs-placement="bottom" title="View">
                                         <svg data-v-9a6e255c="" xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="invoice-row-5036-preview-icon" class="mx-1 feather feather-eye">
                                             <path data-v-9a6e255c="" d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                             <circle data-v-9a6e255c="" cx="12" cy="12" r="3"></circle>

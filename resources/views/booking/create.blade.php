@@ -6,6 +6,14 @@
         </section> --}}
         <div class="row">
             <div class="col-md-7 m-auto">
+                @if (Session::get('Success'))
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h5><i class="icon fas fa-check"></i> Success!</h5>
+                        {{Session::get('Success')}}
+                    </div>
+                @endif
+
                 <div class="card card-primary">
                     <div class="card-header">
                         <h3 class="card-title text-navy">
@@ -21,6 +29,7 @@
                                     <select type="number" name="RoomID" id=""  class="form-select" required>
                                         <option value="">Select Room</option>
                                         @foreach ($Rooms as $Room)
+                                            <option value="{{ $Room->id }}">{{ $Room->RoomNo }}</option>
                                             @if(!$Room->Status)
                                                 <option value="{{ $Room->id }}">{{ $Room->RoomNo }}</option>
                                             @endif
