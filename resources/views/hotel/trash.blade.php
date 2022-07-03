@@ -2,7 +2,7 @@
 @section('content')
     <div class="container py-5 col-md-12">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-10 m-auto">
                 @if (Session::get('Delete'))
                     <div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss='alert' aria-hidden="true"></button>
@@ -44,11 +44,11 @@
                                 Hotel Trash List
                             </h2>
                         </div>
-                        <a class="btn btn-sm bg-navy float-right text-capitalize" href="/hotel/emptyTrash"><i class="fa-solid fa-recycle mr-2"></i>Empty Trash</a>
-                        <a class="btn btn-sm bg-maroon float-right text-capitalize mr-3" href="/hotel/restoreAll"><i class="fa-solid fa-trash-can mr-2"></i>Restore All</a>
+                        <a class="btn btn-sm bg-danger float-right text-capitalize" href="/hotel/emptyTrash"><i class="fa-solid fa-recycle mr-2"></i>Empty Trash</a>
+                        <a class="btn btn-sm bg-success float-right text-capitalize mr-3" href="/hotel/restoreAll"><i class="fa-solid fa-undo mr-2"></i>Restore All</a>
                     </div>
                     <div class="card-body table-responsive p-0">
-                        <table class="table table-hover table-responsive">
+                        <table class="table table-hover table-responsive table-borderless">
                             <thead>
                                 <tr>
                                     <th>Name</th>

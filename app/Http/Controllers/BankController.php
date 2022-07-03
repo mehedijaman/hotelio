@@ -92,13 +92,13 @@ class BankController extends Controller
     public function destroy($id)
     {
         Bank::find($id)->delete();
-        return back(); 
+        return back()->with('delete','Deleted data is stored in the trash'); 
     }
  
     public function destroyAll()
     {
         Bank::withTrashed()->delete();
-        return back();
+        return back()->with('destroyAll','Deleted All data is stored in the trash');
     }
 
     public function trash()

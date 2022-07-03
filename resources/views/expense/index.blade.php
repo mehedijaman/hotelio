@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container py-5 col-md-12">
+    <div class="container py-5 col-md-10 m-auto">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -18,9 +18,9 @@
                         <a class="btn btn-sm bg-maroon float-right text-capitalize mr-3" href="/expense/delete"><i class="fa-solid fa-trash-can mr-2"></i>Delete All</a>
                     </div>
                     <div class="card-body table-responsive p-0">
-                        <table class="table table-hover text-nowrap">
+                        <table class="table table-hover table-responsive table-borderless">
                             <thead>
-                                <tr>
+                                <tr class="border-bottom">
                                     <th>Category Name</th>
                                     <th>Amount</th>
                                     <th>Description</th>
@@ -30,7 +30,7 @@
                               </thead>
                               <tbody>
                                 @foreach ( $Expenses as $Expense)
-                                    <tr class="">
+                                    <tr class="border-bottom">
                                         <td>{{ $Expense->CategoryName }}</td>
                                         <td>{{ $Expense->Amount }}</td>
                                         <td>{{ $Expense->Description }}</td>

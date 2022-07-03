@@ -7,7 +7,7 @@
                     <div class="card-header">
                         <h3 class="card-title text-light ">
                             <a href="{{ asset('guest') }}" class="mr-3"><i class="fa-solid fa-circle-arrow-left fs-5 text-orange" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Back to List"></i></a>
-                            Add New Bank
+                            Update Gest Informetion
                         </h3>
                     </div>
                     {{ Form::open(array('url' => '/guest/'.$Guests->id ,'method' => 'PATCH','class'=>'form-horizontal', 'files' => true)) }}
