@@ -20,10 +20,12 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        // $invoices = Invoice::all();
-        return view('invoice.index');
+        $invoices = Invoice::select('invoices.*', 'tax_settings.Name as Tax', 'guests.Name as Guest')
+        ->leftJoin('tax_settings', 'invoices.TaxID', '=', 'tax_settings.id')
+        ->leftJoin('guests', 'invoices.GuestID', '=', 'guests.id')
+        ->get(); 
+        return view('invoice.index',compact('invoices'));
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -62,8 +64,7 @@ class InvoiceController extends Controller
 
             $InvoiceItem->save();
        }
-       
-
+       return back()->with('Success', 'Invoice Added SuccessFully !');
     }
 
     /**
@@ -108,7 +109,41 @@ class InvoiceController extends Controller
      */
     public function destroy($id)
     {
-       
+       Invoice::find($id)->delete();
+       return back()->with('Destroy', 'Delete Completed !');
     }
+    public function destroyAll()
+    {
+       Invoice::withTrashed()->delete();
+       return back()->with('DestroyAll', 'সমস্ত ডাটাকে খালি করা হলো');
+    }
+    public function trash()
+    {
+        $Invoices = Invoice::onlyTrashed()->get();
+        
+        return view('invoice.trash',compact('Invoices'));
+    }
+    public function restore($id)
+    {
+        Invoice::withTrashed()->where('id',$id)->restore();
+        return back()->with('Restore', 'Restore SuccessFully !');
+    }
+    
+    public function restoreAll()
+    {
+        Invoice::withTrashed()->restore();
+        return back()->with('RestoreAll', 'সমস্ত ডাটাকে পুনরুদ্ধার করা হয়েছে');
+    }
+    public function forceDeleted($id)
+    {
+        Invoice::withTrashed()->where('id',$id)->forceDelete();
+        return back()->with('PermanentlyDelete', 'Permanently Delete Completed !');
+    }
+    public function emptyTrash()
+    {
+        Invoice::onlyTrashed()->forceDelete();
+        return back()->with('EmptyTrash', 'ট্রাস সম্পূর্ণরূপে খালি করা হলো');
+    }
+
 
 }

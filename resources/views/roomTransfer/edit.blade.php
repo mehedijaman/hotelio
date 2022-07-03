@@ -20,11 +20,15 @@
                                 <label for="GuestID" class="form-label col-md-3">Guest:</label>
                                 <div class="col-md-8">
                                     <select type="number" name="GuestID" id=""  class="form-select">
-                                        <option>Open this select menu</option>
+                                        <option value=""> Select Guest </option>
                                         @foreach ($Guests as $Guest)
-                                            <option value="{{ $Guest->id }}">
+
+                                            @if ($RoomTransfer->GuestID == $Guest->id) 
+                                                <option value="{{ $Guest->id }}" selected>
                                                 {{ $Guest->Name }}
-                                            </option>
+                                                </option>
+                                            @endif
+
                                         @endforeach
                                     </select> 
                                 </div>
@@ -39,11 +43,14 @@
                                 <label for="ToRoomID" class="form-label col-md-3">ToRoom:</label>
                                 <div class="col-md-8">
                                     <select type="number" name="ToRoomID" id=""  class="form-select">
-                                        <option>Open this select menu</option>
+                                        <option value="">Room Select</option>
+                                        
                                         @foreach ($Rooms as $Room)
-                                            <option value="{{ $Room->id }}">
-                                                {{ $Room->RoomNo }}
-                                            </option>
+                                            @if ($RoomTransfer->ToRoomID == $Room->id)
+                                                <option value="{{ $Room->id }}" selected>
+                                                    {{ $Room->RoomNo }}
+                                                </option>
+                                            @endif
                                         @endforeach
                                     </select> 
                                 </div>
@@ -54,7 +61,7 @@
                             <div class="form-group row">
                                 <label for="Date" class="form-label col-md-3">Date:</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="Date" class="form-control" value="{{ $RoomTransfer->Date }}"> 
+                                    <input type="date" name="Date" class="form-control" value="{{ date('d-m-Y',strtotime($RoomTransfer->Date)) }}"> 
                                 </div>
                             </div>
                         </div>
