@@ -40,7 +40,7 @@ class TaxSettingController extends Controller
     {
         try {
             $TaxSettings = TaxSetting::create($request->all());
-            return back();
+            return back()->with('Success', 'Tax Added SuccessFully !');
         } catch (Exception $error) {
             $error->getMessage();
         }
@@ -91,12 +91,12 @@ class TaxSettingController extends Controller
     public function destroy($id)
     {
         TaxSetting::find($id)->delete();
-        return back();
+        return back()->with('Destroy', 'Delete Completed !');
     }
     public function destroyAll()
     {
         TaxSetting::withTrashed()->delete();
-        return back();
+        return back()->with('DestroyAll', 'সমস্ত ডাটাকে খালি করা হলো');
     }
     public function trash()
     {
@@ -106,21 +106,21 @@ class TaxSettingController extends Controller
     public function restore($id)
     {
         TaxSetting::withTrashed()->where('id',$id)->restore();
-        return back();
+        return back()->with('Restore', 'Restore SuccessFully !');
     }
     public function restoreAll()
     {
         TaxSetting::withTrashed()->restore();
-        return back();
+        return back()->with('RestoreAll', 'সমস্ত ডাটাকে পুনরুদ্ধার করা হয়েছে');
     }
     public function forceDeleted($id)
     {
         TaxSetting::withTrashed()->where('id',$id)->forceDelete();
-        return back();
+        return back()->with('PermanentlyDelete', 'Permanently Delete Completed !');
     }
     public function emptyTrash()
     {
         TaxSetting::onlyTrashed()->forceDelete();
-        return back();
+        return back()->with('EmptyTrash', 'ট্রাস সম্পূর্ণরূপে খালি করা হলো');
     }
 }

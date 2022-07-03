@@ -36,6 +36,7 @@
                 </div>
                 <div class="card-body table-responsive p-0">
                     <table class="table table-hover table-responsive table-borderless">
+
                         <thead>
                             <tr class="border-bottom">
                                 <th>Hote Name</th>

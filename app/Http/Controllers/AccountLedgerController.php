@@ -92,7 +92,6 @@ class AccountLedgerController extends Controller
     public function destroy($id)
     {
         AccountLedger::find($id)->delete();
-
         return back();
     }
 

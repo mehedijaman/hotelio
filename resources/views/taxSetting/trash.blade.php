@@ -7,6 +7,36 @@
         </section> --}}
         <div class="row">
             <div class="col-md-9 m-auto">
+                @if (Session::get('PermanentlyDelete'))
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h5><i class="icone fas fa-exclamation-triangle"></i> Deleted !</h5>
+                        {{Session::get('PermanentlyDelete')}}
+                    </div>
+                @endif
+                @if (Session::get('EmptyTrash'))
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h5><i class="icone fas fa-exclamation-triangle"></i> Deleted !</h5>
+                        {{Session::get('EmptyTrash')}}
+                    </div>
+                @endif
+                @if (Session::get('Restore'))
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h5><i class="icon fas fa-check"></i> Success !</h5>
+                        {{Session::get('Restore')}}
+                    </div>
+                @endif
+                @if (Session::get('RestoreAll'))
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h5><i class="icon fas fa-check"></i> Success !</h5>
+                        {{Session::get('RestoreAll')}}
+                    </div>
+                @endif
+
+                
                 <div class="card">
                     <div class="card-header bg-defult">
                         <div class="card-title">

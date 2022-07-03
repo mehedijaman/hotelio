@@ -7,6 +7,20 @@
         </section> --}}
         <div class="row">
             <div class="col-md-12">
+                @if (Session::get('Destroy'))
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h5><i class="icone fas fa-exclamation-triangle"></i> Deleted !</h5>
+                        {{Session::get('Destroy')}}
+                    </div>
+                @endif
+                @if (Session::get('DestroyAll'))
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h5><i class="icone fas fa-exclamation-triangle"></i> Deleted !</h5>
+                        {{Session::get('DestroyAll')}}
+                    </div>
+                @endif
                 <div class="card">
                     <div class="card-header bg-defult">
                         <div class="card-title">
@@ -15,16 +29,16 @@
                                     <i class="fa-solid fa-circle-plus mr-2"></i>
                                     Add
                                 </a>
-                                Booking List
+                                Invoice List
                             </h2>
                         </div>
                         <a class="btn btn-sm bg-navy float-right text-capitalize" href="/invoice/trash"><i class="fa-solid fa-recycle mr-2"></i>View Trash</a>
                         <a class="btn btn-sm bg-maroon float-right text-capitalize mr-3" href="/invoice/delete"><i class="fa-solid fa-trash-can mr-2"></i>Delete All</a>
                     </div>
                     <div class="card-body table-responsive p-0">
-                        <table class="table table-hover text-nowrap">
+                        <table class="table table-hover  table-borderless">
                             <thead>
-                                <tr>
+                                <tr class="border-bottom">
                                     <th>Guest</th>
                                     <th>Tax</th>
                                     <th>PaymentMethod</th>
@@ -35,34 +49,31 @@
                                     <th>Action</th>
                                 </tr>
                             </thead>
-
+                            
                             <tbody>
-                                {{-- @foreach ($Bookings as $Booking)
-                                    <tr class="">
-                                        <td>{{$Booking->RoomNo}}</td>
-                                        <td>{{$Booking->Guest}}</td>
-                                        <td>
-                                            @php
-                                                echo date('d/m/Y H:i:s',strtotime($Booking->CheckInDate))
-                                            @endphp
-                                        </td>
-                                        <td>{{$Booking->CheckOutDate}}</td>
+                                @foreach ($invoices as $invoice)
+                                    <tr class="border-bottom">
+                                        <td>{{$invoice->Guest}}</td>
+                                        <td>{{$invoice->Tax}}</td>
+                                        <td>{{$invoice->PaymentMethod}}</td>
+                                        <td>{{$invoice->Date}}</td>
+                                        <td>{{$invoice->SubTotal}}</td>
+                                        <td>{{$invoice->TaxTotal}}</td>
+                                        <td>{{$invoice->Total}}</td>
                                         <td class="d-flex">
-                                           <a href="{{ URL::to('/invoice/'.$Booking->id) }}" class="mr-3 text-purple" data-bs-toggle="tooltip" data-bs-placement="bottom" title="View">
-                                            <svg data-v-9a6e255c="" xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="invoice-row-5036-preview-icon" class="mx-1 feather feather-eye"><path data-v-9a6e255c="" d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle data-v-9a6e255c="" cx="12" cy="12" r="3"></circle></svg>
-                                           </a>
-                                            <a class="" href="/invoice/{{ $Booking->id }}/edit" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit">
+                                            <a class="" href="/invoice/{{ $invoice->id }}/edit" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit">
                                                 <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i></i>
                                             </a>
                                             
-                                            {{ Form::open(array('url' => '/invoice/'.$Booking->id,'method' => 'DELETE')) }}
+                                            {{ Form::open(array('url' => '/invoice/'.$invoice->id,'method' => 'DELETE')) }}
                                                 <button class="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
                                                     <i class="fa-regular fa-trash-can mr-3 text-danger"></i>
                                                 </button>
                                             {{ Form::close() }} 
                                         </td>
                                     </tr>
-                                @endforeach --}}
+                                @endforeach
+
                             </tbody>
                            
                         </table>

@@ -44,7 +44,7 @@ class RoomController extends Controller
     {
         try{
             Room::create($request->all());
-            return back()->with('Success','Room Added SuccessFully...!');
+            return back()->with('Success','Room Added SuccessFully !');
         }
         catch(Exception $error){
             return $error->getMessage();
@@ -91,7 +91,7 @@ class RoomController extends Controller
     {
         
         Room::find($id)->update($request->all());
-        return $this->index()->with('Success','Hotel Update SuccessFully...!');
+        return back()->with('Success','Hotel Update SuccessFully !');
     }
 
     /**
@@ -103,13 +103,13 @@ class RoomController extends Controller
     public function destroy($id)
     {
         Room::find($id)->delete();
-        return back();
+        return back()->with('Destroy','Delete Completed !');
     }
 
     public function destroyAll()
     {
         Room::withTrashed()->delete();
-        return back();
+        return back()->with('DestroyAll', 'সমস্ত ডাটাকে খালি করা হলো');
     }
     public function trash()
     {
@@ -120,22 +120,22 @@ class RoomController extends Controller
     public function restore($id)
     {
         Room::withTrashed()->where('id',$id)->restore();
-        return back();
+        return back()->with('Restore','Restore SuccessFully !');
     }
     public function restoreAll()
     {
         Room::withTrashed()->restore();
-        return back();
+        return back()->with('RestoreAll','সমস্ত ডাটাকে পুনরুদ্ধার করা হয়েছে');
     }
     public function forceDeleted($id)
     {
         Room::withTrashed()->where('id',$id)->forceDelete();
-        return back();
+        return back()->with('PermanentlyDelete', 'Permanently Delete Completed !');
     }
     public function emptyTrash()
     {
 
         Room::onlyTrashed()->forceDelete();
-        return back();
+        return back()->with('EmptyTrash', 'ট্রাস সম্পূর্ণরূপে খালি করা হলো');
     }
 }

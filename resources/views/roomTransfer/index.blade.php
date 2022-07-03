@@ -6,6 +6,20 @@
         </section> --}}
         <div class="row">
             <div class="col-md-10 m-auto">
+                @if (Session::get('Destroy'))
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h5><i class="icone fas fa-exclamation-triangle"></i> Deleted !</h5>
+                        {{Session::get('Destroy')}}
+                    </div>
+                @endif
+                @if (Session::get('DestroyAll'))
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h5><i class="icone fas fa-exclamation-triangle"></i> Deleted !</h5>
+                        {{Session::get('DestroyAll')}}
+                    </div>
+                @endif
                 <div class="card">
                     <div class="card-header bg-defult">
                         <div class="card-title">
@@ -21,9 +35,9 @@
                         <a class="btn btn-sm bg-maroon float-right text-capitalize mr-3" href="/roomTransfer/delete"><i class="fa-solid fa-trash-can mr-2"></i>Delete All</a>
                     </div>
                     <div class="card-body table-responsive p-0">
-                        <table class="table table-hover text-nowrap">
+                        <table class="table table-hover table-borderless">
                             <thead>
-                                <tr>
+                                <tr class="border-bottom">
                                     <th>Guest</th>
                                     <th>FromRoom</th>
                                     <th>ToRoom</th>
@@ -33,10 +47,10 @@
                             </thead>
                             <tbody>
                                 @foreach ($RoomTransfers as $RoomTransfer)
-                                    <tr>
+                                    <tr class="border-bottom">
                                         <td>{{ $RoomTransfer->Guest }}</td>
                                         <td class="" style="padding-left: 3rem !important">{{ $RoomTransfer->FromRoomID }} </td>
-                                        <td style="padding-left: 2.2rem !important">{{ $RoomTransfer->ToRoomID}}</td>
+                                        <td style="padding-left: 2.2rem !important">{{ $RoomTransfer->Room }}</td>
                                         <td>
                                             @php
                                                 echo date('d-m-Y',strtotime($RoomTransfer->Date))  
@@ -57,6 +71,9 @@
                             </tbody>
                             <tfoot></tfoot>
                         </table>
+                    </div>
+                    <div class="card-footer">
+
                     </div>
                 </div>
             </div>
