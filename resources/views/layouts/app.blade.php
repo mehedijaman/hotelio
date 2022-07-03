@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="{{asset('css/brands.min.css')}}">
     {{-- bootstrap --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    {{-- <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}"> --}}
     {{-- Bootsrap icon list --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     {{-- custom css --}}
@@ -21,10 +20,7 @@
     <link href="/css/main.css" rel="stylesheet" media="all">
     {{-- jquery --}}
     <script language="JavaScript" type="text/javascript" src="/js/jquery.min.js"></script>
-    {{-- jquery -ui --}}
-    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
-     integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY="
-    crossorigin="anonymous"></script>
+  
     {{-- data table --}}
     <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js" defer></script>
     <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
@@ -128,7 +124,7 @@
     </div>
 
     {{-- bootsstrap --}}
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script> -->
+   
     <script src="{{ mix('js/app.js') }}" defer></script>
     {{-- custom js --}}
     <script src="{{ URL::asset('/js/custom.js') }}"></script>

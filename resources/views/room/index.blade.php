@@ -3,10 +3,24 @@
 <div class="container-fluid py-5 ">
     {{-- <section class="button mb-4">
             <a href="{{ asset('booking/create') }}" class="btn btn-info text-capitalize"> <i class="fa-solid fa-circle-plus mr-2"></i>Add</a>
-
     </section> --}}
     <div class="row">
-        <div class="col-md-12 ">
+        <div class="col-md-12">
+            @if (Session::get('Destroy'))
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <h5><i class="icone fas fa-exclamation-triangle"></i> Deleted !</h5>
+                    {{Session::get('Destroy')}}
+                </div>
+            @endif
+            @if (Session::get('DestroyAll'))
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <h5><i class="icone fas fa-exclamation-triangle"></i> Deleted !</h5>
+                    {{Session::get('DestroyAll')}}
+                </div>
+            @endif
+            
             <div class="card">
                 <div class="card-header bg-defult">
                     <div class="card-title">
@@ -22,9 +36,9 @@
                     <a class="btn btn-sm bg-maroon float-right text-capitalize mr-3" href="/room/delete"><i class="fa-solid fa-trash-can mr-2"></i>Delete All</a>
                 </div>
                 <div class="card-body table-responsive p-0">
-                    <table class="table table-hover table-responsive table__custom">
+                    <table class="table table-responsive table-borderless table__custom">
                         <thead>
-                            <tr>
+                            <tr class="border-bottom">
                                 <th>Hotel</th>
                                 <th>RoomNo</th>
                                 <th>Floor</th>
@@ -35,28 +49,23 @@
                                 <th>Internet</th>
                                 <th>Tv</th>
                                 <th>Price</th>
-                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
 
                         </thead>
                         <tbody>
                             @foreach ($Rooms as $Room)
-                            <tr class="">
+                            <tr class="border-bottom">
                                 <td>{{$Room->HotelName}}</td>
                                 <td>{{$Room->RoomNo}}</td>
                                 <td>{{$Room->Floor}}</td>
                                 <td>{{$Room->Type}}</td>
-                                <td>@if($Room->Geyser)Avilable @else Inavilable @endif</td>
-                                <td>@if($Room->Ac)Avilable @else Inavilable @endif</td>
-                                <td>@if($Room->Balcony)Avilable @else Inavilable @endif</td>
-                                <td>@if($Room->Internet)Avilable @else Inavilable @endif</td>
-                                <td>@if($Room->Tv)Avilable @else Inavilable @endif</td>
+                                <td>@if($Room->Geyser)<i class="fa-solid fa-square-check text-green ml-4"></i> @else <i class="fa-solid fa-square-xmark text-danger ml-4"></i> @endif</td>
+                                <td>@if($Room->Ac)<i class="fa-solid fa-square-check text-green ml-1"></i> @else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</td>
+                                <td>@if($Room->Balcony)<i class="fa-solid fa-square-check text-green ml-4"></i> @else <i class="fa-solid fa-square-xmark text-danger ml-4"></i> @endif</td>
+                                <td>@if($Room->Internet)<i class="fa-solid fa-square-check text-green ml-4"></i> @else <i class="fa-solid fa-square-xmark text-danger ml-4"></i> @endif</td>
+                                <td>@if($Room->Tv)<i class="fa-solid fa-square-check text-green ml-1"></i> @else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</td>
                                 <td>{{$Room->Price}}</td>
-                                <td>@if($Room->Status)<b class="text-success">Active</b> @else <b class="text-danger">Deactive</b> @endif</td>
-
-
-
                                 <td class="d-flex">
                                     <a href="{{ URL::to('/room/'.$Room->id) }}" class="mr-3 text-purple" data-bs-toggle="tooltip" data-bs-placement="bottom" title="View">
                                         <svg data-v-9a6e255c="" xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="invoice-row-5036-preview-icon" class="mx-1 feather feather-eye">
@@ -74,7 +83,6 @@
                                     </button>
                                     {{ Form::close() }}
                                 </td>
-
                             </tr>
                             @endforeach
                         </tbody>

@@ -7,6 +7,21 @@
         </section> --}}
         <div class="row">
             <div class="col-md-9 m-auto">
+                @if (Session::get('Destroy'))
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h5><i class="icone fas fa-exclamation-triangle"></i> Deleted !</h5>
+                        {{Session::get('Destroy')}}
+                    </div>
+                @endif
+                @if (Session::get('DestroyAll'))
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h5><i class="icone fas fa-exclamation-triangle"></i> Deleted !</h5>
+                        {{Session::get('DestroyAll')}}
+                    </div>
+                @endif
+                
                 <div class="card">
                     <div class="card-header bg-defult">
                         <div class="card-title">

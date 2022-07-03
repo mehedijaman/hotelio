@@ -18,10 +18,10 @@ class BookingController extends Controller
      */
     public function index()
     {
-        $Bookings = Booking::select('bookings.*','rooms.RoomNo','guests.Name as Guest')
+        $Bookings = Booking::select('bookings.*','rooms.RoomNo as Room','guests.Name as Guest')
         ->leftJoin('rooms','bookings.RoomID','=','rooms.id')
         ->leftJoin('guests','bookings.GuestID','=','guests.id')
-        ->get();
+        ->get(); 
 
         return view('booking.index',compact('Bookings'));
     }
@@ -46,11 +46,11 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request->all();
+        /**return $request->all(); */
         try {
             Booking::create($request->all());
             Room::find($request->RoomID)->update(['Status' => 1]);
-            return back();
+            return back()->with('Success', 'Booking Added SuccessFully !');
         } catch (Exception $error) {
             return $error->getMessage();
         }
@@ -64,15 +64,14 @@ class BookingController extends Controller
      */
     public function show($id)
     {
-        $Booking = Booking::select('bookings.*','rooms.RoomNo','guests.Name')
-        ->where('bookings.id',$id)
-        ->leftJoin('rooms','bookings.RoomID','=','rooms.id')
-        ->leftJoin('guests','bookings.GuestID','=','guests.id')
-        ->first();
-
-        // find();
-
-        return view('booking.show', compact('Booking'));
+        /**
+         * $Booking = Booking::select('bookings.*','rooms.RoomNo','guests.Name')
+         *  ->where('bookings.id',$id)
+         *  ->leftJoin('rooms','bookings.RoomID','=','rooms.id')
+         * ->leftJoin('guests','bookings.GuestID','=','guests.id')
+         * ->first();
+         * return view('booking.show', compact('Booking'));
+        */
     }
 
     /**
@@ -83,6 +82,7 @@ class BookingController extends Controller
      */
     public function edit($id)
     {
+        // return Booking::all();
         $Rooms    = Room::all();
         $Guests   = Guest::all();
         $Booking = Booking::find($id);
@@ -99,12 +99,15 @@ class BookingController extends Controller
      */
     public function update(Request $request,$id)
     {
-        // $Booking = new Booking();
-        // $Booking = Booking::find($request->id);
-        // $Booking->CheckInDate   = $request->CheckInDate;
-        // $Booking->CheckOutDate  = $request->CheckOutDate;
-        // $Booking->update();
-        // return $this->index();
+        /**$Booking = new Booking(); 
+         * $Booking = Booking::find($request->id);
+         * $Booking->CheckInDate   = $request->CheckInDate;
+         * $Booking->CheckOutDate  = $request->CheckOutDate;
+         * $Booking->update();
+         * return $this->index();
+         * 
+        */ 
+        
         Booking::find($id)->update($request->all());
         return $this->index();
     }
@@ -118,12 +121,12 @@ class BookingController extends Controller
     public function destroy($id)
     {
         Booking::find($id)->delete();
-        return back();
+        return back()->with('Destroy', 'Delete Completed !');
     }
     public function destroyAll()
     {
         Booking::withTrashed()->delete();
-        return back();
+        return back()->with('DestroyAll', 'সমস্ত ডাটাকে খালি করা হলো');
     }
     public function trash()
     {
@@ -133,21 +136,21 @@ class BookingController extends Controller
     public function restore($id)
     {
         Booking::withTrashed()->where('id',$id)->restore();
-        return back();
+        return back()->with('Restore', 'Restore SuccessFully !');
     }
     public function restoreAll()
     {
         Booking::withTrashed()->restore();
-        return back();
+        return back()->with('RestoreAll', 'সমস্ত ডাটাকে পুনরুদ্ধার করা হয়েছে');
     }
     public function forceDeleted($id)
     {
         Booking::withTrashed()->where('id',$id)->forceDelete();
-        return back();
+        return back()->with('PermanentlyDelete', 'Permanently Delete Completed !');
     }
     public function emptyTrash()
     {
         Booking::onlyTrashed()->forceDelete();
-        return back();
+        return back()->with('EmptyTrash', 'ট্রাস সম্পূর্ণরূপে খালি করা হলো');
     }
 }
