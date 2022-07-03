@@ -2,12 +2,12 @@
 @section('content')
     <div class="container py-5 col-md-12">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 mt-4">
 
                 @if (Session::get('RestoreAll'))
                 <div class="alert alert-success alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-                    <h5><i class="icon fas fa-check"></i>Restore!</h5>
+                    <h5><i class="icon fas fa-check"></i>Restore All !</h5>
                     {{Session::get('RestoreAll')}}
                 </div>        
                 @endif
@@ -23,7 +23,7 @@
                 @if (Session::get('Parmanentlly'))
                 <div class="alert alert-danger alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-                    <h5><i class="icon fas fa-ban"></i>Restore!</h5>
+                    <h5><i class="icon fas fa-ban"></i>Parmanentlly Delete!</h5>
                     {{Session::get('Parmanentlly')}}
                 </div>        
                 @endif
@@ -72,7 +72,7 @@
                                         <td>{{ $Bank->Email }}</td>
                                         <td class="d-flex">
                                             <a class="" href="/bank/{{ $Bank->id }}/restore" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Restore">
-                                                <i class="fa-solid fa-trash-arrow-up ml-2 text-success"></i>
+                                                <i class="fa-solid fa-undo ml-2 text-success"></i>
                                             </a>
                                             <a class="" href="/bank/{{ $Bank->id }}/parmanently/delete" data-bs-toggle="tooltip" data-bs-placement="bottom" title="/Parmanent Delete">
                                                 <i class="fa-solid fa-trash-can ml-2 text-dange"></i>

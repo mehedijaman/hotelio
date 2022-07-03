@@ -14,7 +14,7 @@
                     <div class="card-header">
                         <h3 class="card-title text-light">
                             <a href="{{ asset('hotel') }}" class="mr-3"><i class="fa-solid fa-circle-arrow-left fs-5 text-navy" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Back to List"></i></a>
-                            Update To Bank Data
+                            Update To Hotel Data
                         </h3>
                     </div>
                     {{ Form::open(array('url' => '/hotel/'.$Hotels->id,'method' => 'PATCH','class'=>'form-horizontal', 'files' => true)) }}

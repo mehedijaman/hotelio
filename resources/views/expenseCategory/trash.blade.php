@@ -31,7 +31,7 @@
                                             <td>{{$Category->Name}}</td>
                                         <td>
                                           {{-- Restore --}}
-                                          <a href="/expense/category/{{ $Category->id }}/restore" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Restore"><i class="fa-solid fa-trash-arrow-up ml-2 text-success"></i></a>
+                                          <a href="/expense/category/{{ $Category->id }}/restore" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Restore"><i class="fa-solid fa-undo ml-2 text-success"></i></a>
                                           
                                           <a href="/expense/category/{{ $Category->id }}/parmanently/delete" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Parmanently Delete"><i class="fa-solid fa-trash-can ml-2 text-danger"></i> </a>
                                       </td>
