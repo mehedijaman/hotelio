@@ -92,11 +92,11 @@
         </div>
 
         <div class="modal fade show" id="NewHotelModal"  role="dialog">
-            <div class="modal-dialog">
+            <div class="modal-dialogn  col-md-8 m-auto  pt-3">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">New Hotel</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="formClose">
                          <span aria-hidden="true">×</span>
                         </button>
                     </div>
@@ -196,13 +196,19 @@
                           data,
                           'success'
                         )
+                        
                     },
                     error:function(data){
                         console.log('Error while adding new hotel' + data);
-                    }
+                    },
                 });
 
             });
+            // $('#formClose').on('click',function(e){
+            //     e.preventDefault(){
+            //         $('#NewHotelModal').modal('hide');
+            //     }
+            // });
         });
     </script>
 @endsection

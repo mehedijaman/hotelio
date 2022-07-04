@@ -24,10 +24,12 @@
                     <div class="card-header bg-defult">
                         <div class="card-title">
                             <h2 class="card-title">
-                                <a href="{{ asset('bank/create') }}" class="btn bg-navy text-capitalize mr-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create Booking"> 
+                               <!-- <a href="{{ asset('bank/create') }}" class="btn bg-navy text-capitalize mr-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create Booking"> 
                                     <i class="fa-solid fa-circle-plus mr-2"></i>
                                     Add
-                                </a>
+                                </a> -->
+                                {{-- <button type="button" class="btn btn-primary" id="AddNewBtn" data-toggle="modal" data-target = "#NewBankModal ">New Bank</button> --}}
+                                <button type="button" class="btn btn-primary" id="AddNewBtn">New Bank</button>
                                 Bank List
                             </h2>
                         </div>
@@ -83,5 +85,106 @@
                 </div>
             </div>
         </div>
+        
+        <div class="modal fade show" id="NewBanklModal" role="dialog">
+            <div class="modal-dialogn  col-md-8 m-auto pt-3 ">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">New Bank</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {{ Form::open(array('url' => '/bank','method' => 'POST', 'id' => 'newBankForm','class'=>'form-horizontal', 'files' => true)) }}
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <label for="Name" class="form-label col-md-3">Name:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" name="Name" class="form-control"> 
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="Branch" class="form-label col-md-3">Branch:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" name="Branch" class="form-control"> 
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="AccountNo" class="form-label col-md-3">Account No:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" name="AccountNo" class="form-control"> 
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="Address" class="form-label col-md-3">Address:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" name="Address" class="form-control"> 
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="Phone" class="form-label col-md-3">Phone:</label>
+                                    <div class="col-md-8">
+                                        <input type="tel" name="Phone" class="form-control"> 
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="Email" class="form-label col-md-3">Email:</label>
+                                    <div class="col-md-8">
+                                        <input type="mail" name="Email" class="form-control"> 
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <input type="submit" name="submit" id="submitBtn" class="btn btn-success  float-right w-25 ml-2" value="submit">
+                                    <button type="button" id="formResetBtn" class="btn btn-default ">Reset</button>
+                                </div>
+                            </div>
+                        {{ Form::close()}} 
+                    </div>
+                    <!-- <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
     </div>
+    <script>
+        $(document).ready(function(){
+            $('#AddNewBtn').on('click',function(e){
+                e.preventDefault();
+                $('#NewBanklModal').modal('show');
+            });
+
+            $('#formResetBtn').on('click',function(e){
+                e.preventDefault();
+
+                $('#newBankForm')[0].reset();
+            });
+
+            $('#submitBtn').on('click',function(e){
+                e.preventDefault();
+                
+                $.ajax({
+                    type:'POST',
+                    url : '/bank',
+                    data: $('#newBankForm').serializeArray(),
+                    success:function(data){
+                        $('#newBankForm')[0].reset();
+                        $('#NewBanklModal').modal('hide');
+                        Swal.fire(
+                          'Success!',
+                          data,
+                          'success'
+                        );
+                    },
+                    error:function(data){
+                        console.log('Error while adding new Bank'+data);
+                    },
+                });
+            });
+        });
+
+    </script>
+  
 @endsection

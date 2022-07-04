@@ -8,12 +8,12 @@
 	margin-top:50px;
 	background: green;
 }
-.banner1, .banner2, .banner3, .banner4{
+.banner1, .banner3, .banner4{
 	height: 100vh;
 	width: 100%;
 	position: absolute;
 	left: 0;
-	top:3%;
+	top:2%;
 }
 img{
 	width: 120%;
@@ -58,11 +58,8 @@ img{
 .banner1{
 	animation: slide1 12s linear infinite;
 }
-.banner2{
-	animation: slide2 12s linear infinite;
-}
 .banner3{
-	animation: slide3 12s linear infinite;
+	animation: slide2 12s linear infinite;
 }
 .banner4{
 	animation: slide4 12s linear infinite;

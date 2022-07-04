@@ -40,7 +40,7 @@ class BankController extends Controller
     {
         try{
             Bank::create($request->all());
-            return back()->with('Success','Bank Add Succeessfull!');
+            return 'Bank Add Succeessfully !';
         }
         catch(Exception $error){
             return $error->getMessage();
@@ -80,7 +80,7 @@ class BankController extends Controller
     public function update(Request $request , $id)
     {
         Bank::find($id)->update($request->all());
-        return $this->index();
+        return "Update Successfully !";
     }
 
     /**

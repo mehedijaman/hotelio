@@ -428,15 +428,6 @@
                         <p>Where customer satisfaction is a philosophy</p>
                     </div>
                 </div>
-                <div class="banner2">
-                    <img src="img/hotel/spa.jpg" alt="">
-                    <div class="text_box text_box2">
-                        <h1>Welcome To Hotelio</h1>
-                        <span></span>
-                        <p>Where customer satisfaction is a philosophy</p>
-
-                    </div>
-                </div>
                 <div class="banner3">
                     <img src="img/hotel/room.jpg" alt="">
                     <div class="text_box text_box3">
