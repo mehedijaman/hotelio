@@ -8,6 +8,16 @@ use Exception;
 
 class AccountLedgerController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth']);
+    }
+    protected $ValidateRules = [
+        'Debit'  => 'required',
+        'Credit' => 'required',
+        'Date'   => 'required',
+        'Method' => 'required'
+    ];
     /**
      * Display a listing of the resource.
      *
@@ -37,9 +47,10 @@ class AccountLedgerController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, $this->ValidateRules);
         try {
             AccountLedger::create($request->all());
-            return back()->with('Success', 'AccountLedger Add Successfull');
+            return "Account Ledger Added Successfull";
         } catch (Exception $error) {
             return $error->getMessage();
         }

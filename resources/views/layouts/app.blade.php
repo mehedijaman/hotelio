@@ -30,6 +30,8 @@
     <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
     <!-- Font special for pages-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+    <!--Sweet Aleart -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Vendor CSS-->
     <link href="/vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
