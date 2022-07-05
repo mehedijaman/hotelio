@@ -17,7 +17,7 @@
                         Edit Account Ledger
                     </h3>
                 </div>
-                {{ Form::open(array('url' => '/acount/ledger/'.$AccountLedgers->id,'method' => 'PATCH'))}}
+                {{ Form::open(array('url' => '/acount/ledger/'.$AccountLedgers->id,'class' => 'form-horizontal','id' =>'UpdateAccountLedgerForm','method' => 'PATCH'))}}
 
                 <div class="card-body">
                     <div class="form-group row">
@@ -35,7 +35,7 @@
                     <div class="form-group row">
                         <label for="OpeningBalance" class="col-sm-3 col-form-label">Date :</label>
                         <div class="col-sm-8">
-                            <input type="date" class="form-control" id="Date" name="Date" value="{{ date('d-m-Y',strtotime($AccountLedgers->Date))}}">
+                            <input type="date" class="form-control" id="Date" name="Date" value="{{ date('Y-m-d',strtotime($AccountLedgers->Date))}}">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -52,7 +52,7 @@
                     </div>
 
                     <div class=" col-sm-8 offset-md-3">
-                        <input type="submit" name="submit" value="Update" id="" class="btn bg-navy float-right w-25">
+                        <input type="submit" name="submit" value="Update" id="UpdateBtn" class="btn bg-navy float-right w-25">
                     </div>
                 </div>
                 <div class="card-footer">
@@ -64,8 +64,25 @@
 </div>
 <script>
     $(document).ready(function() {
-        $('select').selectize({
-            sortField: 'text'
+        $('#UpdateBtn').on('click', function(e) {
+            e.preventDefault();
+
+            $.ajax({
+                type: ' PUT',
+                url: '/acount/ledger',
+                data: $('#UpdateAccountLedgerForm').serializeArray(),
+                success: function(data) {
+                    $('#UpdateAccountLedgerForm')[0].reset();
+                    Swal.fire(
+                        'Success',
+                        data,
+                        'success'
+                    )
+                },
+                error: function(data) {
+                    console.log('Error While Update Now' + data);
+                }
+            });
         });
     });
 </script>

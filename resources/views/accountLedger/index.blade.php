@@ -23,10 +23,10 @@
                 <div class="card-header bg-defult">
                     <div class="card-title">
                         <h2 class="card-title">
-                            <a href="{{ asset('acount/ledger/create') }}" class="btn bg-navy text-capitalize mr-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create Booking">
+                            <button type="button" class="btn bg-navy text-capitalize mr-3" data-toggle="modal" data-target="#AccountLedgerModal" id="AddNewBtn">
                                 <i class="fa-solid fa-circle-plus mr-2"></i>
                                 Add
-                            </a>
+                            </button>
                             AccountLedger List
                         </h2>
                     </div>
@@ -78,10 +78,108 @@
                     </table>
                 </div>
                 <div class="card-footer">
+                </div>
+            </div>
+        </div>
+        <!-- style="padding-right: 17px; display: block;" aria-modal="true" -->
+        <div class="col-md-7 m-auto">
+            <div class="modal fade show" id="AccountLedgerModal" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header bg-primary">
+                            <h3 class="card-title">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <i class="fa-solid fa-circle-arrow-left fs-5" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Back to List"></i>
+                                </button>
+                            </h3>
+                            Add Account Ledger
+                        </div>
+                        <div class="modal-body">
+                            {{ Form::Open(array('url' => '/acount/ledger','method' => 'POST','class' => 'form-horizontal','id' => 'NewAccountLedgerForm', 'files' => true)) }}
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <label for="Debit" class="form-label col-md-3">Debit:</label>
+                                    <div class="col-md-8">
+                                        <input type="number" name="Debit" class="form-control" placeholder="" required>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="Credit" class="form-label col-md-3">Credit:</label>
+                                    <div class="col-md-8">
+                                        <input type="number" name="Credit" class="form-control" placeholder="" required>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="Date" class="form-label col-md-3">Date:</label>
+                                    <div class="col-md-8">
+                                        <input type="date" class="form-control" id="Method" name="Date" placeholder="" required>
+                                    </div>
+                                </div>
 
+                                <div class="form-group row">
+                                    <label for="Method" class="form-label col-md-3">Method:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" id="Method" name="Method" placeholder="" required>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="Description" class="form-label col-md-3">Description:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" id="Description" name="Description" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class=" col-sm-8 offset-sm-3">
+                                        <button class="btn btn-default float-left w-25" id="ResetFormBtn">Reset</button>
+                                        <input type="submit" name="submit" id="SubmitBtn" class="btn bg-navy float-right  w-25 text-capitalize">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div> -->
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function() {
+        $('#AddNewBtn').on('click', function(e) {
+            e.preventDefault();
+            $('#AccountLedgerModal').modal('show');
+        });
+
+        $('#ResetFormBtn').on('click', function(e) {
+            e.preventDefault();
+
+            $('#NewAccountLedgerForm')[0].reset();
+        });
+
+        $('#SubmitBtn').on('click', function(e) {
+            e.preventDefault();
+
+            $.ajax({
+                type: 'POST',
+                url:  '/acount/ledger',
+                data: $('#NewAccountLedgerForm').serializeArray(),
+                success: function(data) {
+                    $('#NewAccountLedgerForm')[0].reset();
+                    $('#AccountLedgerModal').modal('hide');
+                    Swal.fire(
+                        'Success',
+                        data,
+                        'success'
+                    )
+                },
+                error: function(data) {
+                    console.log('Error While Adding New' + data);
+                }
+            });
+        });
+    });
+</script>
 @endsection

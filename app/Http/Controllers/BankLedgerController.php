@@ -17,10 +17,11 @@ class BankLedgerController extends Controller
     public function index()
     {
         // return BankLedger::all();
+        $Banks = Bank::all();
         $BankLedgers = BankLedger::select('bank_ledgers.*', 'banks.Name as Bank')
             ->leftJoin('banks', 'bank_ledgers.BankID', '=', 'banks.id')
             ->get();
-        return view('bankLedger.index', compact('BankLedgers'));
+        return view('bankLedger.index', compact('BankLedgers', 'Banks'));
     }
 
     /**

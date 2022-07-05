@@ -16,6 +16,7 @@ class BalanceController extends Controller
      */
     public function index()
     {
+        // return Balance::all()->first();
         $Balance = Balance::all()->first();
         return view('balance.index', compact('Balance'));
     }
@@ -83,7 +84,7 @@ class BalanceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Balance::find($id)->updateOrInsert($request->all());
+        Balance::find($id)->update($request->all());
 
         return back()->with('Update', 'Blance Update Successfull');
     }
