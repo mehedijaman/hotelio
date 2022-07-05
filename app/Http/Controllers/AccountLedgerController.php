@@ -105,6 +105,7 @@ class AccountLedgerController extends Controller
         AccountLedger::find($id)->delete();
 
         return back()->with('Delete', 'Account Ledger Succesfull');
+
     }
 
     public function deleteAll()

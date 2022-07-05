@@ -18,7 +18,7 @@
                             Add New Bank
                         </h3>
                     </div>
-                    {{ Form::open(array('url' => '/hotel','method' => 'POST','class'=>'form-horizontal', 'files' => true)) }}
+                    {{ Form::open(array('url' => '/hotel','method' => 'POST','class'=>'form-horizontal', 'id' => 'NewHotelForm' ,'files' => true)) }}
                         <div class="card-body">
                             <div class="form-group row">
                                 <label for="Name" class="form-label col-md-3">Name :</label>
@@ -69,12 +69,41 @@
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <input type="submit" name="submit" id="" class="btn btn-danger float-right w-25 ml-2" value="Reset">
-                                <input type="submit" name="submit" id="" class="btn bg-navy float-right w-25 text-capitalize">
+                                <!-- <input type="submit" name="submit" id="" class="btn btn-danger float-right w-25 ml-2" value="Reset"> -->
+                                <input type="submit" name="submit" id="SubmitBtn" class="btn bg-navy float-right w-25 text-capitalize">
+                                <button type="button" id="ResetFormBtn" class="btn btn-default ">Reset</button>
                             </div>
                     {{ Form::close()}} 
                 </div>
             </div>
         </div> 
-    </div> 
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $('#ResetFormBtn').on('click',function(e){
+                e.preventDefault();
+
+                $('#NewHotelForm')[0].reset();
+            });
+
+            $('#SubmitBtn').on('click',function(e){
+                e.preventDefault();
+
+                $.ajax({
+                    type:'POST',
+                    url:'/hotel',
+                    data: $('#NewHotelForm').serialize(),
+                    success:function(data){
+                        $('#NewHotelForm')[0].reset();
+                        alert(data);
+                    },
+                    error:function(data){
+                        console.log('Error while adding new hotel' + data);
+                    }
+                });
+
+            });
+        });
+    </script>
 @endsection

@@ -102,7 +102,7 @@ class EmployeeController extends Controller
     public function destroy($id)
     {
         Employee::find($id)->delete();
-        return $this->index();
+        return back()->with('delete','Deleted data is stored in the trash');
     }
 
     /**
@@ -113,7 +113,7 @@ class EmployeeController extends Controller
     public function destroyAll()
     {
         Employee::withTrashed()->delete();
-        return back();
+        return back()->with('destroyAll','Deleted All data is stored in the trash');
     }
 
 

@@ -38,17 +38,10 @@ class HotelController extends Controller
      */
     public function store(Request $request)
     {
-        // return  $request->all();
         try{
             Hotel::create($request->all());
 
-            // if($request->file('image')){
-            //     $file= $request->file('image');
-            //     $filename= date('YmdHi').$file->getClientOriginalName();
-            //     $file-> move(public_path('public/HotelImage'), $filename);
-            //     $data['image']= $filename;
-            // }
-            return back()->with('Success','Hotel Added Successfully!');
+            return "Hotel Added Successfully !";
         }
         catch(Exception $error){
             return $error->getMessage();
@@ -90,7 +83,6 @@ class HotelController extends Controller
     public function update(Request $request, $id)
     {
         Hotel::find($id)->update($request->all());
-
         return $this->index()->with('Success','Update Successfull!');
 
     }
@@ -104,7 +96,7 @@ class HotelController extends Controller
     public function destroy($id)
     {
         Hotel::find($id)->delete();
-        return $this->index();
+        return back()->with('delete','Deleted data is stored in the trash');
     }
 
 
@@ -112,7 +104,7 @@ class HotelController extends Controller
     public function destroyAll()
     {
         Hotel::withTrashed()->delete();
-        return $this->index();
+        return back()->with('destroyAll','Deleted All data is stored in the trash');
     }
     
     /**

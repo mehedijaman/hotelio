@@ -18,8 +18,9 @@ class RoomTransferController extends Controller
      */
     public function index()
     {
-        $RoomTransfers = RoomTransfer::select('room_transfers.*','guests.Name as Guest')
+        $RoomTransfers = RoomTransfer::select('room_transfers.*','guests.Name as Guest','rooms.RoomNo as Room')
         ->leftJoin('guests', 'room_transfers.GuestID','=', 'guests.id')
+        ->leftJoin('rooms', 'room_transfers.ToRoomID','=', 'rooms.id')
         ->get();
 
         return view('roomTransfer.index',compact('RoomTransfers'));
@@ -100,12 +101,12 @@ class RoomTransferController extends Controller
     public function destroy($id)
     {
         RoomTransfer::find($id)->delete();
-        return back();
+        return back()->with('Destroy', 'Delete Completed !');
     }
     public function destroyAll()
     {
         RoomTransfer::withTrashed()->delete();
-        return back();
+        return back()->with('DestroyAll', 'সমস্ত ডাটাকে খালি করা হলো');
     }
 
     public  function trash()
@@ -116,22 +117,22 @@ class RoomTransferController extends Controller
     public function restore($id)
     {
         RoomTransfer::withTrashed()->where('id',$id)->restore();
-        return back();
+        return back()->with('Restore', 'Restore SuccessFully !');
     }
     public function restoreAll()
     {
         RoomTransfer::withTrashed()->restore();
-        return back();
+        return back()->with('RestoreAll', 'সমস্ত ডাটাকে পুনরুদ্ধার করা হয়েছে');
     }
     public function forceDeleted($id)
     {
         RoomTransfer::withTrashed()->where('id',$id)->forceDelete();
-        return back();
+        return back()->with('PermanentlyDelete', 'Permanently Delete Completed !');
     }
     public function emptyTrash()
     {
         RoomTransfer::onlyTrashed()->forceDelete();
-        return back();
+        return back()->with('EmptyTrash', 'ট্রাস সম্পূর্ণরূপে খালি করা হলো');
     }
 
 }

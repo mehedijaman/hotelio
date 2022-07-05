@@ -18,14 +18,14 @@
                         </h2>
                     </div>
 
-                    {{ Form::open(array('url' => 'room', 'method' => 'POST','class' => 'form-horizantal','files' => true)) }}
+                    {{ Form::open(array('url' => '/room/'.$Room->id, 'method' => 'PATCH','class' => 'form-horizantal','files' => true)) }}
                         <div class="card-body pb-0">
                             <div class="form-group row">
                                 <div class="col-md-6">
                                     <div class="form-group row">
                                         <label for="HotelID" class="form-label col-md-3">Hotel:</label>
                                         <div class="col-md-8">
-                                            <select type="number" name="HotelID" id=""  class="form-select">
+                                            <select type="number" name="HotelID" id=""  class="form-select" required>
                                                 <option value="">Open this select menu</option>
                                                 @foreach ($Hotels as $Hotel)
                                                 @if ($Room->HotelID == $Hotel->id)
@@ -48,7 +48,7 @@
                                     <div class="form-group row">
                                         <label for="RoomNo" class="form-label col-md-3">RoomNo:</label>
                                         <div class="col-md-8">
-                                            <input type="text" name="RoomNo" class="form-control" value="{{ $Room->RoomNo}}">
+                                            <input type="text" name="RoomNo" class="form-control" value="{{ $Room->RoomNo}}" required>
                                         </div>
                                     </div>
                                    
@@ -60,7 +60,7 @@
                                     <div class="form-group row">
                                         <label for="Floor" class="form-label col-md-3">Floor:</label>
                                         <div class="col-md-8">
-                                            <input type="text" name="Floor" class="form-control" value="{{ $Room->Floor}}""> 
+                                            <input type="text" name="Floor" class="form-control" value="{{ $Room->Floor}}" required> 
                                         </div>
                                     </div>
                                     

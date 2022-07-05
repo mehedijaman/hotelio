@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container py-5 col-md-10">
+    <div class="container py-5 col-md-10 ">
         <div class="row">
-            <div class="col-md-12 m-auto">
+            <div class="col-md-12 m-auto ">
 
                 @if (Session::get('Success'))
                 <div class="alert alert-success alert-dismissible">
