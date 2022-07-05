@@ -28,7 +28,7 @@
                                 <i class="fa-solid fa-circle-plus mr-2"></i>
                                 Add
                             </a> -->
-                            <button type="button" class="btn btn-primary" id="AddNewBtn">New Employee</button>
+                            <button type="button" class="btn bg-navy text-capitalize mr-3" id="AddNewBtn"><i class="fa-solid fa-circle-plus mr-2"></i>Add New</button>
                             Employee List
                         </h2>
                     </div>
@@ -93,7 +93,7 @@
         </div>
     </div>
     <div class="modal fade show" id="newEmployeeModal" role="dialog">
-        <div class="modal-dialogn  col-md-8 m-auto pt-3 ">
+        <div class="modal-dialog modal-xl ">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">New Employee</h4>

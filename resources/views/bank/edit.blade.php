@@ -66,7 +66,7 @@
                     url     : '/bank',
                     data    : $('#updateBank').serializeArray(),success:function(data){
                         $('#updateBank')[0].reset();
-                        alert('data')
+                        alert(data);
                     }  
                 })
             })

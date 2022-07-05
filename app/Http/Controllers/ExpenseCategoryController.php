@@ -39,7 +39,7 @@ class ExpenseCategoryController extends Controller
     {
         try{
             ExpenseCategory::create($request->all());
-            return back();
+            return "Data Successfully Addesd !";
         }
         catch(Exception $error){
             return $error->getMessage();

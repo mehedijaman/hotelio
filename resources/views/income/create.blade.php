@@ -47,6 +47,7 @@
                             <input type="submit" name="submit" id="" class="btn btn-danger float-right w-25 ml-2" value="Reset">
                             <input type="submit" name="submit" id="" class="btn bg-navy float-right w-25 text-capitalize">
                         </div>
+                    </div> 
                     {{ Form::close()}} 
                 </div>
             </div>

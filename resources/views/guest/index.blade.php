@@ -27,7 +27,7 @@
                                     <i class="fa-solid fa-circle-plus mr-2"></i>
                                     Add
                                 </a> --}}
-                                <button type="button" class="btn btn-primary" id="NewAddBtn">Add Guest</button>
+                                <button type="button" class="btn bg-navy text-capitalize mr-3" id="NewAddBtn"><i class="fa-solid fa-circle-plus mr-2"></i>Add New</button>
                                 Guest List
                             </h2>
                         </div>
@@ -79,7 +79,7 @@
             </div>
         </div>
         <div class="modal fade show" id="NewGuestlModal" role="dialog">
-            <div class="modal-dialogn  col-md-8 m-auto pt-3 ">
+            <div class="modal-dialog modal-xl ">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">New Guest</h4>
@@ -209,7 +209,7 @@
                     url     : '/guest',
                     data    : $('#guestForm').serialize(),success:function(data){
                         $('#guestForm')[0].reset();
-                        $('#NewGuestlModal').modal('show');
+                        $('#NewGuestlModal').modal('hide');
                         Swal.fire(
                           'Success!',
                           data,

@@ -29,7 +29,7 @@
                                     Add
                                 </a> -->
                                 {{-- <button type="button" class="btn btn-primary" id="AddNewBtn" data-toggle="modal" data-target = "#NewBankModal ">New Bank</button> --}}
-                                <button type="button" class="btn btn-primary" id="AddNewBtn">New Bank</button>
+                                <button type="button" class="btn bg-navy text-capitalize mr-3" id="AddNewBtn"><i class="fa-solid fa-circle-plus mr-2"></i>Add New</button>
                                 Bank List
                             </h2>
                         </div>
@@ -87,7 +87,7 @@
         </div>
         
         <div class="modal fade show" id="NewBanklModal" role="dialog">
-            <div class="modal-dialogn  col-md-8 m-auto pt-3 ">
+            <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">New Bank</h4>

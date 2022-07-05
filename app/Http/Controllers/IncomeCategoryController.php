@@ -40,7 +40,7 @@ class IncomeCategoryController extends Controller
     {
         try{
             IncomeCategory::create($request->all());
-            return back();
+            return "Data Added Successfully !" ;
         }
         catch(Exception $error){
             return $error->getMessage();

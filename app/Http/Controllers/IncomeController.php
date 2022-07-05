@@ -16,10 +16,11 @@ class IncomeController extends Controller
      */
     public function index()
     {
+        $IncomeCategoris = IncomeCategory::all();
         $Incomes = Income::select('incomes.*','income_categories.Name as CategoryName')
         ->leftJoin('income_categories','incomes.CategoryID','=','income_categories.id')
         ->get();
-        return view('income.index' , compact('Incomes'));
+        return view('income.index' , compact('Incomes','IncomeCategoris'));
     }
 
     /**
@@ -43,7 +44,7 @@ class IncomeController extends Controller
     {
         try{
             Income::create($request->all());
-            return back();
+            return "Data Added Successfully ";
         }
         catch(Exception $error){
             return $error->getMessage();
