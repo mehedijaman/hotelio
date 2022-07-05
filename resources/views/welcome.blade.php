@@ -5,12 +5,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Laravel</title>
+        <title>{{config('app.name')}}</title>
+ 
+        
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="/css/style.css">
+        {{-- <link rel="stylesheet" href="/css/style.css"> --}}
         <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
-        <!-- Styles -->
+        <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+        <link rel="stylesheet" href="{{URL::asset('css/bootstrap.min.css')}}">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="css/style.css">
         <style>
             /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
             html {
@@ -403,38 +409,29 @@
             }
         </style>
     </head>
-    <body class="antialiased">
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0 loginOption">
+    {{-- <body class="antialiased"> --}}
+        {{-- <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0 loginOption"> --}}
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block  ">
                     @auth
-                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
+                        <a href="{{ url('/dashboard') }}" class=btn btn-outline-primary">Dashboard</a>
                     @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline " >Log in</a>
+                        <a href="{{ route('login') }}" class="btn btn-outline-primary" >Log in</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+                            <a href="{{ route('register') }}" class="btn btn-outline-primary">Register</a>
                         @endif
                     @endauth
                 </div>
             @endif
 
             <body>
-                <div class="banner1">
+                {{-- <div class="banner1">
                     <img src="img/hotel/hotel1.jpg" alt="">
                     <div class="text_box text_box1">
                         <h1>Welcome To Hotelio</h1>
                         <span></span>
                         <p>Where customer satisfaction is a philosophy</p>
-                    </div>
-                </div>
-                <div class="banner2">
-                    <img src="img/hotel/spa.jpg" alt="">
-                    <div class="text_box text_box2">
-                        <h1>Welcome To Hotelio</h1>
-                        <span></span>
-                        <p>Where customer satisfaction is a philosophy</p>
-
                     </div>
                 </div>
                 <div class="banner3">
@@ -453,7 +450,86 @@
                         <span></span>
                         <p>Where customer satisfaction is a philosophy</p>
                     </div>
+                </div> --}}
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="left">
+                            <div class="col-md-9 text-center">
+                                <div class="container">
+                                    <div class="d-flex flex-column  pt-5">
+                                        <div class="left-headig">
+                                            <h1>Hotelio</h1>
+                                        </div>
+                                        <div>
+                                            <h4>Welcome Back!</h4>
+                                        </div>
+                                        <div>
+                                            <p class="">
+                                                The great advantage of a hotel is that it is a refuge from home life.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="left-img">
+                                    <img src="{{asset('img/bg-01.png')}}"
+                                    alt="logo"  class="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-8 m-auto">
+                        <div class="right">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6 m-auto">
+                                        <form method="post" action="{{ route('login') }}">
+                                            @csrf
+                                            <div class="text-center py-3">
+                                                <h3>Sign in your account</h3>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="email" class="form-label">Email</label>
+                                                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" placeholder="type your email">
+                                                @error('email')
+                                                    <span class="error invalid-feedback">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="password" class="form-label">Password</label>
+                                                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="type your password">
+                                                @error('password')
+                                                    <span class="error invalid-feedback">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="gridCheck">
+                                                <label class="form-check-label" for="gridCheck">
+                                                Remember my preference</label>
+                                            </div>
+                                            <div>
+                                                <button type="submit" class="btn btn-primary w-100 mt-2">Sign In</button>
+                                                
+
+                                            </div>
+                                    
+                                            <div>
+                                                <a href="{{ route('password.request') }}">I forgot my password</a>
+                                            </div>
+                                            <div class="py-2">
+                                                <p>Don't have an account?<a href="{{ route('register')}}"" class="">Sign UP</a></p>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-        </div>
+        {{-- </div> --}}
+
+        <script src="/1sday/js/bootstrap.esm.min.js"></script>
+        <script src="{{ mix('js/app.js') }}" defer></script>
     </body>
 </html>

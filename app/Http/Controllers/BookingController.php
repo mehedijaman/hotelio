@@ -18,12 +18,14 @@ class BookingController extends Controller
      */
     public function index()
     {
+        $Rooms = Room::all();
+        $Guests = Guest::all();
         $Bookings = Booking::select('bookings.*','rooms.RoomNo as Room','guests.Name as Guest')
         ->leftJoin('rooms','bookings.RoomID','=','rooms.id')
         ->leftJoin('guests','bookings.GuestID','=','guests.id')
         ->get(); 
 
-        return view('booking.index',compact('Bookings'));
+        return view('booking.index',compact('Bookings','Rooms','Guests'));
     }
 
     /**
@@ -50,7 +52,7 @@ class BookingController extends Controller
         try {
             Booking::create($request->all());
             Room::find($request->RoomID)->update(['Status' => 1]);
-            return back()->with('Success', 'Booking Added SuccessFully !');
+            return 'Booking Added Successfully !';
         } catch (Exception $error) {
             return $error->getMessage();
         }

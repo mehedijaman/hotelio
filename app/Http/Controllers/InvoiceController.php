@@ -20,11 +20,14 @@ class InvoiceController extends Controller
      */
     public function index()
     {
+        $Hotels = Hotel::all();
+        $Guests = Guest::all();
+        $Taxs   = TaxSetting::all();
         $invoices = Invoice::select('invoices.*', 'tax_settings.Name as Tax', 'guests.Name as Guest')
         ->leftJoin('tax_settings', 'invoices.TaxID', '=', 'tax_settings.id')
         ->leftJoin('guests', 'invoices.GuestID', '=', 'guests.id')
         ->get(); 
-        return view('invoice.index',compact('invoices'));
+        return view('invoice.index',compact('invoices','Hotels','Guests','Taxs'));
     }
     /**
      * Show the form for creating a new resource.
@@ -64,7 +67,7 @@ class InvoiceController extends Controller
 
             $InvoiceItem->save();
        }
-       return back()->with('Success', 'Invoice Added SuccessFully !');
+       return'Invoice Added SuccessFully !';
     }
 
     /**

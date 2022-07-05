@@ -42,7 +42,7 @@ class GuestController extends Controller
         
         try{
             Guest::create($request->all());
-            return back()->with('Success','Guest Add Succeessfull!');
+            return 'Guest Add Succeessfull!';
         }
         catch(Exception $error){
             return $error->getMessage();

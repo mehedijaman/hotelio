@@ -16,10 +16,11 @@ class ExpenseController extends Controller
      */
     public function index()
     {
+        $ExpenseCategoris = ExpenseCategory::all();
         $Expenses = Expense::select('expenses.*','expenses_categories.Name as CategoryName')
         ->leftJoin('expenses_categories','expenses.CategoryID','=','expenses_categories.id')
         ->get();
-        return view('expense.index', compact('Expenses'));
+        return view('expense.index', compact('Expenses','ExpenseCategoris'));
     }
 
     /**
@@ -44,7 +45,7 @@ class ExpenseController extends Controller
 
         try{
             Expense::create($request->all());
-            return back();
+            return "Successfully Add New Expense Item";
         }
         catch (Exception $error){
             return $error->getMessage();

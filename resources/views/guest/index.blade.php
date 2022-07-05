@@ -23,10 +23,11 @@
                     <div class="card-header bg-defult">
                         <div class="card-title">
                             <h2 class="card-title">
-                                <a href="{{ asset('guest/create') }}" class="btn bg-navy text-capitalize mr-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create Booking"> 
+                                {{-- <a href="{{ asset('guest/create') }}" class="btn bg-navy text-capitalize mr-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create Booking"> 
                                     <i class="fa-solid fa-circle-plus mr-2"></i>
                                     Add
-                                </a>
+                                </a> --}}
+                                <button type="button" class="btn bg-navy text-capitalize mr-3" id="NewAddBtn"><i class="fa-solid fa-circle-plus mr-2"></i>Add New</button>
                                 Guest List
                             </h2>
                         </div>
@@ -77,5 +78,149 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade show" id="NewGuestlModal" role="dialog">
+            <div class="modal-dialog modal-xl ">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">New Guest</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {{ Form::open(array('url' => '/guest','method' => 'POST','class'=>'form-horizontal', 'files' => true , 'id' => 'guestForm')) }}
+                        <div class="card-body">
+                            <div class="col-md-12 form-group row">
+                                <div class="form-group row col-md-6">
+                                    <label for="Name" class="form-label col-md-3">Name :</label>
+                                    <div class="col-md-8 mx-md-2">
+                                        <input type="text" name="Name" class="form-control" placeholder="Enater Guset Name"> 
+                                    </div>
+                                </div>
+                                <div class="form-group row col-md-6">
+                                    <label for="Email" class="form-label col-md-3">Email :</label>
+                                    <div class="col-md-8 mx-md-2">
+                                        <input type="mail" name="Email" class="form-control" placeholder="Enter Guest Mail"> 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 form-group row">
+                                <div class="form-group row col-md-6">
+                                    <label for="Address" class="form-label col-md-3">Address :</label>
+                                    <div class="col-md-8 mx-md-2">
+                                        <input type="text" name="Address" class="form-control" placeholder="Enter Guest Address"> 
+                                    </div>
+                                </div>
+                                <div class="form-group row col-md-6">
+                                    <label for="Phone" class="form-label col-md-3">Phone :</label>
+                                    <div class="col-md-8 mx-md-2">
+                                        <input type="tel" name="Phone" class="form-control" placeholder="Enter Guest Number"> 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 form-group row">
+                                <div class="form-group row col-md-6">
+                                    <label for="NIDNo" class="form-label col-md-3">NID No :</label>
+                                    <div class="col-md-8 mx-md-2">
+                                        <input type="text" name="NIDNo" class="form-control" placeholder="Enter Guest NID NO"> 
+                                    </div>
+                                </div>
+                                <div class="form-group row col-md-6">
+                                    <label for="NID" class="form-label col-md-3">NID :</label>
+                                    <div class="col-md-8 mx-md-2">
+                                        <input type="file" name="NID" class="form-control"> 
+                                    </div>
+                                </div>
+                            </div>
+                           
+                            <div class="col-md-12 form-group row">
+                                <div class="form-group row col-md-6">
+                                    <label for="PassportNo" class="form-label col-md-3">Passport No :</label>
+                                    <div class="col-md-8 mx-md-2">
+                                        <input type="text" name="PassportNo" class="form-control" placeholder="Enter Guest Passport NO"> 
+                                    </div>
+                                </div>
+                                <div class="form-group row col-md-6">
+                                    <label for="Passport" class="form-label col-md-3">Passport :</label>
+                                    <div class="col-md-8 mx-md-2">
+                                        <input type="file" name="Passport" class="form-control"> 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 form-group row">
+                                <div class="form-group row col-md-6">
+                                    <label for="Father" class="form-label col-md-3">Father :</label>
+                                    <div class="col-md-8 mx-md-2">
+                                        <input type="text" name="Father" class="form-control" placeholder="Enter Guest's Father Name "> 
+                                    </div>
+                                </div>
+                                <div class="form-group row col-md-6">
+                                    <label for="Mother" class="form-label col-md-3">Mother :</label>
+                                    <div class="col-md-8 mx-md-2">
+                                        <input type="text" name="Mother" class="form-control"  placeholder="Enter Guest's Mother Name "> 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 form-group row">
+                                <div class="form-group row  col-md-6">
+                                    <label for="Spouse" class="form-label col-md-3">Spouse :</label>
+                                    <div class="col-md-8 mx-md-2">
+                                        <input type="text" name="Spouse" class="form-control"> 
+                                    </div>
+                                </div>
+                            
+                                <div class="form-group row col-md-6">
+                                    <label for="Photo" class="form-label col-md-3">Photo :</label>
+                                    <div class="col-md-8  mx-md-2 ">
+                                        <input type="file" name="Photo" class="form-control"> 
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="card-footer">
+                                <input type="submit" name="submit" id="submitBtn" class="btn bg-navy float-right w-25 text-capitalize">
+                                <button type="button" id="formResetBtn" class="btn btn-default ">Reset</button>
+                            </div>
+                        </div>
+                    {{ Form::close()}}  
+                    </div>
+                    <!-- <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
     </div>
+    <script>
+        $(document).ready(function(){
+            $('#NewAddBtn').on('click',function(e){
+                e.preventDefault();
+                $('#NewGuestlModal').modal('show');
+            });
+            $('#formResetBtn').on('click',function(e){
+                e.preventDefault();
+                $('#guestForm')[0].reset();
+            })
+            $('#submitBtn').on('click',function(e) {
+                e.preventDefault();
+                $.ajax({
+                    type    :'POST',
+                    url     : '/guest',
+                    data    : $('#guestForm').serialize(),success:function(data){
+                        $('#guestForm')[0].reset();
+                        $('#NewGuestlModal').modal('hide');
+                        Swal.fire(
+                          'Success!',
+                          data,
+                          'success'
+                        );
+                    },
+                    error:function(data){
+                        console.log('Error while adding new Bank'+data);
+                    },
+                })
+            })
+        });
+    </script>
 @endsection

@@ -7,10 +7,11 @@
                     <div class="card-header bg-defult">
                         <div class="card-title">
                             <h2 class="card-title">
-                                <a href="{{ asset('expense/category/create') }}" class="btn bg-navy text-capitalize mr-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create Booking"> 
+                                {{-- <a href="{{ asset('expense/category/create') }}" class="btn bg-navy text-capitalize mr-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create Booking"> 
                                     <i class="fa-solid fa-circle-plus mr-2"></i>
                                     Add
-                                </a>
+                                </a> --}}
+                                <button type="button" class="btn bg-navy text-capitalize mr-3" id="AddNewBtn"><i class="fa-solid fa-circle-plus mr-2"></i>Add New</button>
                                 Expense Category List
                             </h2>
                         </div>
@@ -48,5 +49,67 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade show" id="NewCategorylModal" role="dialog">
+            <div class="modal-dialog modal-xl ">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">New Guest</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {{ Form::open(array('url' => '/expense/category','method' => 'POST','class'=>'form-horizontal', 'files' => true , 'id' => 'categoryForm')) }}
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label for="Name" class="form-label col-md-3">Name:</label>
+                            <div class="col-md-8">
+                                <input type="text" name="Name" class="form-control"> 
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <input type="submit" name="submit" id="submitBtn" class="btn bg-navy float-right w-25 text-capitalize">
+                            <button type="button" id="formResetBtn" class="btn btn-warning ">Reset</button>
+                        </div>
+                    {{ Form::close()}}   
+                    </div>
+                    <!-- <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
     </div>
+    <script>
+        $(document).ready(function(){
+            $('#AddNewBtn').on('click',function(e){
+                e.preventDefault();
+                $('#NewCategorylModal').modal('show');
+            });
+            $('#formResetBtn').on('click',function(e){
+                e.preventDefault();
+                $('#categoryForm')[0].reset();
+            });
+            $('#submitBtn').on('click',function(e){
+                e.preventDefault();
+                $.ajax({
+                    type    : 'POST',
+                    url     : '/expense/category',
+                    data    : $('#categoryForm').serializeArray(),success:function(data){
+                        $('#categoryForm')[0].reset();
+                        $('#NewCategorylModal').modal('hide');
+                        Swal.fire(
+                          'Success!',
+                          data,
+                          'success'
+                        );
+                    },
+                    error:function(data){
+                        console.log('Eerror while added category !' + data);
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

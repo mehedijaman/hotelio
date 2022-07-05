@@ -16,11 +16,12 @@ class EmployeeController extends Controller
      */
     public function index()
     {
+        $Hotels = Hotel::all();
         $Employees = Employee::select('employees.*', 'hotels.Name as Hotel')
             ->leftJoin('hotels', 'employees.HotelID', '=', 'hotels.id')
             ->get();
         // $Employees = Employee::all();
-        return view('employee.index', compact('Employees'));
+        return view('employee.index', compact('Employees','Hotels'));
     }
 
     /**
@@ -45,7 +46,7 @@ class EmployeeController extends Controller
         // return $request->all();
         try {
             Employee::create($request->all());
-            return back()->with('Success', 'Employee Add Successfull!');
+            return 'Employee Add Successfull!' ;
         } catch (Exception $error) {
             return $error->getMessage();
         }

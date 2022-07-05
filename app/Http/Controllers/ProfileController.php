@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Employee;
-use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\User;
 
-class UserController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +14,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $Users = User::select('users.*','users.EmployeeID as Employee')
-        ->get();
-        return view('user.index',compact('Users'));
+        $Users = User::all();
+        return view('profile.show',compact('Users'));
     }
 
     /**
@@ -27,7 +25,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user.create');
+        //
     }
 
     /**
@@ -60,7 +58,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        return view('user.edit');
+        //
     }
 
     /**
