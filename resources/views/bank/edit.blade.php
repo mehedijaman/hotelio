@@ -63,10 +63,14 @@
                 e.preventDefault();
                 $.ajax({
                     type    : 'PATCH',
-                    url     : '/bank',
+                    url     : '/bank/'+{{ $Banks->id }},
                     data    : $('#updateBank').serializeArray(),success:function(data){
                         $('#updateBank')[0].reset();
-                        alert(data);
+                        Swal.fire(
+                            'success',
+                            'Bank Updated successfully !',
+                            'success'
+                        );
                     }  
                 })
             })

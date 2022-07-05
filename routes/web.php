@@ -189,6 +189,7 @@ Route::get('/taxSetting/{id}/restore', [TaxSettingController::class, 'restore'])
 Route::get('/taxSetting/restoreAll', [TaxSettingController::class, 'restoreAll']);
 Route::get('/taxSetting/{id}/parmanently/delete', [TaxSettingController::class, 'forceDeleted']);
 Route::get('/taxSetting/emptyTrash', [TaxSettingController::class, 'emptyTrash']);
+Route::get('taxSetting/delete/{id}',[TaxSettingController::class,'destroy']);
 Route::resource('taxSetting', TaxSettingController::class);
 
 /*Profile route */

@@ -54,7 +54,7 @@ class TaxSettingController extends Controller
      */
     public function show($id)
     {
-        //
+        return TaxSetting::find($id);
     }
 
     /**

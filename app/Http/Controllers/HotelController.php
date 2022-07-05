@@ -83,7 +83,8 @@ class HotelController extends Controller
     public function update(Request $request, $id)
     {
         Hotel::find($id)->update($request->all());
-        return $this->index()->with('Success','Update Successfull!');
+        return "Hotel Updated Successfully !";
+        // return $this->index()->with('Success','Update Successfull!');
 
     }
 

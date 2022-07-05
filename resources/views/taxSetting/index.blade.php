@@ -57,15 +57,18 @@
                                             @else <b class="text-danger fs-6">Deactive</b> @endif
                                         </td>
                                         <td class="d-flex">
-                                            <button class="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit" data-toggle="modal" data-target="#EditTaxModal">
-                                                <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i></i>
+                                            <button class="EditBtn" value="{{ $TaxSetting->id }}" title="Edit" ><i class="fa-regular fa-pen-to-square mr-3 text-orange"></i></i>
+                                            </button>
+
+                                            <button class="DeleteBtn" value="{{ $TaxSetting->id }}" title="Delete">
+                                                <i class="fa-regular fa-trash-can mr-3 text-danger"></i>
                                             </button>
                                             
-                                            {{ Form::open(array('url' => '/taxSetting/'.$TaxSetting->id,'method' => 'DELETE')) }}
+                                            <!-- {{ Form::open(array('url' => '/taxSetting/'.$TaxSetting->id,'method' => 'DELETE')) }}
                                                 <button class="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
                                                     <i class="fa-regular fa-trash-can mr-3 text-danger"></i>
                                                 </button>
-                                            {{ Form::close() }} 
+                                            {{ Form::close() }}  -->
                                         </td>
                                     </tr>
                                 @endforeach
@@ -138,42 +141,33 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        {{ Form::open(array('url' => '/taxSetting/'.$TaxSetting->id, 'method' => 'PATCH','class' => 'form-horizantal','id'=>'EditTaxForm', 'files' => true)) }}
+                        {{ Form::open(array('method' => 'PATCH','class' => 'form-horizantal','id'=>'EditTaxForm', 'files' => true)) }}
+                            <input type="hidden" name="ID" id="IDEdit">
                             <div class="card-body">
                                 <div class="form-group row">
                                     <label for="Name" class="form-label col-md-3">Name:</label>
                                     <div class="col-md-8">
-                                        <input type="text" name="Name" class="form-control" value="{{ $TaxSetting->Name }}"> 
+                                        <input type="text" id="NameEdit" name="Name" class="form-control"> 
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="Parcent" class="form-label col-md-3">Parcent:</label>
                                     <div class="col-md-8">
-                                        <input type="number" name="Parcent" class="form-control" value="{{ $TaxSetting->Parcent }}"> 
+                                        <input type="number" id="ParcentEdit" name="Parcent" class="form-control"> 
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="Status" class="form-label col-md-3">Status:</label>
                                     <div class="col-md-8">
-                                        <div class="form-check form-check-inline ml-1">
-                                            <input type="radio" class="form-check-input" name="Status" value="1" @if ($TaxSetting->Status) checked @endif >
-                                            <label for="" class="form-check-label">
-                                                <b class="text-success fs-6">Active</b>
-                                            </label>
-                                        </div>
-                                        <div class="form-check form-check-inline ml-4">
-                                            <input type="radio" class="form-check-input" name="Status" value="0" @if(!$TaxSetting->Status)
-                                            checked @endif>
-                                            <label for="" class="form-check-label">
-                                            <b class="text-danger fs-6">Deactive</b>
-                                            </label>
-                                        </div>
+                                        <select name="Status" id="StatusEdit" class="form-control">
+                                            <option value="1">Active</option>
+                                            <option value="0">Inactive</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                {{-- <button type="button" class="btn btn-default text-capitalize" id="ResetBtnFormEdit">Reset</button> --}}
-                                <button type="button" name="submit" type="submit" class="btn bg-navy text-capitalize" id="SubmitBtnEdit">submit</button>
+                                <button type="button" name="submit" type="submit" class="btn bg-navy text-capitalize" id="UpdateBtn">Update</button>
                             </div>
                     {{ Form::close() }}
                     </div>
@@ -212,15 +206,86 @@
                 });
             });
 
-            $('#SubmitBtnEdit').on('click',function(e){
+            $('.DeleteBtn').on('click',function(e){
                 e.preventDefault();
+                var ID = $(this).val();
+
+                Swal.fire({
+                  title: 'Are you sure?',
+                  text: "You won't be able to revert this!",
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    $.ajax({
+                        type:'GET',
+                        url:'/taxSetting/delete/'+ID,
+                        success:function(data){
+                           Swal.fire(
+                              'Deleted!',
+                              'Your file has been deleted.',
+                              'success'
+                            );
+                        },
+                        error:function(data){
+                            Swal.fire(
+                              'Error!',
+                              'Delete failed !',
+                              'error'
+                            );
+
+                            console.log(data);
+                        },
+                    });
+
+                    
+                  }
+                });
+            });
+
+            $('.EditBtn').on('click',function(e){
+                e.preventDefault();
+                var ID = $(this).val();
+
                 $.ajax({
-                    type: "PATCH",
-                    url: "/taxSetting",
-                    data:$('#EditTaxForm'),
-                    success: function (response) {
-                        
-                    }
+                    type:'GET',
+                    url:'/taxSetting/'+ID,
+                    success:function(data){
+                        $('#EditTaxForm')[0].reset();
+                        $('#IDEdit').val(data['id']);
+                        $('#NameEdit').val(data['Name']);
+                        $('#ParcentEdit').val(data['Parcent']);
+                        $('#StatusEdit').val(data['Status']);
+                        $('#EditTaxModal').modal('show');
+                    },
+                    error:function(data){
+                        console.log(data);
+                    },
+                });
+            });
+
+            $('#UpdateBtn').on('click',function(e){
+                e.preventDefault();
+                var ID = $('#IDEdit').val();
+                $.ajax({
+                    type:'PATCH',
+                    url:'/taxSetting/'+ID,
+                    data:$('#EditTaxForm').serializeArray(),
+                    success:function(data){
+                        $('#EditTaxModal').modal('hide');
+                        $('#EditTaxForm')[0].reset();
+                        Swal.fire(
+                            'success',
+                            'Tax updated successfully',
+                            'success'
+                        );
+                    },
+                    error:function(data){
+                        console.log(data);
+                    },
                 });
             });
         });

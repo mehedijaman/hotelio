@@ -17,7 +17,7 @@
                             Update To Hotel Data
                         </h3>
                     </div>
-                    {{ Form::open(array('url' => '/hotel/'.$Hotels->id,'method' => 'PATCH','class'=>'form-horizontal', 'files' => true)) }}
+                    {{ Form::open(array('url' => '/hotel/'.$Hotels->id,'method' => 'PATCH','id' => 'UpdateForm','class'=>'form-horizontal', 'files' => true)) }}
                         <div class="card-body">
                             <div class="form-group row">
                                 <label for="Name" class="form-label col-md-3">Name :</label>
@@ -68,7 +68,7 @@
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <input type="submit" name="submit" id="" class="btn bg-success float-right w-25 text-capitalize" value="Update">
+                                <input type="submit" name="submit" id="SubmitBtn" class="btn bg-success float-right w-25 text-capitalize" value="Update">
                             </div>
                         </div>
                     {{ Form::close()}}
@@ -76,5 +76,26 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function(){
+            
+            $('#SubmitBtn').on('click',function(e){
+                e.preventDefault();
+
+                $.ajax({
+                    type:'PATCH',
+                    url:'/hotel/'+{{ $Hotels->id }},
+                    data:$('#UpdateForm').serializeArray(),
+                    success:function(data){
+                        console.log(data);
+                    },
+                    error:function(data){
+                        console.log(data);
+                    },
+                });
+            });
+        });
+    </script>
     
 @endsection
