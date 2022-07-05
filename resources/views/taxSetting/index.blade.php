@@ -128,7 +128,7 @@
             </div>
         </div>
 
-        <div class="modal fade show" id="EditTaxModal" role="dialog">
+        <div class="modal fade  show" id="EditTaxModal" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">

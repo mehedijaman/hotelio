@@ -193,4 +193,3 @@ Route::resource('taxSetting', TaxSettingController::class);
 
 /*Profile route */
 Route::get('profile/show',[ProfileController::class,'index']);
-Route::get('profile/show',[ProfileController::class,'index']);
