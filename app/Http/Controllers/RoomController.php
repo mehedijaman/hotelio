@@ -17,10 +17,11 @@ class RoomController extends Controller
      */
     public function index()
     {
+        $Hotels = Hotel::all();
         $Rooms = Room::select('rooms.*','hotels.Name as HotelName')
         ->leftJoin('hotels','rooms.HotelID','=','hotels.id')
         ->get();
-        return view('room.index',compact('Rooms'));
+        return view('room.index',compact('Rooms', 'Hotels'));
     }
 
     /**
@@ -42,9 +43,11 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
+       
         try{
             Room::create($request->all());
-            return back()->with('Success','Room Added SuccessFully !');
+            return 'Room Added SuccessFully !';
+            // return back()->with('Success','Room Added SuccessFully !');
         }
         catch(Exception $error){
             return $error->getMessage();

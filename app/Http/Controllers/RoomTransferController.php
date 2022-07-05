@@ -18,12 +18,14 @@ class RoomTransferController extends Controller
      */
     public function index()
     {
+        $Guests = Guest::all();
+        $Rooms  = Room::all();
         $RoomTransfers = RoomTransfer::select('room_transfers.*','guests.Name as Guest','rooms.RoomNo as Room')
         ->leftJoin('guests', 'room_transfers.GuestID','=', 'guests.id')
         ->leftJoin('rooms', 'room_transfers.ToRoomID','=', 'rooms.id')
         ->get();
 
-        return view('roomTransfer.index',compact('RoomTransfers'));
+        return view('roomTransfer.index',compact('RoomTransfers','Guests','Rooms'));
     }
 
     /**
@@ -48,7 +50,8 @@ class RoomTransferController extends Controller
     {
         try {
            RoomTransfer::create($request->all());
-            return back()->with('Success','Room Transfer Added Successfully !');
+           return 'Room Transfer Added Successfully !';
+            // return back()->with('Success','Room Transfer Added Successfully !');
         } catch (Exception $error) {
            return $error->getMessage();
         }

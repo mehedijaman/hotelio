@@ -110,7 +110,6 @@
     <div class="row">
         <div class="col-md-4">
             <div class="left">
-
                 <div class="col-md-9 text-center">
                     <div class="container">
                         <div class="d-flex flex-column  pt-5">
@@ -187,7 +186,7 @@
     
 
     <script src="/1sday/js/bootstrap.esm.min.js"></script>
-        <script src="{{ mix('js/app.js') }}" defer></script>
+    <script src="{{ mix('js/app.js') }}" defer></script>
 </body>
 </html>
 

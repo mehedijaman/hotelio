@@ -72,25 +72,28 @@
                         @if(Auth::user()->Photo)
                             <img src="/uploads/{{ Auth::user()->Photo }}" class="user-image img-circle elevation-2" alt="User Photo">
                         @endif
-                        <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
+                        <b class="d-none d-md-inline">{{ Auth::user()->name }}</b>
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                    <ul class="dropdown-menu dropdown-menu-right mt-3" style="border-radius: 0.5rem">
                         <!-- User image -->
-                        <li class="user-header bg-primary">
-                            @if(Auth::user()->Photo)
+                        <li class="">
+                            {{-- @if(Auth::user()->Photo)
                                 <img src="/uploads/{{ Auth::user()->Photo }}" class="user-image img-circle elevation-2" alt="User Photo">
-                            @endif
+                            @endif --}}
                             <p>
-                                {{ Auth::user()->name }}
-                                <small>Member since {{ Auth::user()->created_at->format('M. Y') }}</small>
+                                {{-- {{ Auth::user()->name }}
+                                <small>Member since {{ Auth::user()->created_at->format('D-M. Y') }}</small> --}}
                             </p>
                         </li>
+                        <li class="text-center py-1">
+                            <a href="profile/show" class="text-navy"><i class="fa-solid fa-user mr-3 text-navy"></i>Profile</a>
+                            
+                        </li>
                         <!-- Menu Footer-->
-                        <li class="user-footer">
-                            <a href="#" class="btn btn-default btn-flat">Profile</a>
-                            <a href="#" class="btn btn-default btn-flat float-right"
+                        <li class="text-center py-1 pb-3">
+                            <a href="#" class="text-navy"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                Sign out
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2 ml-1 text-navy" stroke-linecap="round" stroke-linejoin="round" class="mr-50 feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>LogOut
                             </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf

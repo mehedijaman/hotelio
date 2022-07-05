@@ -2,6 +2,18 @@
 body::-webkit-scrollbar {
     display: none;
 }
+.modal::-webkit-scrollbar {
+    display: none !important;
+}
+form .control-label {
+    /* margin-right: 4px !important; */
+     padding-top: 6px !important;
+    margin-bottom: 0 !important; 
+    text-align: right !important;
+}
+form .form-label-check {
+    text-align: right !important;
+}
 body{
 	background-color: #202428;
     overflow-x: hidden;
@@ -272,28 +284,21 @@ ul .sub-btn {
 #custom__offset__invoice__item{
 	margin-left: 30%;
 }
-#custom__offset__tax__setting
-{
-	margin-left: 28%;
-}
+
 .table-responsive {
     -webkit-overflow-scrolling: touch;
     display: block;
     overflow-x: hidden !important;
     width: 100%;
 }
+.navbar-nav > .user-menu > .dropdown-menu {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    padding: 0;
+    width: 150px !important;
+}
 
 
-/* invoice */
-
-
-
-/* .room__create .col-md-12 {
-    flex: 0 0 100%;
-    max-width: 100%;
-    margin-top: 33px;
-    
-} */
 
 
 

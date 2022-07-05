@@ -1,9 +1,6 @@
 @extends('layouts.app')
 @section('content')
     <div class="container py-5">
-        {{-- <section class="button__list__show">
-            <a href="{{ asset('booking') }}" class="btn btn-info text-capitalize">List Booking</a>
-        </section> --}}
         <div class="row">
             <div class="col-md-7 m-auto">
                 @if (Session::get('Success'))

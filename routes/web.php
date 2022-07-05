@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\BankController;
+use App\Http\Controllers\HotelioController;
 use App\Http\Controllers\AccountLedgerController;
 use App\Http\Controllers\BalanceController;
 use App\Http\Controllers\RoomController;
@@ -18,6 +19,8 @@ use App\Http\Controllers\ExpenseCategoryController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\TaxSettingController;
 use App\Http\Controllers\BankLedgerController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Ramsey\Uuid\Guid\Guid;
 
@@ -31,11 +34,7 @@ use Ramsey\Uuid\Guid\Guid;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get('/',[HotelioController::class, 'index']);
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
@@ -191,3 +190,7 @@ Route::get('/taxSetting/restoreAll', [TaxSettingController::class, 'restoreAll']
 Route::get('/taxSetting/{id}/parmanently/delete', [TaxSettingController::class, 'forceDeleted']);
 Route::get('/taxSetting/emptyTrash', [TaxSettingController::class, 'emptyTrash']);
 Route::resource('taxSetting', TaxSettingController::class);
+
+/*Profile route */
+Route::get('profile/show',[ProfileController::class,'index']);
+Route::get('profile/show',[ProfileController::class,'index']);
