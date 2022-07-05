@@ -19,7 +19,7 @@
                             Add New Bank
                         </h3>
                     </div>
-                    {{ Form::open(array('url' => '/bank','method' => 'POST','class'=>'form-horizontal', 'files' => true)) }}
+                    {{ Form::open(array('url' => '/bank','method' => 'POST', 'id' => 'bankForm','class'=>'form-horizontal', 'files' => true)) }}
                         <div class="card-body">
                             <div class="form-group row">
                                 <label for="Name" class="form-label col-md-3">Name:</label>
@@ -58,8 +58,8 @@
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <input type="submit" name="submit" id="" class="btn btn-danger float-right w-25 ml-2" value="Reset">
-                                <input type="submit" name="submit" id="" class="btn bg-navy float-right w-25 text-capitalize">
+                                <input type="submit" name="submit" id="submitBtn" class="btn btn-success  float-right w-25 ml-2" value="submit">
+                                <button type="button" id="formResetBtn" class="btn btn-default ">Reset</button>
                             </div>
                         </div>
                     {{ Form::close()}} 
@@ -67,4 +67,30 @@
             </div>
         </div> 
     </div> 
+    <script>
+        $(document).ready(function(){
+            $('#formResetBtn').on('click',function(e){
+                e.preventDefault();
+
+                $('#bankForm')[0].reset();
+            });
+
+            $('#submitBtn').on('click',function(e){
+                e.preventDefault();
+                
+                $.ajax({
+                    type:'POST',
+                    url : '/bank',
+                    data: $('#bankForm').serializeArray(),
+                    success:function(data){
+                        $('#bankForm')[0].reset();
+                        alert(data);
+                    },
+                    error:function(data){
+                        console.log('Error while adding new Bank'+data);
+                    },
+                });
+            });
+        });
+    </script>
 @endsection

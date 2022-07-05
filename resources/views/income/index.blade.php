@@ -7,10 +7,11 @@
                     <div class="card-header bg-defult">
                         <div class="card-title">
                             <h2 class="card-title">
-                                <a href="{{ asset('income/create') }}" class="btn bg-navy text-capitalize mr-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create Booking"> 
+                                {{-- <a href="{{ asset('income/create') }}" class="btn bg-navy text-capitalize mr-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create Booking"> 
                                     <i class="fa-solid fa-circle-plus mr-2"></i>
                                     Add
-                                </a>
+                                </a> --}}
+                                <button type="button" class="btn bg-navy text-capitalize mr-3" id="AddNewBtn"><i class="fa-solid fa-circle-plus mr-2"></i>New Add</button>
                                 Income List
                             </h2>
                         </div>
@@ -39,7 +40,7 @@
                                             <a href="{{URL::to('income/'.$Income->id)}}" class="mr-3 text-purple" data-bs-toggle="View" data-bs-placement="bottom" title="View">
                                                  <svg data-v-9a6e255c="" xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="invoice-row-5036-preview-icon" class="mx-1 feather feather-eye"><path data-v-9a6e255c="" d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle data-v-9a6e255c="" cx="12" cy="12" r="3"></circle></svg>
                                             </a>
-                                             <a class="" href="/income/{{ $Income->id }}/edit" data-bs-toggle="Edit" data-bs-placement="bottom" title="Edit">
+                                             <a class="" href="/income/{{ $Income->id }}/edit" data-bs-toggle="Edit" data-bs-placement="bottom" title="Edit" id="updateBtn">
                                                  <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i></i>
                                              </a>
                                              
@@ -60,5 +61,150 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade show" id="NewIncomelModal" role="dialog">
+            <div class="modal-dialog modal-xl ">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">New Guest</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {{ Form::open(array('url' => '/income','method' => 'POST','class'=>'form-horizontal', 'files' => true, 'id' => 'incomeForm')) }}
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <label for="Type" class="form-label col-md-3">Incomes Category</label>
+                                    <div class="col-md-8">
+                                        <div class="input-group">
+                                            <select name="CategoryID" id="" class="form-select">
+                                                <option value="">Select Category</option>
+                                                @foreach($IncomeCategoris as $Incomes)
+                                                <option value="{{ $Incomes->id }}"> {{ $Incomes->Name }} </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="Amount" class="form-label col-md-3">Amount:</label>
+                                    <div class="col-md-8">
+                                        <input type="number" name="Amount" class="form-control"> 
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="Description" class="form-label col-md-3">Description:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" name="Description" class="form-control"> 
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="Date" class="form-label col-md-3">Date:</label>
+                                    <div class="col-md-8">
+                                        <input type="datetime-local" name="Date" class="form-control"> 
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <input type="submit" name="submit" id="submitBtn" class="btn bg-navy float-right w-25 text-capitalize">
+                                    <button type="button" id="formResetBtn" class="btn btn-warning ">Reset</button>
+                                </div>
+                            </div>
+                        {{ Form::close()}}   
+                    </div>
+                    <!-- <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        <div class="modal fade show" id="NewIncomelModal" role="dialog">
+            <div class="modal-dialog modal-xl ">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">New Guest</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {{ Form::open(array('url' => '/income','method' => 'POST','class'=>'form-horizontal', 'files' => true, 'id' => 'incomeForm')) }}
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <label for="Type" class="form-label col-md-3">Incomes Category</label>
+                                    <div class="col-md-8">
+                                        <div class="input-group">
+                                            <select name="CategoryID" id="" class="form-select">
+                                                <option value="">Select Category</option>
+                                                @foreach($IncomeCategoris as $Incomes)
+                                                <option value="{{ $Incomes->id }}"> {{ $Incomes->Name }} </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="Amount" class="form-label col-md-3">Amount:</label>
+                                    <div class="col-md-8">
+                                        <input type="number" name="Amount" class="form-control"> 
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="Description" class="form-label col-md-3">Description:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" name="Description" class="form-control"> 
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="Date" class="form-label col-md-3">Date:</label>
+                                    <div class="col-md-8">
+                                        <input type="datetime-local" name="Date" class="form-control"> 
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <input type="submit" name="submit" id="submitBtn" class="btn bg-navy float-right w-25 text-capitalize">
+                                    <button type="button" id="formResetBtn" class="btn btn-warning ">Reset</button>
+                                </div>
+                            </div>
+                        {{ Form::close()}}   
+                    </div>
+                    <!-- <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
     </div>
+    <script>
+        $(document).ready(function(){
+            $('#AddNewBtn').on('click',function(e){
+                e.preventDefault();
+                $('#NewIncomelModal').modal('show');
+            });
+            $('#formResetBtn').on('click',function(e){
+                e.preventDefault();
+                $('#incomeForm')[0].reset();
+            });
+            $('#submitBtn').on('click',function(e){
+                e.preventDefault();
+                $.ajax({
+                    type    : 'POST',
+                    url     : '/income',
+                    data    : $('#incomeForm').serialize(),success:function(data){
+                        $('#incomeForm')[0].reset();
+                        $('#NewIncomelModal').modal('hide');
+                        Swal.fire(
+                          'Success!',
+                          data,
+                          'success'
+                        );
+                    },
+                    error:function(date){
+                        console.log('Error while added new Expense Item'+data);
+                    },
+                });
+            });
+        });
+    </script>
 @endsection

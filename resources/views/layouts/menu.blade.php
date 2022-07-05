@@ -80,7 +80,7 @@
 
 
 
-{{-- <div class="sidebar-toggle d-flex flex-column position-relative">
+<div class="sidebar-toggle d-flex flex-column position-relative">
     <div class="">
         <li  class="menu-btn">
             <i class="fa-solid fa-coins"></i>
@@ -89,22 +89,24 @@
         </li>
        
         <ul class="custom__toggle sub-btn">
-            <li><a href="/income" class="nav-link {{ Request::is('income') ? 'active' : '' }}">
-<svg xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle">
-    <circle cx="12" cy="12" r="10"></circle>
-</svg>
-Income
-</a>
-</li>
-<li><a href="/incomeCategory" class="nav-link {{ Request::is('incomeCategory') ? 'active' : '' }}" class="">
-        <svg xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle">
-            <circle cx="12" cy="12" r="10"></circle>
-        </svg>
-        Income Category
-    </a>
-</li>
-</ul>
-</div>
+            <li>
+                <a href="/income" class="nav-link {{ Request::is('income') ? 'active' : '' }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle">
+                        <circle cx="12" cy="12" r="10"></circle>
+                    </svg>
+                    Income
+                </a>
+            </li>
+            <li>
+                <a href="/income/category" class="nav-link {{ Request::is('incomeCategory') ? 'active' : '' }}" class="">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle">
+                        <circle cx="12" cy="12" r="10"></circle>
+                    </svg>
+                    Income Category
+                </a>
+            </li>
+        </ul>
+    </div>
 </div>
 
 <div class="sidebar-toggle d-flex flex-column position-relative">
@@ -133,7 +135,8 @@ Income
             </li>
         </ul>
     </div>
-</div> --}}
+</div> 
+
 <li class="nav-item">
     <a href="/balance" class="nav-link {{ Request::is('balance') ? 'active' : '' }}">
         <i class="fa-solid fa-file-invoice-dollar nav-icon fas"></i>
