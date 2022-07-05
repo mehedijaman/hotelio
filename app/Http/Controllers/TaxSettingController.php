@@ -40,7 +40,7 @@ class TaxSettingController extends Controller
     {
         try {
             $TaxSettings = TaxSetting::create($request->all());
-            return back()->with('Success', 'Tax Added SuccessFully !');
+            return "Tax Added SuccessFully !";
         } catch (Exception $error) {
             $error->getMessage();
         }

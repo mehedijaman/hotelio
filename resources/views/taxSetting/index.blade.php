@@ -26,10 +26,10 @@
                     <div class="card-header bg-defult">
                         <div class="card-title">
                             <h2 class="card-title">
-                                <a href="{{ asset('taxSetting/create') }}" class="btn bg-navy text-capitalize mr-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create Booking"> 
+                                <button type="button" class="btn bg-navy text-capitalize mr-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create TaxSetting"data-toggle="modal" data-target="#NewTaxModal"> 
                                     <i class="fa-solid fa-circle-plus mr-2"></i>
                                     Add
-                                </a>
+                                </button>
                                 TaxSetting List
                             </h2>
                         </div>
@@ -57,12 +57,9 @@
                                             @else <b class="text-danger fs-6">Deactive</b> @endif
                                         </td>
                                         <td class="d-flex">
-                                           {{-- <a href="" class="mr-3 text-purple" data-bs-toggle="tooltip" data-bs-placement="bottom" title="View">
-                                                <svg data-v-9a6e255c="" xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="invoice-row-5036-preview-icon" class="mx-1 feather feather-eye"><path data-v-9a6e255c="" d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle data-v-9a6e255c="" cx="12" cy="12" r="3"></circle></svg>
-                                           </a> --}}
-                                            <a class="" href="/taxSetting/{{ $TaxSetting->id }}/edit" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit">
+                                            <button class="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit" data-toggle="modal" data-target="#EditTaxModal">
                                                 <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i></i>
-                                            </a>
+                                            </button>
                                             
                                             {{ Form::open(array('url' => '/taxSetting/'.$TaxSetting->id,'method' => 'DELETE')) }}
                                                 <button class="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
@@ -78,5 +75,154 @@
                 </div>
             </div>
         </div>
+
+        <div class="modal fade show" id="NewTaxModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add A New Tax TaxSetting</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {{ Form::open(array('url' => '/taxSetting', 'method' => 'post','class' => 'form-horizantal','id' => 'NewTaxForm', 'files' => true)) }}
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <label for="Name" class="form-label col-md-3">Name:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" name="Name" class="form-control"> 
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="Parcent" class="form-label col-md-3">Parcent:</label>
+                                    <div class="col-md-8">
+                                        <input type="number" name="Parcent" class="form-control"> 
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="Status" class="form-label col-md-3">Status:</label>
+                                    <div class="col-md-8">
+                                        <div class="form-check form-check-inline ml-1">
+                                            <input type="radio" class="form-check-input" name="Status" value="1">
+                                            <label for="" class="form-check-label">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-check-inline ml-4">
+                                            <input type="radio" class="form-check-input" name="Status" value="0">
+                                            <label for="" class="form-check-label">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default text-capitalize" id="ResetBtnForm">Reset</button>
+                                <button type="button" name="submit" type="submit" class="btn bg-navy text-capitalize" id="SubmitBtn">submit</button>
+                            </div>
+                    {{ Form::close() }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade show" id="EditTaxModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">TaxSetting Update</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {{ Form::open(array('url' => '/taxSetting/'.$TaxSetting->id, 'method' => 'PATCH','class' => 'form-horizantal','id'=>'EditTaxForm', 'files' => true)) }}
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <label for="Name" class="form-label col-md-3">Name:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" name="Name" class="form-control" value="{{ $TaxSetting->Name }}"> 
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="Parcent" class="form-label col-md-3">Parcent:</label>
+                                    <div class="col-md-8">
+                                        <input type="number" name="Parcent" class="form-control" value="{{ $TaxSetting->Parcent }}"> 
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="Status" class="form-label col-md-3">Status:</label>
+                                    <div class="col-md-8">
+                                        <div class="form-check form-check-inline ml-1">
+                                            <input type="radio" class="form-check-input" name="Status" value="1" @if ($TaxSetting->Status) checked @endif >
+                                            <label for="" class="form-check-label">
+                                                <b class="text-success fs-6">Active</b>
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-check-inline ml-4">
+                                            <input type="radio" class="form-check-input" name="Status" value="0" @if(!$TaxSetting->Status)
+                                            checked @endif>
+                                            <label for="" class="form-check-label">
+                                            <b class="text-danger fs-6">Deactive</b>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                {{-- <button type="button" class="btn btn-default text-capitalize" id="ResetBtnFormEdit">Reset</button> --}}
+                                <button type="button" name="submit" type="submit" class="btn bg-navy text-capitalize" id="SubmitBtnEdit">submit</button>
+                            </div>
+                    {{ Form::close() }}
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <script>
+        $(document).ready(function(){
+            $('#ResetBtnForm').on('click',function(e){
+                e.preventDefault();
+                $('#NewTaxForm')[0].reset();
+            });
+            $('#SubmitBtn').on('click',function(e){
+                e.preventDefault();
+
+                $.ajax({
+                    type: "POST",
+                    url: "/taxSetting",
+                    data: $('#NewTaxForm').serializeArray(),
+                    success: function (data) {
+                        $('#NewTaxForm')[0].reset();
+                        $('#NewTaxModal').modal('hide');
+                        Swal.fire(
+                            'Success !',
+                            data,
+                            'success'
+                         )
+                            
+                    },
+                    erorr:function(data){
+                        console.log('Error while adding new RoomTransfer' + data);
+
+                    }
+                });
+            });
+
+            $('#SubmitBtnEdit').on('click',function(e){
+                e.preventDefault();
+                $.ajax({
+                    type: "PATCH",
+                    url: "/taxSetting",
+                    data:$('#EditTaxForm'),
+                    success: function (response) {
+                        
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

@@ -1,9 +1,6 @@
 @extends('layouts.app')
 @section('content')
     <div class="container py-5">
-        {{-- <section class="button mb-4">
-            <a href="{{ asset('booking/create') }}" class="btn btn-info text-capitalize"> <i class="fa-solid fa-circle-plus mr-2"></i>Add</a>
-        </section> --}}
         <div class="row">
             <div class="col-md-10 m-auto">
                 @if (Session::get('Destroy'))
@@ -25,10 +22,10 @@
                     <div class="card-header bg-defult">
                         <div class="card-title">
                             <h2 class="card-title">
-                                <a href="{{ asset('booking/create') }}" class="btn bg-navy text-capitalize mr-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create Booking"> 
+                               <button type="button" class="btn bg-navy text-capitalize mr-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create Room"" data-toggle="modal" data-target="#NewBookingModal"> 
                                     <i class="fa-solid fa-circle-plus mr-2"></i>
                                     Add
-                                </a>
+                                </button> 
                                 Booking List
                             </h2>
                         </div>
@@ -74,11 +71,94 @@
                            
                         </table>
                     </div>
-                    <div class="card-footer">
-                     
+                    <div class="card-footer"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade show" id="NewBookingModal"role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title">Add A New Booking</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {{ Form::Open(array('url' => '/booking','method' => 'POST','class' => 'form-horizontal', 'id' => 'NewBookingForm', 'files' => true)) }}
+                            
+                            <div class="form-group row">
+                                <label for="RoomID" class="form-label  col-md-4">Room:</label>
+                                <div class="col-md-7">
+                                    <select type="number" name="RoomID" id=""  class="form-select" required>
+                                        <option value="">Select Room</option>
+                                        @foreach ($Rooms as $Room)
+                                            <option value="{{ $Room->id }}">{{ $Room->RoomNo }}</option>
+                                            @if(!$Room->Status)
+                                                <option value="{{ $Room->id }}">{{ $Room->RoomNo }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="GuestID" class="form-label  col-md-4">Guest:</label>
+                                <div class="col-md-7">
+                                    <select type="number" name="GuestID" id=""  class="form-select" required>
+                                        <option value="">Select Guest</option>
+                                        @foreach ($Guests as $Guest)
+                                            <option value="{{ $Guest->id }}">
+                                                {{ $Guest->Name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="CheckInDate" class="form-label  col-md-4">Check-In Date:</label>
+                                <div class="col-md-7">
+                                    <input type="date" name="CheckInDate" class="form-control" required> 
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default text-capitalize" id="ResetBtnForm">Reset</button>
+                                <button type="button" name="submit" type="submit" class="btn bg-navy text-capitalize" id="SubmitBtn">submit</button>
+                            </div>
+                           
+                        {{ Form::close() }}
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function(){
+            $('#ResetBtnForm').on('click',function(e){
+                e.preventDefault();
+                $('#NewBookingForm')[0].reset();
+            });
+            $('#SubmitBtn').on('click',function(e){
+                e.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: "/booking",
+                    data: $('#NewBookingForm').serializeArray(),
+                    success: function (data) {
+                        $('#NewBookingForm')[0].reset();
+                        $('#NewBookingModal').modal('hide');
+                        Swal.fire(
+                            'Success !',
+                            data,
+                            'success'
+                        )
+                    },
+                    error:function(data){
+                        console.log('Error while adding new Booking' + data);
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

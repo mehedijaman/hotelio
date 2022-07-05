@@ -27,12 +27,12 @@
                                         <label for="HotelID" class="form-label col-md-3">Hotel:</label>
                                         <div class="col-md-8">
                                             <select type="number" name="HotelID" id=""  class="form-select" required>
-                                                <option value="">Select Hotel</option>
+                                                {{-- <option value="">Select Hotel</option>
                                                 @foreach ($Hotels as $Hotel)
                                                 <option value="{{ $Hotel->id }}">
                                                     {{ $Hotel->Name }}
                                                 </option>
-                                                @endforeach
+                                                @endforeach --}}
                                             </select>
                                         </div>  
                                     
@@ -310,7 +310,8 @@
             </div>
         </div>
     </div>
-
+    
+    
 @endsection
         
   
