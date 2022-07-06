@@ -4,14 +4,13 @@
         <div class="row">
             <div class="col-md-7 m-auto">
                 <div class="card card-primary">
-
-                        <div class="card-header">
-                            <h3 class="card-title text-light">
-                                <a href="{{ asset('expense') }}" class="mr-3"><i class="fa-solid fa-circle-arrow-left fs-5 text-navy" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Back to List"></i></a>
-                                Update To Income Item
-                            </h3>
-                        </div>
-                        {{ Form::open(array('url' => "/expense/".$Expenses->id,'method' => 'PATCH','class'=>'form-horizontal', 'files' => true)) }}
+                    <div class="card-header">
+                        <h3 class="card-title text-light">
+                            <a href="{{ asset('expense') }}" class="mr-3"><i class="fa-solid fa-circle-arrow-left fs-5 text-navy" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Back to List"></i></a>
+                            Update To Income Item
+                        </h3>
+                    </div>
+                    {{ Form::open(array('url' => "/expense/".$Expenses->id,'method' => 'PATCH','class'=>'form-horizontal', 'files' => true)) }}
                         <div class="card-body">
                             <div class="form-group row">
                                 <label for="Type" class="form-label col-md-3">Expense Category</label>

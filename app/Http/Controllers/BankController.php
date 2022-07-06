@@ -55,7 +55,8 @@ class BankController extends Controller
      */
     public function show($id)
     {
-        //
+        $Bank = Bank::find($id);
+        return $Bank;
     }
 
     /**

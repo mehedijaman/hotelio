@@ -66,7 +66,7 @@ class ExpenseController extends Controller
         ->where('expenses.id',$id)
         ->leftJoin('expenses_categories','expenses.CategoryID','=','expenses_categories.id')
         ->first();
-        return view('expense.show',compact('Expense'));
+        return $Expense ;
     }
     /**
      * Show the form for editing the specified resource.
@@ -91,7 +91,7 @@ class ExpenseController extends Controller
     public function update(Request $request, $id)
     {
         Expense::find($id)->update($request->all());
-        return $this->index();
+        return "data update successfully !";
     }
 
     /**

@@ -56,9 +56,9 @@
                                             <a href="{{URL::to('guest/'.$Guest->id)}}" class="mr-3 text-purple" data-bs-toggle="tooltip" data-bs-placement="bottom" title="View">
                                                  <svg data-v-9a6e255c="" xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="invoice-row-5036-preview-icon" class="mx-1 feather feather-eye"><path data-v-9a6e255c="" d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle data-v-9a6e255c="" cx="12" cy="12" r="3"></circle></svg>
                                             </a>
-                                             <a class="" href="/guest/{{ $Guest->id }}/edit" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit">
-                                                 <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i></i>
-                                             </a>
+                                             <button class="EditBtn" value="{{ $Guest->id }}" title="Edit">
+                                                 <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i>
+                                             </button>
                                             
                                              {{ Form::open(array('url' => '/guest/'.$Guest->id,'method' => 'DELETE')) }}
                                                  <button class="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
@@ -184,10 +184,113 @@
                         </div>
                     {{ Form::close()}}  
                     </div>
-                    <!-- <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div> -->
+                </div>
+            </div>
+        </div>
+        <div class="modal fade show" id="EditGuestlModal" role="dialog">
+            <div class="modal-dialog modal-xl ">
+                <div class="modal-content ">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Update  Guest</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {{ Form::open(array('method' => 'PATCH','class'=>'form-horizontal','id'=>'updateGuestForm' ,'files' => true)) }}
+                        <input type="hidden" name="ID" id="IDEdit">
+                        <div class="card-body">
+                            <div class="col-md-12 form-group row">
+                                <div class="form-group row col-md-6">
+                                    <label for="Name" class="form-label col-md-3">Name :</label>
+                                    <div class="col-md-8 mx-md-2">
+                                        <input type="text" name="Name" class="form-control" id="EditName"> 
+                                    </div>
+                                </div>
+                                <div class="form-group row col-md-6">
+                                    <label for="Email" class="form-label col-md-3">Email :</label>
+                                    <div class="col-md-8 mx-md-2">
+                                        <input type="mail" name="Email" class="form-control" id="EditEmail"> 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 form-group row">
+                                <div class="form-group row col-md-6">
+                                    <label for="Address" class="form-label col-md-3">Address :</label>
+                                    <div class="col-md-8 mx-md-2">
+                                        <input type="text" name="Address" class="form-control" id="EditAddress"> 
+                                    </div>
+                                </div>
+                                <div class="form-group row col-md-6">
+                                    <label for="Phone" class="form-label col-md-3">Phone :</label>
+                                    <div class="col-md-8 mx-md-2">
+                                        <input type="tel" name="Phone" class="form-control" id="EditPhone"> 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 form-group row">
+                                <div class="form-group row col-md-6">
+                                    <label for="NIDNo" class="form-label col-md-3">NID No :</label>
+                                    <div class="col-md-8 mx-md-2">
+                                        <input type="text" name="NIDNo" class="form-control" id="EditNIDNo"> 
+                                    </div>
+                                </div>
+                                <div class="form-group row col-md-6">
+                                    <label for="NID" class="form-label col-md-3">NID :</label>
+                                    <div class="col-md-8 mx-md-2">
+                                        <input type="file" name="NID" class="form-control" id="EditNID"> 
+                                    </div>
+                                </div>
+                            </div>
+                           
+                            <div class="col-md-12 form-group row">
+                                <div class="form-group row col-md-6">
+                                    <label for="PassportNo" class="form-label col-md-3">Passport No :</label>
+                                    <div class="col-md-8 mx-md-2">
+                                        <input type="text" name="PassportNo" class="form-control" id="EditPassportNo"> 
+                                    </div>
+                                </div>
+                                <div class="form-group row col-md-6">
+                                    <label for="Passport" class="form-label col-md-3">Passport :</label>
+                                    <div class="col-md-8 mx-md-2">
+                                        <input type="file" name="Passport" class="form-control" id="EditPassport"> 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 form-group row">
+                                <div class="form-group row col-md-6">
+                                    <label for="Father" class="form-label col-md-3">Father :</label>
+                                    <div class="col-md-8 mx-md-2">
+                                        <input type="text" name="Father" class="form-control" id="EditFather" > 
+                                    </div>
+                                </div>
+                                <div class="form-group row col-md-6">
+                                    <label for="Mother" class="form-label col-md-3">Mother :</label>
+                                    <div class="col-md-8 mx-md-2">
+                                        <input type="text" name="Mother" class="form-control" id="EditMother"> 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row col-md-12">
+                                <div class="form-group row  col-md-6">
+                                    <label for="Spouse" class="form-label col-md-3">Spouse :</label>
+                                    <div class="col-md-8 mx-md-2">
+                                        <input type="text" name="Spouse" class="form-control" id="EditSpouse"> 
+                                    </div>
+                                </div>
+                                <div class="form-group row col-md-6">
+                                    <label for="Photo" class="form-label col-md-3">Photo :</label>
+                                    <div class="col-md-8 mx-md-2">
+                                        <input type="file" name="Photo" class="form-control" id="EditPhoto"> 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="button" name="submit" id="UpdateBtn" class="btn bg-success float-right w-25 text-capitalize">Update</button>
+                            </div>
+                        </div>
+                    {{ Form::close()}}  
+                    </div>
                 </div>
             </div>
         </div>
@@ -219,8 +322,59 @@
                     error:function(data){
                         console.log('Error while adding new Bank'+data);
                     },
-                })
-            })
+                });
+            });
+            $('.EditBtn').on('click',function(e) {
+                e.preventDefault();
+                var ID = $(this).val();
+                
+                $.ajax({
+                    type    : 'GET',
+                    url     : '/guest/'+ID,
+                    data    : $('#updateGuestForm').serializeArray(),
+                    success:function(data){
+                        $('#updateGuestForm')[0].reset();
+                        $('#IDEdit').val(data['id']);
+                        $('#EditName').val(data['Name']);
+                        $('#EditEmail').val(data['Email']);
+                        $('#EditAddress').val(data['Address']);
+                        $('#EditPhone').val(data['Phone']);
+                        $('#EditNIDNo').val(data['NIDNo']);
+                        $('#EditNID').val(data['NID']);
+                        $('#EditPassportNo').val(data['PassportNo']);
+                        $('#EditPassport').val(data['Passport']);
+                        $('#EditFather').val(data['Father']);
+                        $('#EditMother').val(data['Mother']);
+                        $('#EditSpouse').val(data['Spouse']);
+                        $('#EditPhoto').val(data['Photo']);
+                        $('#EditGuestlModal').modal('show');
+                    },
+                    error:function(data){
+                        console.log(data);
+                    },
+                });
+            });
+            $('#UpdateBtn').on('click',function(e) {
+                e.preventDefault();
+                var ID = $('#IDEdit').val();
+                $.ajax({
+                    type    : 'PATCH',
+                    url     : '/guest/'+ID,
+                    data    : $('#updateGuestForm').serializeArray(),
+                    success:function(data){
+                        $('#EditGuestlModal').modal('hide');
+                        $('#updateGuestForm')[0].reset();
+                        Swal.fire(
+                          'Success!',
+                          data,
+                          'success'
+                        );
+                    },
+                    error:function(data){
+                        console.log(data);
+                    }
+                });
+            });
         });
     </script>
 @endsection

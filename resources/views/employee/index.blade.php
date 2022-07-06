@@ -69,9 +69,9 @@
                                             <circle data-v-9a6e255c="" cx="12" cy="12" r="3"></circle>
                                         </svg>
                                     </a>
-                                    <a class="" href="/employee/{{ $Employee->id }}/edit" data-bs-toggle="Edit" data-bs-placement="bottom" title="Edit">
+                                    <button class="EditBtn" value="{{ $Employee->id }}" title="Edit">
                                         <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i></i>
-                                    </a>
+                                    </button>
 
                                     {{ Form::open(array('url' => '/employee/'.$Employee->id,'method' => 'DELETE')) }}
                                     <button class="" data-bs-toggle="Delete" data-bs-placement="bottom" title="Delete">
@@ -206,6 +206,120 @@
             </div>
         </div>
     </div>
+    <div class="modal fade show" id="EditEmployeeModal" role="dialog">
+        <div class="modal-dialog modal-xl ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Update Employee</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {{ Form::open(array('method' => 'PATCH','class'=>'form-horizontal', 'files' => true , 'id' => 'updateEmployeeFrom')) }}
+                            <div class="card-body ">
+                                <div class="form-group row col-md-12">
+                                    <div class="form-group row col-md-6">
+                                        <label for="HotelID" class="form-label col-md-3">Hotel</label>
+                                        <div class="col-md-8">
+                                            <select name="HotelID" id="" class="form-select" required>
+                                                <option value="">Select Hotel</option>
+                                                @foreach($Hotels as $Hotel)
+                                                <option value="{{ $Hotel->id }}"> {{ $Hotel->Name }} </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row col-md-6">
+                                        <label for="Name" class="form-label col-md-3">Name :</label>
+                                        <div class="col-md-8">
+                                            <input type="text" name="Name" class="form-control"> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row col-md-12">
+                                    <div class="form-group row col-md-6">
+                                        <label for="Designation" class="form-label col-md-3">Designation :</label>
+                                        <div class="col-md-8">
+                                            <input type="text" name="Designation" class="form-control"> 
+                                        </div>
+                                    </div>
+                                    <div class="form-group row col-md-6">
+                                        <label for="DateOfBirth" class="form-label col-md-3">Date Of Birth :</label>
+                                        <div class="col-md-8">
+                                            <input type="date" name="DateOfBirth" class="form-control"> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row col-md-12">
+                                    <div class="form-group row col-md-6">
+                                        <label for="NIDNo" class="form-label col-md-3">NID No :</label>
+                                        <div class="col-md-8">
+                                            <input type="text" name="NIDNo" class="form-control"> 
+                                        </div>
+                                    </div>
+                                    <div class="form-group row col-md-6">
+                                        <label for="NID" class="form-label col-md-3">NID :</label>
+                                        <div class="col-md-8">
+                                            <input type="file" name="NID" class="form-control"> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row col-md-12">
+                                    <div class="form-group row col-md-6">
+                                        <label for="Phone" class="form-label col-md-3">Phone :</label>
+                                        <div class="col-md-8">
+                                            <input type="tel" name="Phone" class="form-control"> 
+                                        </div>
+                                    </div>
+                                    <div class="form-group row col-md-6">
+                                        <label for="Email" class="form-label col-md-3">Email :</label>
+                                        <div class="col-md-8">
+                                            <input type="mail" name="Email" class="form-control"> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row col-md-12">
+                                    <div class="form-group row col-md-6">
+                                        <label for="Address" class="form-label col-md-3">Address :</label>
+                                        <div class="col-md-8">
+                                            <input type="text" name="Address" class="form-control"> 
+                                        </div>
+                                    </div>
+                                    <div class="form-group row col-md-6">
+                                        <label for="DateOfJoin" class="form-label col-md-3">Date Of Join :</label>
+                                        <div class="col-md-8">
+                                            <input type="date" name="DateOfJoin" class="form-control"> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="form-label col-md-3">Status :</label>
+                                    <div class="p-t-15">
+                                        <label class="radio-container m-r-55">yes
+                                            <input type="radio" name="Status" value="1">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="radio-container">No
+                                            <input type="radio" name="Status" value="0">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <input type="submit" name="submit" id="submitBtn" class="btn bg-navy float-right w-25 text-capitalize">
+                                    <button type="button" id="formResetBtn" class="btn btn-default ">Reset</button>
+                                </div>
+                            </div>
+                    {{ Form::close()}} 
+                </div>
+                <!-- <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
 </div>
 <script>
     $(document).ready(function(){
@@ -214,28 +328,32 @@
             $('#newEmployeeModal').modal('show'); 
         });
         $('#formResetBtn').on('click',function(e){
-                e.preventDefault();
-                $('#newCreateEmployee')[0].reset();
+            e.preventDefault();
+            $('#newCreateEmployee')[0].reset();
+        });
+        $('#submitBtn').on('click',function(e){
+            e.preventDefault();
+            $.ajax({
+                type    : 'POST',
+                url     : '/employee',
+                data    : $('#newCreateEmployee').serialize(),success:function(data){
+                    $('#newCreateEmployee')[0].reset();
+                    $('#newEmployeeModal').modal('hide'); 
+                    Swal.fire(
+                        'Success!',
+                        data,
+                        'success'
+                    );
+                },
+                error:function(data){
+                    console.log('Error while adding new Bank'+data);
+                },
             });
-            $('#submitBtn').on('click',function(e){
-                e.preventDefault();
-                $.ajax({
-                    type    : 'POST',
-                    url     : '/employee',
-                    data    : $('#newCreateEmployee').serialize(),success:function(data){
-                        $('#newCreateEmployee')[0].reset();
-                        $('#newEmployeeModal').modal('hide'); 
-                        Swal.fire(
-                          'Success!',
-                          data,
-                          'success'
-                        );
-                    },
-                    error:function(data){
-                        console.log('Error while adding new Bank'+data);
-                    },
-                });
-            });
+        });
+        $('.EditBtn').on('click',function(e) {
+            e.preventDefault();
+            $('#EditEmployeeModal').modal('show');
+        });
     });
 </script>
 @endsection

@@ -57,7 +57,7 @@
                                             @else <b class="text-danger fs-6">Deactive</b> @endif
                                         </td>
                                         <td class="d-flex">
-                                            <button class="EditBtn" value="{{ $TaxSetting->id }}" title="Edit" ><i class="fa-regular fa-pen-to-square mr-3 text-orange"></i></i>
+                                            <button class="EditBtn" value="{{ $TaxSetting->id }}" title="Edit" ><i class="fa-regular fa-pen-to-square mr-3 text-orange"></i>
                                             </button>
 
                                             <button class="DeleteBtn" value="{{ $TaxSetting->id }}" title="Delete">
