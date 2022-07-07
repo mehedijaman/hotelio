@@ -50,13 +50,14 @@
                                         <td style="padding-left: 2.2rem !important">{{ $RoomTransfer->Room }}</td>
                                         <td>
                                             @php
-                                                echo date('d-m-Y',strtotime($RoomTransfer->Date))  
+                                                echo date('Y-m-d',strtotime($RoomTransfer->Date))  
                                             @endphp
                                         </td>
                                         <td class="d-flex">
-                                            <a class="" href="/roomTransfer/{{ $RoomTransfer->id }}/edit" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit">
-                                                <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i></i>
-                                            </a>
+                                            <button class="EditBtn" value ="{{ $RoomTransfer->id }}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit" style="cursor: pointer;">
+                                                <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i>
+                                               
+                                            </button>
                                             {{ Form::open(array('url' => '/roomTransfer/'.$RoomTransfer->id,'method' => 'DELETE')) }}
                                                 <button class="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
                                                     <i class="fa-regular fa-trash-can mr-3 text-danger"></i>
@@ -84,7 +85,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        {{ Form::open(array('url' => '/roomTransfer','method' => 'POST','class'=>'form-horizontal','id'=>'NewRoomTransferForm', 'files' => true)) }}
+                        {{ Form::open(array('method' => 'POST','class'=>'form-horizontal','id'=>'NewRoomTransferForm', 'files' => true)) }}
 
                             <div class="form-group row">
                                 <label for="GuestID" class="form-label  col-md-3">Guest:</label>
@@ -129,6 +130,86 @@
 
                         {{ Form::close()}}
                     </div>
+                    
+                </div>
+            </div>
+        </div>
+
+         <div class="modal fdae  show" id="EditRoomTransferModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">RoomTransfer Update</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                       {{ Form::open(array('method' => 'PATCH','class'=>'form-horizontal','id'=>'EditRoomTransferForm', 'files' => true)) }}
+                       <input type="hidden" name="ID" id="IDEdit">
+                       <input type="text">
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <label for="GuestID" class="form-label col-md-3">Guest:</label>
+                                <div class="col-md-8">
+                                    <select type="number" name="GuestID" id="EditGuest"  class="form-select">
+                                        <option value=""> Select Guest </option>
+                                        @foreach ($Guests as $Guest)
+
+                                            @if ($RoomTransfer->GuestID == $Guest->id) 
+                                                <option value="{{ $Guest->id }}" selected>
+                                                {{ $Guest->Name }}
+                                                </option>
+                                                @else
+                                                    <option value="{{$Guest->id}}" selected>
+                                                    {{ $Guest->Name }} 
+                                            @endif
+
+                                        @endforeach
+                                    </select> 
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="FromRoomID" class="form-label col-md-3">FromRoom:</label>
+                                <div class="col-md-8">
+                                    <input type="number" name="FromRoomID" class="form-control" value="" id="EditFormRoom"> 
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="ToRoomID" class="form-label col-md-3">ToRoom:</label>
+                                <div class="col-md-8">
+                                    <select type="number" name="ToRoomID" id="EditToRoom" class="form-select">
+                                        <option value="">Room Select</option>
+                                        
+                                        @foreach ($Rooms as $Room)
+                                            @if ($RoomTransfer->ToRoomID == $Room->id)
+                                                <option value="{{ $Room->id }}" selected>
+                                                    {{ $Room->RoomNo }}
+                                                </option>
+                                                @else
+                                                    <option value="{{ $Room->id }}">
+                                                    {{ $Room->RoomNo }}
+                                                </option>
+                                            @endif
+                                        @endforeach
+                                    </select> 
+                                </div>
+                                {{-- <div class="col-md-8">
+                                    <input type="number" name="ToRoomID" class="form-control" value="{{ $RoomTransfer->ToRoomID }}"> 
+                                </div> --}}
+                            </div>
+                            <div class="form-group row">
+                                <label for="Date" class="form-label col-md-3">Date:</label>
+                                <div class="col-md-8">
+                                    <input type="date" name="Date" class="form-control" id="EditDate"> 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <input type="submit" name="submit" id="UpdateBtn" class="btn bg-navy float-right w-25" value="Update">
+                        </div>
+                    {{ Form::close()}}
+                    </div>
                 </div>
             </div>
         </div>
@@ -161,6 +242,55 @@
                     }
                 });
             });
+
+            $('.EditBtn').on('click',function(e){
+                e.preventDefault();
+                // console.log($(this).val());
+                var ID = $(this).val();
+                $.ajax({
+                    type: 'GET',
+                    url: "/roomTransfer/"+ID,
+                    success: function(data) {
+                        $('#EditRoomTransferForm')[0].reset();
+                        $('#EditRoomTransferModal').modal('show');
+                        $('#IDEdit').val(data['id']);
+                        $('#EditGuest').val(data['GuestID']);
+                        $('#EditFormRoom').val(data['FromRoomID']);
+                        $('#EditDate').val(data['Date']);
+                    },
+                    error: function(data) {
+                        console.log(data);
+                    }
+                });
+            });
+
+            $('#UpdateBtn').on('click',function(e){
+                e.preventDefault();
+                var ID = $('#IDEdit').val();
+                console.log(ID);
+
+                $.ajax({
+                    type: 'PATCH',
+                    url: '/roomTransfer/'+ID,
+                    data: $('#EditRoomTransferForm').serializeArray(),
+                    success: function (data) {
+                        $('#EditRoomTransferModal').modal('hide');
+                        $('#EditRoomTransferForm')[0].reset();
+                         Swal.fire(
+                            'success',
+                            'Tax updated successfully',
+                            'success'
+                        );
+                    },
+                    error:function(data)
+                    {
+                        console.log(data);
+                    }
+                });
+                
+            });
+
+
         });
         
     </script>
