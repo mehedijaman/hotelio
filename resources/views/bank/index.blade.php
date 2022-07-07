@@ -63,9 +63,9 @@
                                            {{-- <a href="" class="mr-3 text-purple" data-bs-toggle="View" data-bs-placement="bottom" title="View">
                                                 <svg data-v-9a6e255c="" xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="invoice-row-5036-preview-icon" class="mx-1 feather feather-eye"><path data-v-9a6e255c="" d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle data-v-9a6e255c="" cx="12" cy="12" r="3"></circle></svg>
                                            </a> --}}
-                                            <a class="" href="/bank/{{ $Bank->id }}/edit" data-bs-toggle="Edit" data-bs-placement="bottom" title="Edit">
+                                            <button class="EditBtn" value="{{$Bank->id}}" title="Edit">
                                                 <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i></i>
-                                            </a>
+                                            </button>
                                             
                                             {{ Form::open(array('url' => '/bank/'.$Bank->id,'method' => 'DELETE')) }}
                                                 <button class="" data-bs-toggle="Delete" data-bs-placement="bottom" title="Delete">
@@ -148,6 +148,68 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade show" id="EditBanklModal" role="dialog">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Update Bank</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {{ Form::open(array('method' => 'PATCH','class'=>'form-horizontal', 'files' => true , 'id'=>'updateBank')) }}
+                        <input type="hidden" name="ID" id="EditID">
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <label for="Name" class="form-label col-md-3">Name:</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="Name" class="form-control" id="EditName"> 
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="Branch" class="form-label col-md-3">Branch:</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="Branch" class="form-control" id="EditBranch"> 
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="AccountNo" class="form-label col-md-3">Account No:</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="AccountNo" class="form-control" id="EditAccountNo"> 
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="Address" class="form-label col-md-3">Address:</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="Address" class="form-control" id="EditAddress"> 
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="Phone" class="form-label col-md-3">Phone:</label>
+                                <div class="col-md-8">
+                                    <input type="tel" name="Phone" class="form-control" id="EditPhone"> 
+                                </div>
+                            </div>  `
+                            <div class="form-group row">
+                                <label for="Email" class="form-label col-md-3">Email:</label>
+                                <div class="col-md-8">
+                                    <input type="mail" name="Email" class="form-control" id="EditEmail"> 
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="button" name="submit" id="updateBtn" class="btn bg-success float-right w-25 text-capitalize">Update</button>
+                            </div>
+                        </div>
+                    {{ Form::close()}} 
+                    </div>
+                    <!-- <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
     </div>
     <script>
         $(document).ready(function(){
@@ -180,6 +242,51 @@
                     },
                     error:function(data){
                         console.log('Error while adding new Bank'+data);
+                    },
+                });
+            });
+            $('.EditBtn').on('click',function(e) {
+                e.preventDefault();
+                var ID = $(this).val();
+                
+                $.ajax({
+                    type    : 'GET',
+                    url     : '/bank/'+ID,
+                    data    : $('#updateBank').serializeArray(),
+                    success:function(data){
+                        $('#updateBank')[0].reset();
+                        $('#EditID').val(data['id']);
+                        $('#EditName').val(data['Name']);
+                        $('#EditBranch').val(data['Branch']);
+                        $('#EditAccountNo').val(data['AccountNo']);
+                        $('#EditAddress').val(data['Address']);
+                        $('#EditPhone').val(data['Phone']);
+                        $('#EditEmail').val(data['Email']);
+                        $('#EditBanklModal').modal('show');
+                    },
+                    error:function(data){
+                        console.log(data);
+                    }
+                });
+            });
+            $('#updateBtn').on('click',function(e) {
+                e.preventDefault();
+                var ID = $('#EditID').val();
+                $.ajax({
+                    type    : 'PATCH',
+                    url     : '/bank/'+ID,
+                    data    : $('#updateBank').serializeArray(),
+                    success:function(data){
+                        $('#EditBanklModal').modal('hide');
+                        $('#updateBank')[0].reset();
+                        Swal.fire(
+                          'Success!',
+                          data,
+                          'success'
+                        );
+                    },
+                    error:function(data){
+                        console.log(data);
                     },
                 });
             });

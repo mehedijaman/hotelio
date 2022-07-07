@@ -33,9 +33,10 @@
                                            <a href="{{URL::to('expense/category/'.$Category->id)}}" class="mr-3 text-purple" data-bs-toggle="View" data-bs-placement="bottom" title="View">
                                                 <svg data-v-9a6e255c="" xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="invoice-row-5036-preview-icon" class="mx-1 feather feather-eye"><path data-v-9a6e255c="" d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle data-v-9a6e255c="" cx="12" cy="12" r="3"></circle></svg>
                                            </a>
-                                            <a class="" href="/expense/category/{{ $Category->id }}/edit" data-bs-toggle="Edit" data-bs-placement="bottom" title="Edit">
+                                            {{-- <a class="" href="/expense/category/{{ $Category->id }}/edit" data-bs-toggle="Edit" data-bs-placement="bottom" title="Edit">
                                                 <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i></i>
-                                            </a>
+                                            </a> --}}
+                                            <button class="EditBtn" value="{{$Category->id}}" title="Edit" ><i class="fa-regular fa-pen-to-square mr-3 text-orange"></i></button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -49,7 +50,7 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade show" id="NewCategorylModal" role="dialog">
+        <div class="modal fade show" id="NewCategoryModal" role="dialog">
             <div class="modal-dialog modal-xl ">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -60,18 +61,50 @@
                     </div>
                     <div class="modal-body">
                         {{ Form::open(array('url' => '/expense/category','method' => 'POST','class'=>'form-horizontal', 'files' => true , 'id' => 'categoryForm')) }}
-                    <div class="card-body">
-                        <div class="form-group row">
-                            <label for="Name" class="form-label col-md-3">Name:</label>
-                            <div class="col-md-8">
-                                <input type="text" name="Name" class="form-control"> 
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <label for="Name" class="form-label col-md-3">Name:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" name="Name" class="form-control"> 
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <input type="submit" name="submit" id="submitBtn" class="btn bg-navy float-right w-25 text-capitalize">
+                                    <button type="button" id="formResetBtn" class="btn btn-warning ">Reset</button>
+                                </div>
                             </div>
-                        </div>
+                        {{ Form::close()}}   
+                        <!-- <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade  show" id="EditCategoryModal" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Category Update</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {{ Form::open(array('method' => 'PATCH','class'=>'form-horizontal','id' =>'updateForm', 'files' => true)) }}
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <label for="Name" class="form-label col-md-3">Name:</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="Name" class="form-control"> 
+                                </div>
+                            </div>
+                        </div>    
                         <div class="card-footer">
-                            <input type="submit" name="submit" id="submitBtn" class="btn bg-navy float-right w-25 text-capitalize">
-                            <button type="button" id="formResetBtn" class="btn btn-warning ">Reset</button>
+                            <input type="submit" name="submit" id="" class="btn btn-info float-right w-25 mx-md-3 px-md-2" value="Update">
                         </div>
-                    {{ Form::close()}}   
+                    {{ Form::close()}}  
                     </div>
                     <!-- <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -85,7 +118,7 @@
         $(document).ready(function(){
             $('#AddNewBtn').on('click',function(e){
                 e.preventDefault();
-                $('#NewCategorylModal').modal('show');
+                $('#NewCategoryModal').modal('show');
             });
             $('#formResetBtn').on('click',function(e){
                 e.preventDefault();
@@ -98,7 +131,7 @@
                     url     : '/expense/category',
                     data    : $('#categoryForm').serializeArray(),success:function(data){
                         $('#categoryForm')[0].reset();
-                        $('#NewCategorylModal').modal('hide');
+                        $('#NewCategoryModal').modal('hide');
                         Swal.fire(
                           'Success!',
                           data,
@@ -109,6 +142,10 @@
                         console.log('Eerror while added category !' + data);
                     }
                 });
+            });
+            $('.EditBtn').on('click',function(e){
+                e.preventDefault();
+                $('#EditCategoryModal').modal('show');
             });
         });
     </script>

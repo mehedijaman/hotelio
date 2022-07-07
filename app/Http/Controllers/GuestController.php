@@ -58,7 +58,7 @@ class GuestController extends Controller
     public function show($id)
     {
         $Guest = Guest::find($id);
-        return view('guest.show',compact('Guest'));
+        return $Guest;
     }
 
     /**
@@ -83,7 +83,7 @@ class GuestController extends Controller
     public function update(Request $request , $id)
     {
         Guest::find($id)->update($request->all());
-        return $this->index();
+        return "Data Successfully Updated ! ";
     }
 
     /**

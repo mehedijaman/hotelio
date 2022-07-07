@@ -68,9 +68,12 @@
                                                     <i class="fa-regular fa-eye mr-3 text-success"></i>
                                                 </button>
                                             {{ Form::close() }}  --}}
-                                            <a class="" href="/hotel/{{ $Hotel->id }}/edit" data-bs-toggle="Edit" data-bs-placement="bottom" title="Edit">
+                                            {{-- <a class="" href="/hotel/{{ $Hotel->id }}/edit" data-bs-toggle="Edit" data-bs-placement="bottom" title="Edit">
                                                 <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i></i>
-                                            </a>
+                                            </a> --}}
+                                            <button class="EditBtn" value="{{$Hotel->id}}" title="Edit" >
+                                                <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i>
+                                            </button>
                                             
                                             {{ Form::open(array('url' => '/hotel/'.$Hotel->id,'method' => 'DELETE')) }}
                                                 <button class="" data-bs-toggle="Delete" data-bs-placement="bottom" title="Delete">
@@ -101,7 +104,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        {{ Form::open(array('url' => '/hotel','method' => 'POST','class'=>'form-horizontal', 'id' => 'NewHotelForm' ,'files' => true)) }}
+                        {{ Form::open(array('url' => '/hotel','method' => 'POST','class'=>'form-horizontal', 'id'=> 'NewHotelForm' ,'files' => true)) }}
                             <div class="card-body">
                                 <div class="form-group row">
                                     <label for="Name" class="form-label col-md-3">Name :</label>
@@ -156,6 +159,7 @@
                                     <input type="submit" name="submit" id="SubmitBtn" class="btn bg-navy float-right w-25 text-capitalize">
                                     <button type="button" id="ResetFormBtn" class="btn btn-default ">Reset</button>
                                 </div>
+                            </div>
                         {{ Form::close()}}
                     </div>
                     <!-- <div class="modal-footer justify-content-between">
@@ -164,6 +168,80 @@
                     </div> -->
                 </div>
 
+            </div>
+        </div>
+        <div class="modal fade show" id="EditHotelModal"  role="dialog">
+            <div class="modal-dialog modal-xl ">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Update Hotel</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="formClose">
+                         <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {{ Form::open(array('method' => 'PATCH','id' => 'UpdateForm','class'=>'form-horizontal','id' => 'UpdateHotelForm' ,'files' => true)) }}
+                        <input type="hidden" name="ID" id="IDEdit">
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <label for="Name" class="form-label col-md-3">Name :</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="Name" class="form-control" id="NameEdit"> 
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="Title" class="form-label col-md-3">Title :</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="Title" class="form-control" id="TitleEdit"> 
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="Email" class="form-label col-md-3">Email :</label>
+                                <div class="col-md-8">
+                                    <input type="mail" name="Email" class="form-control" id="EmailEdit"> 
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="Address" class="form-label col-md-3">Address :</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="Address" class="form-control" id="AddressEdit"> 
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="Phone" class="form-label col-md-3">Phone :</label>
+                                <div class="col-md-8">
+                                    <input type="tel" name="Phone" class="form-control" id="PhoneEdit"> 
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="RegNo" class="form-label col-md-3">Reg No :</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="RegNo" class="form-control" id="RegNoEdit">  
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="Logo" class="form-label col-md-3">Logo :</label>
+                                <div class="col-md-8">
+                                    <input type="file" name="Logo" class="form-control" id="LogoEdit"> 
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="Photo" class="form-label col-md-3">Photo :</label>
+                                <div class="col-md-8">
+                                    <input type="file" name="Photo" class="form-control" id="PhotoEdit"> 
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="button" name="submit" id="UpdateBtn" class="btn bg-success float-right w-25 text-capitalize" >Update </button>
+                            </div>
+                        </div>
+                    {{ Form::close()}}
+                    </div>
+                    <!-- <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div> -->
+                </div>
             </div>
         </div>
       
@@ -205,11 +283,52 @@
                 });
 
             });
-            // $('#formClose').on('click',function(e){
-            //     e.preventDefault(){
-            //         $('#NewHotelModal').modal('hide');
-            //     }
-            // });
+
+            $('.EditBtn').on('click',function(e){
+                e.preventDefault();
+                var ID = $(this).val();
+                $.ajax({
+                    type    : 'GET',
+                    url     : '/hotel/'+ID,
+                    success:function(data){
+                        $('#UpdateHotelForm')[0].reset();
+                        $('#IDEdit').val(data['id']);
+                        $('#NameEdit').val(data['Name']);
+                        $('#TitleEdit').val(data['Title']);
+                        $('#EmailEdit').val(data['Email']);
+                        $('#AddressEdit').val(data['Address']);
+                        $('#PhoneEdit').val(data['Phone']);
+                        $('#RegNoEdit').val(data['RegNo']);
+                        $('#LogoEdit').val(data['Logo']);
+                        $('#PhotoEdit').val(data['Photo']);
+                        $('#EditHotelModal').modal('show');
+                    },
+                    error:function(data){
+                        console.log(data);
+                    },
+                });
+            });
+            $('#UpdateBtn').on('click',function(e){
+                e.preventDefault();
+                var ID = $('#IDEdit').val();
+                $.ajax({
+                    type    : 'PATCH',
+                    url     : '/hotel/'+ID,
+                    data    : $('#UpdateHotelForm').serializeArray(),
+                    success:function(data){
+                        $('#EditHotelModal').modal('hide');
+                        $('#UpdateHotelForm')[0].reset();
+                        Swal.fire(
+                          'Success!',
+                          data,
+                          'success'
+                        );
+                    },
+                    error:function(data){
+                        console.log(data);
+                    },
+                });
+            });
         });
     </script>
     

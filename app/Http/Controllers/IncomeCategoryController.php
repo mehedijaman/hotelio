@@ -56,7 +56,7 @@ class IncomeCategoryController extends Controller
     public function show($id)
     {
         $Category = IncomeCategory::find($id);
-        return view('incomeCategory.show',compact('Category'));
+        return $Category;
     }
 
     /**
@@ -81,7 +81,7 @@ class IncomeCategoryController extends Controller
     public function update(Request $request , $id)
     {
         IncomeCategory::find($id)->update($request->all());
-        return $this->index();
+        return "Category Update Successfully !";
     }
 
     /**

@@ -55,7 +55,7 @@ class ExpenseCategoryController extends Controller
     public function show($id)
     {
         $Category = ExpenseCategory::find($id);
-        return view('expenseCategory.show',compact('Category'));
+        // return view('expenseCategory.show',compact('Category'));
     }
 
     /**
