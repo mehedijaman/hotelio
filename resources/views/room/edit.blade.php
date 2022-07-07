@@ -36,7 +36,7 @@
                                                         <option value="{{ $Hotel->id }}">
                                                             {{ $Hotel->Name }}
                                                          </option>
-                                                @endif
+                                                    @endif
                                                 
                                                 @endforeach
                                             </select>
@@ -70,7 +70,7 @@
                                         <label for="Type" class="form-label col-md-3">Type:</label>
                                         <div class="col-md-8">
                                             <select name="Type" id="" class="form-select">
-                                                <option value="">Open this select menu</option>
+                                                <option value="">Select Room</option>
                                                 @if ($Room->Type)
                                                     <option value="Single" selected>Single Bed</option>
                                                     <option value="Double" selected>Double Bed</option>

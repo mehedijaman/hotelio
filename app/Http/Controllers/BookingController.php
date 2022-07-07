@@ -66,14 +66,13 @@ class BookingController extends Controller
      */
     public function show($id)
     {
-        /**
-         * $Booking = Booking::select('bookings.*','rooms.RoomNo','guests.Name')
-         *  ->where('bookings.id',$id)
-         *  ->leftJoin('rooms','bookings.RoomID','=','rooms.id')
-         * ->leftJoin('guests','bookings.GuestID','=','guests.id')
-         * ->first();
-         * return view('booking.show', compact('Booking'));
-        */
+        return  Booking::find($id);
+        // return $Booking = Booking::select('bookings.*','rooms.RoomNo as Room','guests.Name as Guest')
+        // ->where('bookings.id',$id)
+        // ->leftJoin('rooms', 'bookings.RoomID', '=', 'rooms.id')
+        // ->leftJoin('guests', 'bookings.GuestID', '=', 'guests.id')
+        // ->first();   
+
     }
 
     /**
@@ -84,10 +83,14 @@ class BookingController extends Controller
      */
     public function edit($id)
     {
-        // return Booking::all();
         $Rooms    = Room::all();
         $Guests   = Guest::all();
-        $Booking = Booking::find($id);
+        $Booking  = Booking::find($id);
+        // $Booking = Booking::select('bookings.*','rooms.RoomNo as Room','guests.Name as Guest')
+        // ->where('bookings.id',$id)
+        // ->leftJoin('rooms', 'bookings.RoomID', '=', 'rooms.id')
+        // ->leftJoin('guests', 'bookings.GuestID', '=', 'guests.id')
+        // ->get();   
         return view('booking.edit',compact('Rooms','Guests','Booking'));
 
     }
