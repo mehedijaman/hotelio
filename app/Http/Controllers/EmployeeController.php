@@ -22,6 +22,7 @@ class EmployeeController extends Controller
             ->get();
         // $Employees = Employee::all();
         return view('employee.index', compact('Employees','Hotels'));
+        
     }
 
     /**
@@ -64,7 +65,7 @@ class EmployeeController extends Controller
             ->where('employees.id', $id)
             ->leftJoin('hotels', 'employees.HotelID', '=', 'hotels.id')
             ->first();
-        return view('employee.show', compact('Employee'));
+        return $Employee;
     }
 
     /**
@@ -91,7 +92,7 @@ class EmployeeController extends Controller
     public function update(Request $request, $id)
     {
         Employee::find($id)->update($request->all());
-        return $this->index();
+        return "Data Update Successfully !";
     }
 
     /**

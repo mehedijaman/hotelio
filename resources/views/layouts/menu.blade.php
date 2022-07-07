@@ -78,65 +78,55 @@
     </a>
 </li>
 
+{{--Income Dropdown  --}}
+<li class="nav-item ">
+	<a href="#" class="nav-link">
+		<i class="nav-icon fas  fa-coins p-0 nav-icon "></i>
+		<p class="p-0 m-0">
+			Income
+		</p>
+	</a>
+	<ul class="nav nav-treeview" style="display: none;">
+		<li class="nav-item ml-1">
+			<a href="/income/category" class="nav-link {{ Request::is('incomeCategory') ? 'active' : '' }}">
+				<i class="fa-solid fa-file-circle-plus nav-icon "></i>
+				<p class="p-0 m-0"> Add Category</p>
+			</a>
+		</li>
+		<li class="nav-item">
+			<a href="/income" class="nav-link {{ Request::is('income') ? 'active' : '' }}">
+				<i class="fa-solid fa-cart-plus nav-icon"></i>
+				<p class="p-0 m-0">Add Items</p>
+			</a>
+		</li>
+	</ul>
+</li>
+{{--  --}}
 
-
-<div class="sidebar-toggle d-flex flex-column position-relative">
-    <div class="">
-        <li  class="menu-btn">
-            <i class="fa-solid fa-coins"></i>
-            Income
-            <i class="fa-solid fa-angle-right drop-down" id="custom__offset__invoice__item"></i>
-        </li>
-       
-        <ul class="custom__toggle sub-btn">
-            <li>
-                <a href="/income" class="nav-link {{ Request::is('income') ? 'active' : '' }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle">
-                        <circle cx="12" cy="12" r="10"></circle>
-                    </svg>
-                    Income
-                </a>
-            </li>
-            <li>
-                <a href="/income/category" class="nav-link {{ Request::is('incomeCategory') ? 'active' : '' }}" class="">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle">
-                        <circle cx="12" cy="12" r="10"></circle>
-                    </svg>
-                    Income Category
-                </a>
-            </li>
-        </ul>
-    </div>
-</div>
-
-<div class="sidebar-toggle d-flex flex-column position-relative">
-    <div class="">
-        <li class="menu-btn">
-            <i class="fa-solid fa-wallet nav-icon"></i>
-            Expense
-            <i class="fa-solid fa-angle-right drop-down" id="custom__offset__tax__setting"></i>
-        </li>
-
-        <ul class="custom__toggle sub-btn">
-            <li><a href="/expense" class="nav-link {{ Request::is('expense') ? 'active' : '' }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle">
-                        <circle cx="12" cy="12" r="10"></circle>
-                    </svg>
-                    Expense
-                </a>
-            </li>
-            <li>
-                <a href="/expense/category" class="nav-link {{ Request::is('expenseCategory') ? 'active' : '' }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle">
-                        <circle cx="12" cy="12" r="10"></circle>
-                    </svg>
-                    Expense Category
-                </a>
-            </li>
-        </ul>
-    </div>
-</div> 
-
+{{-- Expense Dropdown --}}
+<li class="nav-item">
+	<a href="#" class="nav-link">
+		<i class="nav-icon fas fa-wallet fas nav-icon "></i>
+		<p>
+			Expense
+		</p>
+	</a>
+	<ul class="nav nav-treeview" style="display: none;">
+		<li class="nav-item">
+			<a href="/expense/category" class="nav-link {{ Request::is('expenseCategory') ? 'active' : '' }}">
+				<i class="fa-solid fa-file-circle-plus fas nav-icon pl-1"></i>
+				<p>Add Category</p>
+			</a>
+		</li>
+		<li class="nav-item">
+			<a href="/expense" class="nav-link {{ Request::is('expense') ? 'active' : '' }}">
+				<i class="fa-solid fa-cart-plus fas nav-icon "></i>
+				<p>Add Items</p>
+			</a>
+		</li>
+	</ul>
+</li>
+{{--  --}}
 <li class="nav-item">
     <a href="/balance" class="nav-link {{ Request::is('balance') ? 'active' : '' }}">
         <i class="fa-solid fa-file-invoice-dollar nav-icon fas"></i>

@@ -63,7 +63,7 @@ class IncomeController extends Controller
         ->where('incomes.id',$id)
         ->leftJoin('income_categories','incomes.CategoryID','=','income_categories.id')
         ->first();
-        return view('income.show',compact('Income'));
+        return $Income;
     }
     
     /**

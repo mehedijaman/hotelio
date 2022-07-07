@@ -283,7 +283,6 @@
                 });
 
             });
-            d
 
             $('.EditBtn').on('click',function(e){
                 e.preventDefault();
