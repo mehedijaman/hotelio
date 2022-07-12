@@ -96,6 +96,7 @@ Route::get('roomTransfer/{id}/restore', [RoomTransferController::class, 'restore
 Route::get('roomTransfer/restoreAll', [RoomTransferController::class, 'restoreAll']);
 Route::get('/roomTransfer/{id}/parmanently/delete', [RoomTransferController::class, 'forceDeleted']);
 Route::get('/roomTransfer/emptyTrash', [RoomTransferController::class, 'emptyTrash']);
+Route::get('/roomTransfer/delete/{id}', [RoomTransferController::class, 'destroy']);
 Route::resource('roomTransfer', RoomTransferController::class);
 
 /*booking Route */

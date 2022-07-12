@@ -71,7 +71,9 @@
                                         </td>
                                         <td class="action__trash">
                                             {{-- Restore --}}
-                                            <a href="/roomTransfer/{{ $RoomTransfer->id }}/restore" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Restore"><i class="fa-solid fa-undo ml-2 text-success"></i></a>
+                                            {{-- <a href="/roomTransfer/{{ $RoomTransfer->id }}/restore" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Restore"><i class="fa-solid fa-undo ml-2 text-success"></i></a> --}}
+                                            <button value="{{$RoomTransfer->id}}"class="RestoreBtn" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Restore"><i class="fa-solid fa-undo ml-2 text-success"></i>
+                                            </button>
                                             
                                             <a href="/roomTransfer/{{ $RoomTransfer->id }}/parmanently/delete" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Parmanently Delete"><i class="fa-solid fa-trash-can ml-2 text-danger"></i> </a>
                                             {{-- <span class="dropdown">
@@ -97,4 +99,47 @@
         </div>
     </div>
 
+    <script>
+        $(document).ready(function(){
+            $('.RestoreBtn').on('click',function(e){
+                e.preventDefault();
+                // console.log($(this).val());
+                var ID = $(this).val();
+
+                Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, restore it!'
+
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    $.ajax({
+                        type:'GET',
+                        url:'/roomTransfer/'+ID+'/restore/',
+                        success:function(data){
+                           Swal.fire(
+                              'Deleted!',
+                              'Your file has been deleted.',
+                              'success'
+                            );
+                        },
+                        error:function(data){
+                            Swal.fire(
+                              'Error!',
+                              'Delete failed !',
+                              'error'
+                            );
+
+                            console.log(data);
+                        },
+                    });
+                 }
+                });
+            });
+        });
+    </script>
 @endsection

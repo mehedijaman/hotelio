@@ -36,7 +36,7 @@
                     <a class="btn btn-sm bg-maroon float-right text-capitalize mr-3" href="/user/delete"><i class="fa-solid fa-trash-can mr-2"></i>Delete All</a>
                 </div>
                 <div class="card-body table-responsive p-0">
-                    <table class="table table-hover table-borderless">
+                    <table class="table table-hover table-borderless ListTable">
                         <thead>
                             <tr class="border-bottom">
                                 <th>Employee</th>

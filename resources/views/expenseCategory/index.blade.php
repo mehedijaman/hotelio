@@ -17,7 +17,7 @@
                         </div>
                     </div>
                     <div class="card-body table-responsive p-0">
-                        <table class="table table-hover text-nowrap">
+                        <table class="table table-hover text-nowrap ListTable">
                             <thead>
                                 <tr class="border-bottom">
                                     <th>Name</th>

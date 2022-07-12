@@ -23,7 +23,7 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   
     {{-- data table --}}
-    <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js" defer></script>
+    <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js" defer ></script>
     <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
     <!-- Font special for pages-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
@@ -33,9 +33,16 @@
     <link href="/vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-    {{-- @yield('third_party_stylesheets') --}}
+    <script>
+        $(document).ready( function () {
+            $.noConflict();
+            var table =$('.ListTable').DataTable();
+            } );
+    </script>
+    @yield('third_party_stylesheets')
     @yield('css')
     @stack('page_css')
+   
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">

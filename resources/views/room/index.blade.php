@@ -33,7 +33,7 @@
                     <a class="btn btn-sm bg-maroon float-right text-capitalize mr-3" href="/room/delete"><i class="fa-solid fa-trash-can mr-2"></i>Delete All</a>
                 </div>
                 <div class="card-body table-responsive p-0">
-                    <table class="table table-responsive table-borderless table__custom">
+                    <table class="table  table-responsive table-borderless ListTable "id="ListTable">
                         <thead>
 
                             <tr class="border-bottom">
@@ -45,7 +45,7 @@
                                 <th>Ac</th>
                                 <th>Balcony</th>
                                 <th>Internet</th>
-                                <th>Tv</th>
+                                {{-- <th>Tv</th> --}}
                                 <th>Price</th>
                                 <th>Action</th>
                             </tr>
@@ -62,7 +62,7 @@
                                     <td>@if($Room->Ac)<i class="fa-solid fa-square-check text-green ml-1"></i> @else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</td>
                                     <td>@if($Room->Balcony)<i class="fa-solid fa-square-check text-green ml-4"></i> @else <i class="fa-solid fa-square-xmark text-danger ml-4"></i> @endif</td>
                                     <td>@if($Room->Internet)<i class="fa-solid fa-square-check text-green ml-4"></i> @else <i class="fa-solid fa-square-xmark text-danger ml-4"></i> @endif</td>
-                                    <td>@if($Room->Tv)<i class="fa-solid fa-square-check text-green ml-1"></i> @else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</td>
+                                    {{-- <td>@if($Room->Tv)<i class="fa-solid fa-square-check text-green ml-1"></i> @else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</td> --}}
                                     <td>{{$Room->Price}}</td>
                                     <td class="d-flex">
                                         <a href="{{ URL::to('/room/'.$Room->id) }}" class="mr-3 text-purple" data-bs-toggle="tooltip" data-bs-placement="bottom" title="View">
