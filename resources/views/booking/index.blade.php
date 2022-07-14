@@ -55,9 +55,9 @@
                                         </td>
                                         
                                         <td class="d-flex">
-                                            <a class="" href="/booking/{{ $Booking->id }}/edit" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit">
+                                            <button class="EditBtn" value="{{ $Booking->id }}" style="cursor: pointer;">
                                                 <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i></i>
-                                            </a>
+                                            </button>
                                             
                                             {{ Form::open(array('url' => '/booking/'.$Booking->id,'method' => 'DELETE')) }}
                                                 <button class="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
@@ -131,6 +131,75 @@
                 </div>
             </div>
         </div>
+
+
+        <div class="modal fade show" id="EditBookingModal"role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title"> Update Booking</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                            {{ Form::Open(array('method' => 'PATCH', 'class' => 'form-horizontal', 'id' => 'EditBookingForm', 'files' => true)) }}
+                                <input type="hidden" name="ID" id="IDEdit">
+                                <div class="card-body">
+                                    <div class="form-group row">
+                                        <label for="RoomID" class="form-label col-md-3">Room:</label>
+                                        <div class="col-md-8">
+                                            <select type="number" name="RoomID" id="EditRoom"  class="form-select" value="">
+                                                <option value="">Select Room</option>
+                                                @foreach ($Rooms as $Room)
+                                                    @if ($Booking->RoomID == $Room->id)
+                                                        <option value="{{ $Room->id }}" selected>
+                                                            {{ $Room->Room}}
+                                                        </option>
+                                                        @else
+                                                            <option value="{{ $Room->id }}">
+                                                            {{ $Room->RoomNo}}
+                                                            </option>
+                                                    @endif
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="GuestID" class="form-label col-md-3">Guest:</label>
+                                        <div class="col-md-8">
+                                            <select type="number" name="GuestID" id="EditGuest"  class="form-select">
+                                                <option value="">Select Guest</option>
+                                                @foreach ($Guests as $Guest)
+                                                
+                                                    @if ($Booking->GuestID == $Guest->id)
+                                                            <option value="{{ $Guest->id }}" selected>
+                                                                {{ $Guest->Guest }}
+                                                            </option>
+                                                        @else
+                                                            <option value="{{ $Guest->id}}">
+                                                                {{ $Guest->Name }}
+                                                            </option>
+                                                    @endif
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="CheckInDate" class="form-label col-md-3">CheckInDate:</label>
+                                        <div class="col-md-8">
+                                            <input type="date" name="CheckInDate" id="EditCheckInDate" class="form-control" value="{{ date('d-m-Y H:i:s',strtotime($Booking->CheckInDate)) }}" >
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" name="submit" type="submit" class="btn bg-navy text-capitalize" id="UpdateBtn">Update</button>
+                                </div>
+                            {{ Form::close() }}
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -159,6 +228,51 @@
                     }
                 });
             });
-        });
+
+            $('.EditBtn').on('click',function(e){
+                e.preventDefault();
+                var ID = $(this).val();
+                $.ajax({
+                    type:"GET",
+                    url: "/booking/"+ID,
+                    success: function (data) {
+                        $('#EditBookingForm')[0].reset();
+                        $('#IDEdit').val(data['id']);
+                        $('#EditRoom').val(data['RoomID']);
+                        $('#EditGuest').val(data['GuestID']);
+                        $('#EditCheckInDate').val(data['CheckInDate']);
+                        $('#EditBookingModal').modal('show');
+                    },
+                    error:function(data){
+                        console.log(data);
+                    }
+                });
+            });
+            $('#UpdateBtn').on('click',function(e){
+                e.preventDefault();
+                var ID = $('#IDEdit').val();
+                $.ajax({
+                    type: "PATCH",
+                    url: "/booking/"+ID,
+                    data: $('#EditBookingForm').serializeArray(),
+                    success: function (data) {
+                        $('#EditBookingForm')[0].reset();
+                        $('#EditBookingModal').modal('hide');
+                        Swal.fire(
+                            'success',
+                            'Booking updated successfully',
+                            'success'
+                        );
+                    },
+                    error:function(data){
+                        console.log(data);
+                    }
+
+                });
+
+               
+            });
+
+         });
     </script>
 @endsection

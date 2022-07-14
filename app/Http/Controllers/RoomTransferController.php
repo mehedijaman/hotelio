@@ -21,8 +21,8 @@ class RoomTransferController extends Controller
         $Guests = Guest::all();
         $Rooms  = Room::all();
         $RoomTransfers = RoomTransfer::select('room_transfers.*','guests.Name as Guest','rooms.RoomNo as Room')
-        ->leftJoin('guests', 'room_transfers.GuestID','=', 'guests.id')
-        ->leftJoin('rooms', 'room_transfers.ToRoomID','=', 'rooms.id')
+        ->leftJoin('guests','room_transfers.GuestID','=','guests.id')
+        ->leftJoin('rooms','room_transfers.ToRoomID','=','rooms.id')
         ->get();
 
         return view('roomTransfer.index',compact('RoomTransfers','Guests','Rooms'));
@@ -65,7 +65,7 @@ class RoomTransferController extends Controller
      */
     public function show($id)
     {
-        
+        return RoomTransfer::find($id);
     }
 
     /**
