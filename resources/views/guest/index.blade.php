@@ -60,11 +60,7 @@
                                                  <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i>
                                              </button>
                                             
-                                             {{ Form::open(array('url' => '/guest/'.$Guest->id,'method' => 'DELETE')) }}
-                                                 <button class="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
-                                                     <i class="fa-regular fa-trash-can mr-3 text-danger"></i>
-                                                 </button>
-                                             {{ Form::close() }}
+                                            <button class="DeleteBtn" value="{{$Guest->id}}" title="Delete"><i class="fa-regular fa-trash-can mr-3 text-danger"></i></button>
                                                     
                                          </td>
                                     </tr>
@@ -324,6 +320,43 @@
                     },
                 });
             });
+            $('.DeleteBtn').on('click',function(e) {
+                e.preventDefault();
+                var ID = $(this).val();
+                Swal.fire({
+                  title: 'Are you sure?',
+                  text: "You won't be able to revert this!",
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    $.ajax({
+                        type:'GET',
+                        url:'/guest/delete/'+ID,
+                        success:function(data){
+                           Swal.fire(
+                              'Deleted!',
+                              'Your file has been deleted.',
+                              'success'
+                            );
+                        },
+                        error:function(data){
+                            Swal.fire(
+                              'Error!',
+                              'Delete failed !',
+                              'error'
+                            );
+
+                            console.log(data);
+                        },
+                    });   
+                  }
+                });
+            });
+      
             $('.EditBtn').on('click',function(e) {
                 e.preventDefault();
                 var ID = $(this).val();

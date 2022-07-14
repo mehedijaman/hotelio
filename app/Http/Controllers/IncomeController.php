@@ -89,7 +89,7 @@ class IncomeController extends Controller
     public function update(Request $request, $id)
     {
         Income::find($id)->update($request->all());
-        return $this->index();
+        return "Update Successfully !";
     }
 
     /**
