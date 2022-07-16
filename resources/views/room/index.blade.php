@@ -3,21 +3,6 @@
 <div class="container-fluid py-5 ">
     <div class="row">
         <div class="col-md-12">
-            @if (Session::get('Destroy'))
-                <div class="alert alert-danger alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <h5><i class="icone fas fa-exclamation-triangle"></i> Deleted !</h5>
-                    {{Session::get('Destroy')}}
-                </div>
-            @endif
-            @if (Session::get('DestroyAll'))
-                <div class="alert alert-danger alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <h5><i class="icone fas fa-exclamation-triangle"></i> Deleted !</h5>
-                    {{Session::get('DestroyAll')}}
-                </div>
-            @endif
-            
             <div class="card">
                 <div class="card-header bg-defult">
                     <div class="card-title">
@@ -30,7 +15,11 @@
                         </h2>
                     </div>
                     <a class="btn btn-sm bg-navy float-right text-capitalize" href="/room/trash"><i class="fa-solid fa-recycle mr-2"></i>View Trash</a>
-                    <a class="btn btn-sm bg-maroon float-right text-capitalize mr-3" href="/room/delete"><i class="fa-solid fa-trash-can mr-2"></i>Delete All</a>
+                    
+                    <button class="btn btn-sm bg-maroon float-right text-capitalize mr-3" id="DeleteAllBtn">
+                        <i class="fa-solid fa-trash-can mr-2"></i>
+                        Delete All
+                    </button>
                 </div>
                 <div class="card-body table-responsive p-0">
                     <table class="table  table-responsive table-borderless ListTable "id="ListTable">
@@ -75,11 +64,11 @@
                                             <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i></i>
                                         </a>
 
-                                        {{ Form::open(array('url' => '/room/'.$Room->id,'method' => 'DELETE')) }}
-                                        <button class="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
+                                        {{-- {{ Form::open(array('url' => '/room/'.$Room->id,'method' => 'DELETE')) }} --}}
+                                        <button class="DeleteBtn" value="{{$Room->id}}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
                                             <i class="fa-regular fa-trash-can mr-3 text-danger"></i>
                                         </button>
-                                        {{ Form::close() }}
+                                        {{-- {{ Form::close() }} --}}
                                     </td>
                                 </tr>
                             @endforeach
@@ -397,6 +386,87 @@
                     }
                 });
             });
+
+            $('.DeleteBtn').on('click',function(e){
+                e.preventDefault();
+                // console.log($(this).val());
+                var ID = $(this).val();
+
+                Swal.fire({
+                  title: 'Are you sure?',
+                  text: "You won't be able to delete this!",
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    $.ajax({
+                        type:'GET',
+                        url:'/room/delete/'+ID,
+                        success:function(data){
+                           Swal.fire(
+                              'Deleted!',
+                              'Your file has been deleted.',
+                              'success'
+                            );
+                        },
+                        error:function(data){
+                            Swal.fire(
+                              'Error!',
+                              'Delete failed !',
+                              'error'
+                            );
+
+                            console.log(data);
+                        },
+                    });
+
+                    
+                 }
+                });
+            });
+
+            $('#DeleteAllBtn').on('click',function(e){
+                e.preventDefault();
+                 Swal.fire({
+                        title: 'Are you sure?',
+                        text: "You won't be able to DeleteAll this!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, DeleteAll it!'
+
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $.ajax({
+                                type:'GET',
+                                url:'/room/delete',
+                                success:function(data){
+                                Swal.fire(
+                                    'DeleteAll!',
+                                    'Your file has been DeleteAll.',
+                                    'success'
+                                    );
+                                },
+                                error:function(data){
+                                    Swal.fire(
+                                    'Error!',
+                                    'DeleteAll failed !',
+                                    'error'
+                                    );
+
+                                    console.log(data);
+                                },
+                            });
+
+                            
+                        }
+                    });
+            })
+
         });
     </script>
 @endsection

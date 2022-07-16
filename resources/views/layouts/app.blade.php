@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
     <!-- Font special for pages-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+   
     <!--Sweet Aleart -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Vendor CSS-->
@@ -35,10 +36,13 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <script>
         $(document).ready( function () {
+
             $.noConflict();
             var table =$('.ListTable').DataTable();
-            } );
+
+        });
     </script>
+
     @yield('third_party_stylesheets')
     @yield('css')
     @stack('page_css')
@@ -78,6 +82,7 @@
                 </li>
                <li class="nav-item dropdown user-menu">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                        
                         @if(Auth::user()->Photo)
                             <img src="/uploads/{{ Auth::user()->Photo }}" class="user-image img-circle elevation-2" alt="User Photo">
                         @endif
@@ -136,7 +141,11 @@
         </footer> -->
     </div>
 
-    {{-- bootsstrap --}}
+     {{-- counter Up --}}
+    <script src="https://code.jquery.com/jquery-migrate-1.4.1.min.js"></script>
+    <script type='text/javascript' src='http://testsite.com/wp-includes/js/jquery/jquery.js?ver=1.12.4-wp'></script>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js?ver=5.2.3'></script>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.js?ver=5.2.3'></script>
    
     <script src="{{ mix('js/app.js') }}" defer></script>
     {{-- custom js --}}
@@ -147,6 +156,14 @@
     <script src="/vendor/datepicker/daterangepicker.js"></script>
     <!-- Main JS-->
     <script src="/js/global.js"></script>
+    <script>
+       jQuery(document).ready(function($) {
+            $('.counter').counterUp({
+                delay: 10,
+                time: 1000
+            });
+        });
+    </script>
     @yield('third_party_scripts')
     @stack('page_scripts')
     @stack('scripts')
