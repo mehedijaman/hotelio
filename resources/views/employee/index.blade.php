@@ -63,7 +63,7 @@
                                 <td>{{ $Employee->DateOfJoin }}</td>
                                 <td>@if ($Employee->Status ) <i class="fa-solid fa-circle-check text-success ml-4"> </i> @else <i class="fa-solid fa-rectangle-xmark text-danger ml-4 "> </i> @endif</td>
                                 <td class="d-flex">
-                                    <a href="{{URL::to('employee/'.$Employee->id)}}" class="mr-3 text-purple data-bs-toggle="View" data-bs-placement="bottom" title="View">
+                                    <a href="{{URL::to('employee/'.$Employee->id)}}" class="mr-3 text-purple" data-bs-toggle="View" data-bs-placement="bottom" title="View">
                                         <svg data-v-9a6e255c="" xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="invoice-row-5036-preview-icon" class="mx-1 feather feather-eye">
                                             <path data-v-9a6e255c="" d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                             <circle data-v-9a6e255c="" cx="12" cy="12" r="3"></circle>
@@ -226,7 +226,9 @@
                                     <div class=" col-md-8">
                                         <select name="HotelID" id="HotelIDEdit" class="form-selec form-control" required>
                                             <option value="">Select Hotel</option>
+                                            @foreach($Hotels as $Hotel)
                                             <option value="{{ $Hotel->id }}"> {{ $Hotel->Name }} </option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
