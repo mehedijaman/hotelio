@@ -38,7 +38,9 @@
                         <a class="btn btn-sm bg-maroon float-right text-capitalize mr-3" href="/hotel/delete"><i class="fa-solid fa-trash-can mr-2"></i>Delete All</a>
                     </div>
                     <div class="card-body table-responsive p-0">
-                        <table class="table table-hover table-responsive table-borderless ListTable">
+
+                        <table class="table table-hover table-responsive table-borderless Datatable" id="HotelList">
+
                             <thead>
                                 <tr class="border-bottom">
                                     <th>Name</th>
@@ -75,11 +77,13 @@
                                                 <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i>
                                             </button>
                                             
-                                            {{ Form::open(array('url' => '/hotel/'.$Hotel->id,'method' => 'DELETE')) }}
+                                            {{-- {{ Form::open(array('url' => '/hotel/'.$Hotel->id,'method' => 'DELETE')) }}
                                                 <button class="" data-bs-toggle="Delete" data-bs-placement="bottom" title="Delete">
                                                     <i class="fa-regular fa-trash-can mr-3 text-danger"></i>
                                                 </button>
-                                            {{ Form::close() }} 
+                                            {{ Form::close() }}  --}}
+                                            <button class="DeleteBtn" value="{{$Hotel->id}}" title="Delete">
+                                                <i class="fa-regular fa-trash-can mr-3 text-danger"></i></button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -249,6 +253,8 @@
 
     <script>
         $(document).ready(function(){
+            
+
             $('#AddNewBtn').on('click',function(e){
                 e.preventDefault();
                 $('#NewHotelModal').modal('show');
@@ -283,7 +289,42 @@
                 });
 
             });
+            $('.DeleteBtn').on('click',function(e) {
+                e.preventDefault();
+                var ID = $(this).val();
 
+                Swal.fire({
+                  title: 'Are you sure?',
+                  text: "You won't be able to revert this!",
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if(result.isConfirmed){
+                        $.ajax({
+                            type    : "GET",
+                            url     : '/hotel/delete/'+ID,
+                            success:function(data){
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                ); 
+                            },
+                            error:function(data){
+                                Swal.fire(
+                                    'Error!',
+                                    'Delete failed !',
+                                    'error'
+                                );
+                                console.log(data);
+                            },
+                        });
+                    }
+                });
+            });
             $('.EditBtn').on('click',function(e){
                 e.preventDefault();
                 var ID = $(this).val();

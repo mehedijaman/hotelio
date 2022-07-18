@@ -42,11 +42,7 @@
                                             </a>
                                             <button class="EditBtn" value="{{$Income->id}}" title="Edit" ><i class="fa-regular fa-pen-to-square mr-3 text-orange"></i></button>
                                              
-                                             {{ Form::open(array('url' => '/income/'.$Income->id,'method' => 'DELETE')) }}
-                                                 <button class="" data-bs-toggle="Delete" data-bs-placement="bottom" title="Delete">
-                                                     <i class="fa-regular fa-trash-can mr-3 text-danger"></i>
-                                                 </button>
-                                             {{ Form::close() }} 
+                                            <button type="button" class="DeleteBtn" value="{{$Income->id}}"  title="Delete"><i class="fa-regular fa-trash-can mr-3 text-danger"></i></button>
                                          </td>
                                     </tr>
                                 @endforeach
@@ -109,10 +105,6 @@
                             </div>
                         {{ Form::close()}}   
                     </div>
-                    <!-- <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div> -->
                 </div>
             </div>
         </div>
@@ -166,7 +158,7 @@
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <input type="submit" name="submit" id="" class="btn bg-success float-right w-25 text-capitalize" value="Update">
+                                <button type="submit" name="submit" id="updateBtn" class="btn bg-success float-right w-25 text-capitalize">Update</button>
                             </div>
                         </div>
                     {{ Form::close()}}  
@@ -204,6 +196,43 @@
                     },
                 });
             });
+
+            $('.DeleteBtn').on('click',function(e) {
+                e.preventDefault();
+                var ID = $(this).val();
+                Swal.fire({
+                  title: 'Are you sure?',
+                  text: "You won't be able to revert this!",
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if(result.isConfirmed){
+                        $.ajax({
+                            type    : "GET",
+                            url     : "/income/delete/"+ID,
+                            success:function(data){
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                );
+                            },
+                            error:function(data){
+                                Swal.fire(
+                                    'Error!',
+                                    'Delete failed !',
+                                    'error'
+                                );
+                                console.log(data);
+                            },
+                        });
+                    }
+                });         
+            });
+
             $('.EditBtn').on('click',function(e){
                 e.preventDefault();
                 var ID = $(this).val();
@@ -216,13 +245,35 @@
                         $('#EditID').val(data['id']);
                         $('#EditCategoryID').val(data['CategoryID']);
                         $('#EditAmount').val(data['Amount']);
-                        $('#DescriptionEdit').val(data['CategoryID']);
+                        $('#DescriptionEdit').val(data['Description']);
                         $('#DateEdit').val(data['Date']);
                         $('#EditIncomelModal').modal('show');
                     },
                     error:function(data){
                         console.log(data);
-                    }
+                    },
+                });   
+            });
+            
+            $('#updateBtn').on('click',function(e){
+                e.preventDefault();
+                var ID =$('#EditID').val();
+                $.ajax({
+                    type    :"PATCH",
+                    url     : "/income/"+ID,
+                    data    : $('#updateForm').serializeArray(),
+                    success:function(data){
+                        $('#EditIncomelModal').modal('hide');
+                        $('#updateForm')[0].reset();
+                        Swal.fire(
+                          'Success!',
+                          data,
+                          'success'
+                        );
+                    },
+                    error:function(data){
+                        console.log(data);
+                    },
                 });
             });
         });

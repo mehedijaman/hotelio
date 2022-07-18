@@ -11,20 +11,28 @@
     <link rel="stylesheet" href="{{asset('css/regular.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/solid.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/brands.min.css')}}">
+    {{-- jquery --}}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     {{-- bootstrap --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
     {{-- Bootsrap icon list --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+
     {{-- custom css --}}
     <link rel="stylesheet" href="{{ asset('css/custom.css')}}">
     <link href="/css/main.css" rel="stylesheet" media="all">
-    {{-- jquery --}}
-    <script language="JavaScript" type="text/javascript" src="/js/jquery.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
   
     {{-- data table --}}
-    <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js" defer ></script>
-    <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+  
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+
+
     <!-- Font special for pages-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
    
@@ -34,6 +42,7 @@
     <link href="/vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+
     <script>
         $(document).ready( function () {
 
@@ -46,7 +55,7 @@
     @yield('third_party_stylesheets')
     @yield('css')
     @stack('page_css')
-   
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">

@@ -56,6 +56,7 @@ class ExpenseCategoryController extends Controller
     {
         $Category = ExpenseCategory::find($id);
         // return view('expenseCategory.show',compact('Category'));
+        return $Category;
     }
 
     /**
@@ -80,7 +81,7 @@ class ExpenseCategoryController extends Controller
     public function update(Request $request, $id)
     {
         ExpenseCategory::find($id)->update($request->all());
-        return $this->index();
+        return "Update Successfully ! ";
     }
 
     /**

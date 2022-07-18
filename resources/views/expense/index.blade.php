@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header bg-defult">
+                    <div .class="card-header bg-defult">
                         <div class="card-title">
                             <h2 class="card-title">
                                 {{-- <a href="{{ asset('expense/create') }}" class="btn bg-navy text-capitalize mr-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create Booking"> 
@@ -40,18 +40,16 @@
                                             <a href="{{URL::to('expense/'.$Expense->id)}}" class="mr-3 text-purple" data-bs-toggle="View" data-bs-placement="bottom" title="View">
                                                  <svg data-v-9a6e255c="" xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="invoice-row-5036-preview-icon" class="mx-1 feather feather-eye"><path data-v-9a6e255c="" d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle data-v-9a6e255c="" cx="12" cy="12" r="3"></circle></svg>
                                             </a>
+                                            {{-- <button type="button" class="ShowBtn" title="Show" value="{{ $Expense->id }}"><i class="fa-solid fa-eye mr-3 text-primary"></i></button> --}}
                                              {{-- <a class="" href="/expense/{{ $Expense->id }}/edit" data-bs-toggle="Edit" data-bs-placement="bottom" title="Edit">
                                                  <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i></i>
-                                             </a> --}}
-                                             <button class="EditBtn" value="{{ $Expense->id }}" title="Edit" ><i class="fa-regular fa-pen-to-square mr-3 text-orange"></i>
-                                             </button>
-                                             
-                                            {{ Form::open(array('url' => '/expense/'.$Expense->id,'method' => 'DELETE')) }}
-                                                <button class="" data-bs-toggle="Delete" data-bs-placement="bottom" title="Delete">
-                                                    <i class="fa-regular fa-trash-can mr-3 text-danger"></i>
-                                                </button>
-                                            {{ Form::close() }} 
-                                         </td>
+                                            </a> --}}
+                                            <button class="EditBtn" value="{{ $Expense->id }}" title="Edit" ><i class="fa-regular fa-pen-to-square mr-3 text-orange"></i>
+                                            </button>
+
+                                            <button type="button" class="DeleteBtn" value="{{$Expense->id}}" title="Delete"><i class="fa-regular fa-trash-can mr-3 text-danger"></i></button>
+                                            
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -114,10 +112,6 @@
                             </div>
                         {{ Form::close()}}   
                     </div>
-                    <!-- <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div> -->
                 </div>
             </div>
         </div>
@@ -175,13 +169,57 @@
                             </div>
                     {{ Form::close()}}  
                     </div>
-                    <!-- <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div> -->
                 </div>
             </div>
         </div>
+        {{-- <div class="modal fade show" id="ShowExpenseModal" role="dialog">
+            <div class="modal-dialog modal-xl ">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Expense</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card-body table-responsive p-0">
+                            <table class="table table-hover text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>Column</th>
+                                        <th>Data</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                        <tr class="">
+                                              <tr>
+                                                    <th>Id</th>
+                                                    <td>{{ $Expense->id }}</td>
+                                              </tr>
+                                              <tr>
+                                                    <th>Name</th>
+                                                    <td>{{ $Expense->CategoryName }}</td>
+                                              </tr>
+                                              <tr>
+                                                    <th>Amount</th>
+                                                    <td>{{ $Expense->Amount }}</td>
+                                              </tr>
+                                              <tr>
+                                                    <th>Description</th>
+                                                    <td>{{ $Expense->Description }}</td>
+                                              </tr>
+                                              <tr>
+                                                    <th>Date and Time </th>
+                                                    <td>{{ $Expense->Date }}</td>
+                                              </tr>
+                                        </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> --}}
     </div>
     <script>
         $(document).ready(function(){
@@ -212,6 +250,57 @@
                     },
                 });
             });
+            $('.ShowBtn').on('click',function(e){
+                e.preventDefault();
+                $.ajax({
+                    type    :'GET',
+                    url     : '/expense',
+                    success:function(data){
+                        $('#ShowExpenseModal').modal('show');
+                    },
+                    error:function(data){
+                        console.log(data);
+                    }
+                });
+                
+            })
+            $('.DeleteBtn').on('click',function(e) {
+                e.preventDefault();
+                var ID = $(this).val();
+                Swal.fire({
+                  title: 'Are you sure?',
+                  text: "You won't be able to revert this!",
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if(result.isConfirmed){
+                        $.ajax({
+                            type    : 'GET',
+                            url     : "/expense/delete/"+ID,
+                            success:function(data){
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                );
+                            },
+                            error:function(data){
+                                Swal.fire(
+                                    'Error!',
+                                    'Delete failed !',
+                                    'error'
+                                );
+
+                                console.log(data);
+                            }
+                        });
+                    }
+                });
+            });
+
             $('.EditBtn').on('click',function(e){
                 e.preventDefault();
                 var ID = $(this).val();

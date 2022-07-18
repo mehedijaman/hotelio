@@ -66,12 +66,7 @@
                                             <button class="EditBtn" value="{{$Bank->id}}" title="Edit">
                                                 <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i></i>
                                             </button>
-                                            
-                                            {{ Form::open(array('url' => '/bank/'.$Bank->id,'method' => 'DELETE')) }}
-                                                <button class="" data-bs-toggle="Delete" data-bs-placement="bottom" title="Delete">
-                                                    <i class="fa-regular fa-trash-can mr-3 text-danger"></i>
-                                                </button>
-                                            {{ Form::close() }} 
+                                            <button class="DeleteBtn" value="{{$Bank->id}}" title="Delete"><i class="fa-regular fa-trash-can mr-3 text-danger"></i></button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -203,10 +198,6 @@
                         </div>
                     {{ Form::close()}} 
                     </div>
-                    <!-- <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div> -->
                 </div>
             </div>
         </div>
@@ -245,6 +236,44 @@
                     },
                 });
             });
+            
+            $('.DeleteBtn').on('click',function(e) {
+                e.preventDefault();
+                var ID = $(this).val();
+                console.log(ID);
+                Swal.fire({
+                    title :"Are you sure ?",
+                    text  : "You won't be able to revert this !",
+                    icon : 'warning',
+                    showCancelButton : true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor : '#d33',
+                    confirmButtonText : 'Yes , delete it !'
+                }).then((result) => {
+                    if(result.isConfirmed){
+                        $.ajax({
+                            type : 'GET',
+                            url  : '/bank/delete/'+ID,
+                            success:function(data){
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                );
+                            },
+                            error:function(data){
+                                Swal.fire(
+                                    'Error!',
+                                    'Delete failed !',
+                                    'error'
+                                );
+                                console.log(data);
+                            },
+                        });
+                    }
+                });
+            });
+
             $('.EditBtn').on('click',function(e) {
                 e.preventDefault();
                 var ID = $(this).val();

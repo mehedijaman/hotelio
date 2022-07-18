@@ -7,7 +7,7 @@
                     <div class="card-header bg-defult">
                         <div class="card-title">
                             <h2 class="card-title">
-                               <button type="button" class="btn bg-navy text-capitalize mr-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create Room"" data-toggle="modal" data-target="#NewBookingModal"> 
+                               <button type="button" class="btn bg-navy text-capitalize mr-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create Room" data-toggle="modal" data-target="#NewBookingModal"> 
                                     <i class="fa-solid fa-circle-plus mr-2"></i>
                                     Add
                                 </button> 
@@ -139,17 +139,11 @@
                                         <div class="col-md-8">
                                             <select type="number" name="RoomID" id="EditRoom"  class="form-select" value="">
                                                 <option value="">Select Room</option>
-                                                {{-- @foreach ($Rooms as $Room)
-                                                    @if ($Booking->RoomID == $Room->id)
-                                                        <option value="{{ $Room->id }}" selected>
-                                                            {{ $Room->Room}}
-                                                        </option>
-                                                        @else
-                                                            <option value="{{ $Room->id }}">
-                                                            {{ $Room->RoomNo}}
-                                                            </option>
-                                                    @endif
-                                                @endforeach --}}
+
+                                                @foreach ($Rooms as $Room)  
+                                                    <option value="{{ $Room->id }}">{{ $Room->RoomNo }}</option>
+                                                @endforeach
+
                                             </select>
                                         </div>
                                     </div>
@@ -158,25 +152,20 @@
                                         <div class="col-md-8">
                                             <select type="number" name="GuestID" id="EditGuest"  class="form-select">
                                                 <option value="">Select Guest</option>
-                                                {{-- @foreach ($Guests as $Guest)
-                                                
-                                                    @if ($Booking->GuestID == $Guest->id)
-                                                            <option value="{{ $Guest->id }}" selected>
-                                                                {{ $Guest->Guest }}
-                                                            </option>
-                                                        @else
-                                                            <option value="{{ $Guest->id}}">
-                                                                {{ $Guest->Name }}
-                                                            </option>
-                                                    @endif
-                                                @endforeach --}}
+
+                                                @foreach ($Guests as $Guest) 
+                                                    <option value="{{ $Guest->id }}">{{ $Guest->Name }}</option>
+                                                @endforeach
+
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="CheckInDate" class="form-label col-md-3">CheckInDate:</label>
                                         <div class="col-md-8">
-                                            {{-- <input type="date" name="CheckInDate" id="EditCheckInDate" class="form-control" value="{{ date('d-m-Y H:i:s',strtotime($Booking->CheckInDate)) }}" > --}}
+
+                                            <input type="text" name="CheckInDate" id="EditCheckInDate" class="form-control">
+
                                         </div>
                                     </div>
                                 </div>
@@ -192,6 +181,11 @@
 
     <script>
         $(document).ready(function(){
+            $( function() {
+                var $j = jQuery.noConflict();
+                $j("#EditCheckInDate").datepicker();
+            });
+
             $('#ResetBtnForm').on('click',function(e){
                 e.preventDefault();
                 $('#NewBookingForm')[0].reset();
@@ -230,7 +224,16 @@
                         $('#IDEdit').val(data['id']);
                         $('#EditRoom').val(data['RoomID']);
                         $('#EditGuest').val(data['GuestID']);
-                        $('#EditCheckInDate').val(data['CheckInDate']);
+
+                        var date = new Date(data['CheckInDate']);
+                        var d = date.getDate();
+                        var m = date.getMonth()+1;
+                        var y = date.getFullYear();
+
+                        CheckInDate = d + '/' + m + '/' + y;
+                        console.log(CheckInDate);
+                        $('#EditCheckInDate').val(CheckInDate);
+
                         $('#EditBookingModal').modal('show');
                     },
                     error:function(data){
