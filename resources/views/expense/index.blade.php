@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header bg-defult">
+                    <div .class="card-header bg-defult">
                         <div class="card-title">
                             <h2 class="card-title">
                                 {{-- <a href="{{ asset('expense/create') }}" class="btn bg-navy text-capitalize mr-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create Booking"> 

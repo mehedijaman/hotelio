@@ -64,8 +64,10 @@ class AccountLedgerController extends Controller
      */
     public function show($id)
     {
-        $AccountLedger = AccountLedger::find($id);
-        return view('accountLedger.show', compact('AccountLedger'));
+       $AccountLedgers = AccountLedger::find($id);
+
+       return $AccountLedgers;
+        
     }
 
     /**
@@ -91,7 +93,7 @@ class AccountLedgerController extends Controller
     public function update(Request $request, $id)
     {
         AccountLedger::find($id)->update($request->all());
-        return back()->with('Update', 'Account Ledger Succesfull');
+        return $this->index();
     }
 
     /**
@@ -105,7 +107,6 @@ class AccountLedgerController extends Controller
         AccountLedger::find($id)->delete();
 
         return back()->with('Delete', 'Account Ledger Succesfull');
-
     }
 
     public function deleteAll()

@@ -51,8 +51,8 @@
                             @foreach ($BankLedgers as $TrashBankLedger)
                             <tr>
                                 <td>{{$TrashBankLedger->Bank}}</td>
-                                <td>{{$TrashBankLedger->Depositt}}</td>
-                                <td>{{$TrashBankLedger->Withdraw}</td>
+                                <td>{{$TrashBankLedger->Deposit}}</td>
+                                <td>{{$TrashBankLedger->Withdraw}}</td>
                                 <td>{{$TrashBankLedger->Date}}</td>
                                 <td>{{$TrashBankLedger->Description}}</td>
                                 <td class="d-flex">
@@ -62,11 +62,11 @@
                                             <circle data-v-9a6e255c="" cx="12" cy="12" r="3"></circle>
                                         </svg>
                                     </a>
-                                    <a href="/acount/ledger/{{$TrashBankLedger->id}}/delete/parmanently" class=" btn btn-danger btn-sm mx-2" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
+                                    <a href="/acount/ledger/{{$TrashBankLedger->id}}/delete/parmanently" class="mx-2" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
 
                                         <i class="fa-regular fa-trash-can mr-3 text-black"></i>
                                     </a>
-                                    <a href="/acount/ledger/{{$TrashBankLedger->id}}/restore" class=" btn btn-warning btn-sm" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
+                                    <a href="/acount/ledger/{{$TrashBankLedger->id}}/restore" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
 
                                         <i class="fa-solid fa-arrow-rotate-left"></i>
 
