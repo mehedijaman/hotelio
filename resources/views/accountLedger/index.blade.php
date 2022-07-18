@@ -31,7 +31,7 @@
                         </h2>
                     </div>
                     <a class="btn btn-sm bg-navy float-right text-capitalize" href="/acount/ledger/trash"><i class="fa-solid fa-recycle mr-2"></i>View Trash</a>
-                    <a class="btn btn-sm bg-maroon float-right text-capitalize mr-3" href="/acount/ledger/delete"><i class="fa-solid fa-trash-can mr-2"></i>Delete All</a>
+                    <button id="AllDeleteBtn"class="btn btn-sm bg-maroon float-right text-capitalize mr-3" ><i class="fa-solid fa-trash-can mr-2"></i>Delete All</button>
                 </div>
                 <div class="card-body table-responsive p-0">
                     <table class="table table-hover text-nowrap">
@@ -54,27 +54,23 @@
                                 <td>{{$AccountLedger->Method}}</td>
                                 <td>{{$AccountLedger->Description}}</td>
                                 <td class="d-flex">
-                                    <a href="/acount/ledger/{{$AccountLedger->id}}" class="mr-3 text-purple" data-bs-toggle="tooltip" data-bs-placement="bottom" title="View">
+                                    <!-- <a href="/acount/ledger/{{$AccountLedger->id}}" class="text-purple" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Show">
                                         <svg data-v-9a6e255c="" xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="invoice-row-5036-preview-icon" class="mx-1 feather feather-eye">
                                             <path data-v-9a6e255c="" d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                             <circle data-v-9a6e255c="" cx="12" cy="12" r="3"></circle>
                                         </svg>
-                                    </a>
-                                    <a class="mx-2" href="/acount/ledger/{{$AccountLedger->id}}/edit" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit">
-
-                                        <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i></i>
-                                    </a>
-                                    {{ Form::open(['url' => '/acount/ledger/'.$AccountLedger->id,'method' => 'DELETE'])}}
-                                    <button class="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
-
+                                    </a> -->
+                                    <button class="EditBtn" value="{{$AccountLedger->id}}" type="button" title="Edit">
+                                        <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i>
+                                    </button>
+                                    <button class="DeleteBtn" type="button" title="Delete" value="{{$AccountLedger->id}}">
                                         <i class="fa-regular fa-trash-can mr-3 text-black text-danger"></i>
                                     </button>
-                                    {{ Form::close() }}
+                                  
                                 </td>
                             </tr>
                             @endforeach
                         </tbody>
-
                     </table>
                 </div>
                 <div class="card-footer">
@@ -135,11 +131,74 @@
                                     </div>
                                 </div>
                             </div>
+                            {{Form::close()}}
                         </div>
                         <!-- <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div> -->
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Update Modal -->
+
+        <div class="col-md-7 m-auto">
+            <div class="modal fade show" id="EditAccountLedgerModal" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header bg-primary">
+                            <h3 class="card-title">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <i class="fa-solid fa-circle-arrow-left fs-5" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Back to List"></i>
+                                </button>
+                            </h3>
+                            Edit Account Ledger
+                        </div>
+                        <div class="modal-body">
+                            {{ Form::Open(array('method' => 'PATCH','class' => 'form-horizontal','id' => 'EditForm', 'files' => true)) }}
+                                <input type="hidden" name="ID" id="IDEdit">
+                                <div class="card-body">
+                                    <div class="form-group row">
+                                        <label for="Debit" class="form-label col-md-3">Debit:</label>
+                                        <div class="col-md-8">
+                                            <input type="number" name="Debit" id="DebitEdit" class="form-control" placeholder="" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="Credit" class="form-label col-md-3">Credit:</label>
+                                        <div class="col-md-8">
+                                            <input type="number" name="Credit" id="CreditEdit" class="form-control" placeholder="" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="Date" class="form-label col-md-3">Date:</label>
+                                        <div class="col-md-8">
+                                            <input type="date" class="form-control" id="DateEdit" name="Date" placeholder="" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="Method" class="form-label col-md-3">Method:</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="MethodEdit" name="Method" placeholder="" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="Description" class="form-label col-md-3">Description:</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="DescriptionEdit" name="Description" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class=" col-sm-8 offset-sm-3">
+
+                                            <button type="button" name="submit" id="UpdateBtn" class="btn bg-navy float-right  w-25 text-capitalize">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            {{Form::close()}}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -161,22 +220,131 @@
 
         $('#SubmitBtn').on('click', function(e) {
             e.preventDefault();
-
             $.ajax({
                 type: 'POST',
-                url:  '/acount/ledger',
+                url: '/acount/ledger',
                 data: $('#NewAccountLedgerForm').serializeArray(),
                 success: function(data) {
                     $('#NewAccountLedgerForm')[0].reset();
                     $('#AccountLedgerModal').modal('hide');
                     Swal.fire(
-                        'Success',
-                        data,
+                        'success',
+                        'Tax updated successfully',
                         'success'
-                    )
+                    );
                 },
                 error: function(data) {
                     console.log('Error While Adding New' + data);
+                }
+            });
+        });
+
+        $('.EditBtn').on('click', function(e) {
+            e.preventDefault();
+            var ID = $(this).val();
+            $.ajax({
+                type: 'GET',
+                url: '/acount/ledger/'+ID,
+                data:$('#EditForm').serializeArray(),
+                success:function(data){
+                    $('#EditForm')[0].reset();
+                    $('#IDEdit').val(data['id']);
+                    $('#DebitEdit').val(data['Debit']);
+                    $('#CreditEdit').val(data['Credit']);
+                    $('#DateEdit').val(data['Date']);
+                    $('#MethodEdit').val(data['Method']);
+                    $('#DescriptionEdit').val(data['Description']);
+                    $('#EditAccountLedgerModal').modal('show');
+                }
+            });
+        });
+        $('#UpdateBtn').on('click', function(e) {
+            e.preventDefault();
+            var ID = $('#IDEdit').val();
+            $.ajax({
+                type: 'PATCH',
+                url: '/acount/ledger/' + ID,
+                data: $('#EditForm').serializeArray(),
+                success: function(data) {
+                    console.log('Hello Word');
+                    $('#EditAccountLedgerModal').modal('hide');
+                    $('#EditForm')[0].reset();
+                    Swal.fire(
+                        'success',
+                        'Account Ledger updated', 'successfully',
+                        'success'
+                    );
+                },
+                error: function(data) {
+                    console.log(data);
+                },
+            });
+        });
+
+       $('.DeleteBtn').on('click', function(e) {
+             e.preventDefault();
+            var ID = $(this).val();
+
+            Swal.fire({
+                icon: 'error',
+                title: 'Are you sure ?',
+                text: 'You wont be able to revert this!',
+                footer: '<a href="">Why do I have this issue?</a>'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: 'GET',
+                        url: '/acount/ledger/' + ID,
+                        success: function(data) {
+                            Swal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                            );
+                        },
+                        error: function(data) {
+                            Swal.fire(
+                                'Error!',
+                                'Delete failed !',
+                                'error'
+                            );
+
+                            console.log(data);
+                        },
+                    });
+                }
+            });
+        });
+        $('#AllDeleteBtn').on('click', function(e) {
+             e.preventDefault();
+
+            Swal.fire({
+                icon: 'warning',
+                title: 'Are you sure ?',
+                text: 'You wont be able to revert this!',
+                footer: '<a href="">Why do I have this issue?</a>'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: 'GET',
+                        url: '/acount/ledger/delete',
+                        success: function(data) {
+                            Swal.fire(
+                                'All Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                            );
+                        },
+                        error: function(data) {
+                            Swal.fire(
+                                'Error!',
+                                'Delete failed !',
+                                'error'
+                            );
+
+                            console.log(data);
+                        },
+                    });
                 }
             });
         });

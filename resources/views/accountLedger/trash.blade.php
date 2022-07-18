@@ -79,15 +79,16 @@
                                         </svg>
                                     </a>
 
-                                    <a href="/acount/ledger/{{$TrashAccount->id}}/restore" class="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
-                                        <i class="fa-solid fa-trash-arrow-up ml-2 text-success"></i>
-                                    </a>
-                                    <a href="/acount/ledger/{{$TrashAccount->id}}/delete/parmanently" class="mx-2" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
+                                    <button value="{{$TrashAccount->id}}" class="RestoreBtn"  title="Restore">
+                                        <i class="fa-solid fa-trash-arrow-up ml-2 text-success"> </i>
+                                    </button>
+                                    <button type="button" value="{{$TrashAccount->id}} "  class="DeleteBtn mx-2" title="Delete">
                                         <i class="fa-solid fa-trash-can ml-2 text-danger"></i>
-                                    </a>
+                                    </button>
 
                                 </td>
                             </tr>
+
                             @endforeach
                         </tbody>
 
@@ -100,4 +101,79 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+        $('.DeleteBtn').on('click',function(e){
+            e.preventDefault();
+            var ID = $(this).val();
+            // console.log(ID);
+            Swal.fire({
+                icon: 'error',
+                title: 'Are you sure ?',
+                text: 'You wont be able to revert this!',
+                footer: '<a href="">Why do I have this issue?</a>'
+            }).then((result) => {
+                if(result.isConfirmed){
+                    $.ajax({
+                        type:'GET',
+                        url:'/acount/ledger/delete/parmanently/'+ ID,
+                        success: function(data){
+                            Swal.fire(
+                                    'Parmanent Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                );  
+                        },
+                        error:function(data){
+                            Swal.fire(
+                                'Error!',
+                                'Delete failed !',
+                                'error'
+                            );
+                            console.log(data);
+                        }
+                    });
+                }
+            });
+
+        });
+        $('.RestoreBtn').on('click', function(e){
+            e.preventDefault();
+            var ID = $(this).val();
+            // console.log(ID);
+            Swal.fire({
+                icon: 'question',
+                title: 'Are you sure ?',
+                text: 'You wont be able to revert this!',
+                footer: '<a href="">Why do I have this issue?</a>'
+            }).then((result) => {
+                if(result.isConfirmed){
+                    $.ajax({
+                        type:'GET',
+                        url:'/acount/ledger/restore/'+ ID,
+                        success:function(data){
+                            Swal.fire(
+                                'Restore',
+                                'Your file has been deleted.',
+                                'success'
+                                );
+                        },
+                        error:function(data){
+                            Swal.fire(
+                                'Error!',
+                                'Delete failed !',
+                                'error'
+                                );
+                                console.log(data);  
+                        }
+
+                    });
+                }
+            });
+
+        });
+        
+    });
+</script>
 @endsection
+
