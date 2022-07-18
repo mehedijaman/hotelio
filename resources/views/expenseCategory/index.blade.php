@@ -16,8 +16,9 @@
                             </h2>
                         </div>
                     </div>
-                    <div class="card-body table-responsive p-5">
-                        <table class="table table-hover table-responsive table-borderless m-auto">
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-hover text-nowrap ListTable">
+
                             <thead>
                                 <tr class="border-bottom p-md-5">
                                     <th class="pr-5">Name</th>

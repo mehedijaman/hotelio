@@ -33,10 +33,14 @@
                         </h2>
                     </div>
                     <a class="btn btn-sm bg-navy float-right text-capitalize" href="/room/trash"><i class="fa-solid fa-recycle mr-2"></i>View Trash</a>
-                    <a class="btn btn-sm bg-maroon float-right text-capitalize mr-3" href="/user/delete"><i class="fa-solid fa-trash-can mr-2"></i>Delete All</a>
+                    
+                    <button class="btn btn-sm bg-maroon float-right text-capitalize mr-3" id="DeleteAllBtn">
+                        <i class="fa-solid fa-trash-can mr-2"></i>
+                        Delete All
+                    </button>
                 </div>
                 <div class="card-body table-responsive p-0">
-                    <table class="table table-hover table-borderless">
+                    <table class="table table-hover table-borderless ListTable">
                         <thead>
                             <tr class="border-bottom">
                                 <th>Employee</th>
@@ -70,21 +74,15 @@
                                
                                
                                 <td class="d-flex">
-                                    {{-- <a href="{{ URL::to('/user/'.$User->id) }}" class="mr-3 text-purple" data-bs-toggle="tooltip" data-bs-placement="bottom" title="View">
-                                        <svg data-v-9a6e255c="" xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="invoice-row-5036-preview-icon" class="mx-1 feather feather-eye">
-                                            <path data-v-9a6e255c="" d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                            <circle data-v-9a6e255c="" cx="12" cy="12" r="3"></circle>
-                                        </svg>
-                                    </a> --}}
                                     <a class="" href="/user/{{ $User->id }}/edit" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit">
                                         <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i></i>
                                     </a>
 
-                                    {{ Form::open(array('url' => '/user/'.$User->id,'method' => 'DELETE')) }}
-                                    <button class="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
+                                    {{-- {{ Form::open(array('url' => '/user/'.$User->id,'method' => 'DELETE')) }} --}}
+                                    <button class="DeleteBtn" value="{{ $User->id }}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
                                         <i class="fa-regular fa-trash-can mr-3 text-danger"></i>
                                     </button>
-                                    {{ Form::close() }}
+                                    {{-- {{ Form::close() }} --}}
                                 </td> 
                             </tr>
                             @endforeach
@@ -99,5 +97,83 @@
         </div>
     </div>
 </div>
+    <script>
+        $(document).ready(function(){
+            $('.DeleteBtn').on('click',function(e){
+                e.preventDefault();
+                let ID = $(this).val();
 
+                Swal.fire({
+                  title: 'Are you sure?',
+                  text: "You won't be able to revert this!",
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    $.ajax({
+                        type:'GET',
+                        url:'/user/delete/'+ID,
+                        success:function(data){
+                           Swal.fire(
+                              'Deleted!',
+                              'Your file has been deleted.',
+                              'success'
+                            );
+                        },
+                        error:function(data){
+                            Swal.fire(
+                              'Error!',
+                              'Delete failed !',
+                              'error'
+                            );
+
+                            console.log(data);
+                        },
+                    });
+
+                    
+                  }
+                });
+            });
+
+            $('#DeleteAllBtn').on('click',function(e){
+                e.preventDefault();
+                Swal.fire({
+                  title: 'Are you sure?',
+                  text: "You won't be able to DeleteAll this!",
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Yes, DeleteAll it!'
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    $.ajax({
+                        type:'GET',
+                        url:'/user/delete',
+                        success:function(data){
+                           Swal.fire(
+                              'DeleteAll!',
+                              'Your file has been DeleteAll.',
+                              'success'
+                            );
+                        },
+                        error:function(data){
+                            Swal.fire(
+                              'Error!',
+                              'DeleteAll failed !',
+                              'error'
+                            );
+                            console.log(data);
+                        },
+                    });
+                    
+                 }
+                });
+            });
+        })
+    </script>
 @endsection

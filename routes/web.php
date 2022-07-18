@@ -91,6 +91,7 @@ Route::get('/room/{id}/restore', [RoomController::class, 'restore']);
 Route::get('/room/restoreAll', [RoomController::class, 'restoreAll']);
 Route::get('/room/{id}/parmanently/delete', [RoomController::class, 'forceDeleted']);
 Route::get('/Room/emptyTrash', [RoomController::class, 'emptyTrash']);
+Route::get('/room/delete/{id}', [RoomController::class, 'destroy']);
 Route::resource('room', RoomController::class);
 
 /*room transfer Route */
@@ -100,6 +101,7 @@ Route::get('roomTransfer/{id}/restore', [RoomTransferController::class, 'restore
 Route::get('roomTransfer/restoreAll', [RoomTransferController::class, 'restoreAll']);
 Route::get('/roomTransfer/{id}/parmanently/delete', [RoomTransferController::class, 'forceDeleted']);
 Route::get('/roomTransfer/emptyTrash', [RoomTransferController::class, 'emptyTrash']);
+Route::get('/roomTransfer/delete/{id}', [RoomTransferController::class, 'destroy']);
 Route::resource('roomTransfer', RoomTransferController::class);
 
 /*booking Route */
@@ -109,6 +111,7 @@ Route::get('/Booking/{id}/restore', [BookingController::class, 'restore']);
 Route::get('/booking/restoreAll', [BookingController::class, 'restoreAll']);
 Route::get('/Booking/{id}/parmanently/delete', [BookingController::class, 'forceDeleted']);
 Route::get('/booking/emptyTrash', [BookingController::class, 'emptyTrash']);
+Route::get('booking/delete/{id}', [BookingController::class, 'destroy']);
 Route::resource('booking', BookingController::class);
 
 /** Invoice Routes */
@@ -188,7 +191,10 @@ Route::get('/expense/emptyTrash', [ExpenseController::class, 'emptyTrash']);
 Route::get('/expense/delete/{id}',[ExpenseController::class,'destroy']);
 Route::resource('expense', ExpenseController::class);
 
-/** User route*/
+
+/** User route*/ 
+Route::get('/user/delete/{id}',[UserController::class,'destroy']);
+Route::get('/user/delete',[UserController::class, 'destroyAll']);
 Route::resource('user', UserController::class);
 
 /*tax Setting route */

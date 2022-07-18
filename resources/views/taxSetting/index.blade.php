@@ -7,21 +7,6 @@
         </section> --}}
         <div class="row">
             <div class="col-md-9 m-auto">
-                @if (Session::get('Destroy'))
-                    <div class="alert alert-danger alert-dismissible">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                        <h5><i class="icone fas fa-exclamation-triangle"></i> Deleted !</h5>
-                        {{Session::get('Destroy')}}
-                    </div>
-                @endif
-                @if (Session::get('DestroyAll'))
-                    <div class="alert alert-danger alert-dismissible">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                        <h5><i class="icone fas fa-exclamation-triangle"></i> Deleted !</h5>
-                        {{Session::get('DestroyAll')}}
-                    </div>
-                @endif
-                
                 <div class="card">
                     <div class="card-header bg-defult">
                         <div class="card-title">
@@ -34,10 +19,13 @@
                             </h2>
                         </div>
                         <a class="btn btn-sm bg-navy float-right text-capitalize" href="/taxSetting/trash"><i class="fa-solid fa-recycle mr-2"></i>View Trash</a>
-                        <a class="btn btn-sm bg-maroon float-right text-capitalize mr-3" href="/taxSetting/delete"><i class="fa-solid fa-trash-can mr-2"></i>Delete All</a>
+                        <button class="btn btn-sm bg-maroon float-right text-capitalize mr-3" id="DeleteAllBtn">
+                            <i class="fa-solid fa-trash-can mr-2"></i>
+                            Delete All
+                        </button>
                     </div>
                     <div class="card-body table-responsive p-0">
-                        <table class="table table-hover text-nowrap">
+                        <table class="table table-hover text-nowrap ListTable">
                             <thead>
                                 <tr>
                                     <th>Name</th>
@@ -182,6 +170,7 @@
                 e.preventDefault();
                 $('#NewTaxForm')[0].reset();
             });
+
             $('#SubmitBtn').on('click',function(e){
                 e.preventDefault();
 
@@ -241,6 +230,43 @@
                         },
                     });   
                   }
+                });
+            });
+
+            $('#DeleteAllBtn').on('click',function(e){
+                e.preventDefault();
+                Swal.fire({
+                  title: 'Are you sure?',
+                  text: "You won't be able to DeleteAll this!",
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Yes, DeleteAll it!'
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    $.ajax({
+                        type:'GET',
+                        url:'/taxSetting/delete',
+                        success:function(data){
+                           Swal.fire(
+                              'DeleteAll!',
+                              'Your file has been DeleteAll.',
+                              'success'
+                            );
+                        },
+                        error:function(data){
+                            Swal.fire(
+                              'Error!',
+                              'DeleteAll failed !',
+                              'error'
+                            );
+
+                            console.log(data);
+                        },
+                    });
+                    
+                 }
                 });
             });
 

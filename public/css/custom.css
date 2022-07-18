@@ -5,6 +5,27 @@ body::-webkit-scrollbar {
 .modal::-webkit-scrollbar {
     display: none !important;
 }
+/* data table */
+.dataTables_wrapper{
+	margin-top: 0.8rem !important;
+}
+.dataTables_filter label{
+	display: flex !important;
+	width: 15rem !important;
+	margin-left: .5rem !important;
+}
+
+.dataTables_wrapper .dataTables_filter {
+    float: right;
+    /* text-align: right; */
+	padding: 0px 20px !important;
+
+}
+.dataTables_wrapper {
+   
+	padding: 0px 20px !important;
+
+}
 form .control-label {
     /* margin-right: 4px !important; */
      padding-top: 6px !important;
