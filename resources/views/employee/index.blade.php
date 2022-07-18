@@ -73,11 +73,12 @@
                                         <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i></i>
                                     </button>
 
-                                    {{ Form::open(array('url' => '/employee/'.$Employee->id,'method' => 'DELETE')) }}
+                                    {{-- {{ Form::open(array('url' => '/employee/'.$Employee->id,'method' => 'DELETE')) }}
                                     <button class="" data-bs-toggle="Delete" data-bs-placement="bottom" title="Delete">
                                         <i class="fa-regular fa-trash-can mr-3 text-danger"></i>
                                     </button>
-                                    {{ Form::close() }}
+                                    {{ Form::close() }} --}}
+                                    <button class="DeleteBtn" value="{{$Employee->id}}" title="Delete"><i class="fa-regular fa-trash-can mr-3 text-danger"></i></button>
 
                                 </td>
                             </tr>
@@ -344,6 +345,42 @@
                 error:function(data){
                     console.log('Error while adding new Bank'+data);
                 },
+            });
+        });
+        $('.DeleteBtn').on('click',function(e) {
+            e.preventDefault();
+            var ID = $(this).val();
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result)=>{
+                if(result.isConfirmed){
+                    $.ajax({
+                        type    :   "GET",
+                        url     : "/employee/delete/"+ID,
+                        success:function(data){
+                            Swal.fire(
+                              'Deleted!',
+                              'Your file has been deleted.',
+                              'success'
+                            );
+                        },
+                        error:function(data){
+                            Swal.fire(
+                              'Error!',
+                              'Delete failed !',
+                              'error'
+                            );
+
+                            console.log(data);
+                        },
+                    });
+                }
             });
         });
         $('.EditBtn').on('click',function(e) {
