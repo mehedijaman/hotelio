@@ -51,25 +51,7 @@
                             </thead>
 
                             <tbody>
-                                @foreach ($Banks as $Bank)
-                                    <tr class="border-bottom">
-                                        <td>{{ $Bank->Name }}</td>
-                                        <td>{{ $Bank->Branch }}</td>
-                                        <td>{{ $Bank->AccountNo }}</td>
-                                        <td>{{ $Bank->Address }}</td>
-                                        <td>{{ $Bank->Phone }}</td>
-                                        <td>{{ $Bank->Email }}</td>
-                                        <td class="d-flex">
-                                           {{-- <a href="" class="mr-3 text-purple" data-bs-toggle="View" data-bs-placement="bottom" title="View">
-                                                <svg data-v-9a6e255c="" xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="invoice-row-5036-preview-icon" class="mx-1 feather feather-eye"><path data-v-9a6e255c="" d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle data-v-9a6e255c="" cx="12" cy="12" r="3"></circle></svg>
-                                           </a> --}}
-                                            <button class="EditBtn" value="{{$Bank->id}}" title="Edit">
-                                                <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i></i>
-                                            </button>
-                                            <button class="DeleteBtn" value="{{$Bank->id}}" title="Delete"><i class="fa-regular fa-trash-can mr-3 text-danger"></i></button>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                
                             </tbody>
                            
                         </table>
@@ -204,8 +186,29 @@
     </div>
     <script>
         $(document).ready(function(){
+
+            $.noConflict();
+            var table =$('.ListTable').DataTable({
+                processing:true,
+                serverSide:true,
+                ajax:{
+                    url:'/bank',
+                    type:'GET'
+                },
+                columns:[
+                    {data:'Name'},
+                    {data:'Branch'},
+                    {data:'AccountNo'},
+                    {data:'Address'},
+                    {data:'Phone'},
+                    {data:'Email'},
+                    {data:'Email'},
+                ],
+            });
+
             $('#AddNewBtn').on('click',function(e){
                 e.preventDefault();
+                jQuery.noConflict();
                 $('#NewBanklModal').modal('show');
             });
 
@@ -223,6 +226,7 @@
                     url : '/bank',
                     data: $('#newBankForm').serializeArray(),
                     success:function(data){
+                        table.draw(false);
                         $('#newBankForm')[0].reset();
                         $('#NewBanklModal').modal('hide');
                         Swal.fire(

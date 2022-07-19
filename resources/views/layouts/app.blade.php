@@ -4,19 +4,27 @@
     <meta charset="UTF-8">
     <title>{{ config('app.name') }}</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+
     {{-- Metarial Icon --}}
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"/>
+
     {{-- fontawsome link --}}
     <link rel="stylesheet" href="{{asset('css/fontawesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/regular.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/solid.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/brands.min.css')}}">
-    {{-- jquery --}}
+
+    
+    <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     {{-- bootstrap --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    
+    <!-- Latest compiled JavaScript -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
 
     {{-- Bootsrap icon list --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
@@ -27,35 +35,20 @@
     
   
     {{-- data table --}}
-
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
-  
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">  
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
 
 
     <!-- Font special for pages-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
    
-    <!--Sweet Aleart -->
+    <!-- Sweet Alert -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!-- Vendor CSS-->
     <link href="/vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-
-    <script>
-        $(document).ready( function () {
-
-            $.noConflict();
-            var table =$('.ListTable').DataTable();
-
-        });
-    </script>
-
-    @yield('third_party_stylesheets')
-    @yield('css')
-    @stack('page_css')
-
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -149,12 +142,6 @@
             Reserved.
         </footer> -->
     </div>
-
-     {{-- counter Up --}}
-    <script src="https://code.jquery.com/jquery-migrate-1.4.1.min.js"></script>
-    <script type='text/javascript' src='http://testsite.com/wp-includes/js/jquery/jquery.js?ver=1.12.4-wp'></script>
-    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js?ver=5.2.3'></script>
-    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.js?ver=5.2.3'></script>
    
     <script src="{{ mix('js/app.js') }}" defer></script>
     {{-- custom js --}}
@@ -165,16 +152,5 @@
     <script src="/vendor/datepicker/daterangepicker.js"></script>
     <!-- Main JS-->
     <script src="/js/global.js"></script>
-    <script>
-       jQuery(document).ready(function($) {
-            $('.counter').counterUp({
-                delay: 10,
-                time: 1000
-            });
-        });
-    </script>
-    @yield('third_party_scripts')
-    @stack('page_scripts')
-    @stack('scripts')
 </body>
 </html>
