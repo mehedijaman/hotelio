@@ -79,8 +79,8 @@
                                           {{-- Restore --}}
                                           <a href="/guest/{{ $Guest->id }}/restore" data-bs-toggle="restore" data-bs-placement="bottom" title="Restore"><i class="fa-solid fa-undo  text-success"></i></a>
                                           
-                                          <a href="/guest/{{ $Guest->id }}/parmanently/delete" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Parmanently Delete"><i class="fa-solid fa-trash-can ml-2 text-danger"></i> </a>
-                                      </td>
+                                          <button type="button" class="DeleteBtn" value="{{$Guest->id}}" title="Delete"><i class="fa-solid fa-trash-can ml-2 text-danger"></i></button>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -93,4 +93,44 @@
             </div>
         </div>
     </div>
+    <Script>
+        $(document).ready(function(){
+            $('.DeleteBtn').on('click',function(e) {
+                e.preventDefault();
+                var ID = $(this).val();
+                Swal.fire({
+                  title: 'Are you sure?',
+                  text: "You won't be able to Parmanent Delete this!",
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if(result.isConfirmed){
+                        $.ajax({
+                            type    : 'GET',
+                            url     : "/guest/parmanently/delete/"+ID,
+                            success:function(data){
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                );
+                            },
+                            error:function(data){
+                                Swal.fire(
+                                    'Error!',
+                                    'Delete failed !',
+                                    'error'
+                                );
+
+                                console.log(data);
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </Script>
 @endsection

@@ -29,7 +29,7 @@
                                     Add
                                 </a> -->
                                 {{-- <button type="button" class="btn btn-primary" id="AddNewBtn" data-toggle="modal" data-target = "#NewBankModal ">New Bank</button> --}}
-                                <button type="button" class="btn bg-navy text-capitalize mr-3" id="AddNewBtn"><i class="fa-solid fa-circle-plus mr-2"></i>Add New</button>
+                                <button type="button" class="btn bg-navy text-capitalize mr-3" id="addNewBtn" data-toggle="modal" data-target="#NewBanklModal"><i class="fa-solid fa-circle-plus mr-2"></i>Add New</button>
                                 Bank List
                             </h2>
                         </div>
@@ -37,7 +37,7 @@
                         <a class="btn btn-sm bg-maroon float-right text-capitalize mr-3" href="/bank/delete"><i class="fa-solid fa-trash-can mr-2"></i>Delete All</a>
                     </div>
                     <div class="card-body table-responsive p-0">
-                        <table class="table table-hover table-responsive table-borderless ">
+                        <table class="table table-hover table-responsive table-borderless ListTable">
                             <thead>
                                 <tr class="border-bottom">
                                     <th>Name</th>
@@ -204,11 +204,10 @@
     </div>
     <script>
         $(document).ready(function(){
-            $('#AddNewBtn').on('click',function(e){
+            $('#addNewBtn').on('click',function(e){
                 e.preventDefault();
-                $('#NewBanklModal').modal('show');
-            });
-
+                // $('#NewBankModal').modal('show');
+            })
             $('#formResetBtn').on('click',function(e){
                 e.preventDefault();
 
