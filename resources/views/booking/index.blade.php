@@ -3,21 +3,6 @@
     <div class="container py-5">
         <div class="row">
             <div class="col-md-10 m-auto">
-                @if (Session::get('Destroy'))
-                    <div class="alert alert-danger alert-dismissible">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                        <h5><i class="icone fas fa-exclamation-triangle"></i> Deleted !</h5>
-                        {{Session::get('Destroy')}}
-                    </div>
-                @endif
-                @if (Session::get('DestroyAll'))
-                    <div class="alert alert-danger alert-dismissible">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                        <h5><i class="icone fas fa-exclamation-triangle"></i> Deleted !</h5>
-                        {{Session::get('DestroyAll')}}
-                    </div>
-                @endif
-                
                 <div class="card">
                     <div class="card-header bg-defult">
                         <div class="card-title">
@@ -30,10 +15,13 @@
                             </h2>
                         </div>
                         <a class="btn btn-sm bg-navy float-right text-capitalize" href="/booking/trash"><i class="fa-solid fa-recycle mr-2"></i>View Trash</a>
-                        <a class="btn btn-sm bg-maroon float-right text-capitalize mr-3" href="/booking/delete"><i class="fa-solid fa-trash-can mr-2"></i>Delete All</a>
+                        <button class="btn btn-sm bg-maroon float-right text-capitalize mr-3" id="DeleteAllBtn">
+                            <i class="fa-solid fa-trash-can mr-2"></i>
+                            Delete All
+                        </button>
                     </div>
                     <div class="card-body table-responsive p-0">
-                        <table class="table table-hover table-borderless">
+                        <table class="table table-hover table-borderless ListTable">
                             <thead>
                                 <tr class="border-bottom">
                                     <th>Room</th>
@@ -59,11 +47,11 @@
                                                 <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i></i>
                                             </button>
                                             
-                                            {{ Form::open(array('url' => '/booking/'.$Booking->id,'method' => 'DELETE')) }}
-                                                <button class="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
+                                            {{-- {{ Form::open(array('url' => '/booking/'.$Booking->id,'method' => 'DELETE')) }} --}}
+                                                <button class="DeleteBtn" value="{{ $Booking->id }}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
                                                     <i class="fa-regular fa-trash-can mr-3 text-danger"></i>
                                                 </button>
-                                            {{ Form::close() }} 
+                                            {{-- {{ Form::close() }}  --}}
                                         </td>
                                     </tr>
                                 @endforeach
@@ -151,9 +139,11 @@
                                         <div class="col-md-8">
                                             <select type="number" name="RoomID" id="EditRoom"  class="form-select" value="">
                                                 <option value="">Select Room</option>
+
                                                 @foreach ($Rooms as $Room)  
                                                     <option value="{{ $Room->id }}">{{ $Room->RoomNo }}</option>
                                                 @endforeach
+
                                             </select>
                                         </div>
                                     </div>
@@ -162,16 +152,20 @@
                                         <div class="col-md-8">
                                             <select type="number" name="GuestID" id="EditGuest"  class="form-select">
                                                 <option value="">Select Guest</option>
+
                                                 @foreach ($Guests as $Guest) 
                                                     <option value="{{ $Guest->id }}">{{ $Guest->Name }}</option>
                                                 @endforeach
+
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="CheckInDate" class="form-label col-md-3">CheckInDate:</label>
                                         <div class="col-md-8">
+
                                             <input type="text" name="CheckInDate" id="EditCheckInDate" class="form-control">
+
                                         </div>
                                     </div>
                                 </div>
@@ -196,6 +190,7 @@
                 e.preventDefault();
                 $('#NewBookingForm')[0].reset();
             });
+
             $('#SubmitBtn').on('click',function(e){
                 e.preventDefault();
                 $.ajax({
@@ -218,6 +213,7 @@
             });
 
             $('.EditBtn').on('click',function(e){
+                jQuery.noConflict();
                 e.preventDefault();
                 var ID = $(this).val();
                 $.ajax({
@@ -245,6 +241,7 @@
                     }
                 });
             });
+
             $('#UpdateBtn').on('click',function(e){
                 e.preventDefault();
                 var ID = $('#IDEdit').val();
@@ -264,11 +261,89 @@
                     error:function(data){
                         console.log(data);
                     }
-
                 });
-
-               
             });
+
+            $('.DeleteBtn').on('click',function(e){
+                e.preventDefault();
+                // console.log($(this).val());
+                let ID = $(this).val();
+                Swal.fire({
+                  title: 'Are you sure?',
+                  text: "You won't be able to revert this!",
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    $.ajax({
+                        type:'GET',
+                        url:'/booking/delete/'+ID,
+                        success:function(data){
+                           Swal.fire(
+                              'Deleted!',
+                              'Your file has been deleted.',
+                              'success'
+                            );
+                        },
+                        error:function(data){
+                            Swal.fire(
+                              'Error!',
+                              'Delete failed !',
+                              'error'
+                            );
+
+                            console.log(data);
+                        },
+                    });
+
+                    
+                 }
+                });
+            });
+            
+            $('#DeleteAllBtn').on('click',function(e){
+                e.preventDefault();
+                Swal.fire({
+                  title: 'Are you sure?',
+                  text: "You won't be able to DeleteAll this!",
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Yes, DeleteAll it!'
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    $.ajax({
+                        type:'GET',
+                        url:'/booking/delete',
+                        success:function(data){
+                           Swal.fire(
+                              'DeleteAll!',
+                              'Your file has been DeleteAll.',
+                              'success'
+                            );
+                        },
+                        error:function(data){
+                            Swal.fire(
+                              'Error!',
+                              'DeleteAll failed !',
+                              'error'
+                            );
+
+                            console.log(data);
+                        },
+                    });
+
+                    
+                 }
+                });
+            })
+
+
+
 
          });
     </script>

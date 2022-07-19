@@ -38,7 +38,9 @@
                         <a class="btn btn-sm bg-maroon float-right text-capitalize mr-3" href="/hotel/delete"><i class="fa-solid fa-trash-can mr-2"></i>Delete All</a>
                     </div>
                     <div class="card-body table-responsive p-0">
+
                         <table class="table table-hover table-responsive table-borderless Datatable" id="HotelList">
+
                             <thead>
                                 <tr class="border-bottom">
                                     <th>Name</th>

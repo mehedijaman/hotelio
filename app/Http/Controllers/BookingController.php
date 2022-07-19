@@ -126,7 +126,7 @@ class BookingController extends Controller
     public function destroy($id)
     {
         Booking::find($id)->delete();
-        return back()->with('Destroy', 'Delete Completed !');
+        return back();
     }
     public function destroyAll()
     {

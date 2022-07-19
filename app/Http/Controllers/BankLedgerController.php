@@ -17,11 +17,11 @@ class BankLedgerController extends Controller
     public function index()
     {
         // return BankLedger::all();
-        $Banks = Bank::all();
+        $BankNames = Bank::all();
         $BankLedgers = BankLedger::select('bank_ledgers.*', 'banks.Name as Bank')
             ->leftJoin('banks', 'bank_ledgers.BankID', '=', 'banks.id')
             ->get();
-        return view('bankLedger.index', compact('BankLedgers', 'Banks'));
+        return view('bankLedger.index', compact('BankLedgers','BankNames'));
     }
 
     /**
@@ -45,7 +45,7 @@ class BankLedgerController extends Controller
     {
         try {
             BankLedger::create($request->all());
-            return back()->with('Success', 'BankLedger Add Successfull');
+            return 'Bank Ledger added Succussfuly';
         } catch (Exception $error) {
             return $error->getMessage();
         }
@@ -59,8 +59,8 @@ class BankLedgerController extends Controller
      */
     public function show($id)
     {
-        $BankLedger = BankLedger::find($id);
-        return view('bankLedger.show', compact('BankLedger'));
+        return BankLedger::find($id);
+        
     }
 
     /**
@@ -108,6 +108,6 @@ class BankLedgerController extends Controller
         $BankLedgers = BankLedger::onlyTrashed('bank_ledgers.*', 'banks.Name as Bank')
             ->leftJoin('banks', 'bank_ledgers.BankID', '=', 'banks.id')
             ->get();
-        return view('bankLedger.trash', compact('$BankLedgers'));
+        return view('bankLedger.trash', compact('BankLedgers'));
     }
 }

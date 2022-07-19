@@ -34,7 +34,8 @@ use Ramsey\Uuid\Guid\Guid;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/',[HotelioController::class, 'index']);
+
+Route::get('/', [HotelioController::class, 'index']);
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
@@ -43,7 +44,7 @@ require __DIR__ . '/auth.php';
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('user', RegisteredUserController::class);   
+Route::resource('user', RegisteredUserController::class);
 /*Bank's Route's */
 Route::get('bank/trash', [BankController::class, 'trash']);
 Route::get('/bank/delete', [BankController::class, 'destroyAll']);
@@ -57,10 +58,11 @@ Route::resource('bank', BankController::class);
 /*acount ledger Route */
 Route::get('acount/ledger/emptytrash', [AccountLedgerController::class, 'emtyTrash']);
 Route::get('acount/ledger/restoreall', [AccountLedgerController::class, 'restoreAll']);
-Route::get('acount/ledger/{id}/restore', [AccountLedgerController::class, 'restore']);
-Route::get('acount/ledger/{id}/delete/parmanently', [AccountLedgerController::class, 'forceDelete']);
+Route::get('acount/ledger/restore/{id}', [AccountLedgerController::class, 'restore']);
+Route::get('acount/ledger/delete/parmanently/{id}', [AccountLedgerController::class, 'forceDelete']);
 Route::get('acount/ledger/trash', [AccountLedgerController::class, 'trash']);
 Route::get('acount/ledger/delete', [AccountLedgerController::class, 'deleteAll']);
+Route::get('acount/ledger/{id}', [AccountLedgerController::class, 'destroy']);
 Route::resource('acount/ledger', AccountLedgerController::class);
 
 /*balance Route */
@@ -79,7 +81,7 @@ Route::get('bankLedger/{id}/restore', [BankLedgerController::class, 'restore']);
 Route::get('bankLedger/{id}/delete/parmanently', [BankLedgerController::class, 'forceDelete']);
 Route::get('bankLedger/trash', [BankLedgerController::class, 'trash']);
 Route::get('bankLedger/delete', [BankLedgerController::class, 'deleteAll']);
-Route::get('/bank/delete/{id}',[BankController::class,'destroy']);
+Route::get('bankLedger/delete/{id}', [BankLedgerController::class, 'destroy']);
 Route::resource('/bankLedger', BankLedgerController::class);
 
 /*room Route */
@@ -89,6 +91,7 @@ Route::get('/room/{id}/restore', [RoomController::class, 'restore']);
 Route::get('/room/restoreAll', [RoomController::class, 'restoreAll']);
 Route::get('/room/{id}/parmanently/delete', [RoomController::class, 'forceDeleted']);
 Route::get('/Room/emptyTrash', [RoomController::class, 'emptyTrash']);
+Route::get('/room/delete/{id}', [RoomController::class, 'destroy']);
 Route::resource('room', RoomController::class);
 
 /*room transfer Route */
@@ -98,6 +101,7 @@ Route::get('roomTransfer/{id}/restore', [RoomTransferController::class, 'restore
 Route::get('roomTransfer/restoreAll', [RoomTransferController::class, 'restoreAll']);
 Route::get('/roomTransfer/{id}/parmanently/delete', [RoomTransferController::class, 'forceDeleted']);
 Route::get('/roomTransfer/emptyTrash', [RoomTransferController::class, 'emptyTrash']);
+Route::get('/roomTransfer/delete/{id}', [RoomTransferController::class, 'destroy']);
 Route::resource('roomTransfer', RoomTransferController::class);
 
 /*booking Route */
@@ -107,6 +111,7 @@ Route::get('/Booking/{id}/restore', [BookingController::class, 'restore']);
 Route::get('/booking/restoreAll', [BookingController::class, 'restoreAll']);
 Route::get('/Booking/{id}/parmanently/delete', [BookingController::class, 'forceDeleted']);
 Route::get('/booking/emptyTrash', [BookingController::class, 'emptyTrash']);
+Route::get('booking/delete/{id}', [BookingController::class, 'destroy']);
 Route::resource('booking', BookingController::class);
 
 /** Invoice Routes */
@@ -186,7 +191,10 @@ Route::get('/expense/emptyTrash', [ExpenseController::class, 'emptyTrash']);
 Route::get('/expense/delete/{id}',[ExpenseController::class,'destroy']);
 Route::resource('expense', ExpenseController::class);
 
+
 /** User route*/ 
+Route::get('/user/delete/{id}',[UserController::class,'destroy']);
+Route::get('/user/delete',[UserController::class, 'destroyAll']);
 Route::resource('user', UserController::class);
 
 /*tax Setting route */
@@ -196,8 +204,8 @@ Route::get('/taxSetting/{id}/restore', [TaxSettingController::class, 'restore'])
 Route::get('/taxSetting/restoreAll', [TaxSettingController::class, 'restoreAll']);
 Route::get('/taxSetting/{id}/parmanently/delete', [TaxSettingController::class, 'forceDeleted']);
 Route::get('/taxSetting/emptyTrash', [TaxSettingController::class, 'emptyTrash']);
-Route::get('taxSetting/delete/{id}',[TaxSettingController::class,'destroy']);
+Route::get('taxSetting/delete/{id}', [TaxSettingController::class, 'destroy']);
 Route::resource('taxSetting', TaxSettingController::class);
 
 /*Profile route */
-Route::get('profile/show',[ProfileController::class,'index']);
+Route::get('profile/show', [ProfileController::class, 'index']);
