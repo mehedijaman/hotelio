@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
+// use Yajra\Datatables\Facades\Datatables;
 use Illuminate\Http\Request;
 use App\Models\TaxSetting;
 use Exception;
+use Yajra\DataTables\DataTables as DataTables;
 
 class TaxSettingController extends Controller
 {
@@ -16,8 +18,13 @@ class TaxSettingController extends Controller
      */
     public function index()
     {
-        $TaxSettings = TaxSetting::all();
-        return view('taxSetting.index',compact('TaxSettings'));
+        // $TaxSettings = TaxSetting::all();
+        // return view('taxSetting.index',compact('TaxSettings'));
+        if (request()->ajax()) 
+        {
+            return $TaxSetting = DataTables::of(TaxSetting::all())->make(true);
+        }
+        return view('taxSetting.index');        
     }
 
     /**
