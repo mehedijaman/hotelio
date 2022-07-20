@@ -35,7 +35,7 @@
                                 </tr>
                             </thead>
                             <tbody class="">
-                                @foreach ($TaxSettings as $TaxSetting)
+                                {{-- @foreach ($TaxSettings as $TaxSetting)
                                     <tr>
                                         <td>{{ $TaxSetting->Name }}</td>
                                         <td>{{ $TaxSetting->Parcent }}</td>
@@ -59,7 +59,7 @@
                                             {{ Form::close() }}  -->
                                         </td>
                                     </tr>
-                                @endforeach
+                                @endforeach --}}
                             </tbody>
                         </table>
                     </div>
@@ -166,6 +166,24 @@
 
     <script>
         $(document).ready(function(){
+
+            $.noConflict();
+            var table = $('.ListTable').DataTable({
+                processing:true,
+                serverSide:true,
+
+                ajax:{
+                    url:'/taxSetting',
+                    type:'GET'
+                },
+                columns:
+                [
+                    {data:'Name'},
+                    {data:'Parcent'},
+                    {data:'Status'},
+                    {data:'Status'},
+                ],
+            });
             $('#ResetBtnForm').on('click',function(e){
                 e.preventDefault();
                 $('#NewTaxForm')[0].reset();
@@ -179,6 +197,7 @@
                     url: "/taxSetting",
                     data: $('#NewTaxForm').serializeArray(),
                     success: function (data) {
+                        table.draw(false);
                         $('#NewTaxForm')[0].reset();
                         $('#NewTaxModal').modal('hide');
                         Swal.fire(

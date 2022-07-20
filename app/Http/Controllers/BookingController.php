@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Yajra\Datatables\Facades\Datatables;
 use Illuminate\Http\Request;
 use App\Models\Booking;
 use App\Models\Guest;
