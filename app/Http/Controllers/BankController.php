@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Bank;
 use Exception;
+use Yajra\Datatables\Datatables;
 
 class BankController extends Controller
 {
@@ -15,8 +16,12 @@ class BankController extends Controller
      */
     public function index()
     {
-        $Banks = Bank::all();
-        return view('bank.index', compact('Banks'));
+        if(request()->ajax())
+        {
+            return $Banks = Datatables::of(Bank::all())->make(true);
+        }
+        
+        return view('bank.index');
     }
 
     /**

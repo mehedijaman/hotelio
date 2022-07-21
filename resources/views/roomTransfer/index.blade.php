@@ -144,16 +144,8 @@
                                     <select type="number" name="GuestID" id="EditGuest"  class="form-select">
                                         <option value=""> Select Guest </option>
                                         @foreach ($Guests as $Guest)
-
-                                            {{-- @if ($RoomTransfer->GuestID == $Guest->id) 
-                                                <option value="{{ $Guest->id }}" selected>
-                                                {{ $Guest->Name }}
-                                                </option>
-                                                @else
-                                                    <option value="{{$Guest->id}}" selected>
-                                                    {{ $Guest->Name }} 
-                                            @endif --}}
-
+                                            <option value="{{ $Guest->id }}">{{ $Guest->Name }}</option>
+                                            
                                         @endforeach
                                     </select> 
                                 </div>
@@ -167,11 +159,12 @@
                             <div class="form-group row">
                                 <label for="ToRoomID" class="form-label col-md-3">ToRoom:</label>
                                 <div class="col-md-8">
-                                    <select type="number" name="ToRoomID" id="EditToRoom" class="form-select">
+                                    {{-- <select type="number" name="ToRoomID" id="EditToRoom" class="form-select">
                                         <option value="">Room Select</option>
                                         
                                         @foreach ($Rooms as $Room)
-                                            {{-- @if ($RoomTransfer->ToRoomID == $Room->id)
+                                            <option value="{{ $Room->id }}">{{ $Room->RoomNo }}</option>
+                                            @if ($RoomTransfer->ToRoomID == $Room->id)
                                                 <option value="{{ $Room->id }}" selected>
                                                     {{ $Room->RoomNo }}
                                                 </option>
@@ -179,9 +172,17 @@
                                                     <option value="{{ $Room->id }}">
                                                     {{ $Room->RoomNo }}
                                                 </option>
-                                            @endif --}}
+                                            @endif
                                         @endforeach
-                                    </select> 
+                                    </select>  --}}
+                                    <select type="number" name="ToRoomID" id="EditToRoom"  class="form-select" value="">
+                                        <option value="">Select Room</option>
+
+                                        @foreach ($Rooms as $Room)  
+                                            <option value="{{ $Room->id }}">{{ $Room->RoomNo }}</option>
+                                        @endforeach
+
+                                    </select>
                                 </div>
                                
                             </div>
