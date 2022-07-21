@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Hotel;
 use Exception;
 use Yajra\Datatables\Datatables;
+// use Yajra\Datatables\Facades\Datatables;
 
 class HotelController extends Controller
 {
