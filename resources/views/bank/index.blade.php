@@ -3,23 +3,6 @@
     <div class="container py-5 col-md-12 m-auto">
         <div class="row">
             <div class="col-md-12 m-auot">
-
-                @if (Session::get('delete'))
-                    <div class="alert alert-danger alert-dismissible">
-                        <button type="button" class="close" data-dismiss="alert" arial-hide="true"></button>
-                        <h5><i class="icon fas fa-trash-can"></i>Delete!</h5>
-                        {{Session::get('delete')}}
-                    </div>
-                @endif
-
-                @if (Session::get('destroyAll'))
-                    <div class="alert alert-danger alert-dismissible">
-                        <button type="button" class="close" data-dismiss="alert" arial-hide="true"></button>
-                        <h5><i class="icon fas fa-trash-can"></i>Delete All!</h5>
-                        {{Session::get('destroyAll')}}
-                    </div>
-                @endif
-
                 <div class="card">
                     <div class="card-header bg-defult">
                         <div class="card-title">
@@ -29,7 +12,7 @@
                                     Add
                                 </a> -->
                                 {{-- <button type="button" class="btn btn-primary" id="AddNewBtn" data-toggle="modal" data-target = "#NewBankModal ">New Bank</button> --}}
-                                <button type="button" class="btn bg-navy text-capitalize mr-3" id="addNewBtn" data-toggle="modal" data-target="#NewBanklModal"><i class="fa-solid fa-circle-plus mr-2"></i>Add New</button>
+                                <button type="button" class="btn bg-navy text-capitalize mr-3" id="addNewBtn" ><i class="fa-solid fa-circle-plus mr-2"></i>Add New</button>
                                 Bank List
                             </h2>
                         </div>
@@ -37,10 +20,9 @@
                         <a class="btn btn-sm bg-maroon float-right text-capitalize mr-3" href="/bank/delete"><i class="fa-solid fa-trash-can mr-2"></i>Delete All</a>
                     </div>
                     <div class="card-body table-responsive p-0">
-                        <table class="table table-hover table-responsive table-borderless ListTable">
+                        <table class="table table-hover table-responsive table-borderless DataTable">
                             <thead>
                                 <tr class="border-bottom">
-                                    <th>Name</th>
                                     <th>Branch</th>
                                     <th>Account No</th>
                                     <th>Address</th>
@@ -81,7 +63,7 @@
             </div>
         </div>
         
-        <div class="modal fade show" id="NewBanklModal" role="dialog">
+        <div class="modal fade show" id="NewModal" role="dialog">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -206,7 +188,7 @@
         $(document).ready(function(){
             $('#addNewBtn').on('click',function(e){
                 e.preventDefault();
-                // $('#NewBankModal').modal('show');
+                $('#NewModal').modal('show');
             })
             $('#formResetBtn').on('click',function(e){
                 e.preventDefault();
