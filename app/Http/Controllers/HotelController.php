@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Hotel;
 use Exception;
+use Yajra\Datatables\Datatables;
 
 class HotelController extends Controller
 {
@@ -15,9 +16,15 @@ class HotelController extends Controller
      */
     public function index()
     {
-        // return "hello";
-        $Hotels = Hotel::all();
-        return view('hotel.index',compact('Hotels'));
+        if(request()->ajax())
+        {
+            return $Hotels = Datatables::of(Hotel::all())
+            ->addColumn('action','layouts.dt_buttons')
+            // ->rawColumn(['action'])
+            ->make(true);
+        }
+
+        return view('hotel.index');
     }
 
     /**
