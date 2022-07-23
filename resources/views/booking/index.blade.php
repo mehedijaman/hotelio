@@ -21,7 +21,7 @@
                         </button>
                     </div>
                     <div class="card-body table-responsive p-0">
-                        <table class="table table-hover table-borderless ListTable">
+                        <table class="table table-hover table-borderless ListTable" id="BookingList">
                             <thead>
                                 <tr class="border-bottom">
                                     <th>Room</th>
@@ -31,7 +31,7 @@
                                 </tr>
                             </thead>
 
-                            <tbody>
+                            {{-- <tbody>
                                 @foreach ($Bookings as $Booking)
                                     <tr class="border-bottom">
                                         <td>{{$Booking->Room}}</td>
@@ -45,17 +45,17 @@
                                         <td class="d-flex">
                                             <button class="EditBtn" value="{{ $Booking->id }}" style="cursor: pointer;">
                                                 <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i></i>
-                                            </button>
+                                            </button> --}}
                                             
-                                            {{-- {{ Form::open(array('url' => '/booking/'.$Booking->id,'method' => 'DELETE')) }} --}}
+                                            {{-- {{ Form::open(array('url' => '/booking/'.$Booking->id,'method' => 'DELETE')) }}
                                                 <button class="DeleteBtn" value="{{ $Booking->id }}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
                                                     <i class="fa-regular fa-trash-can mr-3 text-danger"></i>
-                                                </button>
+                                                </button> --}}
                                             {{-- {{ Form::close() }}  --}}
-                                        </td>
+                                        {{-- </td>
                                     </tr>
                                 @endforeach
-                            </tbody>
+                            </tbody> --}}
                            
                         </table>
                     </div>
@@ -120,7 +120,6 @@
             </div>
         </div>
 
-
         <div class="modal fade show" id="EditBookingModal"role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -181,6 +180,25 @@
 
     <script>
         $(document).ready(function(){
+
+            $.noConflict();
+            var BookingList = $('#BookingList').DataTable({
+                serverSide:true,
+                processing:true,
+                responsive:true,
+                ajax:{
+                    url:'/booking',
+                    type:'GET'
+                },
+                columns:[
+                    {data:'RoomID'},
+                    {data:'GuestID'},
+                    {data:'CheckInDate'},
+                    {data:'CheckOutDate'},
+                    // {data:'action',name:'action'},
+                ]
+            })
+
             $( function() {
                 var $j = jQuery.noConflict();
                 $j("#EditCheckInDate").datepicker();

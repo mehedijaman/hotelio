@@ -22,7 +22,7 @@
                     </button>
                 </div>
                 <div class="card-body table-responsive p-0">
-                    <table class="table  table-responsive table-borderless ListTable "id="ListTable">
+                    <table class="table  table-responsive table-borderless ListTable "id="RoomList">
                         <thead>
 
                             <tr class="border-bottom">
@@ -33,14 +33,15 @@
                                 <th>Geyser</th>
                                 <th>Ac</th>
                                 <th>Balcony</th>
+                                {{-- <th>Bathtub</th> --}}
                                 <th>Internet</th>
-                                {{-- <th>Tv</th> --}}
+                                <th>Tv</th>
                                 <th>Price</th>
                                 <th>Action</th>
                             </tr>
 
                         </thead>
-                        <tbody>
+                        {{-- <tbody>
                             @foreach ($Rooms as $Room)
                                 <tr class="border-bottom">
                                     <td>{{$Room->HotelName}}</td>
@@ -50,9 +51,9 @@
                                     <td>@if($Room->Geyser)<i class="fa-solid fa-square-check text-green ml-4"></i> @else <i class="fa-solid fa-square-xmark text-danger ml-4"></i> @endif</td>
                                     <td>@if($Room->Ac)<i class="fa-solid fa-square-check text-green ml-1"></i> @else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</td>
                                     <td>@if($Room->Balcony)<i class="fa-solid fa-square-check text-green ml-4"></i> @else <i class="fa-solid fa-square-xmark text-danger ml-4"></i> @endif</td>
-                                    <td>@if($Room->Internet)<i class="fa-solid fa-square-check text-green ml-4"></i> @else <i class="fa-solid fa-square-xmark text-danger ml-4"></i> @endif</td>
+                                    <td>@if($Room->Internet)<i class="fa-solid fa-square-check text-green ml-4"></i> @else <i class="fa-solid fa-square-xmark text-danger ml-4"></i> @endif</td> --}}
                                     {{-- <td>@if($Room->Tv)<i class="fa-solid fa-square-check text-green ml-1"></i> @else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</td> --}}
-                                    <td>{{$Room->Price}}</td>
+                                    {{-- <td>{{$Room->Price}}</td>
                                     <td class="d-flex">
                                         <a href="{{ URL::to('/room/'.$Room->id) }}" class="mr-3 text-purple" data-bs-toggle="tooltip" data-bs-placement="bottom" title="View">
                                             <svg data-v-9a6e255c="" xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="invoice-row-5036-preview-icon" class="mx-1 feather feather-eye">
@@ -62,17 +63,17 @@
                                         </a>
                                         <a class="" href="/room/{{ $Room->id }}/edit" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit">
                                             <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i></i>
-                                        </a>
+                                        </a> --}}
 
                                         {{-- {{ Form::open(array('url' => '/room/'.$Room->id,'method' => 'DELETE')) }} --}}
-                                        <button class="DeleteBtn" value="{{$Room->id}}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
+                                        {{-- <button class="DeleteBtn" value="{{$Room->id}}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
                                             <i class="fa-regular fa-trash-can mr-3 text-danger"></i>
-                                        </button>
+                                        </button> --}}
                                         {{-- {{ Form::close() }} --}}
-                                    </td>
+                                    {{-- </td>
                                 </tr>
                             @endforeach
-                        </tbody>
+                        </tbody> --}}
                     </table>
                 </div>
                 <div class="card-footer"></div>
@@ -101,11 +102,11 @@
                                         <div class="col-md-3">
                                             <select type="number" name="HotelID" id=""  class="form-select" required>
                                                 <option value="">Select Hotel</option>
-                                                @foreach ($Hotels as $Hotel)
-                                                <option value="{{ $Hotel->id }}">
-                                                    {{ $Hotel->Name }}
-                                                </option>
-                                                @endforeach
+                                                    @foreach ($Hotels as $Hotel)
+                                                    <option value="{{ $Hotel->id }}">
+                                                        {{ $Hotel->Name }}
+                                                    </option>
+                                                    @endforeach
                                             </select>
                                         </div> 
                                           <div class="col-md-3">
@@ -361,6 +362,32 @@
 
     <script>
         $(document).ready(function(){
+
+            $.noConflict();
+            var RoomList = $('#RoomList').DataTable({
+                serverSide:true,
+                processing:true,
+                responsive:true,
+                ajax:{
+                    url:'/room',
+                    type:'Get',
+                },
+                columns:
+                [
+                    {data:'HotelID'},
+                    {data:'RoomNo'},
+                    {data:'Floor'},
+                    {data:'Type'},
+                    {data:'Geyser'},
+                    {data:'AC'},
+                    {data:'Balcony'},
+                    {data:'Internet'},
+                    {data:'TV'},
+                    {data:'Price'},
+                    {data:'action'}
+                ]
+            });
+
             $('#ResetBtnForm').on('click',function(e){
                 e.preventDefault();
                 $('#NewRoomFrom')[0].reset();
@@ -380,10 +407,11 @@
                           data,
                           'success'
                         )
+                        RoomList.draw(false);
                     },
                     error:function(data){
                         console.log('Error while adding new hotel' + data);
-                    }
+                    },
                 });
             });
 

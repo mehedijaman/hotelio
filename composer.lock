@@ -1355,6 +1355,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/framework/zipball/569d7a2e361895f90e66bb4e02db89c27691a0e7",
                 "reference": "569d7a2e361895f90e66bb4e02db89c27691a0e7",
+
                 "shasum": ""
             },
             "require": {
@@ -1522,6 +1523,7 @@
                 "source": "https://github.com/laravel/framework"
             },
             "time": "2022-07-22T14:16:44+00:00"
+
         },
         {
             "name": "laravel/sanctum",
@@ -8624,5 +8626,5 @@
         "php": "^8.0.2"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.3.0"
 }
