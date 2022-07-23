@@ -113,13 +113,13 @@
                                 <button type="button" class="btn btn-default text-capitalize" id="ResetBtnForm">Reset</button>
                                 <button type="button" name="submit" type="submit" class="btn bg-navy text-capitalize" id="SubmitBtn">submit</button>
                             </div>
-                    {{ Form::close() }}
+                        {{ Form::close() }}
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="modal fade  show" id="EditTaxModal" role="dialog">
+        <div class="modal fade show" id="EditTaxModal" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -168,10 +168,10 @@
         $(document).ready(function(){
 
             $.noConflict();
-            var table = $('.ListTable').DataTable({
+            var taxList = $('.ListTable').DataTable({
                 processing:true,
                 serverSide:true,
-
+                responsive:true,
                 ajax:{
                     url:'/taxSetting',
                     type:'GET'
@@ -195,17 +195,18 @@
                 $.ajax({
                     type: "POST",
                     url: "/taxSetting",
-                    data: $('#NewTaxForm').serializeArray(),
+                    data: $('#NewTaxForm').serialize(),
                     success: function (data) {
-                        table.draw(false);
+                        
                         $('#NewTaxForm')[0].reset();
                         $('#NewTaxModal').modal('hide');
                         Swal.fire(
                             'Success !',
                             data,
                             'success'
-                         )
-                            
+                        )
+
+                        taxList.draw(false);    
                     },
                     erorr:function(data){
                         console.log('Error while adding new RoomTransfer' + data);

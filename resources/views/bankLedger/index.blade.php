@@ -18,7 +18,7 @@
                     <a class="btn btn-sm bg-maroon float-right text-capitalize mr-3" id="AllDeleteBtn" ><i class="fa-solid fa-trash-can mr-2"></i>Delete All</a>
                 </div>
                 <div class="card-body table-responsive p-0">
-                    <table class="table table-hover text-nowrap ListTable">
+                    <table class="table table-hover text-nowrap DataTable">
                         <thead>
                             <tr>
                                 <th>Bank</th>
@@ -184,7 +184,7 @@
                                 </div>
                                 <div class="row">
                                     <div class=" col-sm-8 offset-sm-3">
-                                        <button type="submit" name="submit" id="UpdateBtn" class="btn bg-navy float-right  w-25 text-capitalize">Update</button>
+                                        <button type="button" name="submit" id="UpdateBtn" class="btn bg-navy float-right  w-25 text-capitalize">Update</button>
                                     </div>
                                 </div>
                             </div>
@@ -270,7 +270,7 @@
                         'success',
                         'Account Ledger updated', 'successfully',
                         'success'
-                    )
+                    );
                 },
                 error:function(data){
                     console.log(data);
