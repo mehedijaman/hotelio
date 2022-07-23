@@ -23,7 +23,7 @@
                 <div class="card-header bg-defult">
                     <div class="card-title">
                         <h2 class="card-title">
-                            <button type="button" class="btn bg-navy text-capitalize mr-3" data-toggle="modal" data-target="#AccountLedgerModal" id="AddNewBtn">
+                            <button type="button" class="btn bg-navy text-capitalize mr-3" id="AddNewBtn" >
                                 <i class="fa-solid fa-circle-plus mr-2"></i>
                                 Add
                             </button>
@@ -33,10 +33,11 @@
                     <a class="btn btn-sm bg-navy float-right text-capitalize" href="/acount/ledger/trash"><i class="fa-solid fa-recycle mr-2"></i>View Trash</a>
                     <button id="AllDeleteBtn"class="btn btn-sm bg-maroon float-right text-capitalize mr-3" ><i class="fa-solid fa-trash-can mr-2"></i>Delete All</button>
                 </div>
-                <div class="card-body table-responsive p-0">
-                    <table class="table table-hover text-nowrap">
+                <div class="card-body col-md-12 p-0">
+                    <table class="table table-hover text-nowrap table-responsive table-borderless  DataTable" id="accountLedgerList">
                         <thead>
                             <tr>
+                                <th>ID</th>
                                 <th>Debit</th>
                                 <th>Credit</th>
                                 <th>Date</th>
@@ -46,30 +47,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($AccountLedgers as $AccountLedger)
-                            <tr>
-                                <td>{{$AccountLedger->Debit}}</td>
-                                <td>{{$AccountLedger->Credit}}</td>
-                                <td>{{$AccountLedger->Date}}</td>
-                                <td>{{$AccountLedger->Method}}</td>
-                                <td>{{$AccountLedger->Description}}</td>
-                                <td class="d-flex">
-                                    <!-- <a href="/acount/ledger/{{$AccountLedger->id}}" class="text-purple" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Show">
-                                        <svg data-v-9a6e255c="" xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="invoice-row-5036-preview-icon" class="mx-1 feather feather-eye">
-                                            <path data-v-9a6e255c="" d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                            <circle data-v-9a6e255c="" cx="12" cy="12" r="3"></circle>
-                                        </svg>
-                                    </a> -->
-                                    <button class="EditBtn" value="{{$AccountLedger->id}}" type="button" title="Edit">
-                                        <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i>
-                                    </button>
-                                    <button class="DeleteBtn" type="button" title="Delete" value="{{$AccountLedger->id}}">
-                                        <i class="fa-regular fa-trash-can mr-3 text-black text-danger"></i>
-                                    </button>
-                                  
-                                </td>
-                            </tr>
-                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -207,6 +184,28 @@
 </div>
 <script>
     $(document).ready(function() {
+
+        $.noConflict();
+        var AccountLedgerList = $('#accountLedgerList').DataTable({
+            serverSide:true,
+            processing:true,
+            responsive:true,
+            ajax:{
+                url:'/acount/ledger',
+                type:'GET',
+            },
+            columns:[
+                {data:'id'},
+                {data:'Debit'},
+                {data:'Credit'},
+                {data:'Date'},
+                {data:'Method'},
+                {data:'Description'},
+                {data:'action',name:'action'},
+            ],
+        });
+
+    
         $('#AddNewBtn').on('click', function(e) {
             e.preventDefault();
             $('#AccountLedgerModal').modal('show');
@@ -225,6 +224,7 @@
                 url: '/acount/ledger',
                 data: $('#NewAccountLedgerForm').serializeArray(),
                 success: function(data) {
+                    AccountLedgerList.draw(false);
                     $('#NewAccountLedgerForm')[0].reset();
                     $('#AccountLedgerModal').modal('hide');
                     Swal.fire(
@@ -266,7 +266,7 @@
                 url: '/acount/ledger/' + ID,
                 data: $('#EditForm').serializeArray(),
                 success: function(data) {
-                    console.log('Hello Word');
+                    // console.log('Hello Word');
                     $('#EditAccountLedgerModal').modal('hide');
                     $('#EditForm')[0].reset();
                     Swal.fire(
@@ -294,7 +294,7 @@
                 if (result.isConfirmed) {
                     $.ajax({
                         type: 'GET',
-                        url: '/acount/ledger/' + ID,
+                        url: '/acount/ledger/delete/' + ID,
                         success: function(data) {
                             Swal.fire(
                                 'Deleted!',
