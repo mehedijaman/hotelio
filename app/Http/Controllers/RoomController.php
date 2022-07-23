@@ -20,15 +20,16 @@ class RoomController extends Controller
     {
         $Hotels = Hotel::all();
         if (request()->ajax()) {
-            return $Rooms = Datatables::of(Room::all())->addColumn('action','layouts.dt_buttons')->make(true);
+            return $Rooms = Datatables::of($this->dtQuery())->addColumn('action','layouts.dt_buttons')->make(true);
         }
-        return view('room.index',compact('Hotels'));
+        return view('room.index',compact('Hotels'));        
+    }
 
-        /**$Rooms = Room::select('rooms.*','hotels.Name as HotelName')
+    public function dtQuery()
+    {
+        return $Rooms = Room::select('rooms.*','hotels.Name as HotelName')
         ->leftJoin('hotels','rooms.HotelID','=','hotels.id')
         ->get();
-        return view('room.index',compact('Rooms', 'Hotels'));
-        */
     }
 
     /**

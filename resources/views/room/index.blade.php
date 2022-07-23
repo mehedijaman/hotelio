@@ -26,6 +26,7 @@
                         <thead>
 
                             <tr class="border-bottom">
+                                <th>ID</th>
                                 <th>Hotel</th>
                                 <th>RoomNo</th>
                                 <th>Floor</th>
@@ -374,11 +375,14 @@
                 },
                 columns:
                 [
-                    {data:'HotelID'},
+                    {data:'id',visible:false},
+                    {data:'HotelName'},
                     {data:'RoomNo'},
                     {data:'Floor'},
                     {data:'Type'},
-                    {data:'Geyser'},
+                    {data:'Geyser', render:function(data, type,row){
+                        return data == 1?'<i class="fa fa-check text-success"></i>':'<i class="fa fa-times text-danger"></i>';
+                    }},
                     {data:'AC'},
                     {data:'Balcony'},
                     {data:'Internet'},

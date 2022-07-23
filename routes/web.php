@@ -179,7 +179,7 @@ Route::get('/expense/category/{id}/parmanently/delete', [ExpenseCategoryControll
 Route::get('/expense/category/{id}/restore', [ExpenseCategoryController::class, 'restore']);
 Route::get('/expense/category/restoreAll', [ExpenseCategoryController::class, 'restoreAll']);
 Route::get('/expense/category/emptyTrash', [ExpenseCategoryController::class, 'emptyTrash']);
-Route::resource('expense/category', ExpenseCategoryController::class);
+Route::resource('/expense/category', ExpenseCategoryController::class);
 
 /*Expense Routes*/
 Route::get('/expense/trash', [ExpenseController::class, 'trash']);
