@@ -62,7 +62,7 @@ Route::get('acount/ledger/restore/{id}', [AccountLedgerController::class, 'resto
 Route::get('acount/ledger/delete/parmanently/{id}', [AccountLedgerController::class, 'forceDelete']);
 Route::get('acount/ledger/trash', [AccountLedgerController::class, 'trash']);
 Route::get('acount/ledger/delete', [AccountLedgerController::class, 'deleteAll']);
-Route::get('acount/ledger/{id}', [AccountLedgerController::class, 'destroy']);
+Route::get('acount/ledger/delete/{id}', [AccountLedgerController::class, 'destroy']);
 Route::resource('acount/ledger', AccountLedgerController::class);
 
 /*balance Route */
