@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Yajra\Datatables\Facades\Datatables;
+use Yajra\Datatables\Datatables;
 use Illuminate\Http\Request;
 use App\Models\Booking;
 use App\Models\Guest;
@@ -21,12 +21,17 @@ class BookingController extends Controller
     {
         $Rooms = Room::all();
         $Guests = Guest::all();
-        $Bookings = Booking::select('bookings.*','rooms.RoomNo as Room','guests.Name as Guest')
-        ->leftJoin('rooms','bookings.RoomID','=','rooms.id')
-        ->leftJoin('guests','bookings.GuestID','=','guests.id')
-        ->get(); 
 
-        return view('booking.index',compact('Bookings','Rooms','Guests'));
+        if (request()->ajax()) {
+            return $Bookings = Datatables::of(Booking::all())->addColumn('action','layouts.dt_buttons')->make(true);
+        }
+        return view('booking.index',compact('Rooms','Guests'));
+        // $Bookings = Booking::select('bookings.*','rooms.RoomNo as Room','guests.Name as Guest')
+        // ->leftJoin('rooms','bookings.RoomID','=','rooms.id')
+        // ->leftJoin('guests','bookings.GuestID','=','guests.id')
+        // ->get(); 
+
+        // return view('booking.index',compact('Bookings','Rooms','Guests'));
     }
 
     /**
