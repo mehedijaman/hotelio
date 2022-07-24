@@ -185,17 +185,18 @@
             var BookingList = $('#BookingList').DataTable({
                 serverSide:true,
                 processing:true,
+                colReorder:true,
+                stateSave:true,
                 responsive:true,
                 ajax:{
                     url:'/booking',
                     type:'GET'
                 },
                 columns:[
-                    {data:'RoomID'},
-                    {data:'GuestID'},
+                    {data:'Room'},
+                    {data:'Guest'},
                     {data:'CheckInDate'},
-                    {data:'CheckOutDate'},
-                    // {data:'action',name:'action'},
+                    {data:'action',name:'action'},
                 ]
             })
 
@@ -223,6 +224,8 @@
                             data,
                             'success'
                         )
+
+                        BookingList.draw(false);
                     },
                     error:function(data){
                         console.log('Error while adding new Booking' + data);

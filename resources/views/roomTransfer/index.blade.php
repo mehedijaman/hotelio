@@ -21,7 +21,7 @@
                         </button>
                     </div>
                     <div class="card-body table-responsive p-0 ">
-                        <table class="table table-hover table-borderless ListTable">
+                        <table class="table table-hover table-borderless ListTable" id="RoomTansferList">
                             <thead>
                                 <tr class="border-bottom">
                                     <th>Guest</th>
@@ -32,7 +32,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($RoomTransfers as $RoomTransfer)
+                                {{-- @foreach ($RoomTransfers as $RoomTransfer)
                                     <tr class="border-bottom">
                                         <td>{{ $RoomTransfer->Guest }}</td>
                                         <td class="" style="padding-left: 3rem !important">{{ $RoomTransfer->FromRoomID }} </td>
@@ -47,14 +47,12 @@
                                                 <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i>
                                                
                                             </button>
-                                            {{-- {{ Form::open(array('url' => '/roomTransfer/'.$RoomTransfer->id,'method' => 'DELETE')) }} --}}
                                                 <button class="DeleteBtn" value="{{$RoomTransfer->id}}"   data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
                                                     <i class="fa-regular fa-trash-can mr-3 text-danger"></i>
                                                 </button>
-                                            {{-- {{ Form::close() }} --}}
                                         </td>
                                     </tr>
-                                @endforeach
+                                @endforeach --}}
                             </tbody>
                             <tfoot></tfoot>
                         </table>
@@ -205,6 +203,28 @@
 
     <script>
         $(document).ready(function(){
+            $.noConflict();
+            var RoomTansferList = $('#RoomTansferList').DataTable({
+                serverSide:true,
+                processing:true,
+                colReorder:true,
+                stateSave:true,
+                responsive:true,
+                ajax:{
+                    url:'/roomTransfer',
+                    type:'GET',
+                },
+                columns:
+                [
+                    {data:'Guest'},
+                    {data:'FromRoomID'},
+                    {data:'Room'},
+                    {data:'Date'},
+                    {data:'action',name:'action'},
+                    
+                ]
+            });
+
             $('#ResetBtnForm').on('click',function(e){
                 e.preventDefault();
                 $('#NewRoomTransferForm')[0].reset();
@@ -224,7 +244,8 @@
                             'Success !',
                             data,
                             'success'
-                         )
+                        )
+                        RoomTansferList.draw(false);
                     },
                     error:function (data){  
                         console.log('Error while adding new RoomTransfer' + data);

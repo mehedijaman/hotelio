@@ -40,13 +40,12 @@
                     </button>
                 </div>
                 <div class="card-body table-responsive p-0">
-                    <table class="table table-hover table-borderless ListTable">
+                    <table class="table table-hover table-borderless" id="UserList">
                         <thead>
                             <tr class="border-bottom">
                                 <th>Employee</th>
                                 <th>Name</th>
                                 <th>Email</th>
-                             
                                 <th>Photo</th>
                                 <th>Status</th>
                                 <th>LastLogin</th>
@@ -56,42 +55,39 @@
 
                         </thead>
                         <tbody>
-                            @foreach ($Users as $User)
-                            <tr class="border-bottom">
-                                <td>{{$User->Employee}}</td>
-                                <td>{{$User->name}}</td>
-                                <td>{{$User->email}}</td>
-                                <td>{{$User->Photo}}</td>
-                                <td>
-                                    @if ($User->Status)
-                                        <b class="text-success fs-6">Active</b> 
-                                    @else
-                                        <b class="text-danger fs-6">Deactive</b> 
-                                    @endif
-                                </td>
-                                <td>{{$User->LastLogin}}</td>
-                                <td>{{$User->Role}}</td>
-                               
-                               
-                                <td class="d-flex">
-                                    <a class="" href="/user/{{ $User->id }}/edit" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit">
-                                        <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i></i>
-                                    </a>
+                            {{-- @foreach ($Users as $User)
+                                <tr class="border-bottom">
+                                    <td>{{$User->Employee}}</td>
+                                    <td>{{$User->name}}</td>
+                                    <td>{{$User->email}}</td>
+                                    <td>{{$User->Photo}}</td>
+                                    <td>
+                                        @if ($User->Status)
+                                            <b class="text-success fs-6">Active</b> 
+                                        @else
+                                            <b class="text-danger fs-6">Deactive</b> 
+                                        @endif
+                                    </td>
+                                    <td>{{$User->LastLogin}}</td>
+                                    <td>{{$User->Role}}</td>
+                                
+                                
+                                    <td class="d-flex">
+                                        <a class="" href="/user/{{ $User->id }}/edit" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit">
+                                            <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i></i>
+                                        </a>
 
-                                    {{-- {{ Form::open(array('url' => '/user/'.$User->id,'method' => 'DELETE')) }} --}}
-                                    <button class="DeleteBtn" value="{{ $User->id }}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
-                                        <i class="fa-regular fa-trash-can mr-3 text-danger"></i>
-                                    </button>
-                                    {{-- {{ Form::close() }} --}}
-                                </td> 
-                            </tr>
-                            @endforeach
+                                        <button class="DeleteBtn" value="{{ $User->id }}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
+                                            <i class="fa-regular fa-trash-can mr-3 text-danger"></i>
+                                        </button>
+                                        
+                                    </td> 
+                                </tr>
+                            @endforeach --}}
                         </tbody>
-
                     </table>
                 </div>
                 <div class="card-footer">
-
                 </div>
             </div>
         </div>
@@ -99,6 +95,30 @@
 </div>
     <script>
         $(document).ready(function(){
+
+            $.noConflict();
+            var UserList = $('#UserList').DataTable({
+                serverSide:true,
+                processing:true,
+                colReorder:true,
+                atateSave:true,
+                responsive:true,
+                ajax:{
+                    url:'/user',
+                    type:'GET'
+                },
+                columns:[
+                    {data:'EmployeeID'},
+                    {data:'name'},
+                    {data:'email'},
+                    {data:'Photo'},
+                    {data:'Status'},
+                    {data:'LastLogin'},
+                    {data:'Role'},
+                    {data:'action'}
+                ]
+            });
+
             $('.DeleteBtn').on('click',function(e){
                 e.preventDefault();
                 let ID = $(this).val();

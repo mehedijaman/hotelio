@@ -36,7 +36,7 @@
                         <a class="btn btn-sm bg-maroon float-right text-capitalize mr-3" href="/invoice/delete"><i class="fa-solid fa-trash-can mr-2"></i>Delete All</a>
                     </div>
                     <div class="card-body table-responsive p-0">
-                        <table class="table table-hover  table-borderless ListTable">
+                        <table class="table table-hover  table-borderless ListTable" id="InvoiceList">
                             <thead>
 
                                 <tr class="border-bottom">
@@ -54,7 +54,7 @@
                             
                             <tbody>
 
-                                @foreach ($invoices as $invoice)
+                                {{-- @foreach ($invoices as $invoice)
                                     <tr class="border-bottom">
                                         <td>{{$invoice->Guest}}</td>
                                         <td>{{$invoice->Tax}}</td>
@@ -75,7 +75,7 @@
                                             {{ Form::close() }} 
                                         </td>
                                     </tr>
-                                @endforeach
+                                @endforeach --}}
 
                             </tbody>
                         </table>
@@ -235,6 +235,30 @@
     </div>
     <script>
         $(document).ready(function(){
+            $.noConflict();
+            var InvoiceList = $('#InvoiceList').DataTable({
+                serverSide:true,
+                processing:true,
+                colReorder:true,
+                stateSave:true,
+                responsive:true,
+
+                ajax:{
+                    url:'/invoice',
+                    type:'GET'
+                },
+                columns:[
+                    {data:'Guest'},
+                    {data:'Tax'},
+                    {data:'PaymentMethod'},
+                    {data:'Date'},
+                    {data:'SubTotal'},
+                    {data:'TaxTotal'},
+                    {data:'Total'},
+                    {data:'action',name:'action'}
+                ],
+            });
+
             $('#AddItemBtn').on('click',function(e){
                 e.preventDefault();
 
