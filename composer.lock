@@ -1345,18 +1345,6 @@
         },
         {
             "name": "laravel/framework",
-<<<<<<< HEAD
-            "version": "v9.20.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laravel/framework.git",
-                "reference": "c99868f1c9bf2f5d250993121838db905591864f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/c99868f1c9bf2f5d250993121838db905591864f",
-                "reference": "c99868f1c9bf2f5d250993121838db905591864f",
-=======
             "version": "v9.21.6",
             "source": {
                 "type": "git",
@@ -1367,7 +1355,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/framework/zipball/569d7a2e361895f90e66bb4e02db89c27691a0e7",
                 "reference": "569d7a2e361895f90e66bb4e02db89c27691a0e7",
->>>>>>> db8d157a1e3c320393f6da6882bb5c8c4dfb9c88
                 "shasum": ""
             },
             "require": {
@@ -1534,11 +1521,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-<<<<<<< HEAD
-            "time": "2022-07-13T13:26:22+00:00"
-=======
             "time": "2022-07-22T14:16:44+00:00"
->>>>>>> db8d157a1e3c320393f6da6882bb5c8c4dfb9c88
         },
         {
             "name": "laravel/sanctum",
@@ -6238,18 +6221,6 @@
         },
         {
             "name": "laravel/breeze",
-<<<<<<< HEAD
-            "version": "v1.11.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laravel/breeze.git",
-                "reference": "7c515a554bb22665e6fd9775bf8c8b2a433c5840"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laravel/breeze/zipball/7c515a554bb22665e6fd9775bf8c8b2a433c5840",
-                "reference": "7c515a554bb22665e6fd9775bf8c8b2a433c5840",
-=======
             "version": "v1.11.1",
             "source": {
                 "type": "git",
@@ -6260,7 +6231,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/breeze/zipball/416c0923860dcef96b977bd4d385c681f65e896a",
                 "reference": "416c0923860dcef96b977bd4d385c681f65e896a",
->>>>>>> db8d157a1e3c320393f6da6882bb5c8c4dfb9c88
                 "shasum": ""
             },
             "require": {
@@ -6307,11 +6277,7 @@
                 "issues": "https://github.com/laravel/breeze/issues",
                 "source": "https://github.com/laravel/breeze"
             },
-<<<<<<< HEAD
-            "time": "2022-07-11T11:46:36+00:00"
-=======
             "time": "2022-07-19T14:03:23+00:00"
->>>>>>> db8d157a1e3c320393f6da6882bb5c8c4dfb9c88
         },
         {
             "name": "laravel/sail",
@@ -8670,9 +8636,5 @@
         "php": "^8.0.2"
     },
     "platform-dev": [],
-<<<<<<< HEAD
     "plugin-api-version": "2.3.0"
-=======
-    "plugin-api-version": "2.0.0"
->>>>>>> db8d157a1e3c320393f6da6882bb5c8c4dfb9c88
 }
