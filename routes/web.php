@@ -62,7 +62,7 @@ Route::get('acount/ledger/restore/{id}', [AccountLedgerController::class, 'resto
 Route::get('acount/ledger/delete/parmanently/{id}', [AccountLedgerController::class, 'forceDelete']);
 Route::get('acount/ledger/trash', [AccountLedgerController::class, 'trash']);
 Route::get('acount/ledger/delete', [AccountLedgerController::class, 'deleteAll']);
-Route::get('acount/ledger/{id}', [AccountLedgerController::class, 'destroy']);
+Route::get('acount/ledger/delete/{id}', [AccountLedgerController::class, 'destroy']);
 Route::resource('acount/ledger', AccountLedgerController::class);
 
 /*balance Route */
@@ -179,7 +179,7 @@ Route::get('/expense/category/{id}/parmanently/delete', [ExpenseCategoryControll
 Route::get('/expense/category/{id}/restore', [ExpenseCategoryController::class, 'restore']);
 Route::get('/expense/category/restoreAll', [ExpenseCategoryController::class, 'restoreAll']);
 Route::get('/expense/category/emptyTrash', [ExpenseCategoryController::class, 'emptyTrash']);
-Route::resource('expense/category', ExpenseCategoryController::class);
+Route::resource('/expense/category', ExpenseCategoryController::class);
 
 /*Expense Routes*/
 Route::get('/expense/trash', [ExpenseController::class, 'trash']);

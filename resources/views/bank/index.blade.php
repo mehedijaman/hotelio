@@ -172,6 +172,10 @@
             var table =$('.ListTable').DataTable({
                 processing:true,
                 serverSide:true,
+                colReorder:true,
+                stateSave:true,
+                buttons:['copy','excel','pdf'],
+                responsive:true,
                 ajax:{
                     url:'/bank',
                     type:'GET'

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\AccountLedger;
 use Illuminate\Http\Request;
 use Exception;
+use Yajra\Datatables\Datatables;
+
 
 class AccountLedgerController extends Controller
 {
@@ -25,8 +27,14 @@ class AccountLedgerController extends Controller
      */
     public function index()
     {
-        $AccountLedgers = AccountLedger::all();
-        return view('accountLedger.index', compact('AccountLedgers'));
+        // $AccountLedgers = AccountLedger::all();
+        if (request()->ajax()) {
+            return $AccountLedgers = Datatables::of(AccountLedger::all())
+            ->addcolumn('action','layouts.dt_buttons')
+            // ->rawcolumn(['action'])
+            ->make(true);
+        }
+        return view('accountLedger.index');
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Yajra\Datatables\Datatables;
 use Illuminate\Http\Request;
 use App\Models\Room;
 use App\Models\Hotel;
@@ -18,10 +19,17 @@ class RoomController extends Controller
     public function index()
     {
         $Hotels = Hotel::all();
-        $Rooms = Room::select('rooms.*','hotels.Name as HotelName')
+        if (request()->ajax()) {
+            return $Rooms = Datatables::of($this->dtQuery())->addColumn('action','layouts.dt_buttons')->make(true);
+        }
+        return view('room.index',compact('Hotels'));        
+    }
+
+    public function dtQuery()
+    {
+        return $Rooms = Room::select('rooms.*','hotels.Name as HotelName')
         ->leftJoin('hotels','rooms.HotelID','=','hotels.id')
         ->get();
-        return view('room.index',compact('Rooms', 'Hotels'));
     }
 
     /**
