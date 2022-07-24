@@ -23,15 +23,17 @@ class BookingController extends Controller
         $Guests = Guest::all();
 
         if (request()->ajax()) {
-            return $Bookings = Datatables::of(Booking::all())->addColumn('action','layouts.dt_buttons')->make(true);
+            return $Bookings = Datatables::of($this->dtQuery())->addColumn('action','layouts.dt_buttons')->make(true);
         }
         return view('booking.index',compact('Rooms','Guests'));
-        // $Bookings = Booking::select('bookings.*','rooms.RoomNo as Room','guests.Name as Guest')
-        // ->leftJoin('rooms','bookings.RoomID','=','rooms.id')
-        // ->leftJoin('guests','bookings.GuestID','=','guests.id')
-        // ->get(); 
-
-        // return view('booking.index',compact('Bookings','Rooms','Guests'));
+       
+    }
+    public function dtQuery()
+    {
+       return $Bookings = Booking::select('bookings.*','rooms.RoomNo as Room','guests.Name as Guest')
+        ->leftJoin('rooms','bookings.RoomID','=','rooms.id')
+        ->leftJoin('guests','bookings.GuestID','=','guests.id')
+        ->get(); 
     }
 
     /**

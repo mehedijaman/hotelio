@@ -22,7 +22,7 @@
                     </button>
                 </div>
                 <div class="card-body table-responsive p-0">
-                    <table class="table  table-responsive table-borderless ListTable "id="RoomList">
+                    <table class="table  table-responsive table-borderless "id="RoomList">
                         <thead>
 
                             <tr class="border-bottom">
@@ -368,6 +368,8 @@
             var RoomList = $('#RoomList').DataTable({
                 serverSide:true,
                 processing:true,
+                colReorder:true,
+                stateSave:true,
                 responsive:true,
                 ajax:{
                     url:'/room',
@@ -383,10 +385,18 @@
                     {data:'Geyser', render:function(data, type,row){
                         return data == 1?'<i class="fa fa-check text-success"></i>':'<i class="fa fa-times text-danger"></i>';
                     }},
-                    {data:'AC'},
-                    {data:'Balcony'},
-                    {data:'Internet'},
-                    {data:'TV'},
+                    {data:'AC', render:function(data, type,row){
+                        return data == 1?'<i class="fa fa-check text-success"></i>':'<i class="fa-solid fa-xmark text-danger"></i>';
+                    }},
+                    {data:'Balcony', render:function(data, type,row){
+                        return data == 1?'<i class="fa fa-check text-success"></i>':'<i class="fa-solid fa-xmark text-danger"></i>';
+                    }},
+                    {data:'Internet', render:function(data, type,row){
+                        return data == 1?'<i class="fa fa-check text-success"></i>':'<i class="fa-solid fa-xmark text-danger"></i>';
+                    }},
+                    {data:'TV', render:function(data, type,row){
+                        return data == 1? '<i class="fa fa-check text-success"></i>':'<i class="fa-solid fa-xmark text-danger"></i>';
+                    }},
                     {data:'Price'},
                     {data:'action'}
                 ]

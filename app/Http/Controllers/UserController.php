@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Employee;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Yajra\Datatables\Datatables;
+
 
 class UserController extends Controller
 {
@@ -15,9 +17,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        $Users = User::select('users.*','users.EmployeeID as Employee')
-        ->get();
-        return view('user.index',compact('Users'));
+        // $Users = User::select('users.*','users.EmployeeID as Employee')
+        // ->get();
+        if (request()->ajax()) {
+            return Datatables::of(User::all())->addColumn('action','layouts.dt_buttons')->make(true);
+        }
+        return view('user.index');
     }
 
     /**
