@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Guest;
 use Exception;
 use Ramsey\Uuid\Guid\Guid;
-
+use Yajra\Datatables\Datatables;
 class GuestController extends Controller
 {
     /**
@@ -15,9 +15,16 @@ class GuestController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $Guests = Guest::all();
-        return view('guest.index',compact('Guests'));
+    {   
+        // return Guest::all();
+        if(request()->ajax())
+        {
+            return  $Guests = Datatables::of(Guest::all())
+            ->addColumn('action','layouts.dt_buttons')
+            ->make(true);
+        }
+      
+        return view('guest.index');
     }
 
     /**

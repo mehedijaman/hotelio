@@ -206,7 +206,7 @@
                     {data:'Address'},
                     {data:'Phone'},
                     {data:'Email'},
-                    {data:'Email'},
+                    {data:'action',name:'action'},
                 ],
             });
 

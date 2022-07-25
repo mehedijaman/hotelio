@@ -35,7 +35,7 @@
                         <a class="btn btn-sm bg-maroon float-right text-capitalize mr-3" href="/guest/delete"><i class="fa-solid fa-trash-can mr-2"></i>Delete All</a>
                     </div>
                     <div class="card-body table-responsive p-0 ">
-                        <table class="table table-hover table-responsive table-borderless ListTable">
+                        <table class="table table-hover table-responsive table-borderless" id="GuestTable">
                             <thead>
                                 <tr class="border-bottom">
                                     <th>Name</th>
@@ -46,25 +46,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ( $Guests as $Guest)
-                                    <tr class="border-bottom">
-                                        <td>{{ $Guest->Name }}</td>
-                                        <td>{{ $Guest->Email }}</td>
-                                        <td>{{ $Guest->Address }}</td>
-                                        <td>{{ $Guest->Phone }}</td>
-                                        <td class="d-flex">
-                                            <a href="{{URL::to('guest/'.$Guest->id)}}" class="mr-3 text-purple" data-bs-toggle="tooltip" data-bs-placement="bottom" title="View">
-                                                 <svg data-v-9a6e255c="" xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="invoice-row-5036-preview-icon" class="mx-1 feather feather-eye"><path data-v-9a6e255c="" d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle data-v-9a6e255c="" cx="12" cy="12" r="3"></circle></svg>
-                                            </a>
-                                             <button class="EditBtn" value="{{ $Guest->id }}" title="Edit">
-                                                 <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i>
-                                             </button>
-                                            
-                                            <button class="DeleteBtn" value="{{$Guest->id}}" title="Delete"><i class="fa-regular fa-trash-can mr-3 text-danger"></i></button>
-                                                    
-                                         </td>
-                                    </tr>
-                                @endforeach
+                               
                             </tbody>
                         </table>
                     </div>
@@ -293,6 +275,28 @@
     </div>
     <script>
         $(document).ready(function(){
+            $.noConflict();
+            var GuestList = $('#GuestTable').DataTable({
+                processing:true,
+                serverSide:true,
+                colReorder:true,
+                stateSave:true,
+                buttons:['copy','excel','pdf'],
+                responsive:true,
+                ajax:{
+                    url : "/guest",
+                    type: "GET"
+                },
+                columns:[
+                    {data : 'Name'},
+                    {data : 'Email'},
+                    {data : 'Address'},
+                    {data : 'Phone'},
+                    {data : 'action',name:'action'},
+
+                ],
+            });
+
             $('#NewAddBtn').on('click',function(e){
                 e.preventDefault();
                 $('#NewGuestlModal').modal('show');
@@ -314,6 +318,7 @@
                           data,
                           'success'
                         );
+                        GuestList.draw(false);
                     },
                     error:function(data){
                         console.log('Error while adding new Bank'+data);

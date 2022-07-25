@@ -33,12 +33,12 @@
                                             <td>{{ $Expense->Description }}</td>
                                             <td>{{ $Expense->Date }}</td>
                                         <td class="d-flex">
-                                            <a class="" href="/expense/{{ $Expense->id }}/restore" data-bs-toggle="restore" data-bs-placement="bottom" title="restore">
-                                                <i class="fa-solid fa-undo ml-2 text-success"></i></i>
-                                            </a>
-                                            <a class="" href="/expense/{{ $Expense->id }}/parmanently/delete" data-bs-toggle="ParmanentDelete" data-bs-placement="bottom" title="Parmanent Delete">
+                                            <button type="button" class="RestoreBtn" value="{{$Expense->id}}" title="Restore"><i class="fa-solid fa-undo ml-2 text-success"></i></button>
+                                        
+                                            {{-- <a class="" href="/expense/{{ $Expense->id }}/parmanently/delete" data-bs-toggle="ParmanentDelete" data-bs-placement="bottom" title="Parmanent Delete" >
                                                 <i class="fa-solid fa-trash-can ml-2 text-dange"></i>
-                                            </a>
+                                            </a> --}}
+                                            <button type="button" class="DeleteBtn" value="{{$Expense->id}}" title="Delete"><i class="fa-solid fa-trash-can ml-2 text-danger"></i></button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -53,4 +53,79 @@
             </div>
         </div>
     </div>
+    <Script>
+        $(document).ready(function(){
+            $('.DeleteBtn').on('click',function(e) {
+                e.preventDefault();
+                var ID = $(this).val();
+                Swal.fire({
+                  title: 'Are you sure?',
+                  text: "You won't be able to Permanent Delete this!",
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if(result.isConfirmed){
+                        $.ajax({
+                            type    : 'GET',
+                            url     : "/expense/parmanently/delete/"+ID,
+                            success:function(data){
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                );
+                            },
+                            error:function(data){
+                                Swal.fire(
+                                    'Error!',
+                                    'Delete failed !',
+                                    'error'
+                                );
+
+                                console.log(data);
+                            }
+                        });
+                    }
+                });
+            });
+            $('.RestoreBtn').on('click',function(e) {
+                e.preventDefault();
+                var ID = $(this).val();
+                Swal.fire({
+                  title: 'Are you sure?',
+                  text: "You won't be able to retrieve this!",
+                  icon: 'success',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Yes, restore it!'
+                }).then((result) => {
+                    if(result.isConfirmed){
+                        $.ajax({
+                            type    : 'GET',
+                            url     : "/income/restore/"+ID,
+                            success:function(data){
+                                Swal.fire(
+                                    'Restore!',
+                                    'Your file has been Restore.',
+                                    'success'
+                                );
+                            },
+                            error:function(data){
+                                Swal.fire(
+                                    'Error!',
+                                    'Restore failed !',
+                                    'error'
+                                );
+                                console.log(data);
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </Script>
 @endsection
