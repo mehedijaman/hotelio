@@ -218,9 +218,11 @@
 
             $.noConflict();
             var HotelList = $('#HotelList').DataTable({
+                dom:'Btftip',
                 serverSide:true,
                 processing:true,
                 responsive:true,
+                buttons:['copyHtml5'],
                 ajax:{
                     url:'/hotel',
                     type:'GET',

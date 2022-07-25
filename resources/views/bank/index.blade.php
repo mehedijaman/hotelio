@@ -189,11 +189,48 @@
 
             $.noConflict();
             var table =$('.ListTable').DataTable({
+                dom:'CBrfiltip',
                 processing:true,
                 serverSide:true,
                 colReorder:true,
                 stateSave:true,
-                buttons:['copy','excel','pdf'],
+                // colvis:{buttonText:'Change Columns'},
+                buttons:[                    
+                    {
+                        extend:'copy',
+                        text:'<button class="btn btn-primary"><i class="fa fa-copy"></i></button>',
+                        titleAttr:'Copy Items',
+                    },
+                    {
+                        extend:'excel',
+                        text:'<i class="fa fa-table"></i>',
+                        titleAttr:'Export to Excel',
+                        filename:'Hotel_List',
+                    },
+                    {
+                        extend:'pdf',
+                        text:'<i class="fa fa-file"></i>',
+                        titleAttr:'Export to PDF',
+                        filename:'Hotel_List',
+                    },
+                    {
+                        extend:'csv',
+                        text:'CSV',
+                        titleAttr:'Export to PDF',
+                        filename:'Hotel_List',
+                    },
+                    {
+                        text:'JSON',
+                        titleAttr:'Export to PDF',
+                        filename:'Hotel_List',
+                        action:function(e,dt,button,config){
+                            var data = dt.buttons.exportData();
+                            $.fn.dataTable.fileSave(
+                                new Blob([JSON.stringify(data)])
+                            );
+                        },
+                    },
+                ],
                 responsive:true,
                 ajax:{
                     url:'/bank',
