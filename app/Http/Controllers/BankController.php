@@ -18,7 +18,9 @@ class BankController extends Controller
     {
         if(request()->ajax())
         {
-            return $Banks = Datatables::of(Bank::all())->make(true);
+            return $Banks = Datatables::of(Bank::all())
+            ->addColumn('action','layouts.dt_buttons')
+            ->make(true);
         }
         
         return view('bank.index');

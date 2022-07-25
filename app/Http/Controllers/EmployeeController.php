@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Yajra\Datatables\Datatables;
 use Illuminate\Http\Request;
 use App\Models\Employee;
 use App\Models\Hotel;
 use Exception;
+
 
 class EmployeeController extends Controller
 {
@@ -17,12 +19,19 @@ class EmployeeController extends Controller
     public function index()
     {
         $Hotels = Hotel::all();
-        $Employees = Employee::select('employees.*', 'hotels.Name as Hotel')
-            ->leftJoin('hotels', 'employees.HotelID', '=', 'hotels.id')
-            ->get();
-        // $Employees = Employee::all();
-        return view('employee.index', compact('Employees','Hotels'));
+        if(request()->ajax()){
+            return $Employees = Datatables::of($this->dtQuery())
+            ->addColumn('action','layouts.dt_buttons')
+            ->make(true);
+        }
+        return view('employee.index', compact('Hotels'));
         
+    }
+    public function dtQuery()
+    {
+        return $Employees = Employee::select('employees.*', 'hotels.Name as Hotel')
+        ->leftJoin('hotels', 'employees.HotelID', '=', 'hotels.id')
+        ->get();
     }
 
     /**

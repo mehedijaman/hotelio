@@ -3,6 +3,23 @@
     <div class="container py-5 col-md-12 m-auto">
         <div class="row">
             <div class="col-md-12 m-auot">
+
+                @if (Session::get('delete'))
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" arial-hide="true"></button>
+                        <h5><i class="icon fas fa-trash-can"></i>Delete!</h5>
+                        {{Session::get('delete')}}
+                    </div>
+                @endif
+
+                @if (Session::get('destroyAll'))
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" arial-hide="true"></button>
+                        <h5><i class="icon fas fa-trash-can"></i>Delete All!</h5>
+                        {{Session::get('destroyAll')}}
+                    </div>
+                @endif
+
                 <div class="card">
                     <div class="card-header bg-defult">
                         <div class="card-title">
@@ -11,7 +28,8 @@
                                     <i class="fa-solid fa-circle-plus mr-2"></i>
                                     Add
                                 </a> -->
-                                <button type="button" class="btn bg-navy text-capitalize mr-3" id="addNewBtn" ><i class="fa-solid fa-circle-plus mr-2"></i>Add New</button>
+                                {{-- <button type="button" class="btn btn-primary" id="AddNewBtn" data-toggle="modal" data-target = "#NewBankModal ">New Bank</button> --}}
+                                <button type="button" class="btn bg-navy text-capitalize mr-3" id="AddNewBtn"><i class="fa-solid fa-circle-plus mr-2"></i>Add New</button>
                                 Bank List
                             </h2>
                         </div>
@@ -19,9 +37,10 @@
                         <a class="btn btn-sm bg-maroon float-right text-capitalize mr-3" href="/bank/delete"><i class="fa-solid fa-trash-can mr-2"></i>Delete All</a>
                     </div>
                     <div class="card-body table-responsive p-0">
-                        <table class="table table-hover table-responsive table-borderless ListTable" >
+                        <table class="table table-hover table-responsive table-borderless ListTable">
                             <thead>
                                 <tr class="border-bottom">
+                                    <th>Name</th>
                                     <th>Branch</th>
                                     <th>Account No</th>
                                     <th>Address</th>
@@ -53,7 +72,7 @@
                          <span aria-hidden="true">×</span>
                         </button>
                     </div>
-                    <div class="modal-body ">
+                    <div class="modal-body">
                         {{ Form::open(array('url' => '/bank','method' => 'POST', 'id' => 'newBankForm','class'=>'form-horizontal', 'files' => true)) }}
                             <div class="card-body">
                                 <div class="form-group row">
@@ -167,6 +186,7 @@
     </div>
     <script>
         $(document).ready(function(){
+
             $.noConflict();
             var table =$('.ListTable').DataTable({
                 processing:true,
@@ -186,11 +206,11 @@
                     {data:'Address'},
                     {data:'Phone'},
                     {data:'Email'},
-                    {data:'Email'},
+                    {data:'action',name:'action'},
                 ],
             });
 
-            $('#addNewBtn').on('click',function(e){
+            $('#AddNewBtn').on('click',function(e){
                 e.preventDefault();
                 jQuery.noConflict();
                 $('#NewBanklModal').modal('show');

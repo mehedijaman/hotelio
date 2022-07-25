@@ -318,7 +318,7 @@
                           data,
                           'success'
                         );
-                        GuestList,draw(false);
+                        GuestList.draw(false);
                     },
                     error:function(data){
                         console.log('Error while adding new Bank'+data);
