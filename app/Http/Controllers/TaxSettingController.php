@@ -23,7 +23,7 @@ class TaxSettingController extends Controller
         // return view('taxSetting.index',compact('TaxSettings'));
         if (request()->ajax()) 
         {
-            return $TaxSetting = Datatables::of(TaxSetting::all())->make(true);
+            return $TaxSetting = Datatables::of(TaxSetting::all())->addColumn('action','layouts.dt_buttons')->make(true);
         }
         return view('taxSetting.index');        
     }

@@ -171,6 +171,8 @@
             var taxList = $('.ListTable').DataTable({
                 processing:true,
                 serverSide:true,
+                colReorder:true,
+                stateSave:true,
                 responsive:true,
                 ajax:{
                     url:'/taxSetting',
@@ -180,8 +182,10 @@
                 [
                     {data:'Name'},
                     {data:'Parcent'},
-                    {data:'Status'},
-                    {data:'Status'},
+                    {data:'Status',render:function(data,type,row){
+                        return data == 1?'<span class="text-success"><b>Active</></span>':'<span class="text-success"><b>Inactive</b></span>';
+                    }},
+                    {data:'action',name:'action'},
                 ],
             });
             $('#ResetBtnForm').on('click',function(e){

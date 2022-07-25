@@ -7,7 +7,9 @@ use App\Models\RoomTransfer;
 use App\Models\Guest;
 use App\Models\Room;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Yajra\Datatables\Datatables;
 use Exception;
+
 
 class RoomTransferController extends Controller
 {
@@ -20,12 +22,18 @@ class RoomTransferController extends Controller
     {
         $Guests = Guest::all();
         $Rooms  = Room::all();
-        $RoomTransfers = RoomTransfer::select('room_transfers.*','guests.Name as Guest','rooms.RoomNo as Room')
+        // return $RoomTransfers = Datatables::of(RoomTransfer::all())->make(true);
+        if (request()->ajax()) {
+            return $RoomTransfers = Datatables::of($this->dtQuery())->addColumn('action','layouts.dt_buttons')->make(true);
+        }
+        return view('roomTransfer.index',compact('Guests','Rooms'));
+    }
+    public function dtQuery()
+    {
+        return $RoomTransfers = RoomTransfer::select('room_transfers.*','guests.Name as Guest','rooms.RoomNo as Room')
         ->leftJoin('guests','room_transfers.GuestID','=','guests.id')
         ->leftJoin('rooms','room_transfers.ToRoomID','=','rooms.id')
         ->get();
-
-        return view('roomTransfer.index',compact('RoomTransfers','Guests','Rooms'));
     }
 
     /**

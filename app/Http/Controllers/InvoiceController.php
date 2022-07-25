@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Yajra\Datatables\Datatables;
 use Illuminate\Http\Request;
 use App\Models\Invoice;
 use App\Models\InvoiceItem;
@@ -23,11 +24,17 @@ class InvoiceController extends Controller
         $Hotels = Hotel::all();
         $Guests = Guest::all();
         $Taxs   = TaxSetting::all();
-        $invoices = Invoice::select('invoices.*', 'tax_settings.Name as Tax', 'guests.Name as Guest')
+        if(request()->ajax()){
+            return Datatables::of($this->dtQuery())->addColumn('action','layouts.dt_buttons')->make(true);
+        }
+        return view('invoice.index',compact('Hotels','Guests','Taxs'));
+    }
+    public function dtQuery()
+    {
+        return $invoices = Invoice::select('invoices.*', 'tax_settings.Name as Tax', 'guests.Name as Guest')
         ->leftJoin('tax_settings', 'invoices.TaxID', '=', 'tax_settings.id')
         ->leftJoin('guests', 'invoices.GuestID', '=', 'guests.id')
-        ->get(); 
-        return view('invoice.index',compact('invoices','Hotels','Guests','Taxs'));
+        ->get();
     }
     /**
      * Show the form for creating a new resource.
