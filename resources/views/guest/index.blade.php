@@ -277,12 +277,49 @@
         $(document).ready(function(){
             $.noConflict();
             var GuestList = $('#GuestTable').DataTable({
-                processing:true,
-                serverSide:true,
-                colReorder:true,
-                stateSave:true,
-                buttons:['copy','excel','pdf'],
-                responsive:true,
+                dom         : 'Btftip',
+                processing  : true,
+                serverSide  : true,
+                colReorder  : true,
+                stateSave   : true,
+                responsive  :true,
+                buttons:[
+                    {
+                        extend : 'copy',
+                        text : "<button class = 'btn btn-success'><i class='fa fa-copy'></i></button>",
+                        titleAttr : 'Copy Items',
+                    },
+                    {
+                        extend : 'excel',
+                        text : "<button class = 'btn btn-primary'><i class ='fa fa-file-excel'></i></button>",
+                        titleAttr : 'Export to Excel',
+                        filename: "Guest_List",
+
+                    },
+                    {
+                        extend : 'pdf',
+                        text : "<button class='btn btn-success'><i class = 'fa fa-file-pdf'></i></button>",
+                        titleAttr : 'Export to PDF',
+                        filename : 'Guest_list',
+                    },
+                    {
+                        extend : 'csv',
+                        text : '<button class = "btn btn-primary"><i class="fa-solid fa-file-csv"></i></button>',
+                        titleAttr : "Export to CSV",
+                        filename : 'Guest_list',
+                    },
+                    {
+                        text : "<button class = 'btn btn-success'><i class = 'fa fa-file'></i></button>",
+                        titleAttr : "Export to JSON",
+                        filename : 'Guest_list',
+                        action:function(e,dt,button,config){
+                            var data = dt.buttons.exportData();
+                            $.fn.dataTable.fileSave(
+                                new Blob([JSON.stringify(data)])
+                            );
+                        },
+                    },
+                ],
                 ajax:{
                     url : "/guest",
                     type: "GET"

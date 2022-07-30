@@ -19,7 +19,7 @@
                         <a class="btn btn-sm bg-maroon float-right text-capitalize mr-3" href="/expense/delete"><i class="fa-solid fa-trash-can mr-2"></i>Delete All</a>
                     </div>
                     <div class="card-body table-responsive p-0">
-                        <table class="table table-hover table-responsive table-borderless ListTable">
+                        <table class="table table-hover table-responsive table-borderless " id="ExpenseList">
                             <thead>
                                 <tr class="border-bottom">
                                     <th>Category Name</th>
@@ -28,30 +28,9 @@
                                     <th>Date</th>
                                     <th>Action</th>
                                 </tr>
-                              </thead>
-                              <tbody>
-                                @foreach ( $Expenses as $Expense)
-                                    <tr class="border-bottom">
-                                        <td>{{ $Expense->CategoryName }}</td>
-                                        <td>{{ $Expense->Amount }}</td>
-                                        <td>{{ $Expense->Description }}</td>
-                                        <td>{{ $Expense->Date }}</td>
-                                        <td class="d-flex">
-                                            <a href="{{URL::to('expense/'.$Expense->id)}}" class="mr-3 text-purple" data-bs-toggle="View" data-bs-placement="bottom" title="View">
-                                                 <svg data-v-9a6e255c="" xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="invoice-row-5036-preview-icon" class="mx-1 feather feather-eye"><path data-v-9a6e255c="" d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle data-v-9a6e255c="" cx="12" cy="12" r="3"></circle></svg>
-                                            </a>
-                                            {{-- <button type="button" class="ShowBtn" title="Show" value="{{ $Expense->id }}"><i class="fa-solid fa-eye mr-3 text-primary"></i></button> --}}
-                                             {{-- <a class="" href="/expense/{{ $Expense->id }}/edit" data-bs-toggle="Edit" data-bs-placement="bottom" title="Edit">
-                                                 <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i></i>
-                                            </a> --}}
-                                            <button class="EditBtn" value="{{ $Expense->id }}" title="Edit" ><i class="fa-regular fa-pen-to-square mr-3 text-orange"></i>
-                                            </button>
+                            </thead>
+                            <tbody>
 
-                                            <button type="button" class="DeleteBtn" value="{{$Expense->id}}" title="Delete"><i class="fa-regular fa-trash-can mr-3 text-danger"></i></button>
-                                            
-                                        </td>
-                                    </tr>
-                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -223,6 +202,65 @@
     </div>
     <script>
         $(document).ready(function(){
+            $.noConflict();
+            var ExpenseList = $('#ExpenseList').DataTable({
+                processing : true ,
+                serverSide : true ,
+                colReorder : true ,
+                stateSave  : true ,
+                responsive : true ,
+                dom         : 'Btftip',
+                buttons:[
+                    {
+                        extend : 'copy',
+                        text : "<button class = 'btn btn-success'><i class='fa fa-copy'></i></button>",
+                        titleAttr : 'Copy Items',
+                    },
+                    {
+                        extend : 'excel',
+                        text : "<button class = 'btn btn-primary'><i class ='fa fa-file-excel'></i></button>",
+                        titleAttr : 'Export to Excel',
+                        filename: "Expense_List",
+
+                    },
+                    {
+                        extend : 'pdf',
+                        text : "<button class='btn btn-success'><i class = 'fa fa-file-pdf'></i></button>",
+                        titleAttr : 'Export to PDF',
+                        filename : 'Expense_list',
+                    },
+                    {
+                        extend : 'csv',
+                        text : '<button class = "btn btn-primary"><i class="fa-solid fa-file-csv"></i></button>',
+                        titleAttr : "Export to CSV",
+                        filename : 'Expense_list',
+                    },
+                    {
+                        text : "<button class = 'btn btn-success'><i class = 'fa fa-file'></i></button>",
+                        titleAttr : "Export to JSON",
+                        filename : 'Expense_list',
+                        action:function(e,dt,button,config){
+                            var data = dt.buttons.exportData();
+                            $.fn.dataTable.fileSave(
+                                new Blob([JSON.stringify(data)])
+                            );
+                        },
+                    },
+                ],
+
+                ajax:{
+                    type : 'GET',
+                    url  : '/expense',
+                },
+                columns : [
+                    {data : 'CategoryName'},
+                    {data : 'Amount'},
+                    {data : 'Description'},
+                    {data : 'Date'},
+                    {data : 'action' , name : 'action'},
+                ],
+            });
+
             $('#AddNewBtn').on('click',function(e){
                 e.preventDefault();
                 $('#NewExpenseModal').modal('show');
@@ -244,6 +282,7 @@
                           data,
                           'success'
                         );
+                        ExpenseList.draw(false);
                     },
                     error:function(date){
                         console.log('Error while added new Expense Item'+data);

@@ -157,12 +157,49 @@
         $(document).ready(function(){
             $.noConflict();
             var IncomeList =$('#IncomeList').DataTable({
+                dom         : 'Btftip',
                 processing  : true,
                 serverSide  : true,
                 colReorder  : true,
                 stateSave   : true,
                 responsive  : true,
-                buttons : ['copy','excel','pdf'],
+                buttons:[
+                    {
+                        extend : 'copy',
+                        text : "<button class = 'btn btn-success'><i class='fa fa-copy'></i></button>",
+                        titleAttr : 'Copy Items',
+                    },
+                    {
+                        extend : 'excel',
+                        text : "<button class = 'btn btn-primary'><i class ='fa fa-file-excel'></i></button>",
+                        titleAttr : 'Export to Excel',
+                        filename: "Employee_List",
+
+                    },
+                    {
+                        extend : 'pdf',
+                        text : "<button class='btn btn-success'><i class = 'fa fa-file-pdf'></i></button>",
+                        titleAttr : 'Export to PDF',
+                        filename : 'Employee_list',
+                    },
+                    {
+                        extend : 'csv',
+                        text : '<button class = "btn btn-primary"><i class="fa-solid fa-file-csv"></i></button>',
+                        titleAttr : "Export to CSV",
+                        filename : 'Employee_list',
+                    },
+                    {
+                        text : "<button class = 'btn btn-success'><i class = 'fa fa-file'></i></button>",
+                        titleAttr : "Export to JSON",
+                        filename : 'Employee_list',
+                        action:function(e,dt,button,config){
+                            var data = dt.buttons.exportData();
+                            $.fn.dataTable.fileSave(
+                                new Blob([JSON.stringify(data)])
+                            );
+                        },
+                    },
+                ],
                 ajax: {
                     type    : 'GET',
                     url     : '/income',

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Expense;
 use App\Models\ExpenseCategory;
+use Yajra\Datatables\Datatables;
 use Exception;
 
 class ExpenseController extends Controller
@@ -17,12 +18,20 @@ class ExpenseController extends Controller
     public function index()
     {
         $ExpenseCategoris = ExpenseCategory::all();
-        $Expenses = Expense::select('expenses.*','expenses_categories.Name as CategoryName')
-        ->leftJoin('expenses_categories','expenses.CategoryID','=','expenses_categories.id')
-        ->get();
-        return view('expense.index', compact('Expenses','ExpenseCategoris'));
+        if(request()->ajax()){
+            return $Expense = Datatables::of($this->dt_Querys())
+            ->addColumn('action' , 'layouts.dt_buttons')
+            ->make(true);
+        }
+        return view('expense.index', compact('ExpenseCategoris'));
     }
 
+    public function dt_Querys()
+    {
+        return $Expenses = Expense::select('expenses.*','expenses_categories.Name as CategoryName')
+        ->leftJoin('expenses_categories','expenses.CategoryID','=','expenses_categories.id')
+        ->get();
+    }
     /**
      * Show the form for creating a new resource.
      *

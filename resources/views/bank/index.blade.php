@@ -24,11 +24,6 @@
                     <div class="card-header bg-defult">
                         <div class="card-title">
                             <h2 class="card-title">
-                               <!-- <a href="{{ asset('bank/create') }}" class="btn bg-navy text-capitalize mr-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create Booking"> 
-                                    <i class="fa-solid fa-circle-plus mr-2"></i>
-                                    Add
-                                </a> -->
-                                {{-- <button type="button" class="btn btn-primary" id="AddNewBtn" data-toggle="modal" data-target = "#NewBankModal ">New Bank</button> --}}
                                 <button type="button" class="btn bg-navy text-capitalize mr-3" id="AddNewBtn"><i class="fa-solid fa-circle-plus mr-2"></i>Add New</button>
                                 Bank List
                             </h2>
@@ -195,34 +190,35 @@
                 colReorder:true,
                 stateSave:true,
                 // colvis:{buttonText:'Change Columns'},
-                buttons:[                    
+                buttons:[
                     {
-                        extend:'copy',
-                        text:'<button class="btn btn-primary"><i class="fa fa-copy"></i></button>',
-                        titleAttr:'Copy Items',
+                        extend : 'copy',
+                        text : "<button class = 'btn btn-success'><i class='fa fa-copy'></i></button>",
+                        titleAttr : 'Copy Items',
                     },
                     {
-                        extend:'excel',
-                        text:'<i class="fa fa-table"></i>',
-                        titleAttr:'Export to Excel',
-                        filename:'Hotel_List',
+                        extend : 'excel',
+                        text : "<button class = 'btn btn-primary'><i class ='fa fa-file-excel'></i></button>",
+                        titleAttr : 'Export to Excel',
+                        filename: "Bank_List",
+
                     },
                     {
-                        extend:'pdf',
-                        text:'<i class="fa fa-file"></i>',
-                        titleAttr:'Export to PDF',
-                        filename:'Hotel_List',
+                        extend : 'pdf',
+                        text : "<button class='btn btn-success'><i class = 'fa fa-file-pdf'></i></button>",
+                        titleAttr : 'Export to PDF',
+                        filename : 'Bank_list',
                     },
                     {
-                        extend:'csv',
-                        text:'CSV',
-                        titleAttr:'Export to PDF',
-                        filename:'Hotel_List',
+                        extend : 'csv',
+                        text : '<button class = "btn btn-primary"><i class="fa-solid fa-file-csv"></i></button>',
+                        titleAttr : "Export to CSV",
+                        filename : 'Bank_list',
                     },
                     {
-                        text:'JSON',
-                        titleAttr:'Export to PDF',
-                        filename:'Hotel_List',
+                        text : "<button class = 'btn btn-success'><i class = 'fa fa-file'></i></button>",
+                        titleAttr : "Export to JSON",
+                        filename : 'Bank_list',
                         action:function(e,dt,button,config){
                             var data = dt.buttons.exportData();
                             $.fn.dataTable.fileSave(

@@ -7,40 +7,23 @@
                     <div class="card-header bg-defult">
                         <div class="card-title">
                             <h2 class="card-title">
-                                {{-- <a href="{{ asset('expense/category/create') }}" class="btn bg-navy text-capitalize mr-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create Booking"> 
-                                    <i class="fa-solid fa-circle-plus mr-2"></i>
-                                    Add
-                                </a> --}}
                                 <button type="button" class="btn bg-navy text-capitalize mr-3" id="AddNewBtn"><i class="fa-solid fa-circle-plus mr-2"></i>Add New</button>
                                 Expense Category List
                             </h2>
                         </div>
                     </div>
                     <div class="card-body table-responsive p-0">
-                        <table class="table table-hover text-nowrap ListTable">
+                        <table class="table table-hover table-responsive table-borderless " id="ExpenseCategoryList">
 
                             <thead>
-                                <tr class="border-bottom p-md-5">
+                                <tr class="border-bottom">
                                     <th class="pr-5">Name</th>
                                     <th class="pl-5">Action</th>
                                 </tr>
                             </thead>
                           
                             <tbody>
-                                @foreach ($ExpenseCategoris as $Category)
-                                    <tr class="border-bottom">
-                                        <td class="pr-5">{{$Category->Name}}</td>
-                                        <td class="d-flex pl-5">
-                                           <a href="{{URL::to('expense/category/'.$Category->id)}}" class="mr-3 text-purple" data-bs-toggle="View" data-bs-placement="bottom" title="View">
-                                                <svg data-v-9a6e255c="" xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="invoice-row-5036-preview-icon" class="mx-1 feather feather-eye"><path data-v-9a6e255c="" d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle data-v-9a6e255c="" cx="12" cy="12" r="3"></circle></svg>
-                                           </a>
-                                            {{-- <a class="" href="/expense/category/{{ $Category->id }}/edit" data-bs-toggle="Edit" data-bs-placement="bottom" title="Edit">
-                                                <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i></i>
-                                            </a> --}}
-                                            <button class="EditBtn" value="{{$Category->id}}" title="Edit" ><i class="fa-regular fa-pen-to-square mr-3 text-orange"></i></button>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                
                             </tbody>
                            
                         </table>
@@ -114,6 +97,26 @@
     </div>
     <script>
         $(document).ready(function(){
+            $.noConflict();
+            var CategoryList = $('#ExpenseCategoryList').DataTable({
+                processing  : true, 
+                serverSide  : true,
+                colReorder  : true, 
+                stateSave   : true,
+                responsive  : true,
+                buttons     : ['copy','excel','pdf'],
+
+                ajax:{
+                    type : "GET",
+                    url  : "/expense/category",   
+                },
+                columns :[
+                    {data   : 'Name'},
+                    {data   : 'action' , name :'action'},
+                ],
+
+            });
+
             $('#AddNewBtn').on('click',function(e){
                 e.preventDefault();
                 $('#NewCategoryModal').modal('show');
@@ -135,6 +138,7 @@
                           data,
                           'success'
                         );
+                        CategoryList.draw(false);
                     },
                     error:function(data){
                         console.log('Eerror while added category !' + data);
