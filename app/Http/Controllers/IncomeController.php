@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Income;
+use Yajra\Datatables\Datatables;
 use App\Models\IncomeCategory;
 use PHPUnit\Framework\Exception;
 
@@ -17,10 +18,18 @@ class IncomeController extends Controller
     public function index()
     {
         $IncomeCategoris = IncomeCategory::all();
-        $Incomes = Income::select('incomes.*','income_categories.Name as CategoryName')
+        if(request()->ajax()){
+            return $Income = Datatables::of($this->dtQuerys())
+            ->addColumn('action' , 'layouts.dt_buttons')
+            ->make(true);
+        }
+        return view('income.index',compact('IncomeCategoris'));
+    }
+
+    public function dtQuerys(){
+        return $Incomes = Income::select('incomes.*','income_categories.Name as CategoryName')
         ->leftJoin('income_categories','incomes.CategoryID','=','income_categories.id')
         ->get();
-        return view('income.index' , compact('Incomes','IncomeCategoris'));
     }
 
     /**

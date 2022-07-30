@@ -2,7 +2,7 @@
 @section('content')
     <div class="container py-5 col-md-10 m-auto">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6 m-auto">
                 <div class="card">
                     <div class="card-header bg-defult">
                         <div class="card-title">
@@ -12,12 +12,12 @@
                                     Add
                                 </a> --}}
                                 <button type="button" class="btn bg-navy text-capitalize mr-3" id="AddNewBtn"><i class="fa-solid fa-circle-plus mr-2"></i>Add New</button>
-                                Expense Category List
+                                Income Category List
                             </h2>
                         </div>
                     </div>
                     <div class="card-body table-responsive p-0">
-                        <table class="table table-hover text-nowrap ListTable">
+                        <table class="table table-hover table-responsive table-borderless " id="IncomeCategoryList">
                             <thead>
                                 <tr class="border-bottom">
                                     <th>Name</th>
@@ -26,17 +26,6 @@
                             </thead>
                           
                             <tbody>
-                                @foreach ($IncomeCategoris as $Category)
-                                    <tr class="border-bottom">
-                                        <td>{{$Category->Name}}</td>
-                                        <td class="d-flex">
-                                           <a href="{{URL::to('income/category/'.$Category->id)}}" class="mr-3 text-purple" data-bs-toggle="View" data-bs-placement="bottom" title="View">
-                                                <svg data-v-9a6e255c="" xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="invoice-row-5036-preview-icon" class="mx-1 feather feather-eye"><path data-v-9a6e255c="" d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle data-v-9a6e255c="" cx="12" cy="12" r="3"></circle></svg>
-                                           </a>
-                                           <button class="EditBtn" value="{{$Category->id}}" title="Edit" ><i class="fa-regular fa-pen-to-square mr-3 text-orange"></i></button>
-                                        </td>
-                                    </tr>
-                                @endforeach
                             </tbody>
                            
                         </table>
@@ -106,6 +95,24 @@
     </div>
     <script>
         $(document).ready(function(){
+            $.noConflict();
+            var IncomeCategory = $('#IncomeCategoryList').DataTable({
+                processing: true,
+                serversite: true,
+                colReorder: true,
+                stateSave : true,
+                reponsive : true,
+                buttone:['copy','excel','pdf'],
+                ajax:{
+                    type : "GET",
+                    url  : "/income/category",
+                },
+                columns:[
+                    {data : 'Name'},
+                    {data : 'action', name : 'action'},
+                ],
+            });
+
             $('#AddNewBtn').on('click',function(e){
                 e.preventDefault();
                 $('#NewCategorylModal').modal('show');
@@ -127,6 +134,7 @@
                           data,
                           'success'
                         );
+                        IncomeCategory.draw(false);
                     },
                     error:function(data){
                         console.log('Eerror while added category !' + data);
