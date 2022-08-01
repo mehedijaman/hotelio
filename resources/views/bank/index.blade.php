@@ -24,6 +24,11 @@
                     <div class="card-header bg-defult">
                         <div class="card-title">
                             <h2 class="card-title">
+                               <!-- <a href="{{ asset('bank/create') }}" class="btn bg-navy text-capitalize mr-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create Booking"> 
+                                    <i class="fa-solid fa-circle-plus mr-2"></i>
+                                    Add
+                                </a> -->
+                                {{-- <button type="button" class="btn btn-primary" id="AddNewBtn" data-toggle="modal" data-target = "#NewBankModal ">New Bank</button> --}}
                                 <button type="button" class="btn bg-navy text-capitalize mr-3" id="AddNewBtn"><i class="fa-solid fa-circle-plus mr-2"></i>Add New</button>
                                 Bank List
                             </h2>
@@ -32,7 +37,7 @@
                         <a class="btn btn-sm bg-maroon float-right text-capitalize mr-3" href="/bank/delete"><i class="fa-solid fa-trash-can mr-2"></i>Delete All</a>
                     </div>
                     <div class="card-body table-responsive p-0">
-                        <table class="table table-hover table-responsive table-borderless BankList">
+                        <table class="table table-hover table-responsive table-borderless ListTable">
                             <thead>
                                 <tr class="border-bottom">
                                     <th>Name</th>
@@ -180,6 +185,5 @@
         </div>
     </div>
     <script src="{{ asset('js/custom-js/bank.js') }}"></script>
-
   
 @endsection
