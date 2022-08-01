@@ -206,7 +206,7 @@
                         action:function(e,dt,button,config){
                             var data = dt.buttons.exportData();
                             $.fn.dataTable.fileSave(
-                                new Blob([JSON.stringify()])
+                                new Blob([JSON.stringify(data)])
                             );
                         },
                     },

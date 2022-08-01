@@ -157,12 +157,12 @@
                             <div class="form-group row">
                                 <label for="ToRoomID" class="form-label col-md-3">ToRoom:</label>
                                 <div class="col-md-8">
-                                    {{-- <select type="number" name="ToRoomID" id="EditToRoom" class="form-select">
+                                    <select type="number" name="ToRoomID" id="EditToRoom" class="form-select">
                                         <option value="">Room Select</option>
                                         
                                         @foreach ($Rooms as $Room)
                                             <option value="{{ $Room->id }}">{{ $Room->RoomNo }}</option>
-                                            @if ($RoomTransfer->ToRoomID == $Room->id)
+                                            {{-- @if ($RoomTransfer->ToRoomID == $Room->id)
                                                 <option value="{{ $Room->id }}" selected>
                                                     {{ $Room->RoomNo }}
                                                 </option>
@@ -170,9 +170,9 @@
                                                     <option value="{{ $Room->id }}">
                                                     {{ $Room->RoomNo }}
                                                 </option>
-                                            @endif
+                                            @endif --}}
                                         @endforeach
-                                    </select>  --}}
+                                    </select> 
                                     <select type="number" name="ToRoomID" id="EditToRoom"  class="form-select" value="">
                                         <option value="">Select Room</option>
 
@@ -240,7 +240,7 @@
                         titleAttr:'Export To JSON',
                         filename:'RoomTransfer_List',
                         action:function(e,dt,button,config){
-                            var data = dt.buttons.exportData();
+                            var data = dt.buttons.exportData(data);
                             $.fn.dataTable.fileSave(
                                 new Blob([JSON.stringify()])
                             );
@@ -369,26 +369,26 @@
                 });
             });
 
-            $('.EditBtn').on('click',function(e){
-                e.preventDefault();
-                // console.log($(this).val());
-                var ID = $(this).val();
-                $.ajax({
-                    type: 'GET',
-                    url: "/roomTransfer/"+ID,
-                    success: function(data) {
-                        $('#EditRoomTransferForm')[0].reset();
-                        $('#EditRoomTransferModal').modal('show');
-                        $('#IDEdit').val(data['id']);
-                        $('#EditGuest').val(data['GuestID']);
-                        $('#EditFormRoom').val(data['FromRoomID']);
-                        $('#EditDate').val(data['Date']);
-                    },
-                    error: function(data) {
-                        console.log(data);
-                    }
-                });
-            });
+            // $('.EditBtn').on('click',function(e){
+            //     e.preventDefault();
+            //     // console.log($(this).val());
+            //     var ID = $(this).val();
+            //     $.ajax({
+            //         type: 'GET',
+            //         url: "/roomTransfer/"+ID,
+            //         success: function(data) {
+            //             $('#EditRoomTransferForm')[0].reset();
+            //             $('#EditRoomTransferModal').modal('show');
+            //             $('#IDEdit').val(data['id']);
+            //             $('#EditGuest').val(data['GuestID']);
+            //             $('#EditFormRoom').val(data['FromRoomID']);
+            //             $('#EditDate').val(data['Date']);
+            //         },
+            //         error: function(data) {
+            //             console.log(data);
+            //         }
+            //     });
+            // });
 
             $('#UpdateBtn').on('click',function(e){
                 e.preventDefault();
@@ -415,6 +415,8 @@
                 });
                 
             });
+
+            
 
 
         });

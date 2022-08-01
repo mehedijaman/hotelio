@@ -133,7 +133,7 @@
                         titleAttr:'Export To JSON',
                         filename:'User_list',
                         action:function(e,dt,button,config){
-                            var data = dt.button.exportData();
+                            var data = dt.button.exportData(data);
                             $.fn.dataTable.fileSave(
                                 new Blob([JSON.stringify])
                             );

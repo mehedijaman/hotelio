@@ -86,8 +86,8 @@ class RoomTransferController extends Controller
     {
         $Guests = Guest::all();
         $Rooms = Room::all();
-        $RoomTransfer = RoomTransfer::find($id);
-        return view('roomTransfer.edit',compact('Guests','Rooms','RoomTransfer'));
+        $RoomTransfers = RoomTransfer::find($id);
+        return view('roomTransfer.edit',compact('RoomTransfers','Guests','Rooms'));
     }
 
     /**
