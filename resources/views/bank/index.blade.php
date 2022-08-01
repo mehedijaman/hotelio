@@ -135,7 +135,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        {{ Form::open(array('method' => 'PATCH','class'=>'form-horizontal', 'files' => true , 'id'=>'updateBank')) }}
+                        {{ Form::open(array('method' => 'PATCH','class'=>'form-horizontal', 'files' => true , 'id'=>'EditBankForm')) }}
                         <input type="hidden" name="ID" id="EditID">
                         <div class="card-body">
                             <div class="form-group row">
@@ -319,30 +319,7 @@
                 });
             });
 
-            $('.EditBtn').on('click',function(e) {
-                e.preventDefault();
-                var ID = $(this).val();
-                
-                $.ajax({
-                    type    : 'GET',
-                    url     : '/bank/'+ID,
-                    data    : $('#updateBank').serializeArray(),
-                    success:function(data){
-                        $('#updateBank')[0].reset();
-                        $('#EditID').val(data['id']);
-                        $('#EditName').val(data['Name']);
-                        $('#EditBranch').val(data['Branch']);
-                        $('#EditAccountNo').val(data['AccountNo']);
-                        $('#EditAddress').val(data['Address']);
-                        $('#EditPhone').val(data['Phone']);
-                        $('#EditEmail').val(data['Email']);
-                        $('#EditBanklModal').modal('show');
-                    },
-                    error:function(data){
-                        console.log(data);
-                    }
-                });
-            });
+            
             $('#updateBtn').on('click',function(e) {
                 e.preventDefault();
                 var ID = $('#EditID').val();
@@ -362,6 +339,31 @@
                     error:function(data){
                         console.log(data);
                     },
+                });
+            });
+
+            $('body').on('click','#EditBtn',function(e){
+                var ID = $(this).data('id');
+
+                $.ajax({
+                    type:'GET',
+                    url:'/bank/'+ID,
+                    success:function(data){
+                        $('#EditBankForm')[0].reset();
+
+                        $('#EditID').val(data['id']);
+                        $('#EditName').val(data['Name']);
+                        $('#EditBranch').val(data['Branch']);
+                        $('#EditAccountNo').val(data['AccountNo']);
+                        $('#EditAddress').val(data['Address']);
+                        $('#EditPhone').val(data['Phone']);
+                        $('#EditEmail').val(data['Email']);
+                        
+                        $('#EditBanklModal').modal('show');
+                    },
+                    error:function(data){
+                        console.log(data);
+                    }
                 });
             });
         });
