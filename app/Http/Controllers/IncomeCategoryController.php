@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\IncomeCategory;
+use Yajra\Datatables\Datatables;
 use Exception;
 use PhpParser\Node\Expr\FuncCall;
 
@@ -16,9 +17,15 @@ class IncomeCategoryController extends Controller
      */
     public function index()
     {
-        $IncomeCategoris = IncomeCategory::all();
-        return view('incomeCategory.index',compact('IncomeCategoris'));
+        if(request()->ajax()){
+            return $IncomeCategoris = Datatables::of(IncomeCategory::all())
+            ->addColumn('action','layouts.dt_buttons')
+            ->make(true);
+        }
+        
+        return view('incomeCategory.index'); 
     }
+   
 
     /**
      * Show the form for creating a new resource.
