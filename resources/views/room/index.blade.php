@@ -22,7 +22,7 @@
                     </button>
                 </div>
                 <div class="card-body table-responsive p-0">
-                    <table class="table  table-responsive table-borderless "id="RoomList">
+                    <table class="table table-responsive table-borderless "id="RoomList">
                         <thead>
 
                             <tr class="border-bottom">
@@ -366,11 +366,48 @@
 
             $.noConflict();
             var RoomList = $('#RoomList').DataTable({
+                dom:'CBrfltip',
                 serverSide:true,
                 processing:true,
                 colReorder:true,
                 stateSave:true,
                 responsive:true,
+                buttons:[
+                    {
+                        extend:'copy',
+                        text:'<button class="btn btn-primary"><i class="fa fa-copy"></i></button>',
+                        titleAttr:'Copy Items'
+                    },
+                    {
+                        extend:'excel',
+                        text:'<button class="btn btn-success"><i class="fa fa-table"></i></button>',
+                        titleAttr:'Export to Excel',
+                        filename:'Room_List',
+                    },
+                    {
+                        extend:'pdf',
+                        text:'<button class="btn bg-purple"><i class="fa-solid fa-file-pdf"></i></button>',
+                        titleAttr:'Export to Pdf',
+                        filename:'Room_List',
+                    },
+                    {
+                        extend:'csv',
+                        text:'<button class="btn btn-info"><i class="fas fa-file-csv"></i></button>',
+                        titleAttr:'Export to PDF',
+                        filename:'Room_List',
+                    },
+                    {
+                        text:'<button class="btn btn-dark"><i class="fa-solid fa-file"></i></button>',
+                        titleAttr:'Export To JSON',
+                        filename:'Room_List',
+                        action:function(e,dt,button,config){
+                            var data = dt.buttons.exportData();
+                            $.fn.dataTable.fileSave(
+                                new Blob([JSON.stringify()])
+                            );
+                        },
+                    },
+                ],
                 ajax:{
                     url:'/room',
                     type:'Get',

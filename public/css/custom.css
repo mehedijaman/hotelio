@@ -318,6 +318,10 @@ ul .sub-btn {
     padding: 0;
     width: 150px !important;
 }
+/* Data table */
+.dt-buttons {
+    padding-bottom: 0.8rem;
+}
 
 
 
