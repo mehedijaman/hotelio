@@ -135,7 +135,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        {{ Form::open(array('method' => 'PATCH','class'=>'form-horizontal', 'files' => true , 'id'=>'updateBank')) }}
+                        {{ Form::open(array('method' => 'PATCH','class'=>'form-horizontal', 'files' => true , 'id'=>'EditBankForm')) }}
                         <input type="hidden" name="ID" id="EditID">
                         <div class="card-body">
                             <div class="form-group row">
@@ -175,7 +175,7 @@
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <button type="button" name="submit" id="updateBtn" class="btn bg-success float-right w-25 text-capitalize">Update</button>
+                                <button type="button" name="submit" id="UpdateBtn" class="btn bg-success float-right w-25 text-capitalize">Update</button>
                             </div>
                         </div>
                     {{ Form::close()}} 
@@ -184,188 +184,6 @@
             </div>
         </div>
     </div>
-    <script>
-        $(document).ready(function(){
-
-            $.noConflict();
-            var table =$('.ListTable').DataTable({
-                dom:'CBrfiltip',
-                processing:true,
-                serverSide:true,
-                colReorder:true,
-                stateSave:true,
-                // colvis:{buttonText:'Change Columns'},
-                buttons:[                    
-                    {
-                        extend:'copy',
-                        text:'<button class="btn btn-primary"><i class="fa fa-copy"></i></button>',
-                        titleAttr:'Copy Items',
-                    },
-                    {
-                        extend:'excel',
-                        text:'<i class="fa fa-table"></i>',
-                        titleAttr:'Export to Excel',
-                        filename:'Hotel_List',
-                    },
-                    {
-                        extend:'pdf',
-                        text:'<i class="fa fa-file"></i>',
-                        titleAttr:'Export to PDF',
-                        filename:'Hotel_List',
-                    },
-                    {
-                        extend:'csv',
-                        text:'CSV',
-                        titleAttr:'Export to PDF',
-                        filename:'Hotel_List',
-                    },
-                    {
-                        text:'JSON',
-                        titleAttr:'Export to PDF',
-                        filename:'Hotel_List',
-                        action:function(e,dt,button,config){
-                            var data = dt.buttons.exportData();
-                            $.fn.dataTable.fileSave(
-                                new Blob([JSON.stringify(data)])
-                            );
-                        },
-                    },
-                ],
-                responsive:true,
-                ajax:{
-                    url:'/bank',
-                    type:'GET'
-                },
-                columns:[
-                    {data:'Name'},
-                    {data:'Branch'},
-                    {data:'AccountNo'},
-                    {data:'Address'},
-                    {data:'Phone'},
-                    {data:'Email'},
-                    {data:'action',name:'action'},
-                ],
-            });
-
-            $('#AddNewBtn').on('click',function(e){
-                e.preventDefault();
-                jQuery.noConflict();
-                $('#NewBanklModal').modal('show');
-            });
-
-            $('#formResetBtn').on('click',function(e){
-                e.preventDefault();
-
-                $('#newBankForm')[0].reset();
-            });
-
-            $('#submitBtn').on('click',function(e){
-                e.preventDefault();
-                
-                $.ajax({
-                    type:'POST',
-                    url : '/bank',
-                    data: $('#newBankForm').serializeArray(),
-                    success:function(data){
-                        table.draw(false);
-                        $('#newBankForm')[0].reset();
-                        $('#NewBanklModal').modal('hide');
-                        Swal.fire(
-                          'Success!',
-                          data,
-                          'success'
-                        );
-                    },
-                    error:function(data){
-                        console.log('Error while adding new Bank'+data);
-                    },
-                });
-            });
-            
-            $('.DeleteBtn').on('click',function(e) {
-                e.preventDefault();
-                var ID = $(this).val();
-                console.log(ID);
-                Swal.fire({
-                    title :"Are you sure ?",
-                    text  : "You won't be able to revert this !",
-                    icon : 'warning',
-                    showCancelButton : true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor : '#d33',
-                    confirmButtonText : 'Yes , delete it !'
-                }).then((result) => {
-                    if(result.isConfirmed){
-                        $.ajax({
-                            type : 'GET',
-                            url  : '/bank/delete/'+ID,
-                            success:function(data){
-                                Swal.fire(
-                                    'Deleted!',
-                                    'Your file has been deleted.',
-                                    'success'
-                                );
-                            },
-                            error:function(data){
-                                Swal.fire(
-                                    'Error!',
-                                    'Delete failed !',
-                                    'error'
-                                );
-                                console.log(data);
-                            },
-                        });
-                    }
-                });
-            });
-
-            $('.EditBtn').on('click',function(e) {
-                e.preventDefault();
-                var ID = $(this).val();
-                
-                $.ajax({
-                    type    : 'GET',
-                    url     : '/bank/'+ID,
-                    data    : $('#updateBank').serializeArray(),
-                    success:function(data){
-                        $('#updateBank')[0].reset();
-                        $('#EditID').val(data['id']);
-                        $('#EditName').val(data['Name']);
-                        $('#EditBranch').val(data['Branch']);
-                        $('#EditAccountNo').val(data['AccountNo']);
-                        $('#EditAddress').val(data['Address']);
-                        $('#EditPhone').val(data['Phone']);
-                        $('#EditEmail').val(data['Email']);
-                        $('#EditBanklModal').modal('show');
-                    },
-                    error:function(data){
-                        console.log(data);
-                    }
-                });
-            });
-            $('#updateBtn').on('click',function(e) {
-                e.preventDefault();
-                var ID = $('#EditID').val();
-                $.ajax({
-                    type    : 'PATCH',
-                    url     : '/bank/'+ID,
-                    data    : $('#updateBank').serializeArray(),
-                    success:function(data){
-                        $('#EditBanklModal').modal('hide');
-                        $('#updateBank')[0].reset();
-                        Swal.fire(
-                          'Success!',
-                          data,
-                          'success'
-                        );
-                    },
-                    error:function(data){
-                        console.log(data);
-                    },
-                });
-            });
-        });
-
-    </script>
+    <script src="{{ asset('js/custom-js/bank.js') }}"></script>
   
 @endsection

@@ -19,7 +19,7 @@
                         <a class="btn btn-sm bg-maroon float-right text-capitalize mr-3" href="/income/delete"><i class="fa-solid fa-trash-can mr-2"></i>Delete All</a>
                     </div>
                     <div class="card-body table-responsive p-0">
-                        <table class="table table-hover text-nowrap ListTable">
+                        <table class="table table-hover table-responsive table-borderless col-md-10" id="IncomeList">
                             <thead>
                                 <tr>
                                     <th>Category Name</th>
@@ -30,22 +30,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ( $Incomes as $Income)
-                                    <tr class="">
-                                        <td>{{ $Income->CategoryName }}</td>
-                                        <td>{{ $Income->Amount }}</td>
-                                        <td>{{ $Income->Description }}</td>
-                                        <td>{{ $Income->Date }}</td>
-                                        <td class="d-flex">
-                                            <a href="{{URL::to('income/'.$Income->id)}}" class="mr-3 text-purple" data-bs-toggle="View" data-bs-placement="bottom" title="View">
-                                                 <svg data-v-9a6e255c="" xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="invoice-row-5036-preview-icon" class="mx-1 feather feather-eye"><path data-v-9a6e255c="" d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle data-v-9a6e255c="" cx="12" cy="12" r="3"></circle></svg>
-                                            </a>
-                                            <button class="EditBtn" value="{{$Income->id}}" title="Edit" ><i class="fa-regular fa-pen-to-square mr-3 text-orange"></i></button>
-                                             
-                                            <button type="button" class="DeleteBtn" value="{{$Income->id}}"  title="Delete"><i class="fa-regular fa-trash-can mr-3 text-danger"></i></button>
-                                         </td>
-                                    </tr>
-                                @endforeach
+                                
+                                     
                             </tbody>
                         </table>
                     </div>
@@ -169,6 +155,27 @@
     </div>
     <script>
         $(document).ready(function(){
+            $.noConflict();
+            var IncomeList =$('#IncomeList').DataTable({
+                processing  : true,
+                serverSide  : true,
+                colReorder  : true,
+                stateSave   : true,
+                responsive  : true,
+                buttons : ['copy','excel','pdf'],
+                ajax: {
+                    type    : 'GET',
+                    url     : '/income',
+                } ,
+                columns : [
+                    {data : "CategoryName"},
+                    {data : "Amount"},
+                    {data : "Description"},
+                    {data : "Date"},
+                    {data : "action" , name : 'action'},
+                ],
+            });
+
             $('#AddNewBtn').on('click',function(e){
                 e.preventDefault();
                 $('#NewIncomelModal').modal('show');
