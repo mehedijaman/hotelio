@@ -277,12 +277,12 @@
         $(document).ready(function(){
             $.noConflict();
             var GuestList = $('#GuestTable').DataTable({
-                dom         : 'Btftip',
+                dom         : 'Btlftip',
                 processing  : true,
                 serverSide  : true,
                 colReorder  : true,
                 stateSave   : true,
-                responsive  :true,
+                responsive  : true,
                 buttons:[
                     {
                         extend : 'copy',

@@ -274,7 +274,7 @@
     $(document).ready(function(){
         $.noConflict();
         var EmployeeList = $('#Employeelist').DataTable({
-            dom         : 'Btftip',
+            dom         : 'Btlftip',
             processing:true,
             colReorder:true,
             serverSide:true,
@@ -354,6 +354,7 @@
                         data,
                         'success'
                     );
+                    EmployeeList.draw(false);
                 },
                 error:function(data){
                     console.log('Error while adding new Bank'+data);

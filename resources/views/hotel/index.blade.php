@@ -218,7 +218,7 @@
 
             $.noConflict();
             var HotelList = $('#HotelList').DataTable({
-                dom:'Btftip',
+                dom:'Btlftip',
                 serverSide:true,
                 processing:true,
                 responsive:true,

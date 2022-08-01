@@ -32,7 +32,7 @@
                         <a class="btn btn-sm bg-maroon float-right text-capitalize mr-3" href="/bank/delete"><i class="fa-solid fa-trash-can mr-2"></i>Delete All</a>
                     </div>
                     <div class="card-body table-responsive p-0">
-                        <table class="table table-hover table-responsive table-borderless ListTable">
+                        <table class="table table-hover table-responsive table-borderless BankList">
                             <thead>
                                 <tr class="border-bottom">
                                     <th>Name</th>
@@ -183,8 +183,8 @@
         $(document).ready(function(){
 
             $.noConflict();
-            var table =$('.ListTable').DataTable({
-                dom:'CBrfiltip',
+            var BankList =$('.BankList').DataTable({
+                dom:'Btlftip',
                 processing:true,
                 serverSide:true,
                 colReorder:true,
@@ -263,7 +263,7 @@
                     url : '/bank',
                     data: $('#newBankForm').serializeArray(),
                     success:function(data){
-                        table.draw(false);
+                        
                         $('#newBankForm')[0].reset();
                         $('#NewBanklModal').modal('hide');
                         Swal.fire(
@@ -271,6 +271,7 @@
                           data,
                           'success'
                         );
+                        BankList.draw(false);
                     },
                     error:function(data){
                         console.log('Error while adding new Bank'+data);

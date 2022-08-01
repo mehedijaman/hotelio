@@ -209,7 +209,7 @@
                 colReorder : true ,
                 stateSave  : true ,
                 responsive : true ,
-                dom         : 'Btftip',
+                dom         : 'Btlftip',
                 buttons:[
                     {
                         extend : 'copy',

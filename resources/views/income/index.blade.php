@@ -19,7 +19,7 @@
                         <a class="btn btn-sm bg-maroon float-right text-capitalize mr-3" href="/income/delete"><i class="fa-solid fa-trash-can mr-2"></i>Delete All</a>
                     </div>
                     <div class="card-body table-responsive p-0">
-                        <table class="table table-hover table-responsive table-borderless col-md-10" id="IncomeList">
+                        <table class="table table-hover table-responsive table-borderless" id="IncomeList">
                             <thead>
                                 <tr>
                                     <th>Category Name</th>
@@ -157,7 +157,7 @@
         $(document).ready(function(){
             $.noConflict();
             var IncomeList =$('#IncomeList').DataTable({
-                dom         : 'Btftip',
+                dom         : 'Btlftip',
                 processing  : true,
                 serverSide  : true,
                 colReorder  : true,
@@ -234,6 +234,7 @@
                           data,
                           'success'
                         );
+                        IncomeList.draw(false);
                     },
                     error:function(date){
                         console.log('Error while added new Expense Item'+data);
