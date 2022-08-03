@@ -19,6 +19,7 @@ class RoomController extends Controller
     public function index()
     {
         $Hotels = Hotel::all();
+        // $Rooms  = Room::all();
         if (request()->ajax()) {
             return $Rooms = Datatables::of($this->dtQuery())->addColumn('action','layouts.dt_buttons')->make(true);
         }

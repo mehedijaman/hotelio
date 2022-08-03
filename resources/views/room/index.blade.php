@@ -81,6 +81,100 @@
             </div>
         </div>
     </div>
+    <div class="modal fade show" id="ShowRoomModal"  role="dialog">
+        <div class="modal-dialog  modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add A New Room</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <b class="fs-5">Hotel :</b>
+                                <b class="ml-5" id="ViewHotel"></b>
+                            </td>
+                             <td>
+                                 <b class="fs-5">RoomNo :</b>
+                                 <b class="ml-5"></b>
+                            </td>
+                            <td>
+                                <b class="fs-5">Floor :</b>
+                                <b class="ml-5"></b>
+                            </td>
+                            <td>
+                                <b class="fs-5" id="ViewType">Type :</b>
+                                <b class="ml-5"></b>
+                            </td>
+                        </tr>
+
+                        {{-- <tr>
+                            <td>
+                                <b class="fs-5">Geyser :</b>
+                                <b class="ml-5">@if($Rooms->Geyser) <i class="fa-solid fa-square-check text-green ml-1"></i>@else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
+                            </td>
+                            <td>
+                                <b class="fs-5">AC :</b>
+                                <b class="ml-5">@if($Rooms->AC) <i class="fa-solid fa-square-check text-green ml-1"></i>@else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
+                            </td>
+                            <td>
+                                <b class="fs-5">Balcony :</b>
+                                <b class="ml-5">@if($Rooms->Balcony) <i class="fa-solid fa-square-check text-green ml-1"></i>@else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
+                            </td>
+                            <td>
+                                <b class="fs-5">Bathtub :</b>
+                                <b class="ml-5">@if($Rooms->Bathtub) <i class="fa-solid fa-square-check text-green ml-1"></i>@else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
+                            </td>
+                            
+                        </tr>
+                        <tr>
+                            <td>
+                                <b class="fs-5">HiComode :</b>
+                                <b class="ml-5">@if($Rooms->HiComode) <i class="fa-solid fa-square-check text-green ml-1"></i>@else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
+                            </td>
+                            <td>
+                                <b class="fs-5">Locker :</b>
+                                <b class="ml-5">@if($Rooms->Locker) <i class="fa-solid fa-square-check text-green ml-1"></i>@else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
+                            </td>
+                            <td>
+                                <b class="fs-5">Freeze :</b>
+                                <b class="ml-5">@if($Rooms->Freeze) <i class="fa-solid fa-square-check text-green ml-1"></i>@else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
+                            </td>
+                            <td>
+                                <b class="fs-5">Internet :</b>
+                                <b class="ml-5">@if($Rooms->Internet) <i class="fa-solid fa-square-check text-green ml-1"></i>@else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
+                            </td>
+                            
+                        </tr>
+                        <tr>
+                          
+                            <td>
+                                <b class="fs-5">Intercom :</b>
+                                <b class="ml-5">@if($Rooms->Intercom) <i class="fa-solid fa-square-check text-green ml-1"></i>@else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
+                            </td>
+                            <td>
+                                <b class="fs-5">TV :</b>
+                                <b class="ml-5">@if($Rooms->TV) <i class="fa-solid fa-square-check text-green ml-1"></i>@else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
+                            </td>
+                            <td>
+                                <b class="fs-5">TV :</b>
+                                <b class="ml-5">@if($Rooms->TV) <i class="fa-solid fa-square-check text-green ml-1"></i>@else<i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
+                            </td>
+                            <td>
+                                <b class="fs-5">Price :</b>
+                                <b class="ml-5">{{ $Rooms->Price}}</b>
+                            </td> --}}
+                            
+                        </tr>
+                    </tbody>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
 
     <div class="modal fade show" id="NewRoomModal"  role="dialog">
         <div class="modal-dialog  modal-xl">
@@ -137,33 +231,34 @@
                             <div class="form-group row ">
                                 <div>
                                     <div class="form-group row">
-                                        <div class="col-md-4">
+                                        <div class="col-md-2">
                                             <div class="form-group row">
-                                                <label for="Geyser" class="col-md-3 form-label">Geyser:</label>
-                                                <div class="col-md-8">
-                                                    <div class="form-check form-check-inline ml-1">
-                                                        <input type="radio" class="form-check-input" name="Geyser" value="1">
-                                                        <label for="" class="form-check-label">Yes</label>
-                                                    </div>
-                                                    <div class="form-check form-check-inline ml-4">
-                                                        <input type="radio" class="form-check-input" name="Geyser" value="0">
-                                                        <label for="" class="form-check-label">No</label>
-                                                    </div>
+                                                <label for="Geyser" class="col-md-5 form-label">Geyser:</label>
+                                                <div class="col-md-6">
+                                                    <div class="custom-control custom-switch">
+                                                        <input type="checkbox" class="custom-control-input" id="customSwitch1" name="Geyser" value="1">
+                                                        <input type="checkbox" class="custom-control-input" id="customSwitch1" name="Geyser" value="0">
+                                                        <label class="custom-control-label" for="customSwitch1"></label>
+                                                      </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-2">
                                             <div class="form-group row">
                                                 <label for="AC" class="col-md-3 form-label">AC:</label>
                                                 <div class="col-md-8">
-                                                    <div class="form-check form-check-inline ml-1">
+                                                    <div class="custom-control custom-switch">
+                                                        <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                                                        <label class="custom-control-label" for="customSwitch1">Toggle this switch element</label>
+                                                    </div>
+                                                    {{-- <div class="form-check form-check-inline ml-1">
                                                         <input type="radio" class="form-check-input" name="AC" value="1">
                                                         <label for="" class="form-check-label">Yes</label>
                                                     </div>
                                                     <div class="form-check form-check-inline ml-4">
                                                         <input type="radio" class="form-check-input" name="AC" value="0">
                                                         <label for="" class="form-check-label">No</label>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                             </div>
                                         </div> 
@@ -171,7 +266,11 @@
                                             <div class="form-group row">
                                                 <label for="Balcony" class="col-md-3 form-label">Balcony:</label>
                                                 <div class="col-md-8">
-                                                    <div class="form-check form-check-inline ml-1">
+                                                    <div class="custom-control custom-switch">
+                                                        <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                                                        <label class="custom-control-label" for="customSwitch1">Toggle this switch element</label>
+                                                      </div>
+                                                    {{-- <div class="form-check form-check-inline ml-1">
                                                         <input type="radio" class="form-check-input" name="Balcony" value="1">
                                                         <label for="" class="form-check-label">
                                                             Yes
@@ -182,7 +281,7 @@
                                                         <label for="" class="form-check-label">
                                                             No
                                                         </label>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                             </div>
                                         </div> 
@@ -360,192 +459,5 @@
             </div>
         </div>
     </div>
-
-    <script>
-        $(document).ready(function(){
-
-            $.noConflict();
-            var RoomList = $('#RoomList').DataTable({
-                dom:'CBrfltip',
-                serverSide:true,
-                processing:true,
-                colReorder:true,
-                stateSave:true,
-                responsive:true,
-                buttons:[
-                    {
-                        extend:'copy',
-                        text:'<button class="btn btn-primary"><i class="fa fa-copy"></i></button>',
-                        titleAttr:'Copy Items'
-                    },
-                    {
-                        extend:'excel',
-                        text:'<button class="btn btn-success"><i class="fa fa-table"></i></button>',
-                        titleAttr:'Export to Excel',
-                        filename:'Room_List',
-                    },
-                    {
-                        extend:'pdf',
-                        text:'<button class="btn bg-purple"><i class="fa-solid fa-file-pdf"></i></button>',
-                        titleAttr:'Export to Pdf',
-                        filename:'Room_List',
-                    },
-                    {
-                        extend:'csv',
-                        text:'<button class="btn btn-info"><i class="fas fa-file-csv"></i></button>',
-                        titleAttr:'Export to PDF',
-                        filename:'Room_List',
-                    },
-                    {
-                        text:'<button class="btn btn-dark"><i class="fa-solid fa-file"></i></button>',
-                        titleAttr:'Export To JSON',
-                        filename:'Room_List',
-                        action:function(e,dt,button,config){
-                            var data = dt.buttons.exportData();
-                            $.fn.dataTable.fileSave(
-                                new Blob([JSON.stringify(data)])
-                            );
-                        },
-                    },
-                ],
-                ajax:{
-                    url:'/room',
-                    type:'Get',
-                },
-                columns:
-                [
-                    {data:'id',visible:false},
-                    {data:'HotelName'},
-                    {data:'RoomNo'},
-                    {data:'Floor'},
-                    {data:'Type'},
-                    {data:'Geyser', render:function(data, type,row){
-                        return data == 1?'<i class="fa fa-check text-success"></i>':'<i class="fa fa-times text-danger"></i>';
-                    }},
-                    {data:'AC', render:function(data, type,row){
-                        return data == 1?'<i class="fa fa-check text-success"></i>':'<i class="fa-solid fa-xmark text-danger"></i>';
-                    }},
-                    {data:'Balcony', render:function(data, type,row){
-                        return data == 1?'<i class="fa fa-check text-success"></i>':'<i class="fa-solid fa-xmark text-danger"></i>';
-                    }},
-                    {data:'Internet', render:function(data, type,row){
-                        return data == 1?'<i class="fa fa-check text-success"></i>':'<i class="fa-solid fa-xmark text-danger"></i>';
-                    }},
-                    {data:'TV', render:function(data, type,row){
-                        return data == 1? '<i class="fa fa-check text-success"></i>':'<i class="fa-solid fa-xmark text-danger"></i>';
-                    }},
-                    {data:'Price'},
-                    {data:'action'}
-                ]
-            });
-
-            $('#ResetBtnForm').on('click',function(e){
-                e.preventDefault();
-                $('#NewRoomFrom')[0].reset();
-            });
-            $('#SubmitBtn').on('click',function(e){
-                e.preventDefault();
-                
-                $.ajax({
-                    type:'POST',
-                    url:'/room',
-                    data: $('#NewRoomFrom').serializeArray(),
-                    success:function(data){
-                        $('#NewRoomFrom')[0].reset();
-                        $('#NewRoomModal').modal('hide');
-                         Swal.fire(
-                          'Success!',
-                          data,
-                          'success'
-                        )
-                        RoomList.draw(false);
-                    },
-                    error:function(data){
-                        console.log('Error while adding new hotel' + data);
-                    },
-                });
-            });
-
-            $('.DeleteBtn').on('click',function(e){
-                e.preventDefault();
-                // console.log($(this).val());
-                var ID = $(this).val();
-
-                Swal.fire({
-                  title: 'Are you sure?',
-                  text: "You won't be able to delete this!",
-                  icon: 'warning',
-                  showCancelButton: true,
-                  confirmButtonColor: '#3085d6',
-                  cancelButtonColor: '#d33',
-                  confirmButtonText: 'Yes, delete it!'
-                }).then((result) => {
-                  if (result.isConfirmed) {
-                    $.ajax({
-                        type:'GET',
-                        url:'/room/delete/'+ID,
-                        success:function(data){
-                           Swal.fire(
-                              'Deleted!',
-                              'Your file has been deleted.',
-                              'success'
-                            );
-                        },
-                        error:function(data){
-                            Swal.fire(
-                              'Error!',
-                              'Delete failed !',
-                              'error'
-                            );
-
-                            console.log(data);
-                        },
-                    });
-
-                    
-                 }
-                });
-            });
-
-            $('#DeleteAllBtn').on('click',function(e){
-                e.preventDefault();
-                 Swal.fire({
-                        title: 'Are you sure?',
-                        text: "You won't be able to DeleteAll this!",
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Yes, DeleteAll it!'
-
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            $.ajax({
-                                type:'GET',
-                                url:'/room/delete',
-                                success:function(data){
-                                Swal.fire(
-                                    'DeleteAll!',
-                                    'Your file has been DeleteAll.',
-                                    'success'
-                                    );
-                                },
-                                error:function(data){
-                                    Swal.fire(
-                                    'Error!',
-                                    'DeleteAll failed !',
-                                    'error'
-                                    );
-
-                                    console.log(data);
-                                },
-                            });
-
-                            
-                        }
-                    });
-            })
-
-        });
-    </script>
+    <script src="js/custom-js/room.js"></script>
 @endsection
