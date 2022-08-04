@@ -7,7 +7,7 @@
                 <div class="card-header bg-defult">
                     <div class="card-title">
                         <h2 class="card-title">
-                            <button type="button" class="btn bg-navy text-capitalize mr-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create Room"" data-toggle="modal" data-target="#NewRoomModal"> 
+                            <button type="button" class="btn bg-navy text-capitalize mr-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create Room" data-toggle="modal" data-target="#NewRoomModal"> 
                                 <i class="fa-solid fa-circle-plus mr-2"></i>
                                 Add
                             </button> 
@@ -34,7 +34,6 @@
                                 <th>Geyser</th>
                                 <th>Ac</th>
                                 <th>Balcony</th>
-                                {{-- <th>Bathtub</th> --}}
                                 <th>Internet</th>
                                 <th>Tv</th>
                                 <th>Price</th>
@@ -42,39 +41,9 @@
                             </tr>
 
                         </thead>
-                        {{-- <tbody>
-                            @foreach ($Rooms as $Room)
-                                <tr class="border-bottom">
-                                    <td>{{$Room->HotelName}}</td>
-                                    <td>{{$Room->RoomNo}}</td>
-                                    <td>{{$Room->Floor}}</td>
-                                    <td>{{$Room->Type}}</td>
-                                    <td>@if($Room->Geyser)<i class="fa-solid fa-square-check text-green ml-4"></i> @else <i class="fa-solid fa-square-xmark text-danger ml-4"></i> @endif</td>
-                                    <td>@if($Room->Ac)<i class="fa-solid fa-square-check text-green ml-1"></i> @else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</td>
-                                    <td>@if($Room->Balcony)<i class="fa-solid fa-square-check text-green ml-4"></i> @else <i class="fa-solid fa-square-xmark text-danger ml-4"></i> @endif</td>
-                                    <td>@if($Room->Internet)<i class="fa-solid fa-square-check text-green ml-4"></i> @else <i class="fa-solid fa-square-xmark text-danger ml-4"></i> @endif</td> --}}
-                                    {{-- <td>@if($Room->Tv)<i class="fa-solid fa-square-check text-green ml-1"></i> @else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</td> --}}
-                                    {{-- <td>{{$Room->Price}}</td>
-                                    <td class="d-flex">
-                                        <a href="{{ URL::to('/room/'.$Room->id) }}" class="mr-3 text-purple" data-bs-toggle="tooltip" data-bs-placement="bottom" title="View">
-                                            <svg data-v-9a6e255c="" xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="invoice-row-5036-preview-icon" class="mx-1 feather feather-eye">
-                                                <path data-v-9a6e255c="" d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                                <circle data-v-9a6e255c="" cx="12" cy="12" r="3"></circle>
-                                            </svg>
-                                        </a>
-                                        <a class="" href="/room/{{ $Room->id }}/edit" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit">
-                                            <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i></i>
-                                        </a> --}}
-
-                                        {{-- {{ Form::open(array('url' => '/room/'.$Room->id,'method' => 'DELETE')) }} --}}
-                                        {{-- <button class="DeleteBtn" value="{{$Room->id}}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
-                                            <i class="fa-regular fa-trash-can mr-3 text-danger"></i>
-                                        </button> --}}
-                                        {{-- {{ Form::close() }} --}}
-                                    {{-- </td>
-                                </tr>
-                            @endforeach
-                        </tbody> --}}
+                        <tbody>
+                            
+                        </tbody>
                     </table>
                 </div>
                 <div class="card-footer"></div>
@@ -91,13 +60,20 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <tbody>
+                    <table class="table table-responsive table-stripped tabole-condensed">
+                        <thead>
+                            <tr>
+                                <th>Attribute</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><b class="fs-5">Hotel :</b></td>
+                            <td><span class="fs-5" id="ViewHotel"></span></td>
+                        </tr>
                         <tr>
                             <td>
-                                <b class="fs-5">Hotel :</b>
-                                <b class="ml-5" id="ViewHotel"></b>
-                            </td>
-                             <td>
                                  <b class="fs-5">RoomNo :</b>
                                  <b class="ml-5"></b>
                             </td>
@@ -106,8 +82,8 @@
                                 <b class="ml-5"></b>
                             </td>
                             <td>
-                                <b class="fs-5" id="ViewType">Type :</b>
-                                <b class="ml-5"></b>
+                                <b class="fs-5">Geyser :</b>
+                                <b class="ml-5" id="ViewGeyser"></b>
                             </td>
                         </tr>
 
@@ -170,6 +146,8 @@
                             
                         </tr>
                     </tbody>
+                    </table>
+                    
                 </div>
             </div>
             </div>
@@ -239,7 +217,7 @@
                                                         <input type="checkbox" class="custom-control-input" id="customSwitch1" name="Geyser" value="1">
                                                         <input type="checkbox" class="custom-control-input" id="customSwitch1" name="Geyser" value="0">
                                                         <label class="custom-control-label" for="customSwitch1"></label>
-                                                      </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -248,17 +226,10 @@
                                                 <label for="AC" class="col-md-3 form-label">AC:</label>
                                                 <div class="col-md-8">
                                                     <div class="custom-control custom-switch">
-                                                        <input type="checkbox" class="custom-control-input" id="customSwitch1">
-                                                        <label class="custom-control-label" for="customSwitch1">Toggle this switch element</label>
+                                                        <input type="checkbox" class="custom-control-input" id="ACSwitch" name="AC" value="1">
+                                                        <input type="checkbox" class="custom-control-input" id="ACSwitch" name="AC" value="0">
+                                                        <label class="custom-control-label" for="ACSwitch"></label>
                                                     </div>
-                                                    {{-- <div class="form-check form-check-inline ml-1">
-                                                        <input type="radio" class="form-check-input" name="AC" value="1">
-                                                        <label for="" class="form-check-label">Yes</label>
-                                                    </div>
-                                                    <div class="form-check form-check-inline ml-4">
-                                                        <input type="radio" class="form-check-input" name="AC" value="0">
-                                                        <label for="" class="form-check-label">No</label>
-                                                    </div> --}}
                                                 </div>
                                             </div>
                                         </div> 

@@ -87,9 +87,9 @@ $(document).ready(function(){
             type:'GET',
             url:'/room/'+ID,
             success:function(data){
-                $('#ViewHotel').val(data['HotelID']);
-                console.log(hotel);
+                $('#ViewHotel').text(data['HotelName']);
                 
+                data['Geyser']  == '1'? $('#ViewGeyser').html('<i class="fa fa-check text-primary"></i>'):$('#ViewGeyser').html('<i class="fa fa-times text-danger"></i>');             
                 $('#ShowRoomModal').modal('show');
             }
 

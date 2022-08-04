@@ -183,4 +183,28 @@ $(document).ready(function(){
             }
         });
     });
+
+    $('body').on('click','#ViewBtn',function(e){
+        e.preventDefault();
+
+        var ID = $(this).data('id');
+
+        $.ajax({
+            type:'GET',
+            url:'/bank/'+ID,
+            success:function(data){
+                $('#ViewName').text(data['Name']);
+                $('#ViewBranch').text(data['Branch']);
+                $('#ViewAccountNo').text(data['AccountNo']);
+                $('#ViewAddress').text(data['Address']);
+                $('#ViewPhone').text(data['Phone']);
+                $('#ViewEmail').text(data['Email']);
+
+                $('#ShowBankModal').modal('show');
+            },
+            error:function(data){
+                console.log(data);
+            },
+        });
+    });
 });

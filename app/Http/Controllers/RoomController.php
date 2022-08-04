@@ -76,7 +76,7 @@ class RoomController extends Controller
         ->where('rooms.id',$id)
         ->leftJoin('hotels','rooms.HotelID','=','hotels.id')
         ->first();
-        return view('room.show',compact('Room'));
+        return $Room;
     }
 
     /**
