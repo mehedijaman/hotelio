@@ -1,13 +1,11 @@
 $(document).ready(function(){
 
     $.noConflict();
-    var table =$('.ListTable').DataTable({
-        dom:'CBrfiltip',
-        processing:true,
+    var HotelList = $('#HotelList').DataTable({
+        dom:'Btlftip',
         serverSide:true,
-        colReorder:true,
-        stateSave:true,
-        // colvis:{buttonText:'Change Columns'},
+        processing:true,
+        responsive:true,
         buttons:[
             {
                 extend : 'copy',
@@ -18,25 +16,25 @@ $(document).ready(function(){
                 extend : 'excel',
                 text : "<button class = 'btn btn-primary'><i class ='fa fa-file-excel'></i></button>",
                 titleAttr : 'Export to Excel',
-                filename: "Bank_List",
+                filename: "Hotel_List",
 
             },
             {
                 extend : 'pdf',
                 text : "<button class='btn btn-success'><i class = 'fa fa-file-pdf'></i></button>",
                 titleAttr : 'Export to PDF',
-                filename : 'Bank_list',
+                filename : 'Hotel_list',
             },
             {
                 extend : 'csv',
                 text : '<button class = "btn btn-primary"><i class="fa-solid fa-file-csv"></i></button>',
                 titleAttr : "Export to CSV",
-                filename : 'Bank_list',
+                filename : 'Hotel_list',
             },
             {
                 text : "<button class = 'btn btn-success'><i class = 'fa fa-file'></i></button>",
                 titleAttr : "Export to JSON",
-                filename : 'Bank_list',
+                filename : 'Hotel_list',
                 action:function(e,dt,button,config){
                     var data = dt.buttons.exportData();
                     $.fn.dataTable.fileSave(
@@ -45,81 +43,83 @@ $(document).ready(function(){
                 },
             },
         ],
-        responsive:true,
         ajax:{
-            url:'/bank',
-            type:'GET'
+            url:'/hotel',
+            type:'GET',
         },
         columns:[
             {data:'Name'},
-            {data:'Branch'},
-            {data:'AccountNo'},
+            {data:'Title'},
+            {data:'Email'},
             {data:'Address'},
             {data:'Phone'},
-            {data:'Email'},
+            {data:'RegNo'},
             {data:'action',name:'action'},
         ],
     });
+    
 
     $('#AddNewBtn').on('click',function(e){
         e.preventDefault();
-        jQuery.noConflict();
-        $('#NewBanklModal').modal('show');
+        $('#NewHotelModal').modal('show');
     });
 
-    $('#formResetBtn').on('click',function(e){
+    $('#ResetFormBtn').on('click',function(e){
         e.preventDefault();
 
-        $('#newBankForm')[0].reset();
+        $('#NewHotelForm')[0].reset();
     });
 
-    $('#submitBtn').on('click',function(e){
+    $('#SubmitBtn').on('click',function(e){
         e.preventDefault();
-        
+
         $.ajax({
             type:'POST',
-            url : '/bank',
-            data: $('#newBankForm').serializeArray(),
+            url:'/hotel',
+            data: $('#NewHotelForm').serialize(),
             success:function(data){
-                table.draw(false);
-                $('#newBankForm')[0].reset();
-                $('#NewBanklModal').modal('hide');
+                $('#NewHotelForm')[0].reset();
+                $('#NewHotelModal').modal('hide');
                 Swal.fire(
                   'Success!',
                   data,
                   'success'
-                );
+                )
+
+                HotelList.draw(false);
+                
             },
             error:function(data){
-                console.log('Error while adding new Bank'+data);
+                console.log('Error while adding new hotel' + data);
             },
         });
+
     });
-    
     $('body').on('click','#DeleteBtn',function(e) {
         e.preventDefault();
         var ID = $(this).data('id');
-        // console.log(ID);
+
         Swal.fire({
-            title :"Are you sure ?",
-            text  : "You won't be able to revert this !",
-            icon : 'warning',
-            showCancelButton : true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor : '#d33',
-            confirmButtonText : 'Yes , delete it !'
+          title: 'Are you sure?',
+          text: "You won't be able to revert this!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if(result.isConfirmed){
                 $.ajax({
-                    type : 'GET',
-                    url  : '/bank/delete/'+ID,
+                    type    : "GET",
+                    url     : '/hotel/delete/'+ID,
                     success:function(data){
-                        table.draw(false);
+                        HotelList.draw(false);
                         Swal.fire(
                             'Deleted!',
                             'Your file has been deleted.',
                             'success'
-                        );
+                        ); 
+                        
                     },
                     error:function(data){
                         Swal.fire(
@@ -130,57 +130,53 @@ $(document).ready(function(){
                         console.log(data);
                     },
                 });
-            }
+            };
         });
     });
-
-    
-    $('#UpdateBtn').on('click',function(e) {
+    $('body').on('click','#EditBtn',function(e){
         e.preventDefault();
-        var ID = $('#EditID').val();
-        // console.log($('#EditBankForm').serializeArray());
+        var ID = $(this).data('id');
+        $.ajax({
+            type    : 'GET',
+            url     : '/hotel/'+ID,
+            success:function(data){
+                $('#UpdateHotelForm')[0].reset();
+                $('#IDEdit').val(data['id']);
+                $('#NameEdit').val(data['Name']);
+                $('#TitleEdit').val(data['Title']);
+                $('#EmailEdit').val(data['Email']);
+                $('#AddressEdit').val(data['Address']);
+                $('#PhoneEdit').val(data['Phone']);
+                $('#RegNoEdit').val(data['RegNo']);
+                $('#LogoEdit').val(data['Logo']);
+                $('#PhotoEdit').val(data['Photo']);
+                $('#EditHotelModal').modal('show');
+            },
+            error:function(data){
+                console.log(data);
+            },
+        });
+    });
+    $('#UpdateBtn').on('click',function(e){
+        e.preventDefault();
+        var ID = $('#IDEdit').val();
         $.ajax({
             type    : 'PATCH',
-            url     : 'bank/'+ID,
-            data    : $('#EditBankForm').serializeArray(),
+            url     : '/hotel/'+ID,
+            data    : $('#UpdateHotelForm').serializeArray(),
             success:function(data){
-                $('#EditBanklModal').modal('hide');
-                $('#EditBankForm')[0].reset();
-                table.draw(false);
+                $('#EditHotelModal').modal('hide');
+                $('#UpdateHotelForm')[0].reset();
                 Swal.fire(
                   'Success!',
                   data,
                   'success'
                 );
+                HotelList.draw(false);
             },
             error:function(data){
                 console.log(data);
             },
-        });
-    });
-
-    $('body').on('click','#EditBtn',function(e){
-        var ID = $(this).data('id');
-
-        $.ajax({
-            type:'GET',
-            url:'/bank/'+ID,
-            success:function(data){
-                $('#EditBankForm')[0].reset();
-
-                $('#EditID').val(data['id']);
-                $('#EditName').val(data['Name']);
-                $('#EditBranch').val(data['Branch']);
-                $('#EditAccountNo').val(data['AccountNo']);
-                $('#EditAddress').val(data['Address']);
-                $('#EditPhone').val(data['Phone']);
-                $('#EditEmail').val(data['Email']);
-                
-                $('#EditBanklModal').modal('show');
-            },
-            error:function(data){
-                console.log(data);
-            }
         });
     });
 });

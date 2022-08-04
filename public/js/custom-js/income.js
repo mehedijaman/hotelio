@@ -1,13 +1,12 @@
 $(document).ready(function(){
-
     $.noConflict();
-    var table =$('.ListTable').DataTable({
-        dom:'CBrfiltip',
-        processing:true,
-        serverSide:true,
-        colReorder:true,
-        stateSave:true,
-        // colvis:{buttonText:'Change Columns'},
+    var IncomeList =$('#IncomeList').DataTable({
+        dom         : 'Btlftip',
+        processing  : true,
+        serverSide  : true,
+        colReorder  : true,
+        stateSave   : true,
+        responsive  : true,
         buttons:[
             {
                 extend : 'copy',
@@ -18,25 +17,25 @@ $(document).ready(function(){
                 extend : 'excel',
                 text : "<button class = 'btn btn-primary'><i class ='fa fa-file-excel'></i></button>",
                 titleAttr : 'Export to Excel',
-                filename: "Bank_List",
+                filename: "Employee_List",
 
             },
             {
                 extend : 'pdf',
                 text : "<button class='btn btn-success'><i class = 'fa fa-file-pdf'></i></button>",
                 titleAttr : 'Export to PDF',
-                filename : 'Bank_list',
+                filename : 'Employee_list',
             },
             {
                 extend : 'csv',
                 text : '<button class = "btn btn-primary"><i class="fa-solid fa-file-csv"></i></button>',
                 titleAttr : "Export to CSV",
-                filename : 'Bank_list',
+                filename : 'Employee_list',
             },
             {
                 text : "<button class = 'btn btn-success'><i class = 'fa fa-file'></i></button>",
                 titleAttr : "Export to JSON",
-                filename : 'Bank_list',
+                filename : 'Employee_list',
                 action:function(e,dt,button,config){
                     var data = dt.buttons.exportData();
                     $.fn.dataTable.fileSave(
@@ -45,76 +44,66 @@ $(document).ready(function(){
                 },
             },
         ],
-        responsive:true,
-        ajax:{
-            url:'/bank',
-            type:'GET'
-        },
-        columns:[
-            {data:'Name'},
-            {data:'Branch'},
-            {data:'AccountNo'},
-            {data:'Address'},
-            {data:'Phone'},
-            {data:'Email'},
-            {data:'action',name:'action'},
+        ajax: {
+            type    : 'GET',
+            url     : '/income',
+        } ,
+        columns : [
+            {data : "CategoryName"},
+            {data : "Amount"},
+            {data : "Description"},
+            {data : "Date"},
+            {data : "action" , name : 'action'},
         ],
     });
 
     $('#AddNewBtn').on('click',function(e){
         e.preventDefault();
-        jQuery.noConflict();
-        $('#NewBanklModal').modal('show');
+        $('#NewIncomelModal').modal('show');
     });
-
     $('#formResetBtn').on('click',function(e){
         e.preventDefault();
-
-        $('#newBankForm')[0].reset();
+        $('#incomeForm')[0].reset();
     });
-
     $('#submitBtn').on('click',function(e){
         e.preventDefault();
-        
         $.ajax({
-            type:'POST',
-            url : '/bank',
-            data: $('#newBankForm').serializeArray(),
-            success:function(data){
-                table.draw(false);
-                $('#newBankForm')[0].reset();
-                $('#NewBanklModal').modal('hide');
+            type    : 'POST',
+            url     : '/income',
+            data    : $('#incomeForm').serialize(),success:function(data){
+                $('#incomeForm')[0].reset();
+                $('#NewIncomelModal').modal('hide');
                 Swal.fire(
                   'Success!',
                   data,
                   'success'
                 );
+                IncomeList.draw(false);
             },
-            error:function(data){
-                console.log('Error while adding new Bank'+data);
+            error:function(date){
+                console.log('Error while added new Expense Item'+data);
             },
         });
     });
-    
+
     $('body').on('click','#DeleteBtn',function(e) {
         e.preventDefault();
         var ID = $(this).data('id');
-        // console.log(ID);
         Swal.fire({
-            title :"Are you sure ?",
-            text  : "You won't be able to revert this !",
-            icon : 'warning',
-            showCancelButton : true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor : '#d33',
-            confirmButtonText : 'Yes , delete it !'
+          title: 'Are you sure?',
+          text: "You won't be able to revert this!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if(result.isConfirmed){
                 $.ajax({
-                    type : 'GET',
-                    url  : '/bank/delete/'+ID,
+                    type    : "GET",
+                    url     : "/income/delete/"+ID,
                     success:function(data){
-                        table.draw(false);
+                        IncomeList.draw(false);
                         Swal.fire(
                             'Deleted!',
                             'Your file has been deleted.',
@@ -131,56 +120,51 @@ $(document).ready(function(){
                     },
                 });
             }
-        });
+        });         
     });
 
-    
-    $('#UpdateBtn').on('click',function(e) {
+    $('body').on('click','#EditBtn',function(e){
         e.preventDefault();
-        var ID = $('#EditID').val();
-        // console.log($('#EditBankForm').serializeArray());
+        var ID = $(this).data('id');
         $.ajax({
-            type    : 'PATCH',
-            url     : 'bank/'+ID,
-            data    : $('#EditBankForm').serializeArray(),
+            type    :'GET',
+            url     : '/income/'+ID,
+            data    : $('#updateForm').serialize(),
             success:function(data){
-                $('#EditBanklModal').modal('hide');
-                $('#EditBankForm')[0].reset();
-                table.draw(false);
+                $('#updateForm')[0].reset();
+                $('#EditID').val(data['id']);
+                $('#EditCategoryID').val(data['CategoryID']);
+                $('#EditAmount').val(data['Amount']);
+                $('#DescriptionEdit').val(data['Description']);
+                $('#DateEdit').val(data['Date']);
+                $('#EditIncomelModal').modal('show');
+            },
+            error:function(data){
+                console.log(data);
+            },
+        });   
+    });
+    
+    $('#updateBtn').on('click',function(e){
+        e.preventDefault();
+        var ID =$('#EditID').val();
+        $.ajax({
+            type    :"PATCH",
+            url     : "/income/"+ID,
+            data    : $('#updateForm').serializeArray(),
+            success:function(data){
+                $('#EditIncomelModal').modal('hide');
+                $('#updateForm')[0].reset();
                 Swal.fire(
                   'Success!',
                   data,
                   'success'
                 );
+                IncomeList.draw(false);
             },
             error:function(data){
                 console.log(data);
             },
-        });
-    });
-
-    $('body').on('click','#EditBtn',function(e){
-        var ID = $(this).data('id');
-
-        $.ajax({
-            type:'GET',
-            url:'/bank/'+ID,
-            success:function(data){
-                $('#EditBankForm')[0].reset();
-
-                $('#EditID').val(data['id']);
-                $('#EditName').val(data['Name']);
-                $('#EditBranch').val(data['Branch']);
-                $('#EditAccountNo').val(data['AccountNo']);
-                $('#EditAddress').val(data['Address']);
-                $('#EditPhone').val(data['Phone']);
-                $('#EditEmail').val(data['Email']);
-                
-                $('#EditBanklModal').modal('show');
-            },
-            error:function(data){
-                console.log(data);
-            }
         });
     });
 });
