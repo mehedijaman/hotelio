@@ -7,7 +7,7 @@
                 <div class="card-header bg-defult">
                     <div class="card-title">
                         <h2 class="card-title">
-                            <button type="button" class="btn bg-navy text-capitalize mr-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create Room"" data-toggle="modal" data-target="#NewRoomModal"> 
+                            <button type="button" class="btn bg-navy text-capitalize mr-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create Room" data-toggle="modal" data-target="#NewRoomModal"> 
                                 <i class="fa-solid fa-circle-plus mr-2"></i>
                                 Add
                             </button> 
@@ -34,7 +34,6 @@
                                 <th>Geyser</th>
                                 <th>Ac</th>
                                 <th>Balcony</th>
-                                {{-- <th>Bathtub</th> --}}
                                 <th>Internet</th>
                                 <th>Tv</th>
                                 <th>Price</th>
@@ -61,13 +60,26 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <tbody>
+                    <table class="table table-responsive table-stripped tabole-condensed">
+                        <thead>
+                            <tr>
+                                <th>Attribute</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><b class="fs-5">Hotel :</b></td>
+                            <td><span class="fs-5" id="ViewHotel"></span></td>
+                        </tr>
                         <tr>
                             <td>
+
                                 <b class="fs-5">Hotel :</b>
                                 <b class="ml-5" name="HotelID" id="ViewHotel"></b>
                             </td>
                              <td>
+
                                  <b class="fs-5">RoomNo :</b>
                                  <b class="ml-5"></b>
                             </td>
@@ -76,12 +88,18 @@
                                 <b class="ml-5" type="text" name="Floor" id="ViewFloor"></b>
                             </td>
                             <td>
+
                                 <b class="fs-5">Type :</b>
                                 <b class="ml-5" name="Type" id="ViewType"></b>
+
+                                <b class="fs-5">Geyser :</b>
+                                <b class="ml-5" id="ViewGeyser"></b>
                             </td>
                         </tr>
 
                     </tbody>
+                    </table>
+                    
                 </div>
             </div>
             </div>
@@ -151,7 +169,7 @@
                                                         <input type="checkbox" class="custom-control-input" id="customSwitch1" name="Geyser" value="1">
                                                         <input type="checkbox" class="custom-control-input" id="customSwitch1" name="Geyser" value="0">
                                                         <label class="custom-control-label" for="customSwitch1"></label>
-                                                      </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -160,17 +178,10 @@
                                                 <label for="AC" class="col-md-3 form-label">AC:</label>
                                                 <div class="col-md-8">
                                                     <div class="custom-control custom-switch">
-                                                        <input type="checkbox" class="custom-control-input" id="customSwitch1">
-                                                        <label class="custom-control-label" for="customSwitch1">Toggle this switch element</label>
+                                                        <input type="checkbox" class="custom-control-input" id="ACSwitch" name="AC" value="1">
+                                                        <input type="checkbox" class="custom-control-input" id="ACSwitch" name="AC" value="0">
+                                                        <label class="custom-control-label" for="ACSwitch"></label>
                                                     </div>
-                                                    {{-- <div class="form-check form-check-inline ml-1">
-                                                        <input type="radio" class="form-check-input" name="AC" value="1">
-                                                        <label for="" class="form-check-label">Yes</label>
-                                                    </div>
-                                                    <div class="form-check form-check-inline ml-4">
-                                                        <input type="radio" class="form-check-input" name="AC" value="0">
-                                                        <label for="" class="form-check-label">No</label>
-                                                    </div> --}}
                                                 </div>
                                             </div>
                                         </div> 

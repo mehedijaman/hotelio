@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ExpenseCategory;
+use Yajra\Datatables\Datatables;
 use Exception;
 
 class ExpenseCategoryController extends Controller
@@ -15,8 +16,13 @@ class ExpenseCategoryController extends Controller
      */
     public function index()
     {
-        $ExpenseCategoris = ExpenseCategory::all();
-        return view('expenseCategory.index',compact('ExpenseCategoris'));
+        if(request()->ajax()){
+          return $ExpenseCategoris = Datatables::of(ExpenseCategory::all())
+          ->addColumn('action','layouts.dt_buttons')
+          ->make(true);
+        }
+        
+        return view('expenseCategory.index');
     }
 
     /**

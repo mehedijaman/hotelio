@@ -8,34 +8,35 @@ $(document).ready(function(){
         colReorder:true,
         stateSave:true,
         // colvis:{buttonText:'Change Columns'},
-        buttons:[                    
+        buttons:[
             {
-                extend:'copy',
-                text:'<button class="btn btn-primary"><i class="fa fa-copy"></i></button>',
-                titleAttr:'Copy Items',
+                extend : 'copy',
+                text : "<button class = 'btn btn-success'><i class='fa fa-copy'></i></button>",
+                titleAttr : 'Copy Items',
             },
             {
-                extend:'excel',
-                text:'<i class="fa fa-table"></i>',
-                titleAttr:'Export to Excel',
-                filename:'Hotel_List',
+                extend : 'excel',
+                text : "<button class = 'btn btn-primary'><i class ='fa fa-file-excel'></i></button>",
+                titleAttr : 'Export to Excel',
+                filename: "Bank_List",
+
             },
             {
-                extend:'pdf',
-                text:'<i class="fa fa-file"></i>',
-                titleAttr:'Export to PDF',
-                filename:'Hotel_List',
+                extend : 'pdf',
+                text : "<button class='btn btn-success'><i class = 'fa fa-file-pdf'></i></button>",
+                titleAttr : 'Export to PDF',
+                filename : 'Bank_list',
             },
             {
-                extend:'csv',
-                text:'CSV',
-                titleAttr:'Export to PDF',
-                filename:'Hotel_List',
+                extend : 'csv',
+                text : '<button class = "btn btn-primary"><i class="fa-solid fa-file-csv"></i></button>',
+                titleAttr : "Export to CSV",
+                filename : 'Bank_list',
             },
             {
-                text:'JSON',
-                titleAttr:'Export to PDF',
-                filename:'Hotel_List',
+                text : "<button class = 'btn btn-success'><i class = 'fa fa-file'></i></button>",
+                titleAttr : "Export to JSON",
+                filename : 'Bank_list',
                 action:function(e,dt,button,config){
                     var data = dt.buttons.exportData();
                     $.fn.dataTable.fileSave(
@@ -98,7 +99,7 @@ $(document).ready(function(){
     $('body').on('click','#DeleteBtn',function(e) {
         e.preventDefault();
         var ID = $(this).data('id');
-        console.log(ID);
+        // console.log(ID);
         Swal.fire({
             title :"Are you sure ?",
             text  : "You won't be able to revert this !",
@@ -180,6 +181,30 @@ $(document).ready(function(){
             error:function(data){
                 console.log(data);
             }
+        });
+    });
+
+    $('body').on('click','#ViewBtn',function(e){
+        e.preventDefault();
+
+        var ID = $(this).data('id');
+
+        $.ajax({
+            type:'GET',
+            url:'/bank/'+ID,
+            success:function(data){
+                $('#ViewName').text(data['Name']);
+                $('#ViewBranch').text(data['Branch']);
+                $('#ViewAccountNo').text(data['AccountNo']);
+                $('#ViewAddress').text(data['Address']);
+                $('#ViewPhone').text(data['Phone']);
+                $('#ViewEmail').text(data['Email']);
+
+                $('#ShowBankModal').modal('show');
+            },
+            error:function(data){
+                console.log(data);
+            },
         });
     });
 });

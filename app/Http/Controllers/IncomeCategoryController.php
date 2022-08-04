@@ -19,7 +19,7 @@ class IncomeCategoryController extends Controller
     {
         if(request()->ajax()){
             return $IncomeCategoris = Datatables::of(IncomeCategory::all())
-            ->addColumn('action','layouts.dt_buttons')
+            ->addColumn('action','layouts.dt_buttons_2')
             ->make(true);
         }
         

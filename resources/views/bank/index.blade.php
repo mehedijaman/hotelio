@@ -183,6 +183,55 @@
                 </div>
             </div>
         </div>
+
+         <div class="modal fade show" id="ShowBankModal" role="dialog">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Show Bank</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-responsive table-bordered table-stripped table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>Attribute</th>
+                                    <th>Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Name</td>
+                                    <td id="ViewName"></td>
+                                </tr>
+                                <tr>
+                                    <td>Branch</td>
+                                    <td id="ViewBranch"></td>
+                                </tr>
+                                <tr>
+                                    <td>Account No</td>
+                                    <td id="ViewAccountNo"></td>
+                                </tr>
+                                <tr>
+                                    <td>Address</td>
+                                    <td id="ViewAddress"></td>
+                                </tr>
+                                <tr>
+                                    <td>Phone</td>
+                                    <td id="ViewPhone"></td>
+                                </tr>
+                                <tr>
+                                    <td>Email</td>
+                                    <td id="ViewEmail"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <script src="{{ asset('js/custom-js/bank.js') }}"></script>
   
