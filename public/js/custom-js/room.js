@@ -87,9 +87,8 @@ $(document).ready(function(){
             type:'GET',
             url:'/room/'+ID,
             success:function(data){
-                $('#ViewHotel').val(data['HotelID']);
-                console.log(hotel);
-                
+                $('#ViewType').text(data['Type']);
+                $('#ViewFloor').html(data['Floor']);
                 $('#ShowRoomModal').modal('show');
             }
 
