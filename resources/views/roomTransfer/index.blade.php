@@ -32,27 +32,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- @foreach ($RoomTransfers as $RoomTransfer)
-                                    <tr class="border-bottom">
-                                        <td>{{ $RoomTransfer->Guest }}</td>
-                                        <td class="" style="padding-left: 3rem !important">{{ $RoomTransfer->FromRoomID }} </td>
-                                        <td style="padding-left: 2.2rem !important">{{ $RoomTransfer->Room }}</td>
-                                        <td>
-                                            @php
-                                                echo date('Y-m-d',strtotime($RoomTransfer->Date))  
-                                            @endphp
-                                        </td>
-                                        <td class="d-flex">
-                                            <button class="EditBtn" value ="{{ $RoomTransfer->id }}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit" style="cursor: pointer;">
-                                                <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i>
-                                               
-                                            </button>
-                                                <button class="DeleteBtn" value="{{$RoomTransfer->id}}"   data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
-                                                    <i class="fa-regular fa-trash-can mr-3 text-danger"></i>
-                                                </button>
-                                        </td>
-                                    </tr>
-                                @endforeach --}}
                             </tbody>
                             <tfoot></tfoot>
                         </table>
@@ -122,7 +101,7 @@
             </div>
         </div>
 
-         <div class="modal fdae  show" id="EditRoomTransferModal" role="dialog">
+         <div class="modal fade show" id="EditRoomTransferModal" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -133,291 +112,55 @@
                     </div>
                     <div class="modal-body">
                        {{ Form::open(array('method' => 'PATCH','class'=>'form-horizontal','id'=>'EditRoomTransferForm', 'files' => true)) }}
-                       <input type="hidden" name="ID" id="IDEdit">
-                       <input type="text">
-                        <div class="card-body">
-                            <div class="form-group row">
-                                <label for="GuestID" class="form-label col-md-3">Guest:</label>
-                                <div class="col-md-8">
-                                    <select type="number" name="GuestID" id="EditGuest"  class="form-select">
-                                        <option value=""> Select Guest </option>
-                                        @foreach ($Guests as $Guest)
-                                            <option value="{{ $Guest->id }}">{{ $Guest->Name }}</option>
-                                            
-                                        @endforeach
-                                    </select> 
+                            <input type="hidden" name="ID" id="IDEdit">
+                      
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <label for="GuestID" class="form-label col-md-3">Guest:</label>
+                                    <div class="col-md-8">
+                                        <select type="number" name="GuestID" id="EditGuest"  class="form-select">
+                                            <option value=""> Select Guest </option>
+                                            @foreach ($Guests as $Guest)
+                                                <option value="{{ $Guest->id }}">{{ $Guest->Name }}</option>
+                                                
+                                            @endforeach
+                                        </select> 
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="FromRoomID" class="form-label col-md-3">FromRoom:</label>
+                                    <div class="col-md-8">
+                                        <input type="number" name="FromRoomID" class="form-control" value="" id="EditFormRoom"> 
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="ToRoomID" class="form-label col-md-3">ToRoom:</label>
+                                    <div class="col-md-8">
+                                        <select type="number" name="ToRoomID" id="EditToRoom"  class="form-select" value="">
+                                            <option value="">Select Room</option>
+                                            @foreach ($Rooms as $Room)  
+                                                <option value="{{ $Room->id }}">{{ $Room->RoomNo }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                
+                                </div>
+                                <div class="form-group row">
+                                    <label for="Date" class="form-label col-md-3">Date:</label>
+                                    <div class="col-md-8">
+                                        <input type="date" name="Date" class="form-control" id="EditDate"> 
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label for="FromRoomID" class="form-label col-md-3">FromRoom:</label>
-                                <div class="col-md-8">
-                                    <input type="number" name="FromRoomID" class="form-control" value="" id="EditFormRoom"> 
-                                </div>
+                            <div class="card-footer">
+                                <input type="submit" name="submit" id="UpdateBtn" class="btn bg-navy float-right w-25" value="Update">
                             </div>
-                            <div class="form-group row">
-                                <label for="ToRoomID" class="form-label col-md-3">ToRoom:</label>
-                                <div class="col-md-8">
-                                    {{-- <select type="number" name="ToRoomID" id="EditToRoom" class="form-select">
-                                        <option value="">Room Select</option>
-                                        
-                                        @foreach ($Rooms as $Room)
-                                            <option value="{{ $Room->id }}">{{ $Room->RoomNo }}</option>
-                                            @if ($RoomTransfer->ToRoomID == $Room->id)
-                                                <option value="{{ $Room->id }}" selected>
-                                                    {{ $Room->RoomNo }}
-                                                </option>
-                                                @else
-                                                    <option value="{{ $Room->id }}">
-                                                    {{ $Room->RoomNo }}
-                                                </option>
-                                            @endif
-                                        @endforeach
-                                    </select>  --}}
-                                    <select type="number" name="ToRoomID" id="EditToRoom"  class="form-select" value="">
-                                        <option value="">Select Room</option>
-
-                                        @foreach ($Rooms as $Room)  
-                                            <option value="{{ $Room->id }}">{{ $Room->RoomNo }}</option>
-                                        @endforeach
-
-                                    </select>
-                                </div>
-                               
-                            </div>
-                            <div class="form-group row">
-                                <label for="Date" class="form-label col-md-3">Date:</label>
-                                <div class="col-md-8">
-                                    <input type="date" name="Date" class="form-control" id="EditDate"> 
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <input type="submit" name="submit" id="UpdateBtn" class="btn bg-navy float-right w-25" value="Update">
-                        </div>
-                    {{ Form::close()}}
+                        {{ Form::close()}}
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script>
-        $(document).ready(function(){
-            $.noConflict();
-            var RoomTansferList = $('#RoomTansferList').DataTable({
-                dom:'CBrfltip',
-                serverSide:true,
-                processing:true,
-                colReorder:true,
-                stateSave:true,
-                responsive:true,
-                buttons:[
-                    {
-                        extend:'copy',
-                        text:'<button class="btn btn-primary"><i class="fa fa-copy"></i></button>',
-                        titleAttr:'Copy Items',
-                    },
-                    {
-                        extend:'excel',
-                        text:'<button class="btn btn-success"><i class="fa fa-table"></i></button>',
-                        titleAttr:'Export to Excel',
-                        filename:'RoomTransfer_List',
-                    },
-                    {
-                        extend:'pdf',
-                        text:'<button class="btn bg-purple"><i class="fa-solid fa-file-pdf"></i></button>',
-                        titleAttr:'Export to Pdf',
-                        filename:'RoomTransfer_List',
-                    },
-                    {
-                        extend:'csv',
-                        text:'<button class="btn btn-info"><i class="fas fa-file-csv"></i></button>',
-                        titleAttr:'Export to PDF',
-                        filename:'RoomTransfer_List',
-                    },
-                    {
-                        text:'<button class="btn btn-dark"><i class="fa-solid fa-file"></i></button>',
-                        titleAttr:'Export To JSON',
-                        filename:'RoomTransfer_List',
-                        action:function(e,dt,button,config){
-                            var data = dt.buttons.exportData();
-                            $.fn.dataTable.fileSave(
-                                new Blob([JSON.stringify()])
-                            );
-                        },
-                    },
-
-                ],
-                ajax:{
-                    url:'/roomTransfer',
-                    type:'GET',
-                },
-                columns:
-                [
-                    {data:'Guest'},
-                    {data:'FromRoomID'},
-                    {data:'Room'},
-                    {data:'Date'},
-                    {data:'action',name:'action'},
-                    
-                ]
-            });
-
-            $('#ResetBtnForm').on('click',function(e){
-                e.preventDefault();
-                $('#NewRoomTransferForm')[0].reset();
-            });
-
-            $('#SubmitBtn').on('click',function(e){
-                e.preventDefault();
-
-                $.ajax({
-                    type: "POST",
-                    url: "/roomTransfer",
-                    data: $('#NewRoomTransferForm').serializeArray(),
-                    success: function (data) {
-                        $('#NewRoomTransferForm')[0].reset();
-                        $('#NewRoomTransferModal').modal('hide');
-                        Swal.fire(
-                            'Success !',
-                            data,
-                            'success'
-                        )
-                        RoomTansferList.draw(false);
-                    },
-                    error:function (data){  
-                        console.log('Error while adding new RoomTransfer' + data);
-                    }
-                });
-            });
-
-            $('.DeleteBtn').on('click',function(e){
-                e.preventDefault();
-                // console.log($(this).val());
-                var ID = $(this).val();
-                Swal.fire({
-                  title: 'Are you sure?',
-                  text: "You won't be able to revert this!",
-                  icon: 'warning',
-                  showCancelButton: true,
-                  confirmButtonColor: '#3085d6',
-                  cancelButtonColor: '#d33',
-                  confirmButtonText: 'Yes, delete it!'
-                }).then((result) => {
-                  if (result.isConfirmed) {
-                    $.ajax({
-                        type:'GET',
-                        url:'/roomTransfer/delete/'+ID,
-                        success:function(data){
-                           Swal.fire(
-                              'Deleted!',
-                              'Your file has been deleted.',
-                              'success'
-                            );
-                        },
-                        error:function(data){
-                            Swal.fire(
-                              'Error!',
-                              'Delete failed !',
-                              'error'
-                            );
-
-                            console.log(data);
-                        },
-                    });
-
-                    
-                 }
-                });
-            });
-
-            $('#DeleteAll').on('click',function(e){
-                e.preventDefault();
-                Swal.fire({
-                  title: 'Are you sure?',
-                  text: "You won't be able to DeleteAll this!",
-                  icon: 'warning',
-                  showCancelButton: true,
-                  confirmButtonColor: '#3085d6',
-                  cancelButtonColor: '#d33',
-                  confirmButtonText: 'Yes, DeleteAll it!'
-                }).then((result) => {
-                  if (result.isConfirmed) {
-                    $.ajax({
-                        type:'GET',
-                        url:'/roomTransfer/delete',
-                        success:function(data){
-                           Swal.fire(
-                              'DeleteAll!',
-                              'Your file has been DeleteAll.',
-                              'success'
-                            );
-                        },
-                        error:function(data){
-                            Swal.fire(
-                              'Error!',
-                              'DeleteAll failed !',
-                              'error'
-                            );
-
-                            console.log(data);
-                        },
-                    });
-
-                    
-                 }
-                });
-            });
-
-            $('.EditBtn').on('click',function(e){
-                e.preventDefault();
-                // console.log($(this).val());
-                var ID = $(this).val();
-                $.ajax({
-                    type: 'GET',
-                    url: "/roomTransfer/"+ID,
-                    success: function(data) {
-                        $('#EditRoomTransferForm')[0].reset();
-                        $('#EditRoomTransferModal').modal('show');
-                        $('#IDEdit').val(data['id']);
-                        $('#EditGuest').val(data['GuestID']);
-                        $('#EditFormRoom').val(data['FromRoomID']);
-                        $('#EditDate').val(data['Date']);
-                    },
-                    error: function(data) {
-                        console.log(data);
-                    }
-                });
-            });
-
-            $('#UpdateBtn').on('click',function(e){
-                e.preventDefault();
-                var ID = $('#IDEdit').val();
-                console.log(ID);
-
-                $.ajax({
-                    type: 'PATCH',
-                    url: '/roomTransfer/'+ID,
-                    data: $('#EditRoomTransferForm').serializeArray(),
-                    success: function (data) {
-                        $('#EditRoomTransferModal').modal('hide');
-                        $('#EditRoomTransferForm')[0].reset();
-                         Swal.fire(
-                            'success',
-                            'Tax updated successfully',
-                            'success'
-                        );
-                    },
-                    error:function(data)
-                    {
-                        console.log(data);
-                    }
-                });
-                
-            });
-
-
-        });
-        
-    </script>
+    <script src="{{ asset('js/custom-js/roomTransfer.js') }}"></script>
 @endsection
