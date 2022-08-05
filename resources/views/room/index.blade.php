@@ -51,51 +51,74 @@
         </div>
     </div>
     <div class="modal fade show" id="ShowRoomModal"  role="dialog">
-        <div class="modal-dialog  modal-xl">
+        <div class="modal-dialog  modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Add A New Room</h5>
+                    <h5 class="modal-title">View Room</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <table class="table table-responsive table-stripped tabole-condensed">
+                    <table class="table table-responsive table-stripped tabole-condensed table-bordered table-hover">
                         <thead>
                             <tr>
+                                <th>Attribute</th>
+                                <th>Value</th>
+                                <th>Attribute</th>
+                                <th>Value</th>
+                                <th>Attribute</th>
+                                <th>Value</th>
                                 <th>Attribute</th>
                                 <th>Value</th>
                             </tr>
                         </thead>
                         <tbody>
                         <tr>
-                            <td><b class="fs-5">Hotel :</b></td>
-                            <td><span class="fs-5" id="ViewHotel"></span></td>
+
+                            <td><b class="fs-6">Hotel:</b></td>
+                            <td><span class="fs-6" id="ViewHotel"></span></td>
+
+                            <td><b class="fs-6">RoomNo:</b></td>
+                            <td><span class="fs-6" id="ViewRoom"></span></td>
+
+                            <td><b class="fs-6">Floor:</b></td>
+                            <td><span class="fs-6" id="ViewFloor"></span></td>
+                            <td><b class="fs-6">Type:</b></td>
+                            <td><span class="fs-6" id="ViewType"></span></td>
+                            
                         </tr>
                         <tr>
-                            <td>
-
-                                <b class="fs-5">Hotel :</b>
-                                <b class="ml-5" name="HotelID" id="ViewHotel"></b>
-                            </td>
-                             <td>
-
-                                 <b class="fs-5">RoomNo :</b>
-                                 <b class="ml-5"></b>
-                            </td>
-                            <td>
-                                <b class="fs-5">Floor :</b>
-                                <b class="ml-5" type="text" name="Floor" id="ViewFloor"></b>
-                            </td>
-                            <td>
-
-                                <b class="fs-5">Type :</b>
-                                <b class="ml-5" name="Type" id="ViewType"></b>
-
-                                <b class="fs-5">Geyser :</b>
-                                <b class="ml-5" id="ViewGeyser"></b>
-                            </td>
+                            <td><b class="fs-6">Geyser:</b></td>
+                            <td><span class="fs-6" id="ViewGeyser"></span></td>
+                            <td><b class="fs-6">AC:</b></td>
+                            <td><span class="fs-6" id="ViewAC"></span></td>
+                            <td><b class="fs-6">Balcony:</b></td>
+                            <td><span class="fs-6" id="ViewBalcony"></span></td>
+                            <td><b class="fs-6">Bathtub:</b></td>
+                            <td><span class="fs-6" id="ViewBathtub"></span></td> 
                         </tr>
+                        <tr>
+                            <td><b class="fs-6">HiComode:</b></td>
+                            <td><span class="fs-6" id="ViewHiComode"></span></td>
+                            <td><b class="fs-6">Locker:</b></td>
+                            <td><span class="fs-6" id="ViewLocker"></span></td>
+                            <td><b class="fs-6">Freeze:</b></td>
+                            <td><span class="fs-6" id="ViewFreeze"></span></td>
+                            <td><b class="fs-6">Wardrobe:</b></td>
+                            <td><span class="fs-6" id="ViewWardrobe"></span></td> 
+                        </tr>
+                        <tr>
+                            <td><b class="fs-6">Intercom:</b></td>
+                            <td><span class="fs-6" id="ViewIntercom"></span></td>
+                            <td><b class="fs-6">TV:</b></td>
+                            <td><span class="fs-6" id="ViewTV"></span></td>
+                            <td><b class="fs-6">Price:</b></td>
+                            <td><span class="fs-6" id="ViewPrice"></span></td>
+                            <td><b class="fs-6">Status:</b></td>
+                            <td><span class="fs-6" id="ViewStatus"></span></td>
+                        </tr>
+                       
 
                     </tbody>
                     </table>
