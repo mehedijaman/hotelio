@@ -23,7 +23,7 @@ class BookingController extends Controller
         $Guests = Guest::all();
 
         if (request()->ajax()) {
-            return $Bookings = Datatables::of($this->dtQuery())->addColumn('action','layouts.dt_buttons')->make(true);
+            return $Bookings = Datatables::of($this->dtQuery())->addColumn('action','layouts.dt_buttons_2')->make(true);
         }
         return view('booking.index',compact('Rooms','Guests'));
        
@@ -136,31 +136,49 @@ class BookingController extends Controller
         Booking::find($id)->delete();
         return back();
     }
+     /**
+     * Delete all table list
+    */
     public function destroyAll()
     {
         Booking::withTrashed()->delete();
         return back()->with('DestroyAll', 'সমস্ত ডাটাকে খালি করা হলো');
     }
+    /**
+     * View Trash page 
+    */
     public function trash()
     {
         $Bookings = Booking::onlyTrashed()->get();
         return view('booking.trash',compact('Bookings'));
     }
+    /**
+     * table column restore
+    */
     public function restore($id)
     {
         Booking::withTrashed()->where('id',$id)->restore();
         return back()->with('Restore', 'Restore SuccessFully !');
     }
+    /**
+     * Table  all Column list restore
+    */
     public function restoreAll()
     {
         Booking::withTrashed()->restore();
         return back()->with('RestoreAll', 'সমস্ত ডাটাকে পুনরুদ্ধার করা হয়েছে');
     }
+    /**
+     * table remove delete
+    */
     public function forceDeleted($id)
     {
         Booking::withTrashed()->where('id',$id)->forceDelete();
         return back()->with('PermanentlyDelete', 'Permanently Delete Completed !');
     }
+    /**
+     * All table list remove
+    */
     public function emptyTrash()
     {
         Booking::onlyTrashed()->forceDelete();

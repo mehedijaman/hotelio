@@ -57,8 +57,8 @@ $(document).ready(function(){
     })
 
     $(function() {
-        var $j = jQuery.noConflict();
-        $j("#EditCheckInDate").datepicker();
+        var j = jQuery.noConflict();
+        // $j("#EditCheckInDate").datepicker();
     });
 
     $('#ResetBtnForm').on('click',function(e){
@@ -119,9 +119,11 @@ $(document).ready(function(){
     });
 
     $('#UpdateBtn').on('click',function(e){
+        
         e.preventDefault();
+        
         var ID = $('#IDEdit').val();
-        console.log(ID);
+        // console.log(ID);
         $.ajax({
             type: "PATCH",
             url: "/booking/"+ID,

@@ -25,7 +25,7 @@ class InvoiceController extends Controller
         $Guests = Guest::all();
         $Taxs   = TaxSetting::all();
         if(request()->ajax()){
-            return Datatables::of($this->dtQuery())->addColumn('action','layouts.dt_buttons')->make(true);
+            return Datatables::of($this->dtQuery())->addColumn('action','layouts.dt_buttons_2')->make(true);
         }
         return view('invoice.index',compact('Hotels','Guests','Taxs'));
     }
@@ -122,33 +122,50 @@ class InvoiceController extends Controller
        Invoice::find($id)->delete();
        return back()->with('Destroy', 'Delete Completed !');
     }
+    /**
+     * Delete all table list
+    */
     public function destroyAll()
     {
        Invoice::withTrashed()->delete();
        return back()->with('DestroyAll', 'সমস্ত ডাটাকে খালি করা হলো');
     }
+    /**
+     * View Trash page 
+    */
     public function trash()
     {
         $Invoices = Invoice::onlyTrashed()->get();
         
         return view('invoice.trash',compact('Invoices'));
     }
+    /**
+     * table column restore
+    */
     public function restore($id)
     {
         Invoice::withTrashed()->where('id',$id)->restore();
         return back()->with('Restore', 'Restore SuccessFully !');
     }
-    
+    /**
+     * Table  all Column list restore
+    */
     public function restoreAll()
     {
         Invoice::withTrashed()->restore();
         return back()->with('RestoreAll', 'সমস্ত ডাটাকে পুনরুদ্ধার করা হয়েছে');
     }
+    /**
+     * table remove delete
+    */
     public function forceDeleted($id)
     {
         Invoice::withTrashed()->where('id',$id)->forceDelete();
         return back()->with('PermanentlyDelete', 'Permanently Delete Completed !');
     }
+    /**
+     * All table list remove
+    */
     public function emptyTrash()
     {
         Invoice::onlyTrashed()->forceDelete();

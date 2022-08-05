@@ -187,7 +187,7 @@ $(document).ready(function(){
     $('#UpdateBtn').on('click',function(e){
         e.preventDefault();
         var ID = $('#IDEdit').val();
-        console.log(ID);
+        // console.log(ID);
         $.ajax({
             type: 'PATCH',
             url: '/roomTransfer/'+ID,

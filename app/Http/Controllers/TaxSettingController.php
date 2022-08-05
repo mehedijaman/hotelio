@@ -23,7 +23,7 @@ class TaxSettingController extends Controller
         // return view('taxSetting.index',compact('TaxSettings'));
         if (request()->ajax()) 
         {
-            return $TaxSetting = Datatables::of(TaxSetting::all())->addColumn('action','layouts.dt_buttons')->make(true);
+            return $TaxSetting = Datatables::of(TaxSetting::all())->addColumn('action','layouts.dt_buttons_2')->make(true);
         }
         return view('taxSetting.index');        
     }
@@ -101,31 +101,49 @@ class TaxSettingController extends Controller
         TaxSetting::find($id)->delete();
         return back()->with('Destroy', 'Delete Completed !');
     }
+    /**
+     * Delete all table list
+    */
     public function destroyAll()
     {
         TaxSetting::withTrashed()->delete();
         return back()->with('DestroyAll', 'সমস্ত ডাটাকে খালি করা হলো');
     }
+    /**
+     * View Trash page 
+    */
     public function trash()
     {
         $TaxSettings = TaxSetting::onlyTrashed()->get();
         return view('taxSetting.trash',compact('TaxSettings'));
     }
+    /**
+     * table column restore
+    */
     public function restore($id)
     {
         TaxSetting::withTrashed()->where('id',$id)->restore();
         return back()->with('Restore', 'Restore SuccessFully !');
     }
+    /**
+     * Table  all Column list
+    */
     public function restoreAll()
     {
         TaxSetting::withTrashed()->restore();
         return back()->with('RestoreAll', 'সমস্ত ডাটাকে পুনরুদ্ধার করা হয়েছে');
     }
+    /**
+     * table remove delete
+    */
     public function forceDeleted($id)
     {
         TaxSetting::withTrashed()->where('id',$id)->forceDelete();
         return back()->with('PermanentlyDelete', 'Permanently Delete Completed !');
     }
+    /**
+     * All table list remove
+    */
     public function emptyTrash()
     {
         TaxSetting::onlyTrashed()->forceDelete();

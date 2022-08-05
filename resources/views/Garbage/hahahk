@@ -1,0 +1,93 @@
+<!-- 
+<tr>
+    <td>
+        <b class="fs-5">Geyser :</b>
+        <b class="ml-5">@if($Rooms->Geyser) <i class="fa-solid fa-square-check text-green ml-1"></i>@else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
+    </td>
+    <td>
+        <b class="fs-5">AC :</b>
+        <b class="ml-5">@if($Rooms->AC) <i class="fa-solid fa-square-check text-green ml-1"></i>@else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
+    </td>
+    <td>
+        <b class="fs-5">Balcony :</b>
+        <b class="ml-5">@if($Rooms->Balcony) <i class="fa-solid fa-square-check text-green ml-1"></i>@else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
+    </td>
+    <td>
+        <b class="fs-5">Bathtub :</b>
+        <b class="ml-5">@if($Rooms->Bathtub) <i class="fa-solid fa-square-check text-green ml-1"></i>@else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
+    </td>
+    
+</tr>
+<tr>
+    <td>
+        <b class="fs-5">HiComode :</b>
+        <b class="ml-5">@if($Rooms->HiComode) <i class="fa-solid fa-square-check text-green ml-1"></i>@else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
+    </td>
+    <td>
+        <b class="fs-5">Locker :</b>
+        <b class="ml-5">@if($Rooms->Locker) <i class="fa-solid fa-square-check text-green ml-1"></i>@else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
+    </td>
+    <td>
+        <b class="fs-5">Freeze :</b>
+        <b class="ml-5">@if($Rooms->Freeze) <i class="fa-solid fa-square-check text-green ml-1"></i>@else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
+    </td>
+    <td>
+        <b class="fs-5">Internet :</b>
+        <b class="ml-5">@if($Rooms->Internet) <i class="fa-solid fa-square-check text-green ml-1"></i>@else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
+    </td>
+    
+</tr>
+<tr>
+    
+    <td>
+        <b class="fs-5">Intercom :</b>
+        <b class="ml-5">@if($Rooms->Intercom) <i class="fa-solid fa-square-check text-green ml-1"></i>@else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
+    </td>
+    <td>
+        <b class="fs-5">TV :</b>
+        <b class="ml-5">@if($Rooms->TV) <i class="fa-solid fa-square-check text-green ml-1"></i>@else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
+    </td>
+    <td>
+        <b class="fs-5">TV :</b>
+        <b class="ml-5">@if($Rooms->TV) <i class="fa-solid fa-square-check text-green ml-1"></i>@else<i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
+    </td>
+    <td>
+        <b class="fs-5">Price :</b>
+        <b class="ml-5">{{ $Rooms->Price}}</b>
+    </td> --}}
+    
+</tr> -->
+
+ <!-- <tbody>
+    @foreach ($Rooms as $Room)
+        <tr class="border-bottom">
+            <td>{{$Room->HotelName}}</td>
+            <td>{{$Room->RoomNo}}</td>
+            <td>{{$Room->Floor}}</td>
+            <td>{{$Room->Type}}</td>
+            <td>@if($Room->Geyser)<i class="fa-solid fa-square-check text-green ml-4"></i> @else <i class="fa-solid fa-square-xmark text-danger ml-4"></i> @endif</td>
+            <td>@if($Room->Ac)<i class="fa-solid fa-square-check text-green ml-1"></i> @else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</td>
+            <td>@if($Room->Balcony)<i class="fa-solid fa-square-check text-green ml-4"></i> @else <i class="fa-solid fa-square-xmark text-danger ml-4"></i> @endif</td>
+            <td>@if($Room->Internet)<i class="fa-solid fa-square-check text-green ml-4"></i> @else <i class="fa-solid fa-square-xmark text-danger ml-4"></i> @endif</td> --}}
+            {{-- <td>@if($Room->Tv)<i class="fa-solid fa-square-check text-green ml-1"></i> @else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</td> --}}
+            {{-- <td>{{$Room->Price}}</td>
+            <td class="d-flex">
+                <a href="{{ URL::to('/room/'.$Room->id) }}" class="mr-3 text-purple" data-bs-toggle="tooltip" data-bs-placement="bottom" title="View">
+                    <svg data-v-9a6e255c="" xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="invoice-row-5036-preview-icon" class="mx-1 feather feather-eye">
+                        <path data-v-9a6e255c="" d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle data-v-9a6e255c="" cx="12" cy="12" r="3"></circle>
+                    </svg>
+                </a>
+                <a class="" href="/room/{{ $Room->id }}/edit" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit">
+                    <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i></i>
+                </a> --}}
+
+                {{-- {{ Form::open(array('url' => '/room/'.$Room->id,'method' => 'DELETE')) }} --}}
+                {{-- <button class="DeleteBtn" value="{{$Room->id}}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
+                    <i class="fa-regular fa-trash-can mr-3 text-danger"></i>
+                </button> --}}
+                {{-- {{ Form::close() }} --}}
+            {{-- </td>
+        </tr>
+    @endforeach
+</tbody> -->

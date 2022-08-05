@@ -24,7 +24,7 @@ class RoomTransferController extends Controller
         $Rooms  = Room::all();
         // return $RoomTransfers = Datatables::of(RoomTransfer::all())->make(true);
         if (request()->ajax()) {
-            return $RoomTransfers = Datatables::of($this->dtQuery())->addColumn('action','layouts.dt_buttons')->make(true);
+            return $RoomTransfers = Datatables::of($this->dtQuery())->addColumn('action','layouts.dt_buttons_2')->make(true);
         }
         return view('roomTransfer.index',compact('Guests','Rooms'));
     }
@@ -114,32 +114,49 @@ class RoomTransferController extends Controller
         RoomTransfer::find($id)->delete();
         return back()->with('Destroy', 'Delete Completed !');
     }
+    /**
+     * Delete all table list
+    */
     public function destroyAll()
     {
         RoomTransfer::withTrashed()->delete();
         return back()->with('DestroyAll', 'সমস্ত ডাটাকে খালি করা হলো');
     }
-
+    /**
+     * View Trash page 
+    */
     public  function trash()
     {
         $RoomTransfers = RoomTransfer::onlyTrashed()->get();
         return view('roomTransfer.trash',compact('RoomTransfers'));
     }
+    /**
+     * table column restore
+    */
     public function restore($id)
     {
         RoomTransfer::withTrashed()->where('id',$id)->restore();
         return back()->with('Restore', 'Restore SuccessFully !');
     }
+    /**
+     * Table  all Column list restore
+    */
     public function restoreAll()
     {
         RoomTransfer::withTrashed()->restore();
         return back()->with('RestoreAll', 'সমস্ত ডাটাকে পুনরুদ্ধার করা হয়েছে');
     }
+    /**
+     * table remove delete
+    */
     public function forceDeleted($id)
     {
         RoomTransfer::withTrashed()->where('id',$id)->forceDelete();
         return back()->with('PermanentlyDelete', 'Permanently Delete Completed !');
     }
+    /**
+     * All table list remove
+    */
     public function emptyTrash()
     {
         RoomTransfer::onlyTrashed()->forceDelete();
