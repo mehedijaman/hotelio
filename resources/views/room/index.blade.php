@@ -51,100 +51,75 @@
         </div>
     </div>
     <div class="modal fade show" id="ShowRoomModal"  role="dialog">
-        <div class="modal-dialog  modal-xl">
+        <div class="modal-dialog  modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Add A New Room</h5>
+                    <h5 class="modal-title">View Room</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <table class="table table-responsive table-stripped tabole-condensed">
+                    <table class="table table-responsive table-stripped tabole-condensed table-bordered table-hover">
                         <thead>
                             <tr>
+                                <th>Attribute</th>
+                                <th>Value</th>
+                                <th>Attribute</th>
+                                <th>Value</th>
+                                <th>Attribute</th>
+                                <th>Value</th>
                                 <th>Attribute</th>
                                 <th>Value</th>
                             </tr>
                         </thead>
                         <tbody>
                         <tr>
-                            <td><b class="fs-5">Hotel :</b></td>
-                            <td><span class="fs-5" id="ViewHotel"></span></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                 <b class="fs-5">RoomNo :</b>
-                                 <b class="ml-5"></b>
-                            </td>
-                            <td>
-                                <b class="fs-5">Floor :</b>
-                                <b class="ml-5"></b>
-                            </td>
-                            <td>
-                                <b class="fs-5">Geyser :</b>
-                                <b class="ml-5" id="ViewGeyser"></b>
-                            </td>
-                        </tr>
 
-                        {{-- <tr>
-                            <td>
-                                <b class="fs-5">Geyser :</b>
-                                <b class="ml-5">@if($Rooms->Geyser) <i class="fa-solid fa-square-check text-green ml-1"></i>@else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
-                            </td>
-                            <td>
-                                <b class="fs-5">AC :</b>
-                                <b class="ml-5">@if($Rooms->AC) <i class="fa-solid fa-square-check text-green ml-1"></i>@else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
-                            </td>
-                            <td>
-                                <b class="fs-5">Balcony :</b>
-                                <b class="ml-5">@if($Rooms->Balcony) <i class="fa-solid fa-square-check text-green ml-1"></i>@else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
-                            </td>
-                            <td>
-                                <b class="fs-5">Bathtub :</b>
-                                <b class="ml-5">@if($Rooms->Bathtub) <i class="fa-solid fa-square-check text-green ml-1"></i>@else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
-                            </td>
+                            <td><b class="fs-6">Hotel:</b></td>
+                            <td><span class="fs-6" id="ViewHotel"></span></td>
+
+                            <td><b class="fs-6">RoomNo:</b></td>
+                            <td><span class="fs-6" id="ViewRoom"></span></td>
+
+                            <td><b class="fs-6">Floor:</b></td>
+                            <td><span class="fs-6" id="ViewFloor"></span></td>
+                            <td><b class="fs-6">Type:</b></td>
+                            <td><span class="fs-6" id="ViewType"></span></td>
                             
                         </tr>
                         <tr>
-                            <td>
-                                <b class="fs-5">HiComode :</b>
-                                <b class="ml-5">@if($Rooms->HiComode) <i class="fa-solid fa-square-check text-green ml-1"></i>@else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
-                            </td>
-                            <td>
-                                <b class="fs-5">Locker :</b>
-                                <b class="ml-5">@if($Rooms->Locker) <i class="fa-solid fa-square-check text-green ml-1"></i>@else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
-                            </td>
-                            <td>
-                                <b class="fs-5">Freeze :</b>
-                                <b class="ml-5">@if($Rooms->Freeze) <i class="fa-solid fa-square-check text-green ml-1"></i>@else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
-                            </td>
-                            <td>
-                                <b class="fs-5">Internet :</b>
-                                <b class="ml-5">@if($Rooms->Internet) <i class="fa-solid fa-square-check text-green ml-1"></i>@else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
-                            </td>
-                            
+                            <td><b class="fs-6">Geyser:</b></td>
+                            <td><span class="fs-6" id="ViewGeyser"></span></td>
+                            <td><b class="fs-6">AC:</b></td>
+                            <td><span class="fs-6" id="ViewAC"></span></td>
+                            <td><b class="fs-6">Balcony:</b></td>
+                            <td><span class="fs-6" id="ViewBalcony"></span></td>
+                            <td><b class="fs-6">Bathtub:</b></td>
+                            <td><span class="fs-6" id="ViewBathtub"></span></td> 
                         </tr>
                         <tr>
-                          
-                            <td>
-                                <b class="fs-5">Intercom :</b>
-                                <b class="ml-5">@if($Rooms->Intercom) <i class="fa-solid fa-square-check text-green ml-1"></i>@else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
-                            </td>
-                            <td>
-                                <b class="fs-5">TV :</b>
-                                <b class="ml-5">@if($Rooms->TV) <i class="fa-solid fa-square-check text-green ml-1"></i>@else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
-                            </td>
-                            <td>
-                                <b class="fs-5">TV :</b>
-                                <b class="ml-5">@if($Rooms->TV) <i class="fa-solid fa-square-check text-green ml-1"></i>@else<i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
-                            </td>
-                            <td>
-                                <b class="fs-5">Price :</b>
-                                <b class="ml-5">{{ $Rooms->Price}}</b>
-                            </td> --}}
-                            
+                            <td><b class="fs-6">HiComode:</b></td>
+                            <td><span class="fs-6" id="ViewHiComode"></span></td>
+                            <td><b class="fs-6">Locker:</b></td>
+                            <td><span class="fs-6" id="ViewLocker"></span></td>
+                            <td><b class="fs-6">Freeze:</b></td>
+                            <td><span class="fs-6" id="ViewFreeze"></span></td>
+                            <td><b class="fs-6">Wardrobe:</b></td>
+                            <td><span class="fs-6" id="ViewWardrobe"></span></td> 
                         </tr>
+                        <tr>
+                            <td><b class="fs-6">Intercom:</b></td>
+                            <td><span class="fs-6" id="ViewIntercom"></span></td>
+                            <td><b class="fs-6">TV:</b></td>
+                            <td><span class="fs-6" id="ViewTV"></span></td>
+                            <td><b class="fs-6">Price:</b></td>
+                            <td><span class="fs-6" id="ViewPrice"></span></td>
+                            <td><b class="fs-6">Status:</b></td>
+                            <td><span class="fs-6" id="ViewStatus"></span></td>
+                        </tr>
+                       
+
                     </tbody>
                     </table>
                     

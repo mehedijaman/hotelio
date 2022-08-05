@@ -87,9 +87,39 @@ $(document).ready(function(){
             type:'GET',
             url:'/room/'+ID,
             success:function(data){
+
+
                 $('#ViewHotel').text(data['HotelName']);
+                $('#ViewRoom').text(data['RoomNo']);
+                $('#ViewFloor').text(data['Floor']);
+                $('#ViewType').text(data['Type']);
+                data['Geyser']  == '1'? $('#ViewGeyser').html('<i class="fa fa-check ml-3 text-success"></i>'):$('#ViewGeyser').html('<i class="fa fa-times text-danger"></i>');             
+                data['AC'] == '1'?$('#ViewAC').html('<i class="fa fa-check ml-3 text-success"></i>'):$('#ViewAC').html('<i class="fa fa-times text-danger"></i>');
+                data['Balcony'] == '1'?$('#ViewBalcony').html('<i class="fa fa-check ml-3 text-success"></i>'):$('#ViewBalcony').html('<i class="fa fa-times text-danger"></i>'); 
                 
-                data['Geyser']  == '1'? $('#ViewGeyser').html('<i class="fa fa-check text-primary"></i>'):$('#ViewGeyser').html('<i class="fa fa-times text-danger"></i>');             
+                data['Bathtub'] == '1'?$('#ViewBathtub').html('<i class="fa fa-check ml-3 text-success"></i>'):$('#ViewBathtub').html('<i class="fa fa-times text-danger"></i>'); 
+
+                data['HiComode'] == '1'?$('#ViewHiComode').html('<i class="fa fa-check ml-3 text-success"></i>'):$('#ViewHiComode').html('<i class="fa fa-times text-danger"></i>'); 
+                
+                data['Locker'] == '1'?$('#ViewLocker').html('<i class="fa fa-check ml-3 text-success"></i>'):$('#ViewLocker').html('<i class="fa fa-times text-danger"></i>');
+                
+                data['Freeze'] == '1'?$('#ViewFreeze').html('<i class="fa fa-check ml-3 text-success"></i>'):$('#ViewFreeze').html('<i class="fa fa-times text-danger"></i>'); 
+
+                data['Wardrobe'] == '1'?$('#ViewWardrobe').html('<i class="fa fa-check ml-3 text-success"></i>'):$('#ViewWardrobe').html('<i class="fa fa-times text-danger"></i>'); 
+                
+                data['Intercom'] == '1'?$('#ViewIntercom').html('<i class="fa fa-check ml-3 text-success"></i>'):$('#ViewIntercom').html('<i class="fa fa-times text-danger"></i>'); 
+                
+                data['TV'] == '1'?$('#ViewTV').html('<i class="fa fa-check ml-3 text-success"></i>'):$('#ViewTV').html('<i class="fa fa-times text-danger"></i>'); 
+                
+                data['Freeze'] == '1'?$('#ViewFreeze').html('<i class="fa fa-check ml-3 text-success"></i>'):$('#ViewFreeze').html('<i class="fa fa-times text-danger"></i>'); 
+                
+                data['Price'] == '1'?$('#ViewPrice').html('<i class="fa fa-check ml-3 text-success"></i>'):$('#ViewPrice').html('<i class="fa fa-times text-danger"></i>'); 
+                
+                data['Status'] == '1'?$('#ViewStatus').html('<i class="fa fa-check ml-3 text-success"></i>'):$('#ViewStatus').html('<i class="fa fa-times text-danger"></i>'); 
+                
+                // data[''] == '1'?$('').html('<i class="fa fa-check ml-3 text-success"></i>'):$('').html('<i class="fa fa-times text-danger"></i>'); 
+                
+                
                 $('#ShowRoomModal').modal('show');
             }
 

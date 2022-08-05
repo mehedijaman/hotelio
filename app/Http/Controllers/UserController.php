@@ -20,7 +20,7 @@ class UserController extends Controller
         // $Users = User::select('users.*','users.EmployeeID as Employee')
         // ->get();
         if (request()->ajax()) {
-            return Datatables::of(User::all())->addColumn('action','layouts.dt_buttons')->make(true);
+            return Datatables::of(User::all())->addColumn('action','layouts.dt_buttons_2')->make(true);
         }
         return view('user.index');
     }
@@ -91,6 +91,9 @@ class UserController extends Controller
         User::find($id)->delete();
         return back();
     }
+   /**
+     * Delete all table list
+    */
     public function destroyAll()
     {
         User::withTrashed()->delete();
