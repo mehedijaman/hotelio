@@ -24,11 +24,6 @@
                     <div class="card-header bg-defult">
                         <div class="card-title">
                             <h2 class="card-title">
-                               <!-- <a href="{{ asset('bank/create') }}" class="btn bg-navy text-capitalize mr-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create Booking"> 
-                                    <i class="fa-solid fa-circle-plus mr-2"></i>
-                                    Add
-                                </a> -->
-                                {{-- <button type="button" class="btn btn-primary" id="AddNewBtn" data-toggle="modal" data-target = "#NewBankModal ">New Bank</button> --}}
                                 <button type="button" class="btn bg-navy text-capitalize mr-3" id="AddNewBtn"><i class="fa-solid fa-circle-plus mr-2"></i>Add New</button>
                                 Bank List
                             </h2>
@@ -63,7 +58,7 @@
             </div>
         </div>
         
-        <div class="modal fade show" id="NewBanklModal" role="dialog">
+        <div class="modal fade show" id="NewBankModal" role="dialog">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -125,7 +120,7 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade show" id="EditBanklModal" role="dialog">
+        <div class="modal fade show" id="EditBankModal" role="dialog">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -188,17 +183,17 @@
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Show Bank</h4>
+                        <h4 class="modal-title" style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Show All Information on  Bank</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                          <span aria-hidden="true">×</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <table class="table table-responsive table-bordered table-stripped table-condensed">
+                        <table class="table table-responsive table-bordered table-stripped table-condensed ">
                             <thead>
                                 <tr>
-                                    <th>Attribute</th>
-                                    <th>Value</th>
+                                    <th class="bg-success " style="font-size: 25px;">Attribute</th>
+                                    <th class="bg-success " style="font-size: 25px;">Value</th>
                                 </tr>
                             </thead>
                             <tbody>

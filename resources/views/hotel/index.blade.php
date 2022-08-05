@@ -3,32 +3,10 @@
     <div class="container py-5 col-md-12 m-auto">
         <div class="row">
             <div class="col-md-12 m-auto">
-
-                @if (Session::get('delete'))
-                    <div class="alert alert-danger alert-dismissible">
-                        <button type="button" class="close" data-dismiss="alert" arial-hide="true"></button>
-                        <h5><i class="icon fas fa-trash-can"></i>Delete!</h5>
-                        {{Session::get('delete')}}
-                    </div>
-                @endif
-
-                @if (Session::get('destroyAll'))
-                    <div class="alert alert-danger alert-dismissible">
-                        <button type="button" class="close" data-dismiss="alert" arial-hide="true"></button>
-                        <h5><i class="icon fas fa-trash-can"></i>Delete All!</h5>
-                        {{Session::get('destroyAll')}}
-                    </div>
-                @endif
-
                 <div class="card">
                     <div class="card-header bg-defult">
                         <div class="card-title">
                             <h2 class="card-title">
-                                <!-- <a href="{{ asset('hotel/create') }}" class="btn bg-navy text-capitalize mr-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create Booking"> 
-                                    <i class="fa-solid fa-circle-plus mr-2"></i>
-                                    Add
-                                </a> -->
-                                <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#NewHotelModal">New Hotel</button> -->
                                 <button type="button" class="btn bg-navy text-capitalize mr-3" id="AddNewBtn"><i class="fa-solid fa-circle-plus mr-2"></i>Add New</button>
                                 Hotel List
                             </h2>
@@ -210,7 +188,50 @@
                 </div>
             </div>
         </div>
-      
+        <div class="modal fade show" id="ShowHotelModal"  role="dialog">
+            <div class="modal-dialog modal-xl ">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Show All Information on this Hotel</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="formClose">
+                         <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-resonsive table-bordered table-stripped table-condensed ">
+                            <tr>
+                                <th class="bg-success " style="font-size: 25px;">Attribute</th>
+                                <th class="bg-success " style="font-size: 25px;">Data</th>
+                            </tr>
+                            <tr>
+                                <td>Name : </td>
+                                <td id="ViewName"></td>
+                            </tr>
+                            <tr>
+                                <td>Title :</td>
+                                <td id="ViewTitle"></td>
+                            </tr>
+                            <tr>
+                                <td>Email :</td>
+                                <td id="ViewEmail"></td>
+                            </tr>
+                            <tr>
+                                <td>Phone :</td>
+                                <td id="ViewPhone"></td>
+                            </tr>
+                            <tr>
+                                <td>Address :</td>
+                                <td id="ViewAddress"></td>
+                            </tr>
+                            <tr>
+                                <td>Registration No :</td>
+                                <td id="ViewRegNO"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="{{asset('js/custom-js/hotle.js')}}"></script>

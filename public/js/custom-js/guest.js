@@ -60,12 +60,14 @@ $(document).ready(function(){
 
     $('#NewAddBtn').on('click',function(e){
         e.preventDefault();
-        $('#NewGuestlModal').modal('show');
+        $('#NewGuestModal').modal('show');
     });
+
     $('#formResetBtn').on('click',function(e){
         e.preventDefault();
         $('#guestForm')[0].reset();
-    })
+    });
+
     $('#submitBtn').on('click',function(e) {
         e.preventDefault();
         $.ajax({
@@ -73,7 +75,7 @@ $(document).ready(function(){
             url     : '/guest',
             data    : $('#guestForm').serialize(),success:function(data){
                 $('#guestForm')[0].reset();
-                $('#NewGuestlModal').modal('hide');
+                $('#NewGuestModal').modal('hide');
                 Swal.fire(
                   'Success!',
                   data,
@@ -86,6 +88,7 @@ $(document).ready(function(){
             },
         });
     });
+
     $('body').on('click','#DeleteBtn',function(e) {
         e.preventDefault();
         var ID = $(this).data('id');
@@ -147,13 +150,14 @@ $(document).ready(function(){
                 $('#EditMother').val(data['Mother']);
                 $('#EditSpouse').val(data['Spouse']);
                 $('#EditPhoto').val(data['Photo']);
-                $('#EditGuestlModal').modal('show');
+                $('#EditGuestModal').modal('show');
             },
             error:function(data){
                 console.log(data);
             },
         });
     });
+
     $('#UpdateBtn').on('click',function(e) {
         e.preventDefault();
         var ID = $('#IDEdit').val();
@@ -162,7 +166,7 @@ $(document).ready(function(){
             url     : '/guest/'+ID,
             data    : $('#updateGuestForm').serializeArray(),
             success:function(data){
-                $('#EditGuestlModal').modal('hide');
+                $('#EditGuestModal').modal('hide');
                 $('#updateGuestForm')[0].reset();
                 Swal.fire(
                   'Success!',
@@ -176,4 +180,36 @@ $(document).ready(function(){
             }
         });
     });
+
+    $('body').on('click','#ViewBtn',function(e){
+        e.preventDefault();
+        var ID = $(this).data('id');
+        $.ajax({
+            type : 'GET',
+            url  : '/guest/'+ID,
+            success:function(data){
+                // console.log(data['Name']);
+                $('#ViewName').text(data['Name']);
+                $('#ViewEmail').text(data['Email']);
+                $('#ViewPhone').text(data['Phone']);
+                $('#ViewAddress').text(data['Address']);
+                $('#ViewNIDNo').text(data['NIDNo']);
+                $('#ViewNID').text(data['NID']);
+                $('#ViewPassportNo').text(data['PassportNo']);
+                $('#ViewPassport').text(data['Passport']);
+                $('#ViewFather').text(data['Father']);
+                $('#ViewMother').text(data['Mother']);
+                $('#ViewSpouse').text(data['Spouse']);
+                $('#ViewPhoto').text(data['Photo']);
+
+                $('#ShowGuestModal').modal('show');
+            },
+
+            error:function(data){
+                console.log(data);
+            }
+        });
+    });
+
+
 });

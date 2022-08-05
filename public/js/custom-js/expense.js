@@ -183,4 +183,25 @@ $(document).ready(function(){
             },
         });
     });
+
+    $('body').on('click','#ViewBtn', function(e){
+        e.preventDefault();
+        var ID = $(this).data('id');
+
+        $.ajax({
+            type : 'GET',
+            url  : '/expense/'+ID,
+            success:function(data){
+                $('#ViewCategoryName').text(data['CategoryName']);
+                $('#ViewAmount').text(data['Amount']);
+                $('#ViewDescription').text(data['Description']);
+                $('#ViewDate').text(data['Date']);
+
+                $('#ShowExpenseModal').modal('show');
+            },
+            error:function(data){
+                console.log(data);
+            },
+        });
+    });
 });

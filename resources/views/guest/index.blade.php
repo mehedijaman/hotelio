@@ -3,30 +3,10 @@
     <div class="container py-5 col-md-10 m-auto">
         <div class="row">
             <div class="col-md-10 m-auto">
-
-                @if (Session::get('delete'))
-                    <div class="alert alert-danger alert-dismissible">
-                        <button type="button" class="close" data-dismiss="alert" arial-hide="true"></button>
-                        <h5><i class="icon fas fa-trash-can"></i>Delete!</h5>
-                        {{Session::get('delete')}}
-                    </div>
-                @endif
-                @if (Session::get('destroyAll'))
-                    <div class="alert alert-danger alert-dismissible">
-                        <button type="button" class="close" data-dismiss="alert" arial-hide="true"></button>
-                        <h5><i class="icon fas fa-trash-can"></i>Delete!</h5>
-                        {{Session::get('destroyAll')}}
-                    </div>
-                @endif
-
                 <div class="card">
                     <div class="card-header bg-defult">
                         <div class="card-title">
                             <h2 class="card-title">
-                                {{-- <a href="{{ asset('guest/create') }}" class="btn bg-navy text-capitalize mr-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create Booking"> 
-                                    <i class="fa-solid fa-circle-plus mr-2"></i>
-                                    Add
-                                </a> --}}
                                 <button type="button" class="btn bg-navy text-capitalize mr-3" id="NewAddBtn"><i class="fa-solid fa-circle-plus mr-2"></i>Add New</button>
                                 Guest List
                             </h2>
@@ -56,7 +36,7 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade show" id="NewGuestlModal" role="dialog">
+        <div class="modal fade show" id="NewGuestModal" role="dialog">
             <div class="modal-dialog modal-xl ">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -165,7 +145,7 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade show" id="EditGuestlModal" role="dialog">
+        <div class="modal fade show" id="EditGuestModal" role="dialog">
             <div class="modal-dialog modal-xl ">
                 <div class="modal-content ">
                     <div class="modal-header">
@@ -268,6 +248,74 @@
                             </div>
                         </div>
                     {{ Form::close()}}  
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade show" id="ShowGuestModal" role="dialog">
+            <div class="modal-dialog modal-xl ">
+                <div class="modal-content ">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Show All information on Guest</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                         <table class="table table-resonsive table-bordered table-stripped table-condensed ">
+                            <tr>
+                                <th class="bg-success ">Attribute</th>
+                                <th class="bg-success ">Data</th>
+                            </tr>
+                            <tr>
+                                <td>Name</td>
+                                <td id="ViewName"></td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td id="ViewEmail"></td>
+                            </tr>
+                            <tr>
+                                <td>Phone</td>
+                                <td id="ViewPhone"></td>
+                            </tr>
+                            <tr>
+                                <td>Address</td>
+                                <td id="ViewAddress"></td>
+                            </tr>
+                            <tr>
+                                <td>NID No</td>
+                                <td id="ViewNIDNo"></td>
+                            </tr>
+                            <tr>
+                                <td>NID</td>
+                                <td id="ViewNID"></td>
+                            </tr>
+                            <tr>
+                                <td>Passport No</td>
+                                <td id="ViewPassportNo"></td>
+                            </tr>
+                            <tr>
+                                <td>Passport</td>
+                                <td id="ViewPassport"></td>
+                            </tr>
+                            <tr>
+                                <td>Father</td>
+                                <td id="ViewFather"></td>
+                            </tr>
+                            <tr>
+                                <td>Mother</td>
+                                <td id="ViewMother"></td>
+                            </tr>
+                            <tr>
+                                <td>Spouse</td>
+                                <td id="ViewSpouse"></td>
+                            </tr>
+                            <tr>
+                                <td>Photo</td>
+                                <td id="ViewPhoto"></td>
+                            </tr>
+                         </table>
                     </div>
                 </div>
             </div>

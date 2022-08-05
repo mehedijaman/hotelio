@@ -49,25 +49,31 @@ $(document).ready(function(){
             type: "GET"
         },
         columns:
-        [
+        [   
+
             {data : 'Hotel'},
             {data : 'Name'},
             {data : 'Designation'},
             {data : 'Phone'},
             {data : 'Email'},
+            {data : 'Address'},
             {data : 'DateOfJoin'},
-            {data : 'Status'},
+            {data : 'Status', render:function (data, type , row) { return data == 1? '<i class="fa fa-check text-success"></i>':'<i class="fa fa-times text-danger"></i>';
+        }}, 
             {data : 'action',name:'action'},
         ]
     });
+
     $('#AddNewBtn').on('click',function(e){
         e.preventDefault();
         $('#newEmployeeModal').modal('show'); 
     });
+
     $('#formResetBtn').on('click',function(e){
         e.preventDefault();
         $('#newCreateEmployee')[0].reset();
     });
+
     $('#submitBtn').on('click',function(e){
         e.preventDefault();
         $.ajax({
@@ -88,6 +94,7 @@ $(document).ready(function(){
             },
         });
     });
+
     $('body').on('click','#DeleteBtn',function(e) {
         e.preventDefault();
         var ID = $(this).data('id');
@@ -126,6 +133,7 @@ $(document).ready(function(){
             }
         });
     });
+
     $('body').on('click','#EditBtn',function(e) {
         e.preventDefault();
         var ID = $(this).data('id');
@@ -155,6 +163,7 @@ $(document).ready(function(){
             },
         });
     });
+    
     $('#updateBtn').on('click',function(e) {
             e.preventDefault();
             var ID = $('#IDEdit').val();
@@ -176,5 +185,33 @@ $(document).ready(function(){
                     console.log(data);
                 },
             });
+    });
+
+    $('body').on('click','#ViewBtn',function(e){
+        e.preventDefault();
+        var ID =$(this).data('id');
+
+        $.ajax({
+            type : 'GET',
+            url  : '/employee/'+ID,
+            success:function(data){
+                $('#ViewHotle').text(data['HotelName']);
+                $('#ViewName').text(data['Name']);
+                $('#ViewDateOfBirth').text(data['DateOfBirth']);
+                $('#ViewNIDNo').text(data['NIDNo']);
+                $('#ViewNID').text(data['NID']);
+                $('#ViewPhone').text(data['Phone']);
+                $('#ViewEmail').text(data['Email']);
+                $('#ViewAddress').text(data['Address']);
+                $('#ViewDesignation').text(data['Designation']);
+                $('#ViewDateOfJoin').text(data['DateOfJoin']);
+                $('#ViewStatus').text(data['Status']);
+                
+                $('#ShowEmployeeModal').modal('show');
+            },
+            error:function (data) {
+                console.log(data);
+              },
         });
+    });
 });

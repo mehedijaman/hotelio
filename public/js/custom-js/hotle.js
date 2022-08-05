@@ -95,6 +95,7 @@ $(document).ready(function(){
         });
 
     });
+
     $('body').on('click','#DeleteBtn',function(e) {
         e.preventDefault();
         var ID = $(this).data('id');
@@ -133,6 +134,7 @@ $(document).ready(function(){
             };
         });
     });
+
     $('body').on('click','#EditBtn',function(e){
         e.preventDefault();
         var ID = $(this).data('id');
@@ -157,6 +159,7 @@ $(document).ready(function(){
             },
         });
     });
+
     $('#UpdateBtn').on('click',function(e){
         e.preventDefault();
         var ID = $('#IDEdit').val();
@@ -177,6 +180,28 @@ $(document).ready(function(){
             error:function(data){
                 console.log(data);
             },
+        });
+    });
+    
+    $('body').on('click','#ViewBtn',function(e){
+        e.preventDefault();
+        var ID = $(this).data('id');
+        $.ajax({
+            type : "GET",
+            url  : "/hotel/"+ID,
+            success:function(data){
+                $('#ViewName').text(data['Name']);
+                $('#ViewTitle').text(data['Title']);
+                $('#ViewEmail').text(data['Email']);
+                $('#ViewPhone').text(data['Phone']);
+                $('#ViewAddress').text(data['Address']);
+                $('#ViewRegNO').text(data['RegNo']);
+
+                $('#ShowHotelModal').modal('show');
+            },
+            error:function(data){
+                console.log(data);
+            }
         });
     });
 });

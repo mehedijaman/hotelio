@@ -59,7 +59,7 @@ $(document).ready(function(){
 
     $('#AddNewBtn').on('click',function(e){
         e.preventDefault();
-        $('#NewIncomelModal').modal('show');
+        $('#NewIncomeModal').modal('show');
     });
     $('#formResetBtn').on('click',function(e){
         e.preventDefault();
@@ -72,7 +72,7 @@ $(document).ready(function(){
             url     : '/income',
             data    : $('#incomeForm').serialize(),success:function(data){
                 $('#incomeForm')[0].reset();
-                $('#NewIncomelModal').modal('hide');
+                $('#NewIncomeModal').modal('hide');
                 Swal.fire(
                   'Success!',
                   data,
@@ -153,7 +153,7 @@ $(document).ready(function(){
             url     : "/income/"+ID,
             data    : $('#updateForm').serializeArray(),
             success:function(data){
-                $('#EditIncomelModal').modal('hide');
+                $('#EditIncomeModal').modal('hide');
                 $('#updateForm')[0].reset();
                 Swal.fire(
                   'Success!',
@@ -161,6 +161,27 @@ $(document).ready(function(){
                   'success'
                 );
                 IncomeList.draw(false);
+            },
+            error:function(data){
+                console.log(data);
+            },
+        });
+    });
+
+    $('body').on('click','#ViewBtn', function(e){
+        e.preventDefault();
+        var ID = $(this).data('id');
+
+        $.ajax({
+            type : 'GET',
+            url  : '/income/'+ID,
+            success:function(data){
+                $('#ViewCategoryName').text(data['CategoryName']);
+                $('#ViewAmount').text(data['Amount']);
+                $('#ViewDescription').text(data['Description']);
+                $('#ViewDate').text(data['Date']);
+
+                $('#ShowIncomeModal').modal('show');
             },
             error:function(data){
                 console.log(data);

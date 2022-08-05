@@ -18,7 +18,7 @@ class ExpenseCategoryController extends Controller
     {
         if(request()->ajax()){
           return $ExpenseCategoris = Datatables::of(ExpenseCategory::all())
-          ->addColumn('action','layouts.dt_buttons')
+          ->addColumn('action','layouts.dt_buttons_2')
           ->make(true);
         }
         
