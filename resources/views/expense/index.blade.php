@@ -7,10 +7,6 @@
                     <div .class="card-header bg-defult">
                         <div class="card-title">
                             <h2 class="card-title">
-                                {{-- <a href="{{ asset('expense/create') }}" class="btn bg-navy text-capitalize mr-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create Booking"> 
-                                    <i class="fa-solid fa-circle-plus mr-2"></i>
-                                    Add
-                                </a> --}}
                                 <button type="button" class="btn bg-navy text-capitalize mr-3" id="AddNewBtn"><i class="fa-solid fa-circle-plus mr-2"></i>Add New</button>
                                 Expense List
                             </h2>
@@ -151,54 +147,42 @@
                 </div>
             </div>
         </div>
-        {{-- <div class="modal fade show" id="ShowExpenseModal" role="dialog">
+        <div class="modal fade show" id="ShowExpenseModal" role="dialog">
             <div class="modal-dialog modal-xl ">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Expense</h4>
+                        <h4 class="modal-title">New Guest</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                          <span aria-hidden="true">×</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="card-body table-responsive p-0">
-                            <table class="table table-hover text-nowrap">
-                                <thead>
-                                    <tr>
-                                        <th>Column</th>
-                                        <th>Data</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                        <tr class="">
-                                              <tr>
-                                                    <th>Id</th>
-                                                    <td>{{ $Expense->id }}</td>
-                                              </tr>
-                                              <tr>
-                                                    <th>Name</th>
-                                                    <td>{{ $Expense->CategoryName }}</td>
-                                              </tr>
-                                              <tr>
-                                                    <th>Amount</th>
-                                                    <td>{{ $Expense->Amount }}</td>
-                                              </tr>
-                                              <tr>
-                                                    <th>Description</th>
-                                                    <td>{{ $Expense->Description }}</td>
-                                              </tr>
-                                              <tr>
-                                                    <th>Date and Time </th>
-                                                    <td>{{ $Expense->Date }}</td>
-                                              </tr>
-                                        </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        <table class="table table-resonsive table-bordered table-stripped table-condensed ">
+                            <tr>
+                                <th class="bg-success ">Attribute</th>
+                                <th class="bg-success ">Data</th>
+                            </tr>
+                            <tr>
+                                <td>Category Name</td>
+                                <td id="ViewCategoryName"></td>
+                            </tr>
+                            <tr>
+                                <td>Amount</td>
+                                <td id="ViewAmount"></td>
+                            </tr>
+                            <tr>
+                                <td>Description</td>
+                                <td id="ViewDescription"></td>
+                            </tr>
+                            <tr>
+                                <td>Date</td>
+                                <td id="ViewDate"></td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
-        </div> --}}
+        </div>
     </div>
     <script src="{{asset('js/custom-js/expense.js')}}"></script>
 @endsection

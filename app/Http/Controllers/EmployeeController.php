@@ -70,7 +70,7 @@ class EmployeeController extends Controller
      */
     public function show($id)
     {
-        $Employee = Employee::select('employees.*', 'hotels.Name')
+        $Employee = Employee::select('employees.*', 'hotels.Name as HotelName')
             ->where('employees.id', $id)
             ->leftJoin('hotels', 'employees.HotelID', '=', 'hotels.id')
             ->first();
