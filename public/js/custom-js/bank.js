@@ -64,7 +64,7 @@ $(document).ready(function(){
     $('#AddNewBtn').on('click',function(e){
         e.preventDefault();
         jQuery.noConflict();
-        $('#NewBanklModal').modal('show');
+        $('#NewBankModal').modal('show');
     });
 
     $('#formResetBtn').on('click',function(e){
@@ -83,7 +83,7 @@ $(document).ready(function(){
             success:function(data){
                 table.draw(false);
                 $('#newBankForm')[0].reset();
-                $('#NewBanklModal').modal('hide');
+                $('#NewBankModal').modal('hide');
                 Swal.fire(
                   'Success!',
                   data,
@@ -144,7 +144,7 @@ $(document).ready(function(){
             url     : 'bank/'+ID,
             data    : $('#EditBankForm').serializeArray(),
             success:function(data){
-                $('#EditBanklModal').modal('hide');
+                $('#EditBankModal').modal('hide');
                 $('#EditBankForm')[0].reset();
                 table.draw(false);
                 Swal.fire(

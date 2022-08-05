@@ -58,10 +58,6 @@
                                 </div>
                             </div>
                         {{ Form::close()}}   
-                        <!-- <div class="modal-footer justify-content-between">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                        </div> -->
                     </div>
                 </div>
             </div>
@@ -95,95 +91,5 @@
             </div>
         </div>
     </div>
-    <script>
-        $(document).ready(function(){
-            $.noConflict();
-            var CategoryList = $('#ExpenseCategoryList').DataTable({
-                processing  : true, 
-                serverSide  : true,
-                colReorder  : true, 
-                stateSave   : true,
-                responsive  : true,
-                buttons     : ['copy','excel','pdf'],
-
-                ajax:{
-                    type : "GET",
-                    url  : "/expense/category",   
-                },
-                columns :[
-                    {data   : 'Name'},
-                    {data   : 'action' , name :'action'},
-                ],
-
-            });
-
-            $('#AddNewBtn').on('click',function(e){
-                e.preventDefault();
-                $('#NewCategoryModal').modal('show');
-            });
-            $('#formResetBtn').on('click',function(e){
-                e.preventDefault();
-                $('#categoryForm')[0].reset();
-            });
-            $('#submitBtn').on('click',function(e){
-                e.preventDefault();
-                $.ajax({
-                    type    : 'POST',
-                    url     : '/expense/category',
-                    data    : $('#categoryForm').serializeArray(),success:function(data){
-                        $('#categoryForm')[0].reset();
-                        $('#NewCategoryModal').modal('hide');
-                        Swal.fire(
-                          'Success!',
-                          data,
-                          'success'
-                        );
-                        CategoryList.draw(false);
-                    },
-                    error:function(data){
-                        console.log('Eerror while added category !' + data);
-                    }
-                });
-            });
-            $('.EditBtn').on('click',function(e){
-                e.preventDefault();
-                var ID = $(this).val();
-                $.ajax({
-                    type    : 'GET',
-                    url     : '/expense/category/'+ID,
-                    data    : $('#updateForm').serializeArray(),
-                    success:function(data){
-                        $('#updateForm')[0].reset();
-                        $('#EditId').val(data['id']);
-                        $('#EditName').val(data['Name']);
-                        $('#EditCategoryModal').modal('show');
-                    },
-                    error:function(data){
-                        console.log("While data not Edit"+data);
-                    },
-                });
-            });
-            $('#updateBtn').on('click',function(e){
-                e.preventDefault();
-                var ID =$('#EditId').val();
-                $.ajax({
-                    type    : 'PATCH',
-                    url     : '/expense/category/'+ID,
-                    data    : $('#updateForm').serializeArray(),
-                    success:function(data){
-                        $('#EditCategoryModal').modal('hide');
-                        $('#updateForm')[0].reset();
-                        Swal.fire(
-                          'Success!',
-                          data,
-                          'success'
-                        );
-                    },
-                    error:function(data){
-                        console.log(data);
-                    },
-                });
-            });
-        });
-    </script>
+    <script src='/js/custom-js/expenseCategory.js'></script>
 @endsection

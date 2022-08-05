@@ -3,22 +3,6 @@
     <div class="container py-5 col-md-10 m-auto">
         <div class="row">
             <div class="col-md-10 m-auto">
-
-                @if (Session::get('delete'))
-                    <div class="alert alert-danger alert-dismissible">
-                        <button type="button" class="close" data-dismiss="alert" arial-hide="true"></button>
-                        <h5><i class="icon fas fa-trash-can"></i>Delete!</h5>
-                        {{Session::get('delete')}}
-                    </div>
-                @endif
-                @if (Session::get('destroyAll'))
-                    <div class="alert alert-danger alert-dismissible">
-                        <button type="button" class="close" data-dismiss="alert" arial-hide="true"></button>
-                        <h5><i class="icon fas fa-trash-can"></i>Delete!</h5>
-                        {{Session::get('destroyAll')}}
-                    </div>
-                @endif
-
                 <div class="card">
                     <div class="card-header bg-defult">
                         <div class="card-title">

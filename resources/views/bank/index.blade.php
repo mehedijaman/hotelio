@@ -58,7 +58,7 @@
             </div>
         </div>
         
-        <div class="modal fade show" id="NewBanklModal" role="dialog">
+        <div class="modal fade show" id="NewBankModal" role="dialog">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -120,7 +120,7 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade show" id="EditBanklModal" role="dialog">
+        <div class="modal fade show" id="EditBankModal" role="dialog">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
