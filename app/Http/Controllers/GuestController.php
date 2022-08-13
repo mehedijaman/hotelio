@@ -7,6 +7,7 @@ use App\Models\Guest;
 use Exception;
 use Ramsey\Uuid\Guid\Guid;
 use Yajra\Datatables\Datatables;
+
 class GuestController extends Controller
 {
     /**
