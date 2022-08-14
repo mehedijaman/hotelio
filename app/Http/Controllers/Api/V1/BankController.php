@@ -8,6 +8,7 @@ use App\Models\Bank;
 
 class BankController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
