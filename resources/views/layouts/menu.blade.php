@@ -152,3 +152,10 @@
         <p>TaxSetting</p>
     </a>
 </li>
+
+<li class="nav-item">
+    <a href="/sms" class="nav-link {{ Request::is('sms') ? 'active' : '' }}">
+        <i class="fa fa-email nav-icon fas"></i>
+        <p>SMS</p>
+    </a>
+</li>

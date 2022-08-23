@@ -23,6 +23,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Ramsey\Uuid\Guid\Guid;
+use App\Http\Controllers\SMSController;
 
 /*
 |--------------------------------------------------------------------------
@@ -279,4 +280,13 @@ Route::group(['middleware' => 'auth'],function(){
     |--------------------------------------------------------------------------
     */
     Route::get('profile/show', [ProfileController::class, 'index']);
+
+     /*
+    |--------------------------------------------------------------------------
+    | SMS Routes
+    |--------------------------------------------------------------------------
+    */
+    Route::get('sms',[SMSController::class,'index']);
+    Route::post('sms/send',[SMSController::class,'send']);
+
 });
