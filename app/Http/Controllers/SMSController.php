@@ -33,14 +33,14 @@ class SMSController extends Controller
         else
             return $request->all();
 
-        $URL = "https://smsapi.shiramsystem.com/user_api/";
+        $URL = "";
 
         $Post = array(
-            'email' => 'muzahid.captain@gmail.com', 
-            'password' => 'jsg499c$m@vrWaSPB@nX4#=Ey',
+            'email' => '', 
+            'password' => '',
             'method' => 'send_sms',            
             'mobile' => $Employee_Numbers,
-            'mask' => 'CPI KHULNA',
+            'mask' => '',
             'message' => $request->Message,
         );
 

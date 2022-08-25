@@ -24,6 +24,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Ramsey\Uuid\Guid\Guid;
 use App\Http\Controllers\SMSController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -289,4 +290,17 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('sms',[SMSController::class,'index']);
     Route::post('sms/send',[SMSController::class,'send']);
 
+    /*
+    |--------------------------------------------------------------------------
+    | Payment Routes
+    |--------------------------------------------------------------------------
+    */
+    Route::get('payment',[PaymentController::class,'index']);
+    Route::post('payment',[PaymentController::class,'order']);   
+
 });
+
+Route::post('sslcommerz/success',[PaymentController::class,'success'])->name('payment.success');
+Route::post('sslcommerz/failure',[PaymentController::class,'failure'])->name('payment.failure');
+Route::post('sslcommerz/cancel',[PaymentController::class,'cancel'])->name('payment.cancel');
+Route::post('sslcommerz/ipn',[PaymentController::class,'ipn'])->name('payment.ipn');

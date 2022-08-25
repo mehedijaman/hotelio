@@ -159,3 +159,10 @@
         <p>SMS</p>
     </a>
 </li>
+
+<li class="nav-item">
+    <a href="/payment" class="nav-link {{ Request::is('payment') ? 'active' : '' }}">
+        <i class="fa fa-email nav-icon fas"></i>
+        <p>Payment</p>
+    </a>
+</li>

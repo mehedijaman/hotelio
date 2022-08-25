@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b3a81327ceae2fa89ae10ccd3c7b2bc7",
+    "content-hash": "cefc018b2709df4ff7e9ce716ebe2088",
     "packages": [
         {
             "name": "brick/math",
@@ -140,6 +140,53 @@
                 "source": "https://github.com/dflydev/dflydev-dot-access-data/tree/v3.0.1"
             },
             "time": "2021-08-13T13:06:58+00:00"
+        },
+        {
+            "name": "dgvai/laravel-sslcommerz",
+            "version": "1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dgvai/laravel-sslcommerz.git",
+                "reference": "b357221d2513be692f45e7587b4fdf0b169364c8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dgvai/laravel-sslcommerz/zipball/b357221d2513be692f45e7587b4fdf0b169364c8",
+                "reference": "b357221d2513be692f45e7587b4fdf0b169364c8",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "~7.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "DGvai\\SSLCommerz\\SSLCommerzServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "DGvai\\SSLCommerz\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jalal Uddin",
+                    "email": "dgvai@users.noreply.github.com"
+                }
+            ],
+            "description": "Laravel package of SSLCommerz",
+            "support": {
+                "issues": "https://github.com/dgvai/laravel-sslcommerz/issues",
+                "source": "https://github.com/dgvai/laravel-sslcommerz/tree/1.0.4"
+            },
+            "time": "2022-03-01T04:42:37+00:00"
         },
         {
             "name": "doctrine/cache",
@@ -8624,5 +8671,5 @@
         "php": "^8.0.2"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.0.0"
 }
