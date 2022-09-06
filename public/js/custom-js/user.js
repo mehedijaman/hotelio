@@ -62,7 +62,7 @@ $(document).ready(function(){
 
     $('body').on('click','#DeleteBtn',function(e){
         e.preventDefault();
-        let ID = $(this).data('id');
+        var ID = $(this).data('id');
 
         Swal.fire({
           title: 'Are you sure?',
@@ -136,4 +136,52 @@ $(document).ready(function(){
          }
         });
     });
+
+    $('body').on('click','#AssignRoleBtn',function(e){
+        e.preventDefault();
+        var ID = $(this).data('id');
+         $('#AssignRoleUserID').val(ID);
+        $('#AssignRoleModal').modal('show');
+    });
+
+    $('#AssignRoleForm').on('submit',function(e){
+        e.preventDefault();
+
+        Swal.fire({
+          title: 'Assign Role ?',
+          text: "Access can be revoked anytime. No Worry!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, Assign New Role'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            $.ajax({
+                type:'POST',
+                url:'/user/assign/role/',
+                data:$('#AssignRoleForm').serialize(),
+                success:function(data){
+                    $('#AssignRoleModal').modal('hide');
+                    UserList.draw(false); 
+                    Swal.fire(
+                      'Role Assigned!',
+                      'New role assigned successfully',
+                      'success'
+                    );
+                },
+                error:function(data){
+                    Swal.fire(
+                      'Error!',
+                      'Role Assign Failed !',
+                      'error'
+                    );
+                    console.log(data);
+                },
+            });            
+          }
+        });
+    });
+
+
 });

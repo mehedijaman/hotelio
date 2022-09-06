@@ -55,39 +55,50 @@
 
                         </thead>
                         <tbody>
-                            {{-- @foreach ($Users as $User)
-                                <tr class="border-bottom">
-                                    <td>{{$User->Employee}}</td>
-                                    <td>{{$User->name}}</td>
-                                    <td>{{$User->email}}</td>
-                                    <td>{{$User->Photo}}</td>
-                                    <td>
-                                        @if ($User->Status)
-                                            <b class="text-success fs-6">Active</b> 
-                                        @else
-                                            <b class="text-danger fs-6">Deactive</b> 
-                                        @endif
-                                    </td>
-                                    <td>{{$User->LastLogin}}</td>
-                                    <td>{{$User->Role}}</td>
-                                
-                                
-                                    <td class="d-flex">
-                                        <a class="" href="/user/{{ $User->id }}/edit" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit">
-                                            <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i></i>
-                                        </a>
 
-                                        <button class="DeleteBtn" value="{{ $User->id }}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
-                                            <i class="fa-regular fa-trash-can mr-3 text-danger"></i>
-                                        </button>
-                                        
-                                    </td> 
-                                </tr>
-                            @endforeach --}}
                         </tbody>
                     </table>
                 </div>
                 <div class="card-footer">
+                </div>
+            </div>
+            <div class="modal fade show" id="AssignRoleModal" role="dialog">
+                <div class="modal-dialog modal-xl ">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Assign Role</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                             <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            {{ Form::open(array('url' => '/user/assign/role','method' => 'POST','class'=>'form-horizontal', 'files' => true, 'id' => 'AssignRoleForm')) }}
+                                <input type="hidden" id="AssignRoleUserID" name="UserID">
+                                <div class="card-body">
+                                    <div class="form-group row">
+                                        <label for="Type" class="form-label col-md-3">Roles</label>
+                                        <div class="col-md-8">
+                                            <div class="input-group">
+                                                <select name="Role" class="form-select">
+                                                    <option value="">Select Role</option>
+                                                    <option value="SuperAdmin">Super Admin</option>
+                                                    <option value="Admin">Admin</option>
+                                                    <option value="Manager">Manager</option>
+                                                    <option value="Cashier">Cashier</option>
+                                                    <option value="Staff">Staff</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="card-footer">
+                                        <input type="submit" name="submit" value="Assign Role" id="submitBtn" class="btn bg-navy float-right w-25 text-capitalize">
+                                        <button type="button" id="formResetBtn" class="btn btn-warning ">Reset</button>
+                                    </div>
+                                </div>
+                            {{ Form::close()}}   
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

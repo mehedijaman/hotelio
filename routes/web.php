@@ -44,6 +44,7 @@ require __DIR__ . '/auth.php';
 |--------------------------------------------------------------------------
 */
 Route::resource('user', RegisteredUserController::class);
+Route::post('user/assign/role', [UserController::class,'assignRole']);
 
 Route::get('/', [HotelioController::class, 'index']);
 
