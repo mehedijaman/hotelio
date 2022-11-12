@@ -3,6 +3,38 @@
 <div class="container py-5">
     <div class="row">
         <div class="col-md-12">
+            @if (Session::get('Restore'))
+            <div class="alert alert-teal bg-teal alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                <h5><i class="fa-solid fa-arrow-rotate-left"></i>
+                    Restore!</h5>
+                {{Session::get('Restore')}}
+            </div>
+            @endif
+            @if (Session::get('RestoreAll'))
+            <div class="alert alert-teal bg-teal alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                <h5><i class="fa-solid fa-arrow-rotate-left"></i>
+                    Restore All!</h5>
+                {{Session::get('RestoreAll')}}
+            </div>
+            @endif
+            @if (Session::get('PermanentDelete'))
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                <h5><i class="icon fas fa-ban"></i>
+                    Permanent Delete!</h5>
+                {{Session::get('PermanentDelete')}}
+            </div>
+            @endif
+            @if (Session::get('PermanentAllDelete'))
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                <h5><i class="icon fas fa-ban"></i>
+                    Permanent All Delete!</h5>
+                {{Session::get('PermanentAllDelete')}}
+            </div>
+            @endif
             <div class="card">
                 <div class="card-header bg-defult">
                     <div class="card-title">
@@ -21,7 +53,6 @@
                     <table class="table table-hover text-nowrap">
                         <thead>
                             <tr>
-                                <th>Id</th>
                                 <th>Acount ID</th>
                                 <th>Date</th>
                                 <th>OpeningBalance</th>
@@ -34,29 +65,18 @@
                         <tbody>
                             @foreach ($TrasedBalances as $TrashBalance)
                             <tr>
-                                <td>{{$TrashBalance->id}}</td>
                                 <td>{{$TrashBalance->AcountID}}</td>
                                 <td>{{$TrashBalance->Date}}</td>
                                 <td>{{$TrashBalance->OpeningBalance}}</td>
                                 <td>{{$TrashBalance->ClosingBalance}}</td>
                                 <td>{{$TrashBalance->Status}}</td>
                                 <td class="d-flex">
-                                    <a href="/balance/{{$TrashBalance->id}}" class="mr-3 text-purple" data-bs-toggle="tooltip" data-bs-placement="bottom" title="View">
-                                        <svg data-v-9a6e255c="" xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="invoice-row-5036-preview-icon" class="mx-1 feather feather-eye">
-                                            <path data-v-9a6e255c="" d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                            <circle data-v-9a6e255c="" cx="12" cy="12" r="3"></circle>
-                                        </svg>
+                                    <a href="/balance/{{$TrashBalance->id}}/restore" class="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
+                                        <i class="fa-solid fa-trash-arrow-up ml-2 text-success"></i>
                                     </a>
-                                    <a href="/balance/{{$TrashBalance->id}}/delete/parmanently" class=" btn btn-danger btn-sm mx-2" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
-                                        Parmanent Delete
-                                        <i class="fa-regular fa-trash-can mr-3 text-black"></i>
+                                    <a href="/balance/{{$TrashBalance->id}}/delete/parmanently" class=" mx-2" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
+                                        <i class="fa-solid fa-trash-can ml-2 text-danger"></i>
                                     </a>
-                                    <a href="/balance/{{$TrashBalance->id}}/restore" class=" btn btn-warning btn-sm" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
-                                        Restore
-                                        <i class="fa-solid fa-arrow-rotate-left"></i>
-
-                                    </a>
-
                                 </td>
                             </tr>
                             @endforeach
@@ -70,5 +90,4 @@
             </div>
         </div>
     </div>
-</div>
-@endsection
+    @endsection

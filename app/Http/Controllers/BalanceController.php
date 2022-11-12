@@ -16,8 +16,9 @@ class BalanceController extends Controller
      */
     public function index()
     {
-        $Balances = Balance::all();
-        return view('balance.index', compact('Balances'));
+        // return Balance::all()->first();
+        $Balance = Balance::all()->first();
+        return view('balance.index', compact('Balance'));
     }
 
     /**
@@ -41,7 +42,7 @@ class BalanceController extends Controller
     {
         try {
             Balance::create($request->all());
-            return back();
+            return back()->with('Success', 'Balance Add Successfull');
         } catch (Exception $error) {
             return $error->getMessage();
         }
@@ -55,6 +56,7 @@ class BalanceController extends Controller
      */
     public function show($id)
     {
+        // return Balance::all();
         $Balances = Balance::find($id);
         return view('balance.show', compact('Balances'));
     }
@@ -67,9 +69,10 @@ class BalanceController extends Controller
      */
     public function edit($id)
     {
+        $AccountLedgers = AccountLedger::all();
         $Balances = Balance::find($id);
 
-        return view('balance.edit', compact('Balances'));
+        return view('balance.edit', compact('Balances', 'AccountLedgers'));
     }
 
     /**
@@ -83,7 +86,7 @@ class BalanceController extends Controller
     {
         Balance::find($id)->update($request->all());
 
-        return $this->index();
+        return back()->with('Update', 'Blance Update Successfull');
     }
 
     /**
@@ -95,12 +98,12 @@ class BalanceController extends Controller
     public function destroy($id)
     {
         Balance::find($id)->delete();
-        return back();
+        return back()->with('Delete', 'Balance Successfull');
     }
     public function deleteAll()
     {
         Balance::withTrashed()->delete();
-        return back();
+        return back()->with('DeleteAll', 'Balance Delete Successfull');
     }
     public function trash()
     {
@@ -110,21 +113,21 @@ class BalanceController extends Controller
     public function forceDelete($id)
     {
         Balance::withTrashed()->where('id', $id)->forceDelete();
-        return back();
+        return back()->with('PermanentDelete', 'Balance Delete Successfull');
     }
     public function restore($id)
     {
         Balance::withTrashed()->where('id', $id)->restore();
-        return back();
+        return back()->with('Restore', 'Balance Restore Successfull');
     }
     public function restoreAll()
     {
         Balance::withTrashed()->restore();
-        return back();
+        return back()->with('RestoreAll', ' Restore All Balance Successfull');
     }
     public function emtyTrash()
     {
         Balance::withTrashed()->forceDelete();
-        return back();
+        return back()->with('PermanentAllDelete', 'Permanent All Balance  Successfull');
     }
 }

@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
 use App\Models\TaxSetting;
+
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Yajra\Datatables\Datatables;
 use Exception;
+
 
 class TaxSettingController extends Controller
 {
@@ -16,8 +19,13 @@ class TaxSettingController extends Controller
      */
     public function index()
     {
-        $TaxSettings = TaxSetting::all();
-        return view('taxSetting.index',compact('TaxSettings'));
+        // $TaxSettings = TaxSetting::all();
+        // return view('taxSetting.index',compact('TaxSettings'));
+        if (request()->ajax()) 
+        {
+            return $TaxSetting = Datatables::of(TaxSetting::all())->addColumn('action','layouts.dt_buttons_2')->make(true);
+        }
+        return view('taxSetting.index');        
     }
 
     /**
@@ -40,7 +48,7 @@ class TaxSettingController extends Controller
     {
         try {
             $TaxSettings = TaxSetting::create($request->all());
-            return back();
+            return "Tax Added SuccessFully !";
         } catch (Exception $error) {
             $error->getMessage();
         }
@@ -54,7 +62,7 @@ class TaxSettingController extends Controller
      */
     public function show($id)
     {
-        //
+        return TaxSetting::find($id);
     }
 
     /**
@@ -91,36 +99,54 @@ class TaxSettingController extends Controller
     public function destroy($id)
     {
         TaxSetting::find($id)->delete();
-        return back();
+        return back()->with('Destroy', 'Delete Completed !');
     }
+    /**
+     * Delete all table list
+    */
     public function destroyAll()
     {
         TaxSetting::withTrashed()->delete();
-        return back();
+        return back()->with('DestroyAll', 'সমস্ত ডাটাকে খালি করা হলো');
     }
+    /**
+     * View Trash page 
+    */
     public function trash()
     {
         $TaxSettings = TaxSetting::onlyTrashed()->get();
         return view('taxSetting.trash',compact('TaxSettings'));
     }
+    /**
+     * table column restore
+    */
     public function restore($id)
     {
         TaxSetting::withTrashed()->where('id',$id)->restore();
-        return back();
+        return back()->with('Restore', 'Restore SuccessFully !');
     }
+    /**
+     * Table  all Column list
+    */
     public function restoreAll()
     {
         TaxSetting::withTrashed()->restore();
-        return back();
+        return back()->with('RestoreAll', 'সমস্ত ডাটাকে পুনরুদ্ধার করা হয়েছে');
     }
+    /**
+     * table remove delete
+    */
     public function forceDeleted($id)
     {
         TaxSetting::withTrashed()->where('id',$id)->forceDelete();
-        return back();
+        return back()->with('PermanentlyDelete', 'Permanently Delete Completed !');
     }
+    /**
+     * All table list remove
+    */
     public function emptyTrash()
     {
         TaxSetting::onlyTrashed()->forceDelete();
-        return back();
+        return back()->with('EmptyTrash', 'ট্রাস সম্পূর্ণরূপে খালি করা হলো');
     }
 }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Hotel;
 use Exception;
+use Yajra\Datatables\Datatables;
+// use Yajra\Datatables\Facades\Datatables;
 
 class HotelController extends Controller
 {
@@ -15,9 +17,15 @@ class HotelController extends Controller
      */
     public function index()
     {
-        // return "hello";
-        $Hotels = Hotel::all();
-        return view('hotel.index',compact('Hotels'));
+        if(request()->ajax())
+        {
+            return $Hotels = Datatables::of(Hotel::all())
+            ->addColumn('action','layouts.dt_buttons')
+            // ->rawColumn(['action'])
+            ->make(true);
+        }
+
+        return view('hotel.index');
     }
 
     /**
@@ -38,17 +46,10 @@ class HotelController extends Controller
      */
     public function store(Request $request)
     {
-        // return  $request->all();
         try{
             Hotel::create($request->all());
 
-            // if($request->file('image')){
-            //     $file= $request->file('image');
-            //     $filename= date('YmdHi').$file->getClientOriginalName();
-            //     $file-> move(public_path('public/HotelImage'), $filename);
-            //     $data['image']= $filename;
-            // }
-            return back();
+            return "Hotel Added Successfully !";
         }
         catch(Exception $error){
             return $error->getMessage();
@@ -65,7 +66,7 @@ class HotelController extends Controller
     public function show($id)
     {
         $Hotels = Hotel::find($id);
-        return view('hotel.show',compact('Hotels'));
+        return $Hotels;
     }
 
     /**
@@ -90,8 +91,8 @@ class HotelController extends Controller
     public function update(Request $request, $id)
     {
         Hotel::find($id)->update($request->all());
-
-        return $this->index();
+        return "Hotel Updated Successfully !";
+        // return $this->index()->with('Success','Update Successfull!');
 
     }
 
@@ -104,7 +105,7 @@ class HotelController extends Controller
     public function destroy($id)
     {
         Hotel::find($id)->delete();
-        return $this->index();
+        return back()->with('delete','Deleted data is stored in the trash');
     }
 
 
@@ -112,42 +113,46 @@ class HotelController extends Controller
     public function destroyAll()
     {
         Hotel::withTrashed()->delete();
-        return back();
+        return back()->with('destroyAll','Deleted All data is stored in the trash');
     }
     
-    //trash 
+    /**
+     * View Trash Page
+     * @return \Illumindate\Http\Response
+     * 
+     */
     public function trash()
     {
         $HotelTrashed = Hotel::onlyTrashed()->get();
-       return view('hotel.trash', compact('HotelTrashed'));
+        return view('hotel.trash', compact('HotelTrashed'));
 
     }
 
     //forceDelete
-    public function forceDelete($id)
+    public function forceDeleted($id)
     {
         Hotel::withTrashed()->where('id',$id)->forceDelete();
-        return back();
+        return back()->with('Delete','Deleted completed !');
     }
 
     //restore
     public function restore($id)
     {
         Hotel::withTrashed()->where('id',$id)->restore();
-        return back();
+        return back()->with('Restore','Restore Successfull !');
     }
 
     //restoreAll
     public function restoreAll()
     {
         Hotel::withTrashed()->restore();
-        return $this->index();
+        return back()->with('RestoreAll','সমস্ত ডাটাকে পুনরুদ্ধার করা হয়েছে ');
     }
 
     //emptyTrash
     public function emptyTrash()
     {
         Hotel::onlyTrashed()->forceDelete();
-        return back();
+        return back()->with('emptyTrash','ট্রাস সম্পূর্ণরূপে খালি করা হলো ');
     }
 }

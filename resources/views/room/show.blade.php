@@ -14,15 +14,14 @@
                                 Room All List
                             </h2>
                         </div>
-                        
                     </div>
                     <div class="card-body table-responsive p-0">
                         <table class="table table-hover text-nowrap">
                             <tbody>
                                 <tr>
                                     <td>
-                                        <b class="fs-5">Guest :</b>
-                                        <b class="ml-5">{{ $Room->Hotel}}</b>
+                                        <b class="fs-5">Hotel :</b>
+                                        <b class="ml-5">{{ $Room->HotelName}}</b>
                                     </td>
                                      <td>
                                          <b class="fs-5">RoomNo :</b>
@@ -41,38 +40,38 @@
                                 <tr>
                                     <td>
                                         <b class="fs-5">Geyser :</b>
-                                        <b class="ml-5">@if($Room->Geyser)Avilable <i class="fa-solid fa-square-check text-green ml-1"></i>@else Inavilable<i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
+                                        <b class="ml-5">@if($Room->Geyser) <i class="fa-solid fa-square-check text-green ml-1"></i>@else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
                                     </td>
                                     <td>
                                         <b class="fs-5">AC :</b>
-                                        <b class="ml-5">@if($Room->AC)Avilable <i class="fa-solid fa-square-check text-green ml-1"></i>@else Inavilable<i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
+                                        <b class="ml-5">@if($Room->AC) <i class="fa-solid fa-square-check text-green ml-1"></i>@else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
                                     </td>
                                     <td>
                                         <b class="fs-5">Balcony :</b>
-                                        <b class="ml-5">@if($Room->Balcony)Avilable <i class="fa-solid fa-square-check text-green ml-1"></i>@else Inavilable<i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
+                                        <b class="ml-5">@if($Room->Balcony) <i class="fa-solid fa-square-check text-green ml-1"></i>@else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
                                     </td>
                                     <td>
                                         <b class="fs-5">Bathtub :</b>
-                                        <b class="ml-5">@if($Room->Bathtub)Avilable <i class="fa-solid fa-square-check text-green ml-1"></i>@else Inavilable<i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
+                                        <b class="ml-5">@if($Room->Bathtub) <i class="fa-solid fa-square-check text-green ml-1"></i>@else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
                                     </td>
                                     
                                 </tr>
                                 <tr>
                                     <td>
                                         <b class="fs-5">HiComode :</b>
-                                        <b class="ml-5">@if($Room->HiComode)Avilable <i class="fa-solid fa-square-check text-green ml-1"></i>@else Inavilable<i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
+                                        <b class="ml-5">@if($Room->HiComode) <i class="fa-solid fa-square-check text-green ml-1"></i>@else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
                                     </td>
                                     <td>
                                         <b class="fs-5">Locker :</b>
-                                        <b class="ml-5">@if($Room->Locker)Avilable <i class="fa-solid fa-square-check text-green ml-1"></i>@else Inavilable<i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
+                                        <b class="ml-5">@if($Room->Locker) <i class="fa-solid fa-square-check text-green ml-1"></i>@else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
                                     </td>
                                     <td>
                                         <b class="fs-5">Freeze :</b>
-                                        <b class="ml-5">@if($Room->Freeze)Avilable <i class="fa-solid fa-square-check text-green ml-1"></i>@else Inavilable<i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
+                                        <b class="ml-5">@if($Room->Freeze) <i class="fa-solid fa-square-check text-green ml-1"></i>@else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
                                     </td>
                                     <td>
                                         <b class="fs-5">Internet :</b>
-                                        <b class="ml-5">@if($Room->Internet)Avilable <i class="fa-solid fa-square-check text-green ml-1"></i>@else Inavilable<i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
+                                        <b class="ml-5">@if($Room->Internet) <i class="fa-solid fa-square-check text-green ml-1"></i>@else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
                                     </td>
                                     
                                 </tr>
@@ -80,15 +79,15 @@
                                   
                                     <td>
                                         <b class="fs-5">Intercom :</b>
-                                        <b class="ml-5">@if($Room->Intercom)Avilable <i class="fa-solid fa-square-check text-green ml-1"></i>@else Inavilable<i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
+                                        <b class="ml-5">@if($Room->Intercom) <i class="fa-solid fa-square-check text-green ml-1"></i>@else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
                                     </td>
                                     <td>
                                         <b class="fs-5">TV :</b>
-                                        <b class="ml-5">@if($Room->TV)Avilable <i class="fa-solid fa-square-check text-green ml-1"></i>@else Inavilable<i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
+                                        <b class="ml-5">@if($Room->TV) <i class="fa-solid fa-square-check text-green ml-1"></i>@else <i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
                                     </td>
                                     <td>
                                         <b class="fs-5">TV :</b>
-                                        <b class="ml-5">@if($Room->TV)Avilable <i class="fa-solid fa-square-check text-green ml-1"></i>@else Inavilable<i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
+                                        <b class="ml-5">@if($Room->TV) <i class="fa-solid fa-square-check text-green ml-1"></i>@else<i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
                                     </td>
                                     <td>
                                         <b class="fs-5">Price :</b>
@@ -96,22 +95,17 @@
                                     </td>
                                     
                                 </tr>
-                                <tr>
-                                   <td>
-                                        <b class="fs-5">AdditionalFeatures :</b>
-                                        <b class="ml-5">{{ $Room->AdditionalFeatures}}</b>
-                                   </td>
-                                   <td>
-                                        <b class="fs-5">Status :</b>
-                                        <b class="ml-5">@if($Room->Status)Active <i class="fa-solid fa-square-check text-green ml-1"></i>@else Deactive<i class="fa-solid fa-square-xmark text-danger ml-1"></i> @endif</b>
-                                    </td>
-                                </tr>
-                                
                             </tbody>
                         </table>
-                        <div class="card-footer">
-                                <p class="card-text text-right"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        <div class="card-footer d-flex">
+                            <div class="flex-grow-1">
+                                <a href="" class="btn btn-sm btn-warning bg-orange text-capitalize" style="color: #fff !important">Edit</a>
+                                <a href="" class="btn btn-sm btn-danger text-capitalize">Delete</a>
                             </div>
+                            <div class="">
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

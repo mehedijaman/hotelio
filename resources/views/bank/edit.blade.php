@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container py-5">
+    <div class="container py-5 col-md-12">
         <div class="row">
             <div class="col-md-7 m-auto">
                 <div class="card card-primary">
@@ -10,7 +10,7 @@
                             Update To Bank Data
                         </h3>
                     </div>
-                    {{ Form::open(array('url' => '/bank/'.$Banks->id,'method' => 'PATCH','class'=>'form-horizontal', 'files' => true)) }}
+                    {{ Form::open(array('url' => '/bank/'.$Banks->id,'method' => 'PATCH','class'=>'form-horizontal', 'files' => true , 'id'=>'updateBank')) }}
                         <div class="card-body">
                             <div class="form-group row">
                                 <label for="Name" class="form-label col-md-3">Name:</label>
@@ -39,7 +39,7 @@
                             <div class="form-group row">
                                 <label for="Phone" class="form-label col-md-3">Phone:</label>
                                 <div class="col-md-8">
-                                    <input type="tel" name="Phone" class="form-control" value="{{$Banks->Phone}}"> 
+                                    <input type="tel" name="Phone" updateBtnclass="form-control" value="{{$Banks->Phone}}"> 
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -49,7 +49,7 @@
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <input type="submit" name="submit" id="" class="btn bg-success float-right w-25 text-capitalize" value="Update">
+                                <input type="submit" name="submit" id="updateBtn" class="btn bg-success float-right w-25 text-capitalize" value="Update">
                             </div>
                         </div>
                     {{ Form::close()}} 
@@ -57,5 +57,23 @@
             </div>
         </div>
     </div>
-    
+    <script>
+        $(document).ready(function(){
+            $('#updateBtn').on('click',function(e){
+                e.preventDefault();
+                $.ajax({
+                    type    : 'PATCH',
+                    url     : '/bank/'+{{ $Banks->id }},
+                    data    : $('#updateBank').serializeArray(),success:function(data){
+                        $('#updateBank')[0].reset();
+                        Swal.fire(
+                            'success',
+                            'Bank Updated successfully !',
+                            'success'
+                        );
+                    }  
+                })
+            })
+        })
+    </script>
 @endsection

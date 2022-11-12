@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Bank;
 use Exception;
+use Yajra\Datatables\Datatables;
 
 class BankController extends Controller
 {
@@ -15,8 +16,14 @@ class BankController extends Controller
      */
     public function index()
     {
-        $Banks = Bank::all();
-        return view('bank.index', compact('Banks'));
+        if(request()->ajax())
+        {
+            return $Banks = Datatables::of(Bank::all())
+            ->addColumn('action','layouts.dt_buttons')
+            ->make(true);
+        }
+        
+        return view('bank.index');
     }
 
     /**
@@ -40,7 +47,7 @@ class BankController extends Controller
     {
         try{
             Bank::create($request->all());
-            return back();
+            return 'Bank Add Succeessfully !';
         }
         catch(Exception $error){
             return $error->getMessage();
@@ -55,7 +62,8 @@ class BankController extends Controller
      */
     public function show($id)
     {
-        //
+        $Bank = Bank::find($id);
+        return $Bank;
     }
 
     /**
@@ -80,7 +88,7 @@ class BankController extends Controller
     public function update(Request $request , $id)
     {
         Bank::find($id)->update($request->all());
-        return $this->index();
+        return "Update Successfully !";
     }
 
     /**
@@ -92,15 +100,13 @@ class BankController extends Controller
     public function destroy($id)
     {
         Bank::find($id)->delete();
-        return $this->index(); 
+        return back()->with('delete','Deleted data is stored in the trash'); 
     }
-
-// trsh function 
-
+ 
     public function destroyAll()
     {
         Bank::withTrashed()->delete();
-        return back();
+        return back()->with('destroyAll','Deleted All data is stored in the trash');
     }
 
     public function trash()
@@ -110,27 +116,27 @@ class BankController extends Controller
 
     }
 
-    public function forceDelete($id){
+    public function forceDeleted($id){
         Bank::withTrashed()->where('id',$id)->forceDelete();
-        return back();
+        return back()->with('Parmanentlly','Parmanentlly Delete');
     }
 
     public function restore($id){
         Bank::withTrashed()->where('id',$id)->restore();
-        return back();
+        return back()->with('Restore','Restore Successfull !');
     }
 
     public function restoreAll()
     {
         Bank::withTrashed()->restore();
-        return back();
+        return back()->with('RestoreAll','সমস্ত ডাটাকে পুনরুদ্ধার করা হয়েছে ');
 
     }
 
     public function emptyTrash()
     {
         Bank::onlyTrashed()->forceDelete();
-        return back();
+        return back()->with('emptyTrash','ট্রাস সম্পূর্ণরূপে খালি করা হলো ');
     }
 
 }

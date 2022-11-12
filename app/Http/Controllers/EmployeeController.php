@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Yajra\Datatables\Datatables;
 use Illuminate\Http\Request;
 use App\Models\Employee;
 use App\Models\Hotel;
 use Exception;
+
 
 class EmployeeController extends Controller
 {
@@ -16,11 +18,20 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $Employees = Employee::select('employees.*','hotels.Name as Hotel')
-        ->leftJoin('hotels','employees.HotelID','=','hotels.id')
+        $Hotels = Hotel::all();
+        if(request()->ajax()){
+            return $Employees = Datatables::of($this->dtQuery())
+            ->addColumn('action','layouts.dt_buttons')
+            ->make(true);
+        }
+        return view('employee.index', compact('Hotels'));
+        
+    }
+    public function dtQuery()
+    {
+        return $Employees = Employee::select('employees.*', 'hotels.Name as Hotel')
+        ->leftJoin('hotels', 'employees.HotelID', '=', 'hotels.id')
         ->get();
-        // $Employees = Employee::all();
-        return view('employee.index' ,compact('Employees'));
     }
 
     /**
@@ -31,7 +42,7 @@ class EmployeeController extends Controller
     public function create()
     {
         $Hotels = Hotel::all();
-        return view('employee.create',compact('Hotels'));
+        return view('employee.create', compact('Hotels'));
     }
 
     /**
@@ -43,11 +54,10 @@ class EmployeeController extends Controller
     public function store(Request $request)
     {
         // return $request->all();
-        try{
+        try {
             Employee::create($request->all());
-            return back();
-        }
-        catch(Exception $error){
+            return 'Employee Add Successfull!' ;
+        } catch (Exception $error) {
             return $error->getMessage();
         }
     }
@@ -60,8 +70,11 @@ class EmployeeController extends Controller
      */
     public function show($id)
     {
-        $Employees = Employee::find($id);
-        return view('employee.show' , compact('Employees'));
+        $Employee = Employee::select('employees.*', 'hotels.Name as HotelName')
+            ->where('employees.id', $id)
+            ->leftJoin('hotels', 'employees.HotelID', '=', 'hotels.id')
+            ->first();
+        return $Employee;
     }
 
     /**
@@ -72,9 +85,10 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
+        // return Employee::all();
         $Hotels = Hotel::all();
         $Employees = Employee::find($id);
-        return view('employee.edit',compact('Hotels','Employees'));
+        return view('employee.edit', compact('Hotels', 'Employees'));
     }
 
     /**
@@ -84,10 +98,10 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request , $id)
+    public function update(Request $request, $id)
     {
         Employee::find($id)->update($request->all());
-        return $this->index();
+        return "Data Update Successfully !";
     }
 
     /**
@@ -99,48 +113,54 @@ class EmployeeController extends Controller
     public function destroy($id)
     {
         Employee::find($id)->delete();
-        return $this->index();
+        return back()->with('delete','Deleted data is stored in the trash');
     }
 
-    //destroyAll
+    /**
+     * Destroy All Data on table 
+     * 
+     * @return \Illuminate\Http\Response
+     */
     public function destroyAll()
     {
         Employee::withTrashed()->delete();
-        return back();
+        return back()->with('destroyAll','Deleted All data is stored in the trash');
     }
-    
-    //trash
+
+
     public function trash()
     {
         $EmployeesTrashed = Employee::onlyTrashed()->get();
-        return view('employee.trash' , compact('EmployeesTrashed'));
+        return view('employee.trash', compact('EmployeesTrashed'));
     }
 
-    //forceDelete
-    public function forceDelete($id)
+
+    public function forceDeleted($id)
     {
-        Employee::withTrashed()->where('id',$id)->forceDelete();
-        return back();
+        Employee::withTrashed()->where('id', $id)->forceDelete();
+
+        return back()->with('Parmanentlly', 'Parmanentlly Delete');
     }
 
-    //restore 
+
     public function restore($id)
     {
-        Employee::withTrashed()->where('id',$id)->restore();
-        return back();
+        Employee::withTrashed()->where('id', $id)->restore();
+
+        return back()->with('restore', 'Restore Successfully!');
     }
 
-    //restoreAll
+
     public function restoreAll()
     {
         Employee::withTrashed()->restore();
-        return $this->index();
+        return back()->with('restoreAll', 'সমস্ত ডাটাকে পুনরুদ্ধার করা হয়েছে ');
     }
 
-    //emptyTrash
+
     public function emptyTrash()
     {
         Employee::onlyTrashed()->forceDelete();
-        return back();
+        return back()->with('emptyTrash', 'ট্রাস সম্পূর্ণরূপে খালি করা হলো ');
     }
 }

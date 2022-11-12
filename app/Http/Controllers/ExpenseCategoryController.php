@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ExpenseCategory;
+use Yajra\Datatables\Datatables;
 use Exception;
 
 class ExpenseCategoryController extends Controller
@@ -15,8 +16,13 @@ class ExpenseCategoryController extends Controller
      */
     public function index()
     {
-        $ExpenseCategoris = ExpenseCategory::all();
-        return view('expenseCategory.index',compact('ExpenseCategoris'));
+        if(request()->ajax()){
+          return $ExpenseCategoris = Datatables::of(ExpenseCategory::all())
+          ->addColumn('action','layouts.dt_buttons_2')
+          ->make(true);
+        }
+        
+        return view('expenseCategory.index');
     }
 
     /**
@@ -39,7 +45,7 @@ class ExpenseCategoryController extends Controller
     {
         try{
             ExpenseCategory::create($request->all());
-            return back();
+            return "Data Successfully Addesd !";
         }
         catch(Exception $error){
             return $error->getMessage();
@@ -55,7 +61,8 @@ class ExpenseCategoryController extends Controller
     public function show($id)
     {
         $Category = ExpenseCategory::find($id);
-        return view('expenseCategory.show',compact('Category'));
+        // return view('expenseCategory.show',compact('Category'));
+        return $Category;
     }
 
     /**
@@ -80,7 +87,7 @@ class ExpenseCategoryController extends Controller
     public function update(Request $request, $id)
     {
         ExpenseCategory::find($id)->update($request->all());
-        return $this->index();
+        return "Update Successfully ! ";
     }
 
     /**
@@ -92,45 +99,45 @@ class ExpenseCategoryController extends Controller
     public function destroy($id)
     {
         ExpenseCategory::find($id)->delete();
-        return $this->index();
+        return $this->trash();
     }
 
-    //destroyAll
+    
     public function destroyAll()
     {
         ExpenseCategory::withTrashed()->delete();
         return $this->index();
     }
 
-    //trash
+    
     public function trash()
     {
         $CategoryTrashed = ExpenseCategory::onlyTrashed()->get();
         return view('expenseCategory.trash', compact('CategoryTrashed'));
     }
 
-    //parmanentlyDelete
+    
     public function forceDelete($id)
     {
         ExpenseCategory::withTrashed()->where('id',$id)->forceDelete();
         return back();
     }
 
-    //restore
+    
     public function restore($id)
     {
         ExpenseCategory::withTrashed()->where('id',$id)->restore();
         return back();
     }
 
-    //restoreAll
+    
     public function restoreAll()
     {
         ExpenseCategory::withTrashed()->restore();
         return $this->index();
     }
 
-    //emptyTrash
+    
     public function emptyTrash()
     {
         ExpenseCategory::onlyTrashed()->forceDelete();

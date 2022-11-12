@@ -3,15 +3,48 @@
 <div class="container py-5">
     <div class="row">
         <div class="col-md-12">
+
+            @if (Session::get('Restore_All'))
+            <div class="alert alert-teal bg-teal alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                <h5><i class="fa-solid fa-arrow-rotate-left"></i>Restore All!</h5>
+                {{Session::get('Restore_All')}}
+            </div>
+            @endif
+            @if (Session::get('Restore'))
+            <div class="alert alert-teal bg-teal alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                <h5><i class="fa-solid fa-arrow-rotate-left"></i>Restore!</h5>
+                {{Session::get('Restore')}}
+            </div>
+            @endif
+            @if (Session::get('Parmanent_Delete'))
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                <h5> <i class="icon fas fa-ban"></i>
+                    Parmanent Delete!
+                </h5>
+                {{Session::get('Parmanent_Delete')}}
+            </div>
+            @endif
+            @if (Session::get('Parmanent_All_Delete'))
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                <h5> <i class="icon fas fa-ban"></i>
+                    Parmanent All Delete!
+                </h5>
+                {{Session::get('Parmanent_All_Delete')}}
+            </div>
+            @endif
             <div class="card">
+
                 <div class="card-header bg-defult">
                     <div class="card-title">
                         <h2 class="card-title">
                             <a href="{{ asset('acount/ledger') }}" class="btn bg-navy text-capitalize mr-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create Booking">
                                 <i class="fa-solid fa-circle-arrow-left"></i>
-                                Add
                             </a>
-                            Balance List
+                            Trash Account Ledger
                         </h2>
                     </div>
                     <a href="/acount/ledger/emptytrash" class="btn btn-sm bg-maroon float-right text-capitalize"><i class="fa-solid fa-trash-can mr-2"></i>Empty Trash</a>
@@ -45,18 +78,17 @@
                                             <circle data-v-9a6e255c="" cx="12" cy="12" r="3"></circle>
                                         </svg>
                                     </a>
-                                    <a href="/acount/ledger/{{$TrashAccount->id}}/delete/parmanently" class=" btn btn-danger btn-sm mx-2" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
-                                        Parmanent Delete
-                                        <i class="fa-regular fa-trash-can mr-3 text-black"></i>
-                                    </a>
-                                    <a href="/acount/ledger/{{$TrashAccount->id}}/restore" class=" btn btn-warning btn-sm" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
-                                        Restore
-                                        <i class="fa-solid fa-arrow-rotate-left"></i>
 
-                                    </a>
+                                    <button value="{{$TrashAccount->id}}" class="RestoreBtn"  title="Restore">
+                                        <i class="fa-solid fa-trash-arrow-up ml-2 text-success"> </i>
+                                    </button>
+                                    <button type="button" value="{{$TrashAccount->id}} "  class="DeleteBtn mx-2" title="Delete">
+                                        <i class="fa-solid fa-trash-can ml-2 text-danger"></i>
+                                    </button>
 
                                 </td>
                             </tr>
+
                             @endforeach
                         </tbody>
 
@@ -69,4 +101,79 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+        $('.DeleteBtn').on('click',function(e){
+            e.preventDefault();
+            var ID = $(this).val();
+            // console.log(ID);
+            Swal.fire({
+                icon: 'error',
+                title: 'Are you sure ?',
+                text: 'You wont be able to revert this!',
+                footer: '<a href="">Why do I have this issue?</a>'
+            }).then((result) => {
+                if(result.isConfirmed){
+                    $.ajax({
+                        type:'GET',
+                        url:'/acount/ledger/delete/parmanently/'+ ID,
+                        success: function(data){
+                            Swal.fire(
+                                    'Parmanent Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                );  
+                        },
+                        error:function(data){
+                            Swal.fire(
+                                'Error!',
+                                'Delete failed !',
+                                'error'
+                            );
+                            console.log(data);
+                        }
+                    });
+                }
+            });
+
+        });
+        $('.RestoreBtn').on('click', function(e){
+            e.preventDefault();
+            var ID = $(this).val();
+            // console.log(ID);
+            Swal.fire({
+                icon: 'question',
+                title: 'Are you sure ?',
+                text: 'You wont be able to revert this!',
+                footer: '<a href="">Why do I have this issue?</a>'
+            }).then((result) => {
+                if(result.isConfirmed){
+                    $.ajax({
+                        type:'GET',
+                        url:'/acount/ledger/restore/'+ ID,
+                        success:function(data){
+                            Swal.fire(
+                                'Restore',
+                                'Your file has been deleted.',
+                                'success'
+                                );
+                        },
+                        error:function(data){
+                            Swal.fire(
+                                'Error!',
+                                'Delete failed !',
+                                'error'
+                                );
+                                console.log(data);  
+                        }
+
+                    });
+                }
+            });
+
+        });
+        
+    });
+</script>
 @endsection
+

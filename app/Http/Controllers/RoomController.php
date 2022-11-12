@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Yajra\Datatables\Datatables;
 use Illuminate\Http\Request;
 use App\Models\Room;
 use App\Models\Hotel;
@@ -17,10 +18,19 @@ class RoomController extends Controller
      */
     public function index()
     {
-        $Rooms = Room::select('rooms.*','hotels.Name as HotelName')
+        $Hotels = Hotel::all();
+        // $Rooms  = Room::all();
+        if (request()->ajax()) {
+            return $Rooms = Datatables::of($this->dtQuery())->addColumn('action','layouts.dt_buttons')->make(true);
+        }
+        return view('room.index',compact('Hotels'));        
+    }
+
+    public function dtQuery()
+    {
+        return $Rooms = Room::select('rooms.*','hotels.Name as HotelName')
         ->leftJoin('hotels','rooms.HotelID','=','hotels.id')
         ->get();
-        return view('room.index',compact('Rooms'));
     }
 
     /**
@@ -42,9 +52,11 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
+       
         try{
             Room::create($request->all());
-            return back();
+            return 'Room Added SuccessFully !';
+            // return back()->with('Success','Room Added SuccessFully !');
         }
         catch(Exception $error){
             return $error->getMessage();
@@ -59,8 +71,12 @@ class RoomController extends Controller
      */
     public function show($id)
     {
-        $Room = Room::find($id);
-        return view('room.show',compact('Room'));
+        // $Room = Room::find($id);
+        $Room = Room::select('rooms.*','hotels.Name as HotelName')
+        ->where('rooms.id',$id)
+        ->leftJoin('hotels','rooms.HotelID','=','hotels.id')
+        ->first();
+        return $Room;
     }
 
     /**
@@ -85,8 +101,9 @@ class RoomController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
         Room::find($id)->update($request->all());
-        return $this->index();
+        return back()->with('Success','Hotel Update SuccessFully !');
     }
 
     /**
@@ -98,38 +115,57 @@ class RoomController extends Controller
     public function destroy($id)
     {
         Room::find($id)->delete();
-        return back();
+        return back()->with('Destroy','Delete Completed !');
     }
 
+    /**
+     * Delete all table list
+    */
     public function destroyAll()
     {
         Room::withTrashed()->delete();
-        return back();
+        return back()->with('DestroyAll', 'সমস্ত ডাটাকে খালি করা হলো');
     }
+    /**
+     * View Trash page 
+    */
     public function trash()
     {
         $Rooms = Room::onlyTrashed()->get();
+        // $Rooms = Room::onlyTrashed()->get();
         return view('room.trash',compact('Rooms'));
     }
+    /**
+     * table column restore
+    */
     public function restore($id)
     {
         Room::withTrashed()->where('id',$id)->restore();
-        return back();
+        return back()->with('Restore','Restore SuccessFully !');
     }
+    /**
+     * Table  all Column list restore
+    */
     public function restoreAll()
     {
         Room::withTrashed()->restore();
-        return back();
+        return back()->with('RestoreAll','সমস্ত ডাটাকে পুনরুদ্ধার করা হয়েছে');
     }
+    /**
+     * table remove delete
+    */
     public function forceDeleted($id)
     {
         Room::withTrashed()->where('id',$id)->forceDelete();
-        return back();
+        return back()->with('PermanentlyDelete', 'Permanently Delete Completed !');
     }
+    /**
+     * All table list remove
+    */
     public function emptyTrash()
     {
 
         Room::onlyTrashed()->forceDelete();
-        return back();
+        return back()->with('EmptyTrash', 'ট্রাস সম্পূর্ণরূপে খালি করা হলো');
     }
 }

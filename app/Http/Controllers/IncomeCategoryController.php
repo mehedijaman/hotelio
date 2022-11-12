@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\IncomeCategory;
+use Yajra\Datatables\Datatables;
 use Exception;
 use PhpParser\Node\Expr\FuncCall;
 
@@ -16,9 +17,15 @@ class IncomeCategoryController extends Controller
      */
     public function index()
     {
-        $IncomeCategoris = IncomeCategory::all();
-        return view('incomeCategory.index',compact('IncomeCategoris'));
+        if(request()->ajax()){
+            return $IncomeCategoris = Datatables::of(IncomeCategory::all())
+            ->addColumn('action','layouts.dt_buttons_2')
+            ->make(true);
+        }
+        
+        return view('incomeCategory.index'); 
     }
+   
 
     /**
      * Show the form for creating a new resource.
@@ -40,7 +47,7 @@ class IncomeCategoryController extends Controller
     {
         try{
             IncomeCategory::create($request->all());
-            return back();
+            return "Data Added Successfully !" ;
         }
         catch(Exception $error){
             return $error->getMessage();
@@ -56,7 +63,7 @@ class IncomeCategoryController extends Controller
     public function show($id)
     {
         $Category = IncomeCategory::find($id);
-        return view('incomeCategory.show',compact('Category'));
+        return $Category;
     }
 
     /**
@@ -81,7 +88,7 @@ class IncomeCategoryController extends Controller
     public function update(Request $request , $id)
     {
         IncomeCategory::find($id)->update($request->all());
-        return $this->index();
+        return "Category Update Successfully !";
     }
 
     /**
@@ -96,42 +103,41 @@ class IncomeCategoryController extends Controller
         return back();
     }
 
-    //destoryAll
     public function destroyAll()
     {
-        IncomeCategory::withTrashed()->delete;
-        return $this->index();
+        IncomeCategory::withTrashed()->delete();
+        return $this->trash();
     }
 
-    //trash
+
     public function trash()
     {
         $CategoryTrashed = IncomeCategory::onlyTrashed()->get();
         return view('incomeCategory.trash',compact("CategoryTrashed"));
     }
 
-    //forceDelete
+
     public function forceDelete($id)
     {
         IncomeCategory::withTrashed()->where('id',$id)->forceDelete();
         return back();
     }
 
-    //restore
+ 
     public function restore($id)
     {
         IncomeCategory::withTrashed()->where('id',$id)->restore();
         return $this->index();
     }
 
-    //restoreAll
+
     public function restoreAll()
     {
         IncomeCategory::withTrashed()->restore();
         return $this->index();
     }
 
-    //emptyTrash
+ 
     public function emptyTrsh()
     {
         IncomeCategory::onlyTrashed()->forceDelete();

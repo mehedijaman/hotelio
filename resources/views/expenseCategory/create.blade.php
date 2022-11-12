@@ -6,11 +6,11 @@
                 <div class="card card-primary">
                     <div class="card-header">
                         <h3 class="card-title text-navy">
-                            <a href="{{ asset('expenseCategory') }}" class="mr-3"><i class="fa-solid fa-circle-arrow-left fs-5 text-navy" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Back to List"></i></a>
+                            <a href="{{ asset('expense/category') }}" class="mr-3"><i class="fa-solid fa-circle-arrow-left fs-5 text-navy" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Back to List"></i></a>
                             Add New Category
                         </h3>
                     </div>
-                    {{ Form::open(array('url' => '/expenseCategory','method' => 'POST','class'=>'form-horizontal', 'files' => true)) }}
+                    {{ Form::open(array('url' => '/expense/category','method' => 'POST','class'=>'form-horizontal', 'files' => true)) }}
                     <div class="card-body">
                         <div class="form-group row">
                             <label for="Name" class="form-label col-md-3">Name:</label>

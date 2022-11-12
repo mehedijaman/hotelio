@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Guest;
 use Exception;
 use Ramsey\Uuid\Guid\Guid;
+use Yajra\Datatables\Datatables;
 
 class GuestController extends Controller
 {
@@ -15,7 +16,14 @@ class GuestController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
+        // return Guest::all();
+        if(request()->ajax())
+        {
+            return  $Guests = Datatables::of(Guest::all())
+            ->addColumn('action','layouts.dt_buttons')
+            ->make(true);
+        }
       
         return view('guest.index');
     }
@@ -27,8 +35,8 @@ class GuestController extends Controller
      */
     public function create()
     {
-        $Guest = Guest::all();
-        return view('guest.create',compact('Guest'));
+        
+        return view('guest.create');
     }
 
     /**
@@ -42,7 +50,7 @@ class GuestController extends Controller
         
         try{
             Guest::create($request->all());
-            return back();
+            return 'Guest Add Succeessfull!';
         }
         catch(Exception $error){
             return $error->getMessage();
@@ -58,7 +66,7 @@ class GuestController extends Controller
     public function show($id)
     {
         $Guest = Guest::find($id);
-        return view('guest.show',compact('Guest'));
+        return $Guest;
     }
 
     /**
@@ -83,7 +91,7 @@ class GuestController extends Controller
     public function update(Request $request , $id)
     {
         Guest::find($id)->update($request->all());
-        return $this->index();
+        return "Data Successfully Updated ! ";
     }
 
     /**
@@ -95,45 +103,46 @@ class GuestController extends Controller
     public function destroy($id)
     {
         Guest::find($id)->delete();
-        return $this->index();
+        return back()->with('delete','Deleted data is stored in the trash');
     }
 
-    //destroyAll 
+ 
     public function destroyAll()
     {
         Guest::withTrashed()->delete();
-        return $this->index();
+        return back()->with('destroyAll','Deleted All data is stored in the trash');
     } 
 
-    //trash
+    
     public function trash()
     {
         $GuestTrashed = Guest::onlyTrashed()->get();
         return view('guest.trash',compact('GuestTrashed'));
     }    
 
-    //restore
+    
     public function restore($id)
     {
         Guest::withTrashed()->where('id',$id)->restore();
-        return back();
+        return back()->with('Restore','Restore Successfull !');
     }
 
     public function restoreAll()
     {
         Guest::withTrashed()->restore();
-        return $this->index();
+        return back()->with('RestoreAll','সমস্ত ডাটাকে পুনরুদ্ধার করা হয়েছে ');
     }
 
     public function forceDelete($id)
     {
         Guest::withTrashed()->where('id',$id)->forceDelete();
+        return back()->with('Parmanentlly','Parmanentlly Delete');
     }
 
     public function emptyTrash()
     {
         Guest::onlyTrashed()->forceDelete();
-        return $this->index();
+        return $this->index()->with('emptyTrash','ট্রাস সম্পূর্ণরূপে খালি করা হলো ');
     }
 
 }

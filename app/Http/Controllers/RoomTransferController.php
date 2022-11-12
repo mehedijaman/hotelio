@@ -7,7 +7,9 @@ use App\Models\RoomTransfer;
 use App\Models\Guest;
 use App\Models\Room;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Yajra\Datatables\Datatables;
 use Exception;
+
 
 class RoomTransferController extends Controller
 {
@@ -18,11 +20,20 @@ class RoomTransferController extends Controller
      */
     public function index()
     {
-        $RoomTransfers = RoomTransfer::select('room_transfers.*','guests.Name as Guest')
-        ->leftJoin('guests', 'room_transfers.GuestID','=', 'guests.id')
+        $Guests = Guest::all();
+        $Rooms  = Room::all();
+        // return $RoomTransfers = Datatables::of(RoomTransfer::all())->make(true);
+        if (request()->ajax()) {
+            return $RoomTransfers = Datatables::of($this->dtQuery())->addColumn('action','layouts.dt_buttons_2')->make(true);
+        }
+        return view('roomTransfer.index',compact('Guests','Rooms'));
+    }
+    public function dtQuery()
+    {
+        return $RoomTransfers = RoomTransfer::select('room_transfers.*','guests.Name as Guest','rooms.RoomNo as Room')
+        ->leftJoin('guests','room_transfers.GuestID','=','guests.id')
+        ->leftJoin('rooms','room_transfers.ToRoomID','=','rooms.id')
         ->get();
-
-        return view('roomTransfer.index',compact('RoomTransfers'));
     }
 
     /**
@@ -47,7 +58,8 @@ class RoomTransferController extends Controller
     {
         try {
            RoomTransfer::create($request->all());
-            return back();
+           return 'Room Transfer Added Successfully !';
+            // return back()->with('Success','Room Transfer Added Successfully !');
         } catch (Exception $error) {
            return $error->getMessage();
         }
@@ -61,21 +73,7 @@ class RoomTransferController extends Controller
      */
     public function show($id)
     {
-        $RoomTransfer = RoomTransfer::find($id);
-        // $RoomTransfer = RoomTransfer::find($id)->select(
-        //     'room_transfers.id',
-        //     'guests.Name as Guest',
-        //     'room_transfers.FromRoomID',
-        //     'room_transfers.ToRoomID',
-        //     'room_transfers.Date',
-        //     'room_transfers.created_at',
-        //     'room_transfers.updated_at')
-        //     ->leftJoin('guests', 
-        //     'room_transfers.GuestID',
-        //     '=', 'guests.id')
-        //     ->get();
-        
-        return view('roomTransfer.show',compact('RoomTransfer'));
+        return RoomTransfer::find($id);
     }
 
     /**
@@ -88,8 +86,8 @@ class RoomTransferController extends Controller
     {
         $Guests = Guest::all();
         $Rooms = Room::all();
-        $RoomTransfer = RoomTransfer::find($id);
-        return view('roomTransfer.edit',compact('Guests','Rooms','RoomTransfer'));
+        $RoomTransfers = RoomTransfer::find($id);
+        return view('roomTransfer.edit',compact('RoomTransfers','Guests','Rooms'));
     }
 
     /**
@@ -114,38 +112,55 @@ class RoomTransferController extends Controller
     public function destroy($id)
     {
         RoomTransfer::find($id)->delete();
-        return back();
+        return back()->with('Destroy', 'Delete Completed !');
     }
+    /**
+     * Delete all table list
+    */
     public function destroyAll()
     {
         RoomTransfer::withTrashed()->delete();
-        return back();
+        return back()->with('DestroyAll', 'সমস্ত ডাটাকে খালি করা হলো');
     }
-
+    /**
+     * View Trash page 
+    */
     public  function trash()
     {
         $RoomTransfers = RoomTransfer::onlyTrashed()->get();
         return view('roomTransfer.trash',compact('RoomTransfers'));
     }
+    /**
+     * table column restore
+    */
     public function restore($id)
     {
         RoomTransfer::withTrashed()->where('id',$id)->restore();
-        return back();
+        return back()->with('Restore', 'Restore SuccessFully !');
     }
+    /**
+     * Table  all Column list restore
+    */
     public function restoreAll()
     {
         RoomTransfer::withTrashed()->restore();
-        return back();
+        return back()->with('RestoreAll', 'সমস্ত ডাটাকে পুনরুদ্ধার করা হয়েছে');
     }
+    /**
+     * table remove delete
+    */
     public function forceDeleted($id)
     {
         RoomTransfer::withTrashed()->where('id',$id)->forceDelete();
-        return back();
+        return back()->with('PermanentlyDelete', 'Permanently Delete Completed !');
     }
+    /**
+     * All table list remove
+    */
     public function emptyTrash()
     {
         RoomTransfer::onlyTrashed()->forceDelete();
-        return back();
+        return back()->with('EmptyTrash', 'ট্রাস সম্পূর্ণরূপে খালি করা হলো');
     }
 
 }

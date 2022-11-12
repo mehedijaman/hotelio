@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Income;
+use Yajra\Datatables\Datatables;
 use App\Models\IncomeCategory;
 use PHPUnit\Framework\Exception;
 
@@ -16,10 +17,19 @@ class IncomeController extends Controller
      */
     public function index()
     {
-        $Incomes = Income::select('incomes.*','income_categories.Name as CategoryName')
+        $IncomeCategoris = IncomeCategory::all();
+        if(request()->ajax()){
+            return $Income = Datatables::of($this->dtQuerys())
+            ->addColumn('action' , 'layouts.dt_buttons')
+            ->make(true);
+        }
+        return view('income.index',compact('IncomeCategoris'));
+    }
+
+    public function dtQuerys(){
+        return $Incomes = Income::select('incomes.*','income_categories.Name as CategoryName')
         ->leftJoin('income_categories','incomes.CategoryID','=','income_categories.id')
         ->get();
-        return view('income.index' , compact('Incomes'));
     }
 
     /**
@@ -43,7 +53,7 @@ class IncomeController extends Controller
     {
         try{
             Income::create($request->all());
-            return back();
+            return "Data Added Successfully ";
         }
         catch(Exception $error){
             return $error->getMessage();
@@ -58,10 +68,13 @@ class IncomeController extends Controller
      */
     public function show($id)
     {
-        $Income = Income::find($id);
-        return view('income.show',compact('Income'));
+        $Income = Income::select('incomes.*','income_categories.Name as CategoryName')
+        ->where('incomes.id',$id)
+        ->leftJoin('income_categories','incomes.CategoryID','=','income_categories.id')
+        ->first();
+        return $Income;
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      *
@@ -85,7 +98,7 @@ class IncomeController extends Controller
     public function update(Request $request, $id)
     {
         Income::find($id)->update($request->all());
-        return $this->index();
+        return "Update Successfully !";
     }
 
     /**
@@ -100,42 +113,42 @@ class IncomeController extends Controller
         return $this->index();
     }
 
-    //destroyAll
+    
     public function destroyAll()
     {
         Income::withTrashed()->delete();
         return back();
     }
 
-    //trash
+    
     public function trash()
     {
         $IncomeTrashed = Income::onlyTrashed()->get();
         return view('income.trash',compact('IncomeTrashed'));
     }
 
-    //forceDelete
+    
     public function forceDelete($id)
     {
         Income::withTrashed()->where('id',$id)->forceDelete();
         return back();
     }
 
-    //restore
+    
     public function restore($id)
     {
         Income::withTrashed()->where('id',$id)->restore();
         return back();
     }
 
-    //restoreAll
+   
     public function restoreAll()
     {
         Income::withTrashed()->restore();
         return $this->index();
     }
 
-    //emptyTrash
+   
     public function emptyTrash()
     {
         Income::onlyTrashed()->forceDelete();

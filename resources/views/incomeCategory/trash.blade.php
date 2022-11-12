@@ -7,14 +7,14 @@
                     <div class="card-header bg-defult">
                         <div class="card-title">
                             <h2 class="card-title">
-                                <a href="{{ asset('incomeCategory') }}" class="btn bg-navy text-capitalize mr-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create Booking"> 
+                                <a href="{{ asset('/income/category') }}" class="btn bg-navy text-capitalize mr-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create Booking"> 
                                     <i class="fa-solid fa-circle-arrow-left mr-2"></i>
                                 </a>
                                     Trash Income Category List
                             </h2>
                         </div>
-                        <a class="btn btn-sm bg-navy float-right text-capitalize" href="/incomeCagegory/restoreAll"><i class="fa-solid fa-trash-arrow-up mr-2"></i>restore All</a>
-                        <a class="btn btn-sm bg-maroon float-right text-capitalize mr-3" href="/incomeCagegory/emptyTrash"><i class="fa-solid fa-trash-can mr-2"></i>Empty Trash</a>
+                        <a class="btn btn-sm bg-navy float-right text-capitalize" href="/income/category/restoreAll"><i class="fa-solid fa-trash-arrow-up mr-2"></i>restore All</a>
+                        <a class="btn btn-sm bg-maroon float-right text-capitalize mr-3" href="/income/category/emptyTrash"><i class="fa-solid fa-trash-can mr-2"></i>Empty Trash</a>
                     </div>
                     <div class="card-body table-responsive p-0">
                         <table class="table table-hover text-nowrap">
@@ -31,9 +31,9 @@
                                             <td>{{$Category->Name}}</td>
                                         <td>
                                           {{-- Restore --}}
-                                          <a href="/incomeCagegory/{{ $Category->id }}/restore" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Restore"><i class="fa-solid fa-trash-arrow-up ml-2 text-success"></i></a>
+                                          <a href="/income/category/{{ $Category->id }}/restore" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Restore"><i class="fa-solid fa-trash-arrow-up ml-2 text-success"></i></a>
                                           
-                                          <a href="/incomeCagegory/{{ $Category->id }}/parmanently/delete" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Parmanently Delete"><i class="fa-solid fa-trash-can ml-2 text-danger"></i> </a>
+                                          <a href="/income/category/{{ $Category->id }}/parmanently/delete" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Parmanently Delete"><i class="fa-solid fa-trash-can ml-2 text-danger"></i> </a>
                                       </td>
                                     </tr>
                                 @endforeach

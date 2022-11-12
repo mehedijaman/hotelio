@@ -6,13 +6,15 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "dgvai/laravel-sslcommerz": "^1.0",
         "doctrine/dbal": "^3.3",
         "guzzlehttp/guzzle": "^7.2",
         "infyomlabs/laravel-ui-adminlte": "^4.0",
         "laravel/framework": "^9.11",
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
-        "laravelcollective/html": "^6.3"
+        "laravelcollective/html": "^6.3",
+        "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

@@ -2,6 +2,39 @@
 body::-webkit-scrollbar {
     display: none;
 }
+.modal::-webkit-scrollbar {
+    display: none !important;
+}
+/* data table */
+.dataTables_wrapper{
+	margin-top: 0.8rem !important;
+}
+.dataTables_filter label{
+	display: flex !important;
+	width: 15rem !important;
+	margin-left: .5rem !important;
+}
+
+.dataTables_wrapper .dataTables_filter {
+    float: right;
+    /* text-align: right; */
+	padding: 0px 20px !important;
+
+}
+.dataTables_wrapper {
+   
+	padding: 0px 20px !important;
+
+}
+form .control-label {
+    /* margin-right: 4px !important; */
+     padding-top: 6px !important;
+    margin-bottom: 0 !important; 
+    text-align: right !important;
+}
+form .form-label-check {
+    text-align: right !important;
+}
 body{
 	background-color: #202428;
     overflow-x: hidden;
@@ -90,6 +123,35 @@ form .form-label{
 	padding: 0.9rem 1.5rem;
 	color: #d0d2d6;
 }
+
+.btn__navy__add__invoice{
+	border-radius: 4px;
+	padding: 1rem 4rem;
+	
+}
+.btn__navy__preview__invoice{
+	border-radius: 4px;
+	padding: 0.8rem 2.9rem;
+	border: 2px solid #001f3f;
+	color:  #001f3f;
+	border-radius: 5px;
+	
+}
+.btn__navy__save__invoice{
+	border-radius: 4px;
+	padding: 0.8rem 3.6rem;
+	border: 2px solid #001f3f;
+	color:  #001f3f;
+	border-radius: 5px;
+}
+/* .btn__navy:hover{
+	background: linear-gradient(118deg,#001F3F,rgba(4, 0, 29, 0.7));
+	box-shadow: 0 0 10px 1px rgba(3, 1, 29, 0.7);
+    border-radius: 4px;
+	padding: 0.9rem 2.6rem;
+	color: #d0d2d6;
+} */
+
 
 /* ............................................................. */
 .pt{
@@ -243,28 +305,33 @@ ul .sub-btn {
 #custom__offset__invoice__item{
 	margin-left: 30%;
 }
-#custom__offset__tax__setting
-{
-	margin-left: 28%;
-}
+
 .table-responsive {
     -webkit-overflow-scrolling: touch;
     display: block;
     overflow-x: hidden !important;
     width: 100%;
 }
+.navbar-nav > .user-menu > .dropdown-menu {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    padding: 0;
+    width: 150px !important;
+}
+/* Data table */
+.dt-buttons {
+    padding-bottom: 0.8rem;
+}
 
 
-/* invoice */
 
 
 
-/* .room__create .col-md-12 {
-    flex: 0 0 100%;
-    max-width: 100%;
-    margin-top: 33px;
-    
-} */
+
+
+
+
+
 
 
 

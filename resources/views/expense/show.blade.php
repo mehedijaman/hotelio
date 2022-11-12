@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container py-5 col-md-12">
+    <div class="container py-5 col-md-8 m-auto">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -48,9 +48,20 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="card-footer">
-                     
-                    </div>
+                    <div class=" form-group row card-footer col-md-12">
+                        <div class="form-group col-md-5">
+                              <a href="/expense/{{ $Expense->id }}/edit" data-bs-toggle="Edit" data-bs-placement="bottom" title="Edit" class="btn btn-warning ">
+                              <i class="fa-regular fa-pen-to-square mr-3 "></i></i> Edit</a> 
+                        </div> 
+                        <div class="form-group col-md-5">
+                              {!! Form::open(array('url' => '/expense/'.$Expense->id ,'method' => 'DELETE') ) !!}  
+                              <button class="bg-danger btn btn-danger" data-bs-toggle="Delete" data-bs-placement="bottom" title="Delete">
+                                    <i class="fa-regular fa-trash-can mr-3 text-light"></i>
+                                    Delete
+                              </button>
+                              {!! Form::close() !!}
+                        </div>
+                  </div> 
                 </div>
             </div>
         </div>

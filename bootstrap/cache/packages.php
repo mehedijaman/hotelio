@@ -1,4 +1,11 @@
 <?php return array (
+  'dgvai/laravel-sslcommerz' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'DGvai\\SSLCommerz\\SSLCommerzServiceProvider',
+    ),
+  ),
   'infyomlabs/laravel-ui-adminlte' => 
   array (
     'providers' => 
@@ -68,6 +75,13 @@
       0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     ),
   ),
+  'nunomaduro/termwind' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Termwind\\Laravel\\TermwindServiceProvider',
+    ),
+  ),
   'spatie/laravel-ignition' => 
   array (
     'providers' => 
@@ -77,6 +91,17 @@
     'aliases' => 
     array (
       'Flare' => 'Spatie\\LaravelIgnition\\Facades\\Flare',
+    ),
+  ),
+  'yajra/laravel-datatables-oracle' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Yajra\\DataTables\\DataTablesServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'DataTables' => 'Yajra\\DataTables\\Facades\\DataTables',
     ),
   ),
 );

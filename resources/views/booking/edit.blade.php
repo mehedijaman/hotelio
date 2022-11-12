@@ -20,12 +20,14 @@
                             <div class="form-group row">
                                 <label for="RoomID" class="form-label col-md-3">Room:</label>
                                 <div class="col-md-8">
-                                    <select type="number" name="RoomID" id=""  class="form-select">
+                                    <select type="number" name="RoomID" id=""  class="form-select" value="">
                                         <option>Open this select menu</option>
                                         @foreach ($Rooms as $Room)
-                                            <option value="{{ $Room->id }}">
-                                                {{ $Room->id}}
-                                            </option>
+                                            @if ($Booking->RoomID == $Room->id)
+                                                <option value="{{ $Room->id }}" selected>
+                                                {{ $Room->RoomNo}}
+                                                </option>
+                                            @endif
                                         @endforeach
                                     </select>
                                 </div>
@@ -36,9 +38,11 @@
                                     <select type="number" name="GuestID" id=""  class="form-select">
                                         <option>Open this select menu</option>
                                         @foreach ($Guests as $Guest)
-                                            <option value="{{ $Guest->id }}">
-                                                {{ $Guest->Name }}
-                                            </option>
+                                            @if ($Booking->GuestID == $Guest->id)
+                                                <option value="{{ $Guest->id }}" selected>
+                                                    {{ $Guest->Name }}
+                                                </option>
+                                            @endif
                                         @endforeach
                                     </select>
                                 </div>
@@ -46,13 +50,7 @@
                             <div class="form-group row">
                                  <label for="CheckInDate" class="form-label col-md-3">CheckInDate:</label>
                                 <div class="col-md-8">
-                                    <input type="date" name="CheckInDate" class="form-control" value="{{ date('mm-dd-Y',strtotime($Booking->CheckInDate))}}">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="CheckOutDate" class="form-label col-md-3">CheckOutDate:</label>
-                                <div class="col-md-8">
-                                    <input type="text" name="CheckOutDate" class="form-control" value="{{ $Booking->CheckOutDate}}">
+                                    <input type="date" name="CheckInDate" class="form-control" value="{{ date('d-m-Y H:i:s',strtotime($Booking->CheckInDate)) }}" >
                                 </div>
                             </div>
                         </div>

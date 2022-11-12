@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Expense;
 use App\Models\ExpenseCategory;
+use Yajra\Datatables\Datatables;
 use Exception;
 
 class ExpenseController extends Controller
@@ -16,12 +17,21 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        $Expenses = Expense::select('expenses.*','expenses_categories.Name as CategoryName')
-        ->leftJoin('expenses_categories','expenses.CategoryID','=','expenses_categories.id')
-        ->get();
-        return view('expense.index', compact('Expenses'));
+        $ExpenseCategoris = ExpenseCategory::all();
+        if(request()->ajax()){
+            return $Expense = Datatables::of($this->dt_Querys())
+            ->addColumn('action' , 'layouts.dt_buttons')
+            ->make(true);
+        }
+        return view('expense.index', compact('ExpenseCategoris'));
     }
 
+    public function dt_Querys()
+    {
+        return $Expenses = Expense::select('expenses.*','expenses_categories.Name as CategoryName')
+        ->leftJoin('expenses_categories','expenses.CategoryID','=','expenses_categories.id')
+        ->get();
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -44,7 +54,7 @@ class ExpenseController extends Controller
 
         try{
             Expense::create($request->all());
-            return back();
+            return "Successfully Add New Expense Item";
         }
         catch (Exception $error){
             return $error->getMessage();
@@ -59,10 +69,14 @@ class ExpenseController extends Controller
      */
     public function show($id)
     {
-        $Expense = Expense::find($id);
-        return view('expense.show',compact('Expense'));
+        // return Expense::all();
+        // $Expense = Expense::find($id);
+        $Expense = Expense::select('expenses.*','expenses_categories.Name as CategoryName')
+        ->where('expenses.id',$id)
+        ->leftJoin('expenses_categories','expenses.CategoryID','=','expenses_categories.id')
+        ->first();
+        return $Expense ;
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -86,7 +100,7 @@ class ExpenseController extends Controller
     public function update(Request $request, $id)
     {
         Expense::find($id)->update($request->all());
-        return $this->index();
+        return "data update successfully !";
     }
 
     /**
@@ -101,42 +115,41 @@ class ExpenseController extends Controller
         return $this->index();
     }
 
-    //destroyAll
+  
     public function destroyAll()
     {
         Expense::withTrashed()->delete();
         return $this->index();
     }
 
-    //trash
     public function trash()
     {
         $ExpenseTrashed = Expense::onlyTrashed()->get();
         return view('expense.trash',compact('ExpenseTrashed'));
     }
 
-    //restore
+  
     public function forceDelete($id)
     {
         Expense::withTrashed()->where('id',$id)->forceDelete();
         return back();
     }
 
-    //restore
+   
     public function restore($id)
     {
         Expense::withTrashed()->where('id',$id)->restore();
         return back();
     }
 
-    //restoreAll
+    
     public function restoreAll()
     {
         Expense::withTrashed()->restore();
         return $this->index();
     }
 
-    //emptyTrash
+    
     public function emptyTrash()
     {
         Expense::onlyTrashed()->forceDelete();

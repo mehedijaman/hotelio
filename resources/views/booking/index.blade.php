@@ -1,73 +1,177 @@
 @extends('layouts.app')
 @section('content')
     <div class="container py-5">
-        {{-- <section class="button mb-4">
-            <a href="{{ asset('booking/create') }}" class="btn btn-info text-capitalize"> <i class="fa-solid fa-circle-plus mr-2"></i>Add</a>
-        </section> --}}
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-10 m-auto">
                 <div class="card">
                     <div class="card-header bg-defult">
                         <div class="card-title">
                             <h2 class="card-title">
-                                <a href="{{ asset('booking/create') }}" class="btn bg-navy text-capitalize mr-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create Booking"> 
+                               <button type="button" class="btn bg-navy text-capitalize mr-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create Room" data-toggle="modal" data-target="#NewBookingModal"> 
                                     <i class="fa-solid fa-circle-plus mr-2"></i>
                                     Add
-                                </a>
+                                </button> 
                                 Booking List
                             </h2>
                         </div>
                         <a class="btn btn-sm bg-navy float-right text-capitalize" href="/booking/trash"><i class="fa-solid fa-recycle mr-2"></i>View Trash</a>
-                        <a class="btn btn-sm bg-maroon float-right text-capitalize mr-3" href="/booking/delete"><i class="fa-solid fa-trash-can mr-2"></i>Delete All</a>
+                        <button class="btn btn-sm bg-maroon float-right text-capitalize mr-3" id="DeleteAllBtn">
+                            <i class="fa-solid fa-trash-can mr-2"></i>
+                            Delete All
+                        </button>
                     </div>
                     <div class="card-body table-responsive p-0">
-                        <table class="table table-hover text-nowrap">
+                        <table class="table table-hover table-borderless ListTable" id="BookingList">
                             <thead>
-                                <tr>
+                                <tr class="border-bottom">
                                     <th>Room</th>
                                     <th>Guest</th>
                                     <th>CheckInDate</th>
-                                    <th>CheckOutDate</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
 
                             <tbody>
-                                @foreach ($Bookings as $Booking)
-                                    <tr class="">
-                                        <td>{{$Booking->RoomNo}}</td>
+                                {{-- @foreach ($Bookings as $Booking)
+                                    <tr class="border-bottom">
+                                        <td>{{$Booking->Room}}</td>
                                         <td>{{$Booking->Guest}}</td>
                                         <td>
                                             @php
-                                                echo date('d/m/Y H:i:s',strtotime($Booking->CheckInDate))
+                                                echo date('d-m-Y H:i:s',strtotime($Booking->CheckInDate))
                                             @endphp
                                         </td>
-                                        <td>{{$Booking->CheckOutDate}}</td>
+                                        
                                         <td class="d-flex">
-                                           <a href="{{ URL::to('/booking/'.$Booking->id) }}" class="mr-3 text-purple" data-bs-toggle="tooltip" data-bs-placement="bottom" title="View">
-                                            <svg data-v-9a6e255c="" xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="invoice-row-5036-preview-icon" class="mx-1 feather feather-eye"><path data-v-9a6e255c="" d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle data-v-9a6e255c="" cx="12" cy="12" r="3"></circle></svg>
-                                           </a>
-                                            <a class="" href="/booking/{{ $Booking->id }}/edit" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit">
+                                            <button class="EditBtn" value="{{ $Booking->id }}" style="cursor: pointer;">
                                                 <i class="fa-regular fa-pen-to-square mr-3 text-orange"></i></i>
-                                            </a>
+                                            </button> --}}
                                             
-                                            {{ Form::open(array('url' => '/booking/'.$Booking->id,'method' => 'DELETE')) }}
-                                                <button class="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
+                                            {{-- {{ Form::open(array('url' => '/booking/'.$Booking->id,'method' => 'DELETE')) }}
+                                                <button class="DeleteBtn" value="{{ $Booking->id }}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete">
                                                     <i class="fa-regular fa-trash-can mr-3 text-danger"></i>
-                                                </button>
-                                            {{ Form::close() }} 
-                                        </td>
+                                                </button> --}}
+                                            {{-- {{ Form::close() }}  --}}
+                                        {{-- </td>
                                     </tr>
-                                @endforeach
-                            </tbody>
+                                @endforeach --}}
+                            </tbody> 
                            
                         </table>
                     </div>
-                    <div class="card-footer">
-                     
+                    <div class="card-footer"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade show" id="NewBookingModal"role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title">Add A New Booking</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {{ Form::Open(array('url' => '/booking','method' => 'POST','class' => 'form-horizontal', 'id' => 'NewBookingForm', 'files' => true)) }}
+                            
+                            <div class="form-group row">
+                                <label for="RoomID" class="form-label  col-md-4">Room:</label>
+                                <div class="col-md-7">
+                                    <select type="number" name="RoomID" id=""  class="form-select" required>
+                                        <option value="">Select Room</option>
+                                        @foreach ($Rooms as $Room)  
+                                            <option value="{{ $Room->id }}">{{ $Room->RoomNo }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="GuestID" class="form-label  col-md-4">Guest:</label>
+                                <div class="col-md-7">
+                                    <select type="number" name="GuestID" id=""  class="form-select" required>
+                                        <option value="">Select Guest</option>
+                                        @foreach ($Guests as $Guest)
+                                            <option value="{{ $Guest->id }}">
+                                                {{ $Guest->Name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="CheckInDate" class="form-label  col-md-4">Check-In Date:</label>
+                                <div class="col-md-7">
+                                    <input type="date" name="CheckInDate" class="form-control" required> 
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default text-capitalize" id="ResetBtnForm">Reset</button>
+                                <button type="button" name="submit" type="submit" class="btn bg-navy text-capitalize" id="SubmitBtn">submit</button>
+                            </div>
+                           
+                        {{ Form::close() }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade show" id="EditBookingModal"role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title"> Update Booking</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                            {{ Form::Open(array('method' => 'PATCH', 'class' => 'form-horizontal', 'id' => 'EditBookingForm', 'files' => true)) }}
+                                <input type="hidden" name="ID" id="IDEdit">
+                                <div class="card-body">
+                                    <div class="form-group row">
+                                        <label for="RoomID" class="form-label col-md-3">Room:</label>
+                                        <div class="col-md-8">
+                                            <select type="number" name="RoomID" id="EditRoom"  class="form-select" value="">
+                                                <option value="">Select Room</option>
+                                                @foreach ($Rooms as $Room)  
+                                                    <option value="{{ $Room->id }}" selected>{{ $Room->RoomNo }}</option>
+                                                @endforeach
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="GuestID" class="form-label col-md-3">Guest:</label>
+                                        <div class="col-md-8">
+                                            <select type="number" name="GuestID" id="EditGuest"  class="form-select">
+                                                <option value="">Select Guest</option>
+
+                                                @foreach ($Guests as $Guest) 
+                                                    <option value="{{ $Guest->id }}">{{ $Guest->Name }}</option>
+                                                @endforeach
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="CheckInDate" class="form-label col-md-3">CheckInDate:</label>
+                                        <div class="col-md-8">
+
+                                            <input type="text" name="CheckInDate" id="EditCheckInDate" class="form-control">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" name="submit" type="submit" class="btn bg-navy text-capitalize" id="UpdateBtn">Update</button>
+                                </div>
+                            {{ Form::close() }}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-@endsection
+    <script src="{{ asset('js/custom-js/booking.js') }}"></script>
+@endsection 

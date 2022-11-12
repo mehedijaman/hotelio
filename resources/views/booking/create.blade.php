@@ -1,11 +1,16 @@
 @extends('layouts.app')
 @section('content')
     <div class="container py-5">
-        {{-- <section class="button__list__show">
-            <a href="{{ asset('booking') }}" class="btn btn-info text-capitalize">List Booking</a>
-        </section> --}}
         <div class="row">
             <div class="col-md-7 m-auto">
+                @if (Session::get('Success'))
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h5><i class="icon fas fa-check"></i> Success!</h5>
+                        {{Session::get('Success')}}
+                    </div>
+                @endif
+
                 <div class="card card-primary">
                     <div class="card-header">
                         <h3 class="card-title text-navy">
@@ -18,12 +23,13 @@
                             <div class="form-group row">
                                 <label for="RoomID" class="form-label col-md-3">Room:</label>
                                 <div class="col-md-8">
-                                    <select type="number" name="RoomID" id=""  class="form-select">
-                                        <option>Open this select menu</option>
+                                    <select type="number" name="RoomID" id=""  class="form-select" required>
+                                        <option value="">Select Room</option>
                                         @foreach ($Rooms as $Room)
-                                            <option value="{{ $Room->id }}">
-                                                {{ $Room->id}}
-                                            </option>
+                                            <option value="{{ $Room->id }}">{{ $Room->RoomNo }}</option>
+                                            @if(!$Room->Status)
+                                                <option value="{{ $Room->id }}">{{ $Room->RoomNo }}</option>
+                                            @endif
                                         @endforeach
                                     </select>
                                 </div>
@@ -31,8 +37,8 @@
                             <div class="form-group row">
                                 <label for="GuestID" class="form-label col-md-3">Guest:</label>
                                 <div class="col-md-8">
-                                    <select type="number" name="GuestID" id=""  class="form-select">
-                                        <option>Open this select menu</option>
+                                    <select type="number" name="GuestID" id=""  class="form-select" required>
+                                        <option value="">Select Guest</option>
                                         @foreach ($Guests as $Guest)
                                             <option value="{{ $Guest->id }}">
                                                 {{ $Guest->Name }}
@@ -42,15 +48,9 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                 <label for="CheckInDate" class="form-label col-md-3">CheckInDate:</label>
+                                 <label for="CheckInDate" class="form-label col-md-3">Check-In Date:</label>
                                 <div class="col-md-8">
-                                    <input type="date" name="CheckInDate" class="form-control"> 
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="CheckOutDate" class="form-label col-md-3">CheckOutDate:</label>
-                                <div class="col-md-8">
-                                    <input type="date" name="CheckOutDate" class="form-control"> 
+                                    <input type="date" name="CheckInDate" class="form-control" required> 
                                 </div>
                             </div>
                         </div>
