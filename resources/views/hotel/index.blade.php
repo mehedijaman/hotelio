@@ -12,7 +12,7 @@
                             </h2>
                         </div>
                         <a class="btn btn-sm bg-navy float-right text-capitalize" href="/hotel/trash"><i class="fa-solid fa-recycle mr-2"></i>View Trash</a>
-                        
+
                         <a class="btn btn-sm bg-maroon float-right text-capitalize mr-3" href="/hotel/delete"><i class="fa-solid fa-trash-can mr-2"></i>Delete All</a>
                     </div>
                     <div class="card-body table-responsive p-0">
@@ -32,11 +32,11 @@
                               </thead>
                               <tbody>
                             </tbody>
-                           
+
                         </table>
                     </div>
                     <div class="card-footer">
-                     
+
                     </div>
                 </div>
             </div>
@@ -57,49 +57,49 @@
                                 <div class="form-group row">
                                     <label for="Name" class="form-label col-md-3">Name :</label>
                                     <div class="col-md-8">
-                                        <input type="text" name="Name" class="form-control"> 
+                                        <input type="text" name="Name" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="Title" class="form-label col-md-3">Title :</label>
                                     <div class="col-md-8">
-                                        <input type="text" name="Title" class="form-control"> 
+                                        <input type="text" name="Title" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="Email" class="form-label col-md-3">Email :</label>
                                     <div class="col-md-8">
-                                        <input type="mail" name="Email" class="form-control"> 
+                                        <input type="mail" name="Email" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="Address" class="form-label col-md-3">Address :</label>
                                     <div class="col-md-8">
-                                        <input type="text" name="Address" class="form-control"> 
+                                        <input type="text" name="Address" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="Phone" class="form-label col-md-3">Phone :</label>
                                     <div class="col-md-8">
-                                        <input type="tel" name="Phone" class="form-control"> 
+                                        <input type="tel" name="Phone" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="RegNo" class="form-label col-md-3">Reg No :</label>
                                     <div class="col-md-8">
-                                        <input type="text" name="RegNo" class="form-control"> 
+                                        <input type="text" name="RegNo" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="Logo" class="form-label col-md-3">Logo :</label>
                                     <div class="col-md-8">
-                                        <input type="file" name="Logo" class="form-control"> 
+                                        <input type="file" name="Logo" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="Photo" class="form-label col-md-3">Photo :</label>
                                     <div class="col-md-8">
-                                        <input type="file" name="Photo" class="form-control"> 
+                                        <input type="file" name="Photo" class="form-control">
                                     </div>
                                 </div>
                                 <div class="card-footer">
@@ -130,49 +130,49 @@
                             <div class="form-group row">
                                 <label for="Name" class="form-label col-md-3">Name :</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="Name" class="form-control" id="NameEdit"> 
+                                    <input type="text" name="Name" class="form-control" id="NameEdit">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="Title" class="form-label col-md-3">Title :</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="Title" class="form-control" id="TitleEdit"> 
+                                    <input type="text" name="Title" class="form-control" id="TitleEdit">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="Email" class="form-label col-md-3">Email :</label>
                                 <div class="col-md-8">
-                                    <input type="mail" name="Email" class="form-control" id="EmailEdit"> 
+                                    <input type="mail" name="Email" class="form-control" id="EmailEdit">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="Address" class="form-label col-md-3">Address :</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="Address" class="form-control" id="AddressEdit"> 
+                                    <input type="text" name="Address" class="form-control" id="AddressEdit">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="Phone" class="form-label col-md-3">Phone :</label>
                                 <div class="col-md-8">
-                                    <input type="tel" name="Phone" class="form-control" id="PhoneEdit"> 
+                                    <input type="tel" name="Phone" class="form-control" id="PhoneEdit">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="RegNo" class="form-label col-md-3">Reg No :</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="RegNo" class="form-control" id="RegNoEdit">  
+                                    <input type="text" name="RegNo" class="form-control" id="RegNoEdit">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="Logo" class="form-label col-md-3">Logo :</label>
                                 <div class="col-md-8">
-                                    <input type="file" name="Logo" class="form-control" id="LogoEdit"> 
+                                    <input type="file" name="Logo" class="form-control" id="LogoEdit">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="Photo" class="form-label col-md-3">Photo :</label>
                                 <div class="col-md-8">
-                                    <input type="file" name="Photo" class="form-control" id="PhotoEdit"> 
+                                    <input type="file" name="Photo" class="form-control" id="PhotoEdit">
                                 </div>
                             </div>
                             <div class="card-footer">
@@ -188,52 +188,9 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade show" id="ShowHotelModal"  role="dialog">
-            <div class="modal-dialog modal-xl ">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Show All Information on this Hotel</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="formClose">
-                         <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <table class="table table-resonsive table-bordered table-stripped table-condensed ">
-                            <tr>
-                                <th class="bg-success " style="font-size: 25px;">Attribute</th>
-                                <th class="bg-success " style="font-size: 25px;">Data</th>
-                            </tr>
-                            <tr>
-                                <td>Name : </td>
-                                <td id="ViewName"></td>
-                            </tr>
-                            <tr>
-                                <td>Title :</td>
-                                <td id="ViewTitle"></td>
-                            </tr>
-                            <tr>
-                                <td>Email :</td>
-                                <td id="ViewEmail"></td>
-                            </tr>
-                            <tr>
-                                <td>Phone :</td>
-                                <td id="ViewPhone"></td>
-                            </tr>
-                            <tr>
-                                <td>Address :</td>
-                                <td id="ViewAddress"></td>
-                            </tr>
-                            <tr>
-                                <td>Registration No :</td>
-                                <td id="ViewRegNO"></td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
+
     </div>
 
     <script src="{{asset('js/custom-js/hotle.js')}}"></script>
-    
+
 @endsection
